@@ -174,7 +174,7 @@ export default function TestimonialsSection() {
         @media (min-width: 640px) { .trust-bar { gap:8px 32px; padding:20px 24px; } }
       `}</style>
 
-      <section className="tsection relative w-full overflow-hidden py-16 md:py-28">
+      <section className="tsection relative w-full overflow-hidden py-10 md:py-16 min-h-screen flex flex-col justify-center">
 
         {/* Header */}
         <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 mb-12 md:mb-16

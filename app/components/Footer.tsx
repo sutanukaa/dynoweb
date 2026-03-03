@@ -74,7 +74,7 @@ export default function Footer() {
         }
       `}</style>
 
-      <div className="w-full bg-white flex flex-col overflow-hidden">
+      <div className="w-full bg-white flex flex-col overflow-hidden min-h-screen">
 
         {/* Wordmark area */}
         <div className="relative flex-1 flex items-end px-4 sm:px-6 md:px-12 pt-16 sm:pt-20 md:pt-24 pb-0">

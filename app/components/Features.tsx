@@ -76,7 +76,7 @@ const features: Feature[] = [
   },
 ];
 
-const ITEM_HEIGHT = 120;
+const ITEM_HEIGHT = 155;
 const VISIBLE = 3;
 const N = features.length;
 
@@ -184,13 +184,13 @@ export default function FeaturesVideoSection() {
           color:#3b6fbe;box-shadow:0 0 12px rgba(59,111,190,.1);
         }
         .fvs6 .c-text { flex:1;overflow:hidden; }
-        .fvs6 .c-title { font-size:.9rem;font-weight:500;color:#94a3b8;transition:color .3s,font-weight .3s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+        .fvs6 .c-title { font-size:1.1rem;font-weight:500;color:#94a3b8;transition:color .3s,font-weight .3s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
         .fvs6 .carousel-item.is-active .c-title { color:#0f172a;font-weight:700; }
         .fvs6 .c-expand { display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1); }
         .fvs6 .carousel-item.is-active .c-expand { grid-template-rows:1fr; }
         .fvs6 .c-expand-inner { overflow:hidden; }
-        .fvs6 .c-subtitle { font-size:.8rem;font-weight:700;color:#2d5fa8;margin:5px 0 3px; }
-        .fvs6 .c-desc { font-size:.8rem;color:#64748b;line-height:1.7; }
+        .fvs6 .c-subtitle { font-size:.95rem;font-weight:700;color:#2d5fa8;margin:5px 0 3px; }
+        .fvs6 .c-desc { font-size:.93rem;color:#64748b;line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden; }
         .fvs6 .rail { position:absolute;left:0;top:0;bottom:0;width:3px;z-index:5; }
         .fvs6 .rail-bg { position:absolute;inset:0;border-radius:99px;background:rgba(226,232,240,.5); }
         .fvs6 .rail-fill { position:absolute;left:0;width:100%;border-radius:99px;background:linear-gradient(to bottom,#2d5fa8,#60a5d4);transition:top .3s ease,height .3s ease; }
@@ -206,7 +206,7 @@ export default function FeaturesVideoSection() {
           display:flex;align-items:center;gap:7px;padding:8px 14px;
           border-radius:99px;border:1px solid rgba(226,232,240,.9);
           background:white;white-space:nowrap;flex-shrink:0;
-          font-size:.75rem;font-weight:600;color:#64748b;cursor:pointer;
+          font-size:.82rem;font-weight:600;color:#64748b;cursor:pointer;
           transition:all .2s ease;
           box-shadow:0 1px 4px rgba(15,23,42,.04);
         }
@@ -410,10 +410,10 @@ export default function FeaturesVideoSection() {
           {/* ══════════════════════════════════════════
               DESKTOP LAYOUT (lg+)
           ══════════════════════════════════════════ */}
-          <div className="hidden lg:flex gap-16 items-start mt-10">
+          <div className="hidden lg:flex gap-10 items-start mt-10">
 
             {/* Left: carousel */}
-            <div className="w-[44%] flex-shrink-0 flex flex-col gap-10">
+            <div className="w-[52%] flex-shrink-0 flex flex-col gap-10">
               <div style={{position:"relative",paddingLeft:18}}>
                 <div className="rail">
                   <div className="rail-bg"/>

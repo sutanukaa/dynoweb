@@ -156,7 +156,7 @@ export default function AIShowcaseSection() {
         }
       `}</style>
 
-      <section className="mag-root relative w-full bg-white px-3 sm:px-5 md:px-8 py-6 md:py-10 overflow-hidden">
+      <section className="mag-root relative w-full bg-white px-3 sm:px-4 md:px-6 lg:px-10 py-6 md:py-10 overflow-hidden min-h-screen flex flex-col justify-center">
         {/* Faint grid */}
         <div
           style={{
@@ -169,7 +169,7 @@ export default function AIShowcaseSection() {
           }}
         />
 
-        <div className="relative z-10 mx-auto w-full" style={{ maxWidth: "1280px" }}>
+        <div className="relative z-10 mx-auto w-full" style={{ maxWidth: "1600px" }}>
 
 
           {/* Main responsive grid */}

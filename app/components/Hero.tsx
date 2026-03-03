@@ -229,7 +229,7 @@ export default function HeroSectionOne() {
         filter:"blur(8px)", left:"-9999px", top:"-9999px",
       }} />
 
-      <div ref={containerRef} className="relative mx-auto flex max-w-7xl flex-col overflow-visible pt-20 md:pt-40">
+      <div ref={containerRef} className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center overflow-visible py-10 md:py-16">
 
         <div style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden" }}>
           {[25,50,75].map(pct => (
@@ -339,7 +339,7 @@ export default function HeroSectionOne() {
         </p>
 
         {/* CTA + trust badges */}
-        <div className="hero-btns relative z-10 mt-10 flex flex-col items-center gap-4 px-4 md:px-6 pb-20">
+        <div className="hero-btns relative z-10 mt-10 flex flex-col items-center gap-4 px-4 md:px-6">
           <button className="btn-primary" style={{ fontFamily:"'Instrument Sans',sans-serif" }}>
             Start Optimizing for Free
             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg">
