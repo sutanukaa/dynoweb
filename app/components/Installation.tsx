@@ -117,17 +117,28 @@ export default function InstallationSection() {
 
         .inst .btn-primary {
           position:relative;
-          display:inline-flex; align-items:center; gap:0.4rem;
+          display:inline-flex; align-items:center; justify-content:center; gap:0.4rem;
           cursor:pointer; outline:none; border:0;
           font-family:'Instrument Sans',sans-serif;
           font-weight:600; color:#fff !important;
           text-shadow: 0 1px 4px rgba(0,0,0,0.18), 0 0px 1px #1a3f7a;
-          text-transform:uppercase; font-size:12px; letter-spacing:0.05em;
-          padding:0.75em 1.5em; background:#3b6fbe;
+          text-transform:uppercase; font-size:15px; letter-spacing:0.05em;
+          padding:1em 2em; background:#3b6fbe;
           border:2px solid #2452a0; border-radius:0.65em;
+          min-width: 90px;
+          min-height: 38px;
+          box-sizing: border-box;
           transform-style:preserve-3d;
           transition:background 150ms cubic-bezier(0,0,.58,1),transform 150ms cubic-bezier(0,0,.58,1);
           animation:fadeUp .5s ease .45s forwards; opacity:0;
+        }
+        @media (max-width: 640px) {
+          .inst .btn-primary {
+            font-size: 16px;
+            padding: 1.1em 2.2em;
+            min-width: 100px;
+            min-height: 44px;
+          }
         }
         .inst .btn-primary::before {
           position:absolute; content:'';

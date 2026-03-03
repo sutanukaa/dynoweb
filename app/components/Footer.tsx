@@ -60,12 +60,24 @@ export default function Footer() {
           transition: color .18s ease;
         }
         .footer-nav-link:hover { color: #0f172a; }
+
+        @media (max-width: 640px) {
+          .footer-responsive-bar {
+            flex-direction: column !important;
+            gap: 12px !important;
+            align-items: flex-start !important;
+          }
+          .footer-responsive-nav {
+            gap: 18px !important;
+            flex-wrap: wrap !important;
+          }
+        }
       `}</style>
 
       <div className="w-full bg-white flex flex-col overflow-hidden">
 
         {/* Wordmark area */}
-        <div className="relative flex-1 flex items-end px-12 pt-24 pb-0">
+        <div className="relative flex-1 flex items-end px-12 pt-24 pb-0 sm:px-6 sm:pt-16">
           {/* Subtle radial glow */}
           <div style={{
             position: "absolute", top: "50%", left: "50%",
@@ -110,11 +122,11 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div style={{ height: 1, background: "rgba(226,232,240,.9)", margin: "0 48px" }} />
+        <div style={{ height: 1, background: "rgba(226,232,240,.9)", margin: "0 48px" }} className="sm:mx-4" />
 
         {/* Footer bar */}
-        <footer style={{ padding: "20px 48px" }}>
-          <div className="flex items-center justify-between">
+        <footer style={{ padding: "20px 48px" }} className="sm:px-4 sm:py-6">
+          <div className="flex items-center justify-between footer-responsive-bar">
             <span style={{
               fontFamily: "'Instrument Sans',sans-serif",
               fontSize: "13px", fontWeight: 500, color: "#94a3b8",
@@ -122,7 +134,7 @@ export default function Footer() {
               © {new Date().getFullYear()} DynoWeb
             </span>
 
-            <nav className="flex items-center gap-8">
+            <nav className="flex items-center gap-8 footer-responsive-nav">
               {navItems.map((item, i) => (
                 <a key={i} href={item.href} className="footer-nav-link">
                   {item.label}
