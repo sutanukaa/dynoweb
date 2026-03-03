@@ -22,29 +22,10 @@ const PARTICLES = [
 
 export default function HeroSectionOne() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const cursorGlowRef = useRef<HTMLDivElement>(null);
   const sketchRef = useRef<HTMLSpanElement>(null);
   const particleRefs = useRef<Array<HTMLDivElement | null>>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animFrameRef = useRef<number>(0);
-
-  // Cursor glow
-  useEffect(() => {
-    const cursorGlow = cursorGlowRef.current;
-    if (!cursorGlow) return;
-    let rafId: number;
-    const handleMouseMove = (e: MouseEvent) => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        if (cursorGlow) {
-          cursorGlow.style.left = `${e.clientX}px`;
-          cursorGlow.style.top = `${e.clientY}px`;
-        }
-      });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => { window.removeEventListener("mousemove", handleMouseMove); cancelAnimationFrame(rafId); };
-  }, []);
 
   // Particle parallax on mouse move
   useEffect(() => {
@@ -271,29 +252,11 @@ export default function HeroSectionOne() {
       `}</style>
 
       <div
-        ref={cursorGlowRef}
-        style={{
-          position: "fixed",
-          width: "600px",
-          height: "600px",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(99,130,200,0.15) 0%, rgba(99,130,200,0.05) 40%, transparent 70%)",
-          pointerEvents: "none",
-          transform: "translate(-50%, -50%)",
-          zIndex: 9999,
-          filter: "blur(8px)",
-          left: "-9999px",
-          top: "-9999px",
-        }}
-      />
-
-      <div
         ref={containerRef}
-        className="relative mx-auto flex max-w-7xl flex-col overflow-visible pt-20 md:pt-40"
+        className="relative mx-auto flex max-w-7xl flex-col overflow-visible pt-20 md:pt-40 px-6"
       >
-        {/* Wide editorial column grid — full viewport */}
-        <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
+        {/* Wide editorial column grid — full viewport (hidden on mobile) */}
+        <div className="hidden md:block" style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
           {/* 4-column vertical dividers at 25% intervals */}
           {[25, 50, 75].map(pct => (
             <div key={pct} style={{
@@ -363,9 +326,9 @@ export default function HeroSectionOne() {
         />
 
         {/* Headline with sketch highlight */}
-        <div className="relative z-10 mx-auto mt-5 max-w-5xl text-center">
+        <div className="relative z-10 mx-auto mt-5 w-full max-w-5xl px-4 text-center">
           <div style={{ position: "relative", display: "inline-block" }}>
-            <h1 className="hero-headline text-2xl font-medium text-neutral-900 md:text-4xl lg:text-6xl">
+            <h1 className="hero-headline text-2xl font-thin text-neutral-900 md:text-4xl lg:text-6xl">
               {headlineWords.map((word: string, i: number) => (
                 <span key={i} className="word-hover" style={{ marginRight: "0.25em" }}>
                   {word}
@@ -459,7 +422,7 @@ export default function HeroSectionOne() {
 
         {/* Subheading */}
         <p
-          className="hero-sub relative z-10 mx-auto mt-6 max-w-2xl text-center text-base text-neutral-500 md:text-lg"
+          className="hero-sub relative z-10 mx-auto mt-6 max-w-2xl px-4 text-center text-base text-neutral-500 md:text-lg"
           style={{ lineHeight: "1.75" }}
         >
           DynoWeb blends expert analytics with cutting-edge technology to create
@@ -468,7 +431,7 @@ export default function HeroSectionOne() {
         </p>
 
         {/* CTA */}
-        <div className="hero-btns relative z-10 mt-10 flex items-center justify-center">
+        <div className="hero-btns relative z-10 mt-10 flex items-center justify-center px-4">
           <button className="btn-primary" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>
             Get started free
             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg">

@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div className="font-poppins">
+    <div className="font-poppins min-h-screen w-full overflow-x-hidden">
       <PillNav />
       <FUIHeroSectionWithLogoClouds />
       <AIShowcaseSection />

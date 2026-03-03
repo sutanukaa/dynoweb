@@ -17,7 +17,7 @@ export default function AIShowcaseSection() {
     }
   };
 
-  const bullets: { title: string; desc: string }[] = [
+  const bullets = [
     {
       title: "Real-time AI suggestions",
       desc: "Surfaces actionable changes before you lose the sale.",
@@ -42,96 +42,121 @@ export default function AIShowcaseSection() {
           to   { stroke-dashoffset: 0; }
         }
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(14px); }
-          to   { opacity: 1; transform: translateY(0); }
+          from { opacity:0; transform:translateY(14px); }
+          to   { opacity:1; transform:translateY(0); }
         }
         @keyframes playPulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(59,111,190,0.5); }
-          50%       { box-shadow: 0 0 0 12px rgba(59,111,190,0); }
+          0%,100% { box-shadow:0 0 0 0 rgba(59,111,190,.5); }
+          50%      { box-shadow:0 0 0 12px rgba(59,111,190,0); }
         }
 
-        .mag-root { font-family: 'Instrument Sans', sans-serif; }
-
-        .rule { width: 100%; height: 1px; background: #e2e8f0; }
+        .mag-root { font-family:'Instrument Sans',sans-serif; }
+        .rule { width:100%;height:1px;background:#e2e8f0; }
 
         .mag-headline {
-          font-family: 'Cal Sans', 'Georgia', serif;
-          font-size: clamp(2.2rem, 3.5vw, 3.4rem);
-          font-weight: 700;
-          line-height: 1.06;
-          letter-spacing: -0.02em;
-          color: #0a1628;
+          font-family:'Cal Sans','Georgia',serif;
+          font-size:clamp(2rem,5vw,3.4rem);
+          font-weight:700;line-height:1.06;
+          letter-spacing:-0.02em;color:#0a1628;
         }
 
         .drop-cap::first-letter {
-          font-family: 'Playfair Display', serif;
-          font-size: 3.6em;
-          font-weight: 700;
-          float: left;
-          line-height: 0.78;
-          margin-right: 6px;
-          margin-top: 4px;
-          color: #3b6fbe;
+          font-family:'Playfair Display',serif;
+          font-size:3.6em;font-weight:700;
+          float:left;line-height:.78;
+          margin-right:6px;margin-top:4px;
+          color:#3b6fbe;
         }
-
-        .body-copy {
-          font-size: 0.88rem;
-          line-height: 1.8;
-          color: #475569;
-        }
-
-        .pull-quote {
-          font-family: 'Playfair Display', serif;
-          font-size: 1rem;
-          font-style: italic;
-          line-height: 1.55;
-          color: #0a1628;
-          border-left: 3px solid #3b6fbe;
-          padding-left: 14px;
-          margin: 0;
-        }
+        .body-copy { font-size:.88rem;line-height:1.8;color:#475569; }
 
         .mag-bullet {
-          display: flex;
-          gap: 12px;
-          align-items: flex-start;
-          padding: 12px 0;
-          border-bottom: 1px solid #f1f5f9;
-          transition: padding-left 0.2s ease;
-          cursor: default;
+          display:flex;gap:12px;align-items:flex-start;
+          padding:12px 0;border-bottom:1px solid #f1f5f9;
+          transition:padding-left .2s ease;cursor:default;
         }
-        .mag-bullet:first-child { border-top: 1px solid #f1f5f9; }
-        .mag-bullet:hover { padding-left: 5px; }
-        .mag-bullet:hover .mag-bullet-title { color: #3b6fbe; }
-        .mag-bullet-title {
-          font-weight: 700;
-          font-size: 0.8rem;
-          color: #0f172a;
-          margin-bottom: 2px;
-          transition: color 0.2s ease;
-        }
-        .mag-bullet-desc { font-size: 0.76rem; color: #94a3b8; line-height: 1.5; }
+        .mag-bullet:first-child { border-top:1px solid #f1f5f9; }
+        .mag-bullet:hover { padding-left:5px; }
+        .mag-bullet:hover .mag-bullet-title { color:#3b6fbe; }
+        .mag-bullet-title { font-weight:700;font-size:.8rem;color:#0f172a;margin-bottom:2px;transition:color .2s ease; }
+        .mag-bullet-desc  { font-size:.76rem;color:#94a3b8;line-height:1.5; }
 
         .vid-wrap {
-          position: relative;
-          border-radius: 6px;
-          overflow: hidden;
-          background: #0a1628;
-          box-shadow: 0 0 0 1px rgba(59,111,190,0.15), 0 40px 100px rgba(10,22,40,0.28);
+          position:relative;border-radius:10px;overflow:hidden;
+          background:#0a1628;
+          box-shadow:0 0 0 1px rgba(59,111,190,.15),0 32px 80px rgba(10,22,40,.24);
         }
-        .play-btn { animation: playPulse 2.5s ease-in-out infinite; cursor: pointer; }
+        .play-btn { animation:playPulse 2.5s ease-in-out infinite;cursor:pointer; }
 
-        .sketch-fill-1 { stroke-dasharray: 900; stroke-dashoffset: 900; animation: sketchHighlightDraw 0.6s ease-out 0.4s forwards; }
-        .sketch-fill-2 { stroke-dasharray: 900; stroke-dashoffset: 900; animation: sketchHighlightDraw 0.55s ease-out 0.4s forwards; }
-        .sketch-fill-3 { stroke-dasharray: 900; stroke-dashoffset: 900; animation: sketchHighlightDraw 0.45s ease-out 0.52s forwards; }
+        .sketch-fill-1 { stroke-dasharray:900;stroke-dashoffset:900;animation:sketchHighlightDraw .6s ease-out .4s forwards; }
+        .sketch-fill-2 { stroke-dasharray:900;stroke-dashoffset:900;animation:sketchHighlightDraw .55s ease-out .4s forwards; }
+        .sketch-fill-3 { stroke-dasharray:900;stroke-dashoffset:900;animation:sketchHighlightDraw .45s ease-out .52s forwards; }
 
-        .fi { opacity: 0; animation: fadeIn 0.55s ease forwards; }
-        .fi-1 { animation-delay: 0.05s; }
-        .fi-2 { animation-delay: 0.2s; }
-        .fi-3 { animation-delay: 0.35s; }
+        .fi { opacity:0;animation:fadeIn .55s ease forwards; }
+        .fi-1 { animation-delay:.05s; }
+        .fi-2 { animation-delay:.2s; }
+        .fi-3 { animation-delay:.35s; }
+
+        /* ── Responsive grid ── */
+
+        /* Mobile default: single column, video is portrait but capped */
+        .mag-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+        }
+
+        /* Tablet (sm): side-by-side headline+video, bullets below */
+        @media (min-width: 640px) {
+          .mag-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+              "headline video"
+              "bullets  bullets";
+            gap: 32px 40px;
+            align-items: start;
+          }
+          .mag-col-headline { grid-area: headline; }
+          .mag-col-video    { grid-area: video; }
+          .mag-col-bullets  { grid-area: bullets; }
+
+          /* Horizontal bullets on tablet */
+          .mag-bullets-inner {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0 24px;
+          }
+          .mag-bullet { border-top: 1px solid #f1f5f9; }
+        }
+
+        /* Desktop (lg): original 3-col side-by-side */
+        @media (min-width: 1024px) {
+          .mag-grid {
+            grid-template-columns: 220px 280px 1fr;
+            grid-template-areas: "bullets video headline";
+            gap: 48px;
+          }
+          .mag-col-headline { grid-area: headline; }
+          .mag-col-video    { grid-area: video; }
+          .mag-col-bullets  { grid-area: bullets; }
+
+          .mag-bullets-inner {
+            display: block;
+          }
+          .mag-bullet { border-top: none; }
+          .mag-bullet:first-child { border-top: 1px solid #f1f5f9; }
+        }
+
+        /* Video aspect ratio: portrait on mobile/tablet, portrait on desktop too */
+        .mag-col-video .vid-wrap { aspect-ratio: 9/16; }
+
+        /* On mobile, portrait video would be too tall — use a shorter ratio */
+        @media (max-width: 639px) {
+          .mag-col-video .vid-wrap { aspect-ratio: 4/5; }
+        }
       `}</style>
 
-      <section className="mag-root relative w-full bg-white px-8 py-20 overflow-hidden">
+      <section className="mag-root relative w-full bg-white px-5 sm:px-8 py-16 md:py-20 overflow-hidden">
         {/* Faint grid */}
         <div
           style={{
@@ -139,82 +164,59 @@ export default function AIShowcaseSection() {
             inset: 0,
             pointerEvents: "none",
             zIndex: 0,
-            backgroundImage: `linear-gradient(rgba(99,130,200,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(99,130,200,0.04) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(rgba(99,130,200,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(99,130,200,.04) 1px,transparent 1px)`,
             backgroundSize: "48px 48px",
           }}
         />
 
         <div className="relative z-10 mx-auto" style={{ maxWidth: "1100px" }}>
-          {/* ── SECTION OPENER — replaces the generic masthead bar ── */}
-          <div
-            className="fi fi-1"
-            style={{
-              display: "flex",
-              alignItems: "flex-end",
-              gap: "14px",
-              marginBottom: "48px",
-            }}
-          >
-            <div style={{ paddingBottom: "6px" }}>
-              <p
-                style={{
-                  fontFamily: "'Instrument Sans', sans-serif",
-                  fontSize: "1.35rem",
-                  fontWeight: 600,
-                  color: "#0a1628",
-                  lineHeight: 1,
-                  letterSpacing: "-0.02em",
-                  marginBottom: "5px",
-                }}
-              >
-                Revenue Intelligence
-              </p>
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "8px" }}
-              >
-                <div
-                  style={{
-                    width: "28px",
-                    height: "2px",
-                    background: "#3b6fbe",
-                    borderRadius: "1px",
-                  }}
-                />
-              </div>
-            </div>
+          {/* Section opener */}
+          <div className="fi fi-1" style={{ marginBottom: "36px" }}>
+            <p
+              style={{
+                fontFamily: "'Instrument Sans',sans-serif",
+                fontSize: "1.2rem",
+                fontWeight: 600,
+                color: "#0a1628",
+                lineHeight: 1,
+                letterSpacing: "-0.02em",
+                marginBottom: "5px",
+              }}
+            >
+              Revenue Intelligence
+            </p>
+            <div
+              style={{
+                width: "28px",
+                height: "2px",
+                background: "#3b6fbe",
+                borderRadius: "1px",
+              }}
+            />
           </div>
 
-          {/* ── MAIN GRID: left bullets | center video | right copy ── */}
-          <div
-            className="fi fi-2"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "220px 300px 1fr",
-              gap: "48px",
-              alignItems: "start",
-            }}
-          >
-            {/* COL A — sidebar: pull quote + bullets */}
+          {/* Main responsive grid */}
+          <div className="mag-grid fi fi-2">
+            {/* ── Bullets / sidebar ── */}
             <div
-              style={{ display: "flex", flexDirection: "column", gap: "24px" }}
+              className="mag-col-bullets"
+              style={{ display: "flex", flexDirection: "column", gap: "16px" }}
             >
-              <div style={{ height: "80px" }} />
-
-              <div className="rule" />
-
-              <div>
-                <p
-                  style={{
-                    fontSize: "0.58rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "#3b6fbe",
-                    marginBottom: "4px",
-                  }}
-                >
-                  What you get
-                </p>
+              {/* Only show spacer + rule on desktop */}
+              <div className="hidden lg:block" style={{ height: "80px" }} />
+              <div className="rule hidden lg:block" />
+              <p
+                style={{
+                  fontSize: ".58rem",
+                  fontWeight: 700,
+                  letterSpacing: ".15em",
+                  textTransform: "uppercase",
+                  color: "#3b6fbe",
+                }}
+              >
+                What you get
+              </p>
+              <div className="mag-bullets-inner">
                 {bullets.map((b, i) => (
                   <div key={i} className="mag-bullet">
                     <div style={{ minWidth: "22px", paddingTop: "1px" }}>
@@ -237,145 +239,145 @@ export default function AIShowcaseSection() {
               </div>
             </div>
 
-            {/* COL B — video (dominant) */}
-            <div
-              className="vid-wrap"
-              style={{ aspectRatio: "9/16", width: "100%" }}
-            >
-              <video
-                ref={videoRef}
-                src="/your-video.mp4"
-                className="w-full h-full object-cover"
-                loop
-                muted
-                playsInline
-                onEnded={() => setPlaying(false)}
-              />
-
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "linear-gradient(to top, rgba(10,22,40,0.82) 0%, rgba(10,22,40,0.08) 50%, transparent 75%)",
-                  opacity: !playing ? 1 : 0.4,
-                  transition: "opacity 0.3s ease",
-                }}
-              />
-
-              <button
-                onClick={togglePlay}
-                className="play-btn"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  margin: "auto",
-                  width: "52px",
-                  height: "52px",
-                  borderRadius: "50%",
-                  background: "rgba(59,111,190,0.9)",
-                  backdropFilter: "blur(8px)",
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  opacity: !playing ? 1 : 0,
-                  transition: "opacity 0.25s ease",
-                }}
-                aria-label={playing ? "Pause" : "Play"}
-              >
-                {playing ? (
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="white">
-                    <rect x="6" y="4" width="4" height="16" rx="1" />
-                    <rect x="14" y="4" width="4" height="16" rx="1" />
-                  </svg>
-                ) : (
-                  <svg
-                    width="13"
-                    height="13"
-                    viewBox="0 0 24 24"
-                    fill="white"
-                    style={{ marginLeft: "2px" }}
-                  >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                )}
-              </button>
-
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  padding: "18px 16px",
-                }}
-              >
-                <p
+            {/* ── Video ── */}
+            <div className="mag-col-video">
+              <div className="vid-wrap">
+                <video
+                  ref={videoRef}
+                  src="/your-video.mp4"
+                  className="w-full h-full object-cover"
+                  loop
+                  muted
+                  playsInline
+                  onEnded={() => setPlaying(false)}
+                />
+                <div
                   style={{
-                    fontSize: "0.6rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: "rgba(148,163,184,0.8)",
-                    marginBottom: "4px",
-                  }}
-                >
-                  AI in action
-                </p>
-                <p
-                  style={{
-                    fontSize: "0.82rem",
-                    fontWeight: 600,
-                    color: "white",
-                    lineHeight: 1.4,
-                  }}
-                >
-                  See how DynoWeb boosted this store's revenue by 240%
-                </p>
-              </div>
-
-              <div
-                style={{
-                  position: "absolute",
-                  top: "12px",
-                  left: "12px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  background: "rgba(10,22,40,0.6)",
-                  backdropFilter: "blur(8px)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: "99px",
-                  padding: "3px 10px",
-                }}
-              >
-                <span
-                  style={{
-                    width: "6px",
-                    height: "6px",
-                    borderRadius: "50%",
-                    background: playing ? "#22c55e" : "#94a3b8",
-                    boxShadow: playing ? "0 0 6px #22c55e" : "none",
-                    transition: "all 0.3s ease",
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top,rgba(10,22,40,.82) 0%,rgba(10,22,40,.08) 50%,transparent 75%)",
+                    opacity: !playing ? 1 : 0.4,
+                    transition: "opacity .3s ease",
                   }}
                 />
-                <span
+                <button
+                  onClick={togglePlay}
+                  className="play-btn"
                   style={{
-                    fontSize: "0.58rem",
-                    fontWeight: 700,
-                    color: "rgba(255,255,255,0.75)",
-                    letterSpacing: "0.08em",
+                    position: "absolute",
+                    inset: 0,
+                    margin: "auto",
+                    width: "52px",
+                    height: "52px",
+                    borderRadius: "50%",
+                    background: "rgba(59,111,190,.9)",
+                    backdropFilter: "blur(8px)",
+                    border: "1px solid rgba(255,255,255,.2)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    opacity: !playing ? 1 : 0,
+                    transition: "opacity .25s ease",
+                  }}
+                  aria-label={playing ? "Pause" : "Play"}
+                >
+                  {playing ? (
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                    >
+                      <rect x="6" y="4" width="4" height="16" rx="1" />
+                      <rect x="14" y="4" width="4" height="16" rx="1" />
+                    </svg>
+                  ) : (
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      style={{ marginLeft: "2px" }}
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  )}
+                </button>
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    padding: "16px 14px",
                   }}
                 >
-                  {playing ? "PLAYING" : "PREVIEW"}
-                </span>
+                  <p
+                    style={{
+                      fontSize: ".6rem",
+                      fontWeight: 700,
+                      letterSpacing: ".12em",
+                      textTransform: "uppercase",
+                      color: "rgba(148,163,184,.8)",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    AI in action
+                  </p>
+                  <p
+                    style={{
+                      fontSize: ".82rem",
+                      fontWeight: 600,
+                      color: "white",
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    See how DynoWeb boosted this store's revenue by 240%
+                  </p>
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "12px",
+                    left: "12px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    background: "rgba(10,22,40,.6)",
+                    backdropFilter: "blur(8px)",
+                    border: "1px solid rgba(255,255,255,.08)",
+                    borderRadius: "99px",
+                    padding: "3px 10px",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      background: playing ? "#22c55e" : "#94a3b8",
+                      boxShadow: playing ? "0 0 6px #22c55e" : "none",
+                      transition: "all .3s ease",
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: ".58rem",
+                      fontWeight: 700,
+                      color: "rgba(255,255,255,.75)",
+                      letterSpacing: ".08em",
+                    }}
+                  >
+                    {playing ? "PLAYING" : "PREVIEW"}
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* COL C — headline + body */}
+            {/* ── Headline + body ── */}
             <div
-              className="fi fi-3"
+              className="mag-col-headline fi fi-3"
               style={{ display: "flex", flexDirection: "column", gap: "18px" }}
             >
               <h2 className="mag-headline">
@@ -480,7 +482,6 @@ export default function AIShowcaseSection() {
                 exactly what to do next. Real merchants discover hidden revenue
                 leaks and fix them in minutes.
               </p>
-
               <p className="body-copy">
                 No dashboards to configure. No analysts to hire. Just plug in
                 your store and watch the insights surface automatically.
@@ -488,57 +489,44 @@ export default function AIShowcaseSection() {
 
               <div className="rule" />
 
-              {/* Footer stat */}
               <div style={{ display: "flex", gap: "24px" }}>
-                <div>
-                  <p
-                    style={{
-                      fontFamily: "'Instrument Sans', sans-serif",
-                      fontSize: "1.5rem",
-                      fontWeight: 700,
-                      color: "#3b6fbe",
-                      lineHeight: 1,
-                    }}
-                  >
-                    91%
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'Instrument Sans', sans-serif",
-                      fontSize: "0.68rem",
-                      color: "#94a3b8",
-                      marginTop: "3px",
-                      lineHeight: 1.4,
-                    }}
-                  >
-                    stores saw improved CTR
-                  </p>
-                </div>
-                <div style={{ width: "1px", background: "#e2e8f0" }} />
-                <div>
-                  <p
-                    style={{
-                      fontFamily: "'Instrument Sans', sans-serif",
-                      fontSize: "1.5rem",
-                      fontWeight: 700,
-                      color: "#3b6fbe",
-                      lineHeight: 1,
-                    }}
-                  >
-                    18s
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'Instrument Sans', sans-serif",
-                      fontSize: "0.68rem",
-                      color: "#94a3b8",
-                      marginTop: "3px",
-                      lineHeight: 1.4,
-                    }}
-                  >
-                    avg. time to first insight
-                  </p>
-                </div>
+                {[
+                  { v: "91%", l: "stores saw improved CTR" },
+                  { v: "18s", l: "avg. time to first insight" },
+                ].map((s, i) => (
+                  <>
+                    {i > 0 && (
+                      <div
+                        key={`div-${i}`}
+                        style={{ width: "1px", background: "#e2e8f0" }}
+                      />
+                    )}
+                    <div key={s.v}>
+                      <p
+                        style={{
+                          fontFamily: "'Instrument Sans',sans-serif",
+                          fontSize: "1.5rem",
+                          fontWeight: 700,
+                          color: "#3b6fbe",
+                          lineHeight: 1,
+                        }}
+                      >
+                        {s.v}
+                      </p>
+                      <p
+                        style={{
+                          fontFamily: "'Instrument Sans',sans-serif",
+                          fontSize: ".68rem",
+                          color: "#94a3b8",
+                          marginTop: "3px",
+                          lineHeight: 1.4,
+                        }}
+                      >
+                        {s.l}
+                      </p>
+                    </div>
+                  </>
+                ))}
               </div>
             </div>
           </div>
