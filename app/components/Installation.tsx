@@ -201,7 +201,7 @@ export default function InstallationSection() {
           filter:"blur(40px)", pointerEvents:"none", zIndex:0,
         }}/>
 
-        <div className="relative z-10 mx-auto max-w-6xl flex flex-col items-center text-center gap-5 sm:gap-6">
+        <div className="relative z-10 mx-auto max-w-7xl flex flex-col items-center text-center gap-5 sm:gap-6">
 
           {/* Badge */}
           <div className="top-badge">

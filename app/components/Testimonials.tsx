@@ -177,7 +177,7 @@ export default function TestimonialsSection() {
       <section className="tsection relative w-full overflow-hidden py-16 md:py-28">
 
         {/* Header */}
-        <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6 mb-12 md:mb-16
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 mb-12 md:mb-16
                         flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-6">
           <div className="flex flex-col gap-3">
             <span className="sec-label">Social proof</span>
@@ -249,7 +249,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Trust bar */}
-        <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6 mt-12 md:mt-16">
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 mt-12 md:mt-16">
           <div className="trust-bar">
             {[
               { v: "10,000+", l: "Active stores"  },

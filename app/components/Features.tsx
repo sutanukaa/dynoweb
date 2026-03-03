@@ -12,10 +12,10 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    id: "ai-builder",
-    title: "AI-Powered Page Builder",
-    subtitle: "Your data shapes every pixel.",
-    description: "Describe any page in plain English. Before writing a single section, DynoWeb pulls your click heatmaps, scroll depth, rage-click patterns, and device split — then builds a fully optimized Shopify Liquid template around what your actual visitors do. Not templates. Not guesswork.",
+    id: "behavioral-watchdog",
+    title: "11-Signal Behavioral Watchdog",
+    subtitle: "We track the silent killers of conversion.",
+    description: "DynoWeb detects Rage Clicks, Dead Clicks, Confused Mouse Shakes, and Form Abandonment Bottlenecks — plus mobile-specific signals like Fat Finger Misses and Pinch-to-Zooms. Eleven behavioral signals, captured invisibly, that regular analytics completely miss.",
     videoSrc: "/videos/ai-builder.mp4",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
@@ -24,10 +24,10 @@ const features: Feature[] = [
     ),
   },
   {
-    id: "template-system",
-    title: "Template System",
-    subtitle: "Build once. Deploy everywhere.",
-    description: "Design a product page UI once and assign it across unlimited products. DynoWeb generates valid Shopify product.{suffix}.json templates for every page type — products, collections, landing pages, homepages, and custom pages — all assignable from Shopify Admin's native dropdown.",
+    id: "ai-engine",
+    title: "3-Layer AI Intelligence Engine",
+    subtitle: "A Senior UX Designer auditing your store 24/7.",
+    description: "No generic AI here. Layer 1 applies strict, battle-tested UX rules. Layer 2 spots statistical patterns across sessions. Layer 3 uses advanced LLM reasoning to generate solutions — not guesses. Three layers working together so every suggestion is actionable.",
     videoSrc: "/videos/template-system.mp4",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
@@ -37,10 +37,10 @@ const features: Feature[] = [
     ),
   },
   {
-    id: "safe-publishing",
-    title: "Safe Publishing & Rollback",
-    subtitle: "Zero risk to your live store — ever.",
-    description: "Every change lives in a cloned draft theme, completely invisible to shoppers. Preview, compare side-by-side with your live store, and publish only when confident. Every version is timestamped with a visual diff. One click restores any previous state instantly.",
+    id: "pecti-scoring",
+    title: "PECTI ROI Scoring System",
+    subtitle: "Never wonder what to fix first.",
+    description: "Every AI suggestion is graded on Proof, Ease, Cost, Time, and Impact. We filter out the noise and surface the Quick Wins that make money today — so you always know exactly where to start.",
     videoSrc: "/videos/safe-publishing.mp4",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
@@ -49,10 +49,10 @@ const features: Feature[] = [
     ),
   },
   {
-    id: "mobile-performance",
-    title: "Speed & Mobile Experience",
-    subtitle: "Fast pages. Real mobile layouts.",
-    description: "DynoWeb generates genuinely different content hierarchies for mobile — not just scaled-down CSS. Sticky CTAs, swipeable galleries, reordered sections. And every page adds less than 50ms to load time: lazy loading, scoped CSS, deferred JS, and auto-compressed WebP images, all built in.",
+    id: "draft-theme",
+    title: "One-Click Draft Theme Generation",
+    subtitle: "Data means nothing without action.",
+    description: "When the AI says \"Users can't reach this button on mobile,\" you don't hire a dev. Click \"Apply\" and DynoWeb writes the CSS/Liquid, duplicates your theme, and safely applies the fix to a draft version — ready for your review. No code. No risk.",
     videoSrc: "/videos/mobile-performance.mp4",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
@@ -62,29 +62,15 @@ const features: Feature[] = [
     ),
   },
   {
-    id: "optimize-test",
-    title: "Optimize & A/B Test",
-    subtitle: "AI spots it. You test it in one click.",
-    description: "DynoWeb continuously scores opportunities using PECTI — Proof, Ease, Cost, Time, Impact — so you always know what to fix first. Hit 'Test This' on any suggestion and DynoWeb builds variant B, splits traffic server-side with zero flicker, tracks real revenue, and declares a winner at significance.",
+    id: "clarity-sync",
+    title: "Microsoft Clarity Sync",
+    subtitle: "Your existing data, supercharged.",
+    description: "Already using Microsoft Clarity? DynoWeb syncs directly with your Clarity data — session recordings, heatmaps, and scroll maps — and layers our AI engine on top. No extra tracking needed, just deeper, actionable insights from the data you already have.",
     videoSrc: "/videos/optimize-test.mp4",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="12" cy="19" r="2.5"/>
         <path d="M5 7.5V12a7 7 0 0 0 7 7M19 7.5V12a7 7 0 0 1-7 7"/><path d="M12 4v8"/>
-      </svg>
-    ),
-  },
-  {
-    id: "team-seo",
-    title: "Team & SEO Tools",
-    subtitle: "Ship confidently with your whole team.",
-    description: "Every change is logged with a timestamp, author, and visual diff so multi-person teams always know what changed and who did it. Before anything goes live, DynoWeb runs automated SEO checks: meta tags, H1 uniqueness, alt text, canonical URLs, structured data, and page speed impact.",
-    videoSrc: "/videos/team-seo.mp4",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="9" cy="7" r="3"/><path d="M3 21v-2a6 6 0 0 1 6-6h.5"/>
-        <circle cx="17" cy="15" r="3"/><path d="M17 12v-1a3 3 0 0 0-3-3h-1"/>
-        <path d="M21 21l-1.5-1.5M19.5 17a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0z"/>
       </svg>
     ),
   },
@@ -291,7 +277,7 @@ export default function FeaturesVideoSection() {
           animation:"ambientGlow 6s ease-in-out infinite",
         }}/>
 
-        <div className="relative z-10 mx-auto max-w-6xl">
+        <div className="relative z-10 mx-auto max-w-7xl">
 
           {/* ── Header (shared) ── */}
           <div className="flex flex-col gap-3 mb-8 md:mb-0">
@@ -322,7 +308,7 @@ export default function FeaturesVideoSection() {
               </span>
             </h2>
             <p style={{color:"#64748b",fontSize:".9rem",lineHeight:1.75,maxWidth:380}}>
-              Six capabilities working as one continuous loop.
+              Five capabilities working as one continuous loop.
             </p>
           </div>
 

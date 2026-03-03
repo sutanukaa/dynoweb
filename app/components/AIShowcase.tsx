@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 export default function AIShowcaseSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -19,16 +19,16 @@ export default function AIShowcaseSection() {
 
   const bullets = [
     {
-      title: "Real-time AI suggestions",
-      desc: "Surfaces actionable changes before you lose the sale.",
+      title: "Step 1: Watch (Invisibly)",
+      desc: "Our 6KB tracker tracks 11 behavioral signals without slowing down your site by a single millisecond.",
     },
     {
-      title: "Conversion-first analytics",
-      desc: "Every metric tied directly to revenue — no vanity numbers.",
+      title: "Step 2: Think (Like a CRO Expert)",
+      desc: "The 3-layer AI engine processes the data, spots revenue-leaking gaps, and scores them by ROI.",
     },
     {
-      title: "Built for Shopify merchants",
-      desc: "Up and running in under 60 seconds. No developer needed.",
+      title: "Step 3: Fix (Automatically)",
+      desc: "Click \"Apply,\" and DynoWeb builds a safe, unpublished Draft Theme with the UX fixes already coded for you to review.",
     },
   ];
 
@@ -156,7 +156,7 @@ export default function AIShowcaseSection() {
         }
       `}</style>
 
-      <section className="mag-root relative w-full bg-white px-5 sm:px-8 py-16 md:py-20 overflow-hidden">
+      <section className="mag-root relative w-full bg-white px-3 sm:px-5 md:px-8 py-6 md:py-10 overflow-hidden">
         {/* Faint grid */}
         <div
           style={{
@@ -169,31 +169,8 @@ export default function AIShowcaseSection() {
           }}
         />
 
-        <div className="relative z-10 mx-auto" style={{ maxWidth: "1100px" }}>
-          {/* Section opener */}
-          <div className="fi fi-1" style={{ marginBottom: "36px" }}>
-            <p
-              style={{
-                fontFamily: "'Instrument Sans',sans-serif",
-                fontSize: "1.2rem",
-                fontWeight: 600,
-                color: "#0a1628",
-                lineHeight: 1,
-                letterSpacing: "-0.02em",
-                marginBottom: "5px",
-              }}
-            >
-              Revenue Intelligence
-            </p>
-            <div
-              style={{
-                width: "28px",
-                height: "2px",
-                background: "#3b6fbe",
-                borderRadius: "1px",
-              }}
-            />
-          </div>
+        <div className="relative z-10 mx-auto w-full" style={{ maxWidth: "1280px" }}>
+
 
           {/* Main responsive grid */}
           <div className="mag-grid fi fi-2">
@@ -381,11 +358,7 @@ export default function AIShowcaseSection() {
               style={{ display: "flex", flexDirection: "column", gap: "18px" }}
             >
               <h2 className="mag-headline">
-                Your
-                <br />
-                store's
-                <br />
-                unfair{" "}
+                Did you know your &lsquo;Buy&rsquo; button has a 35% &lsquo;Fat Finger&rsquo;{" "}
                 <span
                   style={{
                     position: "relative",
@@ -471,44 +444,48 @@ export default function AIShowcaseSection() {
                       />
                     </g>
                   </svg>
-                  <span style={{ position: "relative", zIndex: 1 }}>edge.</span>
-                </span>
+                  <span style={{ position: "relative", zIndex: 1 }}>miss rate</span>
+                </span>{" "}
+                on mobile?
               </h2>
 
               <div className="rule" />
 
               <p className="body-copy drop-cap">
-                DynoWeb's AI doesn't just show you what happened — it tells you
-                exactly what to do next. Real merchants discover hidden revenue
-                leaks and fix them in minutes.
+                Regular analytics won&rsquo;t tell you that. And your customers
+                won&rsquo;t complain&mdash;they&rsquo;ll just leave. DynoWeb&rsquo;s
+                AI doesn&rsquo;t just show you what happened &mdash; it tells you
+                exactly what to do next.
               </p>
               <p className="body-copy">
-                No dashboards to configure. No analysts to hire. Just plug in
-                your store and watch the insights surface automatically.
+                Real merchants discover hidden revenue leaks and fix them in
+                minutes. No dashboards to configure. No analysts to hire. Just
+                plug in your store and watch the insights surface automatically.
               </p>
 
               <div className="rule" />
 
-              <div style={{ display: "flex", gap: "24px" }}>
+              <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
                 {[
-                  { v: "91%", l: "stores saw improved CTR" },
-                  { v: "18s", l: "avg. time to first insight" },
+                  { v: "SEO Armor", l: "Every suggestion passes Core Web Vitals validation. Your rankings stay safe." },
+                  { v: "Zero-Risk Drafts", l: "We never touch your live theme. Fixes stay in an isolated Draft Theme." },
+                  { v: "Action, Not Data", l: "Hotjar shows a heatmap. DynoWeb gives you the code to fix it." },
                 ].map((s, i) => (
-                  <>
+                  <React.Fragment key={s.v}>
                     {i > 0 && (
                       <div
-                        key={`div-${i}`}
                         style={{ width: "1px", background: "#e2e8f0" }}
                       />
                     )}
-                    <div key={s.v}>
+                    <div style={{ flex: 1, minWidth: "120px" }}>
                       <p
                         style={{
                           fontFamily: "'Instrument Sans',sans-serif",
-                          fontSize: "1.5rem",
+                          fontSize: ".82rem",
                           fontWeight: 700,
                           color: "#3b6fbe",
-                          lineHeight: 1,
+                          lineHeight: 1.2,
+                          marginBottom: "4px",
                         }}
                       >
                         {s.v}
@@ -518,14 +495,13 @@ export default function AIShowcaseSection() {
                           fontFamily: "'Instrument Sans',sans-serif",
                           fontSize: ".68rem",
                           color: "#94a3b8",
-                          marginTop: "3px",
                           lineHeight: 1.4,
                         }}
                       >
                         {s.l}
                       </p>
                     </div>
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
             </div>

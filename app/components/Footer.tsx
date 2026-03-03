@@ -77,7 +77,7 @@ export default function Footer() {
       <div className="w-full bg-white flex flex-col overflow-hidden">
 
         {/* Wordmark area */}
-        <div className="relative flex-1 flex items-end px-12 pt-24 pb-0 sm:px-6 sm:pt-16">
+        <div className="relative flex-1 flex items-end px-4 sm:px-6 md:px-12 pt-16 sm:pt-20 md:pt-24 pb-0">
           {/* Subtle radial glow */}
           <div style={{
             position: "absolute", top: "50%", left: "50%",
@@ -122,10 +122,10 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div style={{ height: 1, background: "rgba(226,232,240,.9)", margin: "0 48px" }} className="sm:mx-4" />
+        <div style={{ height: 1, background: "rgba(226,232,240,.9)" }} className="mx-4 sm:mx-6 md:mx-12" />
 
         {/* Footer bar */}
-        <footer style={{ padding: "20px 48px" }} className="sm:px-4 sm:py-6">
+        <footer className="px-4 sm:px-6 md:px-12 py-5 sm:py-6">
           <div className="flex items-center justify-between footer-responsive-bar">
             <span style={{
               fontFamily: "'Instrument Sans',sans-serif",
