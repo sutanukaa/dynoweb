@@ -76,12 +76,27 @@ const features: Feature[] = [
   },
 ];
 
-const ITEM_HEIGHT = 155;
+const BASE_ITEM_HEIGHT = 120; // at 16px root
 const VISIBLE = 3;
 const N = features.length;
 
+function useScaledItemHeight() {
+  const [h, setH] = useState(BASE_ITEM_HEIGHT);
+  useEffect(() => {
+    const update = () => {
+      const rootFs = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      setH(Math.round(BASE_ITEM_HEIGHT * (rootFs / 16)));
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+  return h;
+}
+
 export default function FeaturesVideoSection() {
-  const [offset, setOffset]           = useState(0);
+  const ITEM_HEIGHT = useScaledItemHeight();
+  const [activeIdx, setActiveIdx]     = useState(0);
   const [videoKey, setVideoKey]       = useState(0);
   const [videoOpacity, setVideoOpacity] = useState(1);
   const [mobileActive, setMobileActive] = useState(0);
@@ -89,9 +104,12 @@ export default function FeaturesVideoSection() {
   const videoRef    = useRef<HTMLVideoElement>(null);
   const mobileVidRef = useRef<HTMLVideoElement>(null);
   const scrollRef   = useRef<HTMLDivElement>(null);
+  const sectionRef  = useRef<HTMLElement>(null);
+  const wheelAccum  = useRef(0);
+  const wheelTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isScrolling = useRef(false);
 
-  const activeIndex = Math.round(offset) % N;
-  const normActive  = ((activeIndex % N) + N) % N;
+  const normActive  = ((activeIdx % N) + N) % N;
 
   const goToVideo = useCallback((idx: number) => {
     const norm = ((idx % N) + N) % N;
@@ -101,7 +119,7 @@ export default function FeaturesVideoSection() {
     setTimeout(() => { setVideoKey(k => k + 1); setVideoOpacity(1); }, 180);
   }, []);
 
-  useEffect(() => { goToVideo(activeIndex); }, [activeIndex, goToVideo]);
+  useEffect(() => { goToVideo(activeIdx); }, [activeIdx, goToVideo]);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -120,11 +138,25 @@ export default function FeaturesVideoSection() {
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    let accumulated = 0;
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
-      accumulated += e.deltaY;
-      setOffset(accumulated / ITEM_HEIGHT);
+      e.stopPropagation();
+      if (isScrolling.current) return;
+      wheelAccum.current += e.deltaY;
+      if (wheelTimer.current) clearTimeout(wheelTimer.current);
+      wheelTimer.current = setTimeout(() => { wheelAccum.current = 0; }, 150);
+      const threshold = 50;
+      if (wheelAccum.current > threshold) {
+        isScrolling.current = true;
+        wheelAccum.current = 0;
+        setActiveIdx(prev => prev + 1);
+        setTimeout(() => { isScrolling.current = false; }, 400);
+      } else if (wheelAccum.current < -threshold) {
+        isScrolling.current = true;
+        wheelAccum.current = 0;
+        setActiveIdx(prev => prev - 1);
+        setTimeout(() => { isScrolling.current = false; }, 400);
+      }
     };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
@@ -132,12 +164,10 @@ export default function FeaturesVideoSection() {
 
   const slots = Array.from({ length: VISIBLE }, (_, i) => {
     const slotOffset = i - Math.floor(VISIBLE / 2);
-    const rawIdx  = Math.round(offset) + slotOffset;
+    const rawIdx  = activeIdx + slotOffset;
     const featIdx = ((rawIdx % N) + N) % N;
-    return { slotOffset, featIdx, rawIdx };
+    return { slotOffset, featIdx };
   });
-
-  const frac = offset - Math.round(offset);
 
   return (
     <>
@@ -147,13 +177,31 @@ export default function FeaturesVideoSection() {
         @keyframes ambientGlow { 0%,100%{opacity:.25} 50%{opacity:.42} }
         @keyframes fadeInUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
         @keyframes sketchDraw { from{stroke-dashoffset:900} to{stroke-dashoffset:0} }
+        @keyframes cubeRotate { 50%{transform:rotate(-80deg);} }
+
+        .fvs6 .feat-cube {
+          width:120px;height:120px;position:absolute;right:0;top:20%;transform:translateY(-50%);
+          display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:0;
+        }
+        .fvs6 .feat-cube-layer {
+          position:absolute;width:100%;height:100%;border-radius:24px;
+        }
+        .fvs6 .feat-cube-glow {
+          z-index:2;background-color:rgba(59,111,190,.08);
+          border:1.5px solid rgba(59,111,190,.15);
+        }
+        .fvs6 .feat-cube-color {
+          z-index:1;filter:blur(2px);
+          background:linear-gradient(135deg,#3b6fbe,#60a5d4);
+          animation:cubeRotate 2.5s ease-in-out infinite;
+        }
 
         .fvs6 { font-family:'Instrument Sans',sans-serif; }
         .fvs6 .sec-label { font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8; }
         .fvs6 .divider   { width:40px;height:2px;border-radius:2px;background:linear-gradient(90deg,#3b6fbe,transparent); }
         .fvs6 .sec-heading {
           font-family:'Cal Sans',Georgia,serif;
-          font-size:clamp(1.6rem,3vw,2.6rem);
+          font-size:clamp(1.75rem,4vw,3rem);
           letter-spacing:-.02em;line-height:1.15;color:#0f172a;
         }
 
@@ -171,7 +219,7 @@ export default function FeaturesVideoSection() {
         .fvs6 .carousel-window { overflow:hidden;position:relative; }
         .fvs6 .carousel-item {
           display:flex;align-items:center;gap:13px;padding:0 4px 0 18px;
-          transition:opacity .3s ease,transform .3s cubic-bezier(.4,0,.2,1);
+          transition:opacity .4s ease,transform .4s cubic-bezier(.4,0,.2,1);
           will-change:transform,opacity;position:absolute;left:0;right:0;
         }
         .fvs6 .c-icon {
@@ -190,7 +238,7 @@ export default function FeaturesVideoSection() {
         .fvs6 .carousel-item.is-active .c-expand { grid-template-rows:1fr; }
         .fvs6 .c-expand-inner { overflow:hidden; }
         .fvs6 .c-subtitle { font-size:.95rem;font-weight:700;color:#2d5fa8;margin:5px 0 3px; }
-        .fvs6 .c-desc { font-size:.93rem;color:#64748b;line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden; }
+        .fvs6 .c-desc { font-size:.9rem;color:#64748b;line-height:1.65;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden; }
         .fvs6 .rail { position:absolute;left:0;top:0;bottom:0;width:3px;z-index:5; }
         .fvs6 .rail-bg { position:absolute;inset:0;border-radius:99px;background:rgba(226,232,240,.5); }
         .fvs6 .rail-fill { position:absolute;left:0;width:100%;border-radius:99px;background:linear-gradient(to bottom,#2d5fa8,#60a5d4);transition:top .3s ease,height .3s ease; }
@@ -226,6 +274,11 @@ export default function FeaturesVideoSection() {
         .fvs6 .media-card {
           border-radius:18px;overflow:hidden;background:#f8fafc;
           box-shadow:0 0 0 1px rgba(203,213,225,.9),0 20px 50px rgba(15,23,42,.09),0 0 40px rgba(99,130,200,.07);
+        }
+        .fvs6 .feat-bg-grid {
+          position:absolute;inset:0;pointer-events:none;z-index:0;
+          background-image:linear-gradient(rgba(99,130,200,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(99,130,200,.03) 1px,transparent 1px);
+          background-size:56px 56px;
         }
         .fvs6 .media-glow {
           position:absolute;inset:-24px;border-radius:44px;
@@ -267,7 +320,9 @@ export default function FeaturesVideoSection() {
         .fvs6 .nav-dot.active { background:linear-gradient(90deg,#2d5fa8,#60a5d4);box-shadow:0 0 6px rgba(59,111,190,.4); }
       `}</style>
 
-      <section className="fvs6 relative w-full overflow-visible py-16 md:py-28 px-5 sm:px-6">
+      <section ref={sectionRef} className="fvs6 relative w-full overflow-visible -mt-6 md:-mt-8 pt-6 pb-12 md:pt-8 md:pb-16">
+
+        <div className="feat-bg-grid"/>
 
         <div style={{
           position:"absolute",right:"8%",top:"30%",
@@ -277,10 +332,31 @@ export default function FeaturesVideoSection() {
           animation:"ambientGlow 6s ease-in-out infinite",
         }}/>
 
-        <div className="relative z-10 mx-auto max-w-7xl">
+        {/* Abstract decorative elements */}
+        <svg style={{position:"absolute",top:"5%",left:"5%",pointerEvents:"none",zIndex:0}} width="140" height="140" viewBox="0 0 140 140" fill="none" aria-hidden="true">
+          <circle cx="70" cy="70" r="60" stroke="rgba(59,111,190,.07)" strokeWidth="1" strokeDasharray="8 6"/>
+          <circle cx="70" cy="70" r="35" stroke="rgba(59,111,190,.05)" strokeWidth="1"/>
+          <circle cx="70" cy="70" r="4" fill="rgba(59,111,190,.1)"/>
+        </svg>
+        <svg style={{position:"absolute",bottom:"8%",right:"3%",pointerEvents:"none",zIndex:0}} width="100" height="100" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <path d="M10 90 Q50 10 90 90" stroke="rgba(59,111,190,.06)" strokeWidth="1.2" fill="none" strokeDasharray="5 5"/>
+          <path d="M20 85 Q50 25 80 85" stroke="rgba(59,111,190,.04)" strokeWidth="1" fill="none"/>
+        </svg>
+        {/* Small plus signs */}
+        {[{t:"15%",l:"82%"},{t:"78%",l:"12%"},{t:"42%",l:"3%"}].map((p,i)=>(
+          <svg key={i} style={{position:"absolute",top:p.t,left:p.l,pointerEvents:"none",zIndex:0}} width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <line x1="8" y1="2" x2="8" y2="14" stroke="rgba(59,111,190,.12)" strokeWidth="1.2"/>
+            <line x1="2" y1="8" x2="14" y2="8" stroke="rgba(59,111,190,.12)" strokeWidth="1.2"/>
+          </svg>
+        ))}
+        {[{t:"22%",l:"92%"},{t:"60%",l:"6%"},{t:"88%",l:"78%"},{t:"35%",l:"96%"},{t:"70%",l:"2%"}].map((p,i)=>(
+          <div key={i} style={{position:"absolute",top:p.t,left:p.l,width:4,height:4,borderRadius:"50%",background:"rgba(59,111,190,.1)",pointerEvents:"none",zIndex:0}}/>
+        ))}
 
-          {/* ── Header (shared) ── */}
-          <div className="flex flex-col gap-3 mb-8 md:mb-0">
+        <div className="relative z-10 mx-auto w-full px-5 sm:px-8 lg:px-16 xl:px-24">
+
+          {/* ── Header (mobile only) ── */}
+          <div className="flex flex-col gap-2 mb-4 lg:hidden">
             <span className="sec-label">Platform features</span>
             <div className="divider"/>
             <h2 className="sec-heading">
@@ -307,7 +383,7 @@ export default function FeaturesVideoSection() {
                 <span style={{position:"relative",zIndex:1,color:"#0f172a"}}>in action.</span>
               </span>
             </h2>
-            <p style={{color:"#64748b",fontSize:".9rem",lineHeight:1.75,maxWidth:380}}>
+            <p style={{color:"#64748b",fontSize:".9rem",lineHeight:1.7,maxWidth:420}}>
               Five capabilities working as one continuous loop.
             </p>
           </div>
@@ -410,10 +486,49 @@ export default function FeaturesVideoSection() {
           {/* ══════════════════════════════════════════
               DESKTOP LAYOUT (lg+)
           ══════════════════════════════════════════ */}
-          <div className="hidden lg:flex gap-10 items-start mt-10">
+          {/* Desktop header (above grid) */}
+          <div className="hidden lg:flex flex-col gap-2 mb-1" style={{position:"relative"}}>
+            <span className="sec-label">Platform features</span>
+            <div className="divider"/>
+            <h2 className="sec-heading">
+              See DynoWeb<br/>
+              <span style={{position:"relative",display:"inline-block"}}>
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" aria-hidden="true"
+                  style={{position:"absolute",top:0,left:"2%",width:"96%",height:"100%",overflow:"hidden",pointerEvents:"none",zIndex:0}}>
+                  <defs>
+                    <linearGradient id="skFeatG2" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%"   stopColor="white" stopOpacity="0"/>
+                      <stop offset="10%"  stopColor="white" stopOpacity="1"/>
+                      <stop offset="90%"  stopColor="white" stopOpacity="1"/>
+                      <stop offset="100%" stopColor="white" stopOpacity="0"/>
+                    </linearGradient>
+                    <mask id="skFeatM2"><rect x="0" y="0" width="100" height="100" fill="url(#skFeatG2)"/></mask>
+                  </defs>
+                  <g mask="url(#skFeatM2)">
+                    <path className="sk-1" d="M2 52 C20 48,42 46,62 47 C78 48,90 50,98 49" stroke="#3b6fbe" strokeWidth="52" strokeLinecap="butt" opacity="0.18" fill="none"/>
+                    <path className="sk-2" d="M2 51 C22 47,46 45,66 46 C80 47,91 49,98 48" stroke="#3b6fbe" strokeWidth="38" strokeLinecap="butt" opacity="0.55" fill="none"/>
+                    <path className="sk-2" d="M4 74 C24 71,50 70,70 71 C84 72,93 73,98 72" stroke="#3b6fbe" strokeWidth="18" strokeLinecap="butt" opacity="0.5"  fill="none"/>
+                    <path className="sk-3" d="M4 34 C24 31,48 30,68 31 C82 32,92 33,98 32" stroke="#2d5fa8" strokeWidth="3"  strokeLinecap="butt" opacity="0.32" fill="none"/>
+                  </g>
+                </svg>
+                <span style={{position:"relative",zIndex:1,color:"#0f172a"}}>in action.</span>
+              </span>
+            </h2>
+            <p style={{color:"#64748b",fontSize:".9rem",lineHeight:1.7,maxWidth:420}}>
+              Five capabilities working as one continuous loop.
+            </p>
+
+            {/* Animated cube */}
+            <div className="feat-cube hidden lg:flex">
+              <div className="feat-cube-layer feat-cube-glow"/>
+              <div className="feat-cube-layer feat-cube-color"/>
+            </div>
+          </div>
+
+          <div className="hidden lg:grid" style={{gridTemplateColumns:"1fr 1fr",gap:"0 40px",alignItems:"start"}}>
 
             {/* Left: carousel */}
-            <div className="w-[52%] flex-shrink-0 flex flex-col gap-10">
+            <div className="flex flex-col">
               <div style={{position:"relative",paddingLeft:18}}>
                 <div className="rail">
                   <div className="rail-bg"/>
@@ -422,12 +537,12 @@ export default function FeaturesVideoSection() {
                     height:`${(1/VISIBLE)*100}%`,
                   }}/>
                 </div>
-                <div ref={scrollRef} className="carousel-shell" style={{touchAction:"none"}}>
+                <div ref={scrollRef} className="carousel-shell" style={{touchAction:"none",minHeight:VISIBLE*ITEM_HEIGHT,zIndex:20,position:"relative"}}>
                   <div className="carousel-window" style={{height:VISIBLE*ITEM_HEIGHT}}>
                     {slots.map(({slotOffset,featIdx}) => {
                       const isActive = slotOffset === 0;
-                      const yPos = (Math.floor(VISIBLE/2)+slotOffset-frac)*ITEM_HEIGHT;
-                      const dist = Math.abs(slotOffset-frac);
+                      const yPos = (Math.floor(VISIBLE/2)+slotOffset)*ITEM_HEIGHT;
+                      const dist = Math.abs(slotOffset);
                       const opacity = Math.max(0,1-dist*0.55);
                       const scale = 1-dist*0.04;
                       return (
@@ -460,8 +575,8 @@ export default function FeaturesVideoSection() {
               </div>
             </div>
 
-            {/* Right: sticky video */}
-            <div className="flex-1 min-w-0" style={{position:"sticky",top:96,alignSelf:"flex-start"}}>
+            {/* Right: video */}
+            <div style={{alignSelf:"center"}}>
               <div style={{position:"relative"}}>
                 <div className="media-glow"/>
                 <div className="media-card" style={{position:"relative",zIndex:1}}>

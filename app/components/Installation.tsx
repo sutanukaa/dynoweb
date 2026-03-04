@@ -57,14 +57,13 @@ export default function InstallationSection() {
 
         .inst .sec-heading {
           font-family:'Cal Sans',Georgia,serif;
-          /* Fluid: slightly smaller floor on mobile */
-          font-size: clamp(1.7rem, 6vw, 3.6rem);
-          letter-spacing:-.025em; line-height:1.1; color:#0f172a;
+          font-size: clamp(1.75rem, 4vw, 3rem);
+          letter-spacing:-.02em; line-height:1.15; color:#0f172a;
         }
 
         .inst .top-badge {
-          display:inline-flex; align-items:center; gap:7px;
-          padding:6px 14px; border-radius:99px;
+          display:inline-flex; align-items:center; gap:0.44rem;
+          padding:0.375rem 0.875rem; border-radius:99px;
           background:white; border:1px solid rgba(99,130,200,.2);
           font-size:.7rem; font-weight:600;
           letter-spacing:.08em; text-transform:uppercase; color:#64748b;
@@ -88,15 +87,15 @@ export default function InstallationSection() {
         .inst .steps-bar::-webkit-scrollbar { display:none; }
 
         .inst .step-pill {
-          display:flex; align-items:center; gap:8px;
+          display:flex; align-items:center; gap:0.5rem;
           /* narrower padding on mobile */
-          padding:11px 14px; position:relative; flex-shrink:0;
+          padding:0.7rem 0.875rem; position:relative; flex-shrink:0;
         }
         .inst .step-pill:not(:last-child) { border-right:1px solid rgba(226,232,240,.9); }
 
         /* On sm+ restore comfortable padding */
         @media (min-width:640px) {
-          .inst .step-pill { padding:12px 20px; }
+          .inst .step-pill { padding:0.75rem 1.25rem; }
           .inst .steps-bar { width:auto; }
         }
 
@@ -114,7 +113,7 @@ export default function InstallationSection() {
         }
 
         .inst .step-pill-num {
-          width:22px; height:22px; border-radius:7px;
+          width:1.375rem; height:1.375rem; border-radius:0.44rem;
           background:rgba(59,111,190,.08); border:1px solid rgba(59,111,190,.15);
           display:flex; align-items:center; justify-content:center;
           font-size:.58rem; font-weight:700; color:#3b6fbe;
@@ -124,7 +123,7 @@ export default function InstallationSection() {
           font-size:.72rem; font-weight:600; color:#0f172a; white-space:nowrap;
         }
         @media (min-width:640px) {
-          .inst .step-pill-num  { width:24px; height:24px; font-size:.6rem; }
+          .inst .step-pill-num  { width:1.5rem; height:1.5rem; font-size:.6rem; }
           .inst .step-pill-title{ font-size:.78rem; }
         }
 
@@ -136,10 +135,10 @@ export default function InstallationSection() {
           font-weight:700; color:#fff !important;
           background:#2452a0 !important;
           text-shadow: 0 1px 4px rgba(0,0,0,0.18), 0 0px 1px #1a3f7a;
-          text-transform:uppercase; font-size:13px; letter-spacing:0.05em;
+          text-transform:uppercase; font-size:0.8125rem; letter-spacing:0.05em;
           padding:0.7em 1.5em; border:2px solid #1a3f7a; border-radius:0.6em;
-          min-width: 80px;
-          min-height: 36px;
+          min-width: 5rem;
+          min-height: 2.25rem;
           box-sizing: border-box;
           overflow: visible;
           opacity: 1 !important;
@@ -147,10 +146,10 @@ export default function InstallationSection() {
         }
         @media (max-width: 640px) {
           .inst .btn-primary {
-            font-size: 12px;
+            font-size: 0.75rem;
             padding: 0.65em 1.3em;
-            min-width: 72px;
-            min-height: 32px;
+            min-width: 4.5rem;
+            min-height: 2rem;
           }
         }
         .inst .btn-primary::before {
@@ -174,17 +173,32 @@ export default function InstallationSection() {
 
         /* Subtext responsive */
         .inst .sub-text {
-          color:#64748b; line-height:1.75;
-          font-size:.88rem;
+          color:#64748b; line-height:1.7;
+          font-size:.9rem;
           max-width:100%;
           animation:fadeUp .5s ease .2s forwards; opacity:0;
         }
         @media (min-width:640px) {
-          .inst .sub-text { font-size:.95rem; max-width:480px; }
+          .inst .sub-text { font-size:.9rem; max-width:30rem; }
         }
       `}</style>
 
-      <section className="inst relative w-full overflow-hidden py-10 md:py-16 px-5 sm:px-6 min-h-screen flex flex-col justify-center">
+      <section className="inst relative w-full overflow-hidden pt-12 pb-12 md:pt-16 md:pb-16">
+
+        {/* Faint grid */}
+        <div style={{
+          position:"absolute",inset:0,pointerEvents:"none",zIndex:0,
+          backgroundImage:"linear-gradient(rgba(59,111,190,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(59,111,190,.08) 1px,transparent 1px)",
+          backgroundSize:"120px 120px",
+        }}/>
+        {/* Grid glow overlay */}
+        <div style={{
+          position:"absolute",inset:0,pointerEvents:"none",zIndex:0,
+          backgroundImage:"linear-gradient(rgba(59,111,190,.12) 2px,transparent 2px),linear-gradient(90deg,rgba(59,111,190,.12) 2px,transparent 2px)",
+          backgroundSize:"120px 120px",
+          filter:"blur(4px)",
+        }}/>
+
         {/* Background glows */}
         <div style={{
           position:"absolute", left:"50%", top:0,
@@ -202,15 +216,35 @@ export default function InstallationSection() {
           filter:"blur(40px)", pointerEvents:"none", zIndex:0,
         }}/>
 
-        <div className="relative z-10 mx-auto max-w-7xl flex flex-col lg:flex-row lg:items-center lg:gap-12 gap-8">
+        {/* Abstract decorative elements */}
+        <svg style={{position:"absolute",top:"8%",right:"4%",pointerEvents:"none",zIndex:0}} width="110" height="110" viewBox="0 0 110 110" fill="none" aria-hidden="true">
+          <circle cx="55" cy="55" r="48" stroke="rgba(59,111,190,.07)" strokeWidth="1" strokeDasharray="6 5"/>
+          <circle cx="55" cy="55" r="24" stroke="rgba(59,111,190,.05)" strokeWidth="1"/>
+        </svg>
+        <svg style={{position:"absolute",bottom:"15%",left:"3%",pointerEvents:"none",zIndex:0}} width="70" height="70" viewBox="0 0 70 70" fill="none" aria-hidden="true">
+          <rect x="10" y="10" width="50" height="50" rx="6" stroke="rgba(59,111,190,.06)" strokeWidth="1" transform="rotate(15 35 35)"/>
+        </svg>
+        {/* Plus signs */}
+        {[{t:"18%",l:"8%"},{t:"75%",l:"90%"},{t:"50%",l:"96%"}].map((p,i)=>(
+          <svg key={i} style={{position:"absolute",top:p.t,left:p.l,pointerEvents:"none",zIndex:0}} width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <line x1="7" y1="1" x2="7" y2="13" stroke="rgba(59,111,190,.1)" strokeWidth="1"/>
+            <line x1="1" y1="7" x2="13" y2="7" stroke="rgba(59,111,190,.1)" strokeWidth="1"/>
+          </svg>
+        ))}
+        {/* Dot trail */}
+        {[{t:"30%",l:"94%"},{t:"60%",l:"2%"},{t:"88%",l:"55%"},{t:"10%",l:"50%"}].map((p,i)=>(
+          <div key={i} style={{position:"absolute",top:p.t,left:p.l,width:4,height:4,borderRadius:"50%",background:"rgba(59,111,190,.1)",pointerEvents:"none",zIndex:0}}/>
+        ))}
+
+        <div className="relative z-10 mx-auto w-full px-5 sm:px-8 lg:px-16 xl:px-24 flex flex-col lg:flex-row lg:items-center lg:gap-12 gap-8">
 
           {/* ── Left column: text content ── */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-5 sm:gap-6 lg:flex-1 lg:min-w-0">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4 sm:gap-5 lg:flex-1 lg:min-w-0">
 
-            {/* Badge */}
-            <div className="top-badge">
-              <span style={{width:6,height:6,borderRadius:"50%",background:"#3b6fbe",display:"inline-block",boxShadow:"0 0 6px rgba(59,111,190,.6)"}}/>
-              Get started in minutes
+            {/* Section label */}
+            <div className="flex flex-col gap-3 items-center lg:items-start">
+              <span style={{fontSize:".7rem",fontWeight:600,letterSpacing:".12em",textTransform:"uppercase",color:"#94a3b8"}}>Get started</span>
+              <div style={{width:40,height:2,borderRadius:2,background:"linear-gradient(90deg,#3b6fbe,transparent)"}}/>
             </div>
 
             {/* Headline */}
@@ -287,13 +321,13 @@ export default function InstallationSection() {
           </div>
 
           {/* ── Right column: dashboard image ── */}
-          <div className="lg:flex-1 lg:min-w-0">
-            <div className="img-frame" style={{maxWidth:"100%"}}>
+          <div className="lg:flex-[1.4] lg:min-w-0">
+            <div className="img-frame" style={{maxWidth:"120%",marginRight:"-10%"}}>
               <Image
                 src="/installation.png"
                 alt="DynoWeb Installation Process"
-                width={800}
-                height={480}
+                width={1000}
+                height={600}
                 className="w-full h-auto block"
               />
             </div>

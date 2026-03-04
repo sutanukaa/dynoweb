@@ -26,6 +26,18 @@ body {
 
 html {
   overflow-x: hidden;
+  font-size: 16px;
+}
+
+/* Aggressively scale all rem text for larger viewports */
+@media (min-width: 1400px) {
+  html { font-size: 28px; }
+}
+@media (min-width: 1800px) {
+  html { font-size: 32px; }
+}
+@media (min-width: 2200px) {
+  html { font-size: 36px; }
 }
 
 * {

@@ -101,7 +101,7 @@ export default function PillNav() {
                     border-radius: 25px;
                     text-decoration: none;
                     font-weight: 600;
-                    font-size: 14px;
+                    font-size: 0.875rem;
                     text-transform: uppercase;
                     letter-spacing: 0.5px;
                     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
@@ -115,7 +115,7 @@ export default function PillNav() {
 
                 .signin-btn {
                     font-family: 'Instrument Sans', sans-serif;
-                    font-size: 14px;
+                    font-size: 0.875rem;
                     font-weight: 500;
                     color: #3b6fbe;
                     background: transparent;
@@ -141,7 +141,7 @@ export default function PillNav() {
             `}</style>
 
             <div className="pill-nav fixed top-4 left-0 right-0 z-50 px-6">
-                <nav className="flex items-center justify-between bg-white/95 backdrop-blur-lg border border-white/70 rounded-full p-1 shadow-2xl shadow-black/5 max-w-7xl mx-auto">
+                <nav className="flex items-center justify-between bg-white/95 backdrop-blur-lg border border-white/70 rounded-full p-1 shadow-2xl shadow-black/5 max-w-[1800px] mx-auto">
 
                     {/* LEFT — Logo + Nav items */}
                     <div className="flex items-center gap-1">

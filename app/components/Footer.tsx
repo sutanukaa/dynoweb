@@ -25,7 +25,7 @@ export default function Footer() {
       el.style.whiteSpace = "nowrap";
       const parent = el.parentElement;
       if (!parent) return;
-      const available = parent.offsetWidth - 96; // 48px each side
+      const available = parent.offsetWidth * 0.85; // cap at 85% of container
       const natural   = el.scrollWidth;
       if (natural === 0) return;
       const ratio   = available / natural;
@@ -52,7 +52,7 @@ export default function Footer() {
 
         .footer-nav-link {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 13px;
+          font-size: 0.8125rem;
           color: #94a3b8;
           text-decoration: none;
           font-weight: 300;
@@ -74,10 +74,22 @@ export default function Footer() {
         }
       `}</style>
 
-      <div className="w-full bg-white flex flex-col overflow-hidden min-h-screen">
+      <div className="w-full bg-white flex flex-col overflow-hidden relative">
+
+        {/* Abstract decorative elements */}
+        <svg style={{position:"absolute",top:"12%",right:"8%",pointerEvents:"none",zIndex:0}} width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+          <circle cx="40" cy="40" r="32" stroke="rgba(59,111,190,.06)" strokeWidth="1" strokeDasharray="5 4"/>
+        </svg>
+        <svg style={{position:"absolute",top:"20%",left:"6%",pointerEvents:"none",zIndex:0}} width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <line x1="7" y1="1" x2="7" y2="13" stroke="rgba(59,111,190,.1)" strokeWidth="1"/>
+          <line x1="1" y1="7" x2="13" y2="7" stroke="rgba(59,111,190,.1)" strokeWidth="1"/>
+        </svg>
+        {[{t:"25%",l:"92%"},{t:"60%",l:"4%"},{t:"45%",l:"88%"}].map((p,i)=>(
+          <div key={i} style={{position:"absolute",top:p.t,left:p.l,width:4,height:4,borderRadius:"50%",background:"rgba(59,111,190,.1)",pointerEvents:"none",zIndex:0}}/>
+        ))}
 
         {/* Wordmark area */}
-        <div className="relative flex-1 flex items-end px-4 sm:px-6 md:px-12 pt-16 sm:pt-20 md:pt-24 pb-0">
+        <div className="relative flex items-end px-5 sm:px-8 lg:px-16 xl:px-24 pt-12 md:pt-16 pb-6">
           {/* Subtle radial glow */}
           <div style={{
             position: "absolute", top: "50%", left: "50%",
@@ -92,7 +104,7 @@ export default function Footer() {
             style={{
               fontFamily: "'Cal Sans','Georgia',serif",
               /* Base size — JS will scale this to fill the container */
-              fontSize: "clamp(80px, 18vw, 260px)",
+              fontSize: "clamp(60px, 14vw, 180px)",
               fontWeight: 300,
               lineHeight: 1,
               letterSpacing: "-0.025em",
@@ -122,14 +134,14 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div style={{ height: 1, background: "rgba(226,232,240,.9)" }} className="mx-4 sm:mx-6 md:mx-12" />
+        <div style={{ height: 1, background: "rgba(226,232,240,.9)" }} className="mx-5 sm:mx-6" />
 
         {/* Footer bar */}
-        <footer className="px-4 sm:px-6 md:px-12 py-5 sm:py-6">
+        <footer className="px-5 sm:px-8 lg:px-16 xl:px-24 py-5 sm:py-6">
           <div className="flex items-center justify-between footer-responsive-bar">
             <span style={{
               fontFamily: "'Instrument Sans',sans-serif",
-              fontSize: "13px", fontWeight: 500, color: "#94a3b8",
+              fontSize: "0.8125rem", fontWeight: 500, color: "#94a3b8",
             }}>
               © {new Date().getFullYear()} DynoWeb
             </span>

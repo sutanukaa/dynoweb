@@ -30,8 +30,10 @@ export default function HeroSectionOne() {
 
   useEffect(() => {
     const cursorGlow = cursorGlowRef.current;
-    if (!cursorGlow) return;
+    const container = containerRef.current;
+    if (!cursorGlow || !container) return;
     let rafId: number;
+    let inside = false;
     const handleMouseMove = (e: MouseEvent) => {
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
@@ -41,8 +43,18 @@ export default function HeroSectionOne() {
         }
       });
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => { window.removeEventListener("mousemove", handleMouseMove); cancelAnimationFrame(rafId); };
+    const handleEnter = () => { inside = true; cursorGlow.style.opacity = '1'; window.addEventListener('mousemove', handleMouseMove); };
+    const handleLeave = () => { inside = false; cursorGlow.style.opacity = '0'; window.removeEventListener('mousemove', handleMouseMove); };
+    cursorGlow.style.opacity = '0';
+    cursorGlow.style.transition = 'opacity .3s ease';
+    container.addEventListener('mouseenter', handleEnter);
+    container.addEventListener('mouseleave', handleLeave);
+    return () => {
+      container.removeEventListener('mouseenter', handleEnter);
+      container.removeEventListener('mouseleave', handleLeave);
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {
@@ -137,18 +149,18 @@ export default function HeroSectionOne() {
           0%,100% { transform:scale(1); box-shadow:0 0 0 0 rgba(148,163,184,.3); }
           50%      { transform:scale(1.04); box-shadow:0 0 0 6px rgba(148,163,184,0); }
         }
-        @keyframes sketchHighlightDraw {
-          from { stroke-dashoffset: 900; }
-          to   { stroke-dashoffset: 0; }
+        @keyframes highlighterSweep {
+          from { clip-path: inset(0 100% 0 0); }
+          to   { clip-path: inset(0 0% 0 0); }
         }
 
-        .sketch-highlight-svg { pointer-events: none; }
-        .sketch-fill-1 { stroke-dasharray:900; stroke-dashoffset:900; }
-        .sketch-fill-2 { stroke-dasharray:900; stroke-dashoffset:900; }
-        .sketch-fill-3 { stroke-dasharray:900; stroke-dashoffset:900; }
-        .sketch-visible .sketch-fill-1 { animation: sketchHighlightDraw 0.6s ease-out 0.15s forwards; }
-        .sketch-visible .sketch-fill-2 { animation: sketchHighlightDraw 0.55s ease-out 0.15s forwards; }
-        .sketch-visible .sketch-fill-3 { animation: sketchHighlightDraw 0.45s ease-out 0.28s forwards; }
+        .sketch-highlight-svg {
+          pointer-events: none;
+          clip-path: inset(0 100% 0 0);
+        }
+        .sketch-visible .sketch-highlight-svg {
+          animation: highlighterSweep 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.15s forwards;
+        }
         .sketch-accent-text {
           position:relative; z-index:1; color:#171717;
           display:inline-block; margin-right:0.25em; cursor:default;
@@ -190,7 +202,7 @@ export default function HeroSectionOne() {
           position:relative; display:inline-flex; align-items:center; gap:.5rem;
           cursor:pointer; outline:none; border:0; vertical-align:middle;
           font-weight:600; color:#fff; text-transform:uppercase;
-          font-size:14px; letter-spacing:.05em; padding:1.1em 2em;
+          font-size:0.875rem; letter-spacing:.05em; padding:1.1em 2em;
           background:#3b6fbe; border:2px solid #2452a0; border-radius:.75em;
           transform-style:preserve-3d;
           transition: background 150ms cubic-bezier(0,0,.58,1), transform 150ms cubic-bezier(0,0,.58,1);
@@ -229,25 +241,25 @@ export default function HeroSectionOne() {
         filter:"blur(8px)", left:"-9999px", top:"-9999px",
       }} />
 
-      <div ref={containerRef} className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center overflow-visible py-10 md:py-16">
+      <div ref={containerRef} className="relative mx-auto flex min-h-svh w-full flex-col justify-center overflow-visible px-5 sm:px-8 lg:px-16 xl:px-24 pt-24 pb-12 md:pt-28 md:pb-14">
 
-        <div style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden" }}>
+        <div style={{ position:"absolute", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden" }}>
           {[25,50,75].map(pct => (
             <div key={pct} style={{
               position:"absolute", top:0, bottom:0, left:`${pct}%`, width:"1px",
-              background:"linear-gradient(to bottom,transparent 0%,rgba(99,130,200,.35) 10%,rgba(99,130,200,.35) 90%,transparent 100%)",
+              background:"linear-gradient(to bottom,transparent 0%,rgba(99,130,200,.12) 10%,rgba(99,130,200,.12) 90%,transparent 100%)",
             }} />
           ))}
           {[0,100].map(pct => (
             <div key={pct} style={{
               position:"absolute", top:0, bottom:0, left:`${pct}%`, width:"1px",
-              background:"linear-gradient(to bottom,transparent 0%,rgba(99,130,200,.22) 15%,rgba(99,130,200,.22) 85%,transparent 100%)",
+              background:"linear-gradient(to bottom,transparent 0%,rgba(99,130,200,.08) 15%,rgba(99,130,200,.08) 85%,transparent 100%)",
             }} />
           ))}
           {[28,62].map(pct => (
             <div key={pct} style={{
               position:"absolute", left:0, right:0, top:`${pct}%`, height:"1px",
-              background:"linear-gradient(to right,transparent 0%,rgba(99,130,200,.28) 8%,rgba(99,130,200,.28) 92%,transparent 100%)",
+              background:"linear-gradient(to right,transparent 0%,rgba(99,130,200,.1) 8%,rgba(99,130,200,.1) 92%,transparent 100%)",
             }} />
           ))}
         </div>
@@ -285,7 +297,7 @@ export default function HeroSectionOne() {
           <h1
             ref={headlineRef}
             className="hero-headline text-neutral-900"
-            style={{ display:"block", textAlign:"center", fontSize: "clamp(2.4rem, 5vw, 4.2rem)", fontWeight: 800, letterSpacing: "-0.03em", whiteSpace: "normal", wordWrap: "break-word", lineHeight: 1.1 }}
+            style={{ display:"block", textAlign:"center", fontSize: "clamp(2.4rem, 6vw, 5.5rem)", fontWeight: 800, letterSpacing: "-0.03em", whiteSpace: "normal", wordWrap: "break-word", lineHeight: 1.08 }}
           >
             {line1.map((word, i) => (
               <span key={i} className="word-hover" style={{ marginRight:"0.25em" }}>{word}</span>
@@ -332,14 +344,14 @@ export default function HeroSectionOne() {
         </div>
 
         {/* Subheading */}
-        <p className="hero-sub relative z-10 mx-auto mt-6 max-w-5xl px-2 text-center text-base text-neutral-500 md:text-lg" style={{ lineHeight:"1.5" }}>
+        <p className="hero-sub relative z-10 mx-auto mt-6 max-w-5xl px-2 text-center text-base text-neutral-500 md:text-lg xl:text-xl" style={{ lineHeight:"1.5" }}>
           Dynoweb invisibly watches your visitors, finds exactly where they get frustrated,
           and automatically generates a safely optimized draft theme to fix it in one click.
           Zero code. Zero risk.
         </p>
 
         {/* CTA + trust badges */}
-        <div className="hero-btns relative z-10 mt-10 flex flex-col items-center gap-4 px-4 md:px-6">
+        <div className="hero-btns relative z-10 mt-7 flex flex-col items-center gap-5 px-4 md:px-6">
           <button className="btn-primary" style={{ fontFamily:"'Instrument Sans',sans-serif" }}>
             Start Optimizing for Free
             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg">

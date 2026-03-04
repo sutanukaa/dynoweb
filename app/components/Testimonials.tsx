@@ -103,7 +103,7 @@ export default function TestimonialsSection() {
 
         .tsection .sec-heading {
           font-family:'Cal Sans','Georgia',serif;
-          font-size: clamp(1.75rem, 5vw, 3rem);
+          font-size: clamp(1.75rem, 4vw, 3rem);
           line-height:1.15; letter-spacing:-.02em; color:#0f172a;
           animation: fadeUp .6s ease forwards;
         }
@@ -126,17 +126,17 @@ export default function TestimonialsSection() {
         /* Cards */
         .tcard {
           flex-shrink: 0;
-          width: min(78vw, 300px);
-          border-radius: 20px;
-          padding: 20px;
+          width: min(78vw, 19rem);
+          border-radius: 1.25rem;
+          padding: 1.25rem;
           background: #1e3a8a;
           border: 1px solid rgba(255,255,255,0.1);
           cursor: default;
           position: relative;
           overflow: hidden;
         }
-        @media (min-width: 640px) { .tcard { width: 320px; padding: 24px; } }
-        @media (min-width: 1024px){ .tcard { width: 340px; } }
+        @media (min-width: 640px) { .tcard { width: 20rem; padding: 1.5rem; } }
+        @media (min-width: 1024px){ .tcard { width: 21rem; } }
 
         .tcard-quote {
           font-size: .855rem; line-height: 1.72;
@@ -149,10 +149,10 @@ export default function TestimonialsSection() {
           font-size:5rem; line-height:.55;
           color:rgba(255,255,255,0.06);
           pointer-events:none; user-select:none;
-          position:absolute; top:14px; right:16px;
+          position:absolute; top:.875rem; right:1rem;
         }
         .avatar {
-          width:34px; height:34px; border-radius:50%;
+          width:2.125rem; height:2.125rem; border-radius:50%;
           display:flex; align-items:center; justify-content:center;
           font-size:.68rem; font-weight:700; color:white;
           background:rgba(255,255,255,0.12);
@@ -174,10 +174,28 @@ export default function TestimonialsSection() {
         @media (min-width: 640px) { .trust-bar { gap:8px 32px; padding:20px 24px; } }
       `}</style>
 
-      <section className="tsection relative w-full overflow-hidden py-10 md:py-16 min-h-screen flex flex-col justify-center">
+      <section className="tsection relative w-full overflow-hidden pt-12 pb-12 md:pt-16 md:pb-16">
+
+        {/* Abstract decorative elements */}
+        <svg style={{position:"absolute",top:"6%",right:"8%",pointerEvents:"none",zIndex:0}} width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+          <circle cx="80" cy="80" r="70" stroke="rgba(59,111,190,.06)" strokeWidth="1" strokeDasharray="10 8"/>
+          <circle cx="80" cy="80" r="40" stroke="rgba(59,111,190,.04)" strokeWidth="1" strokeDasharray="4 4"/>
+        </svg>
+        <svg style={{position:"absolute",bottom:"10%",left:"5%",pointerEvents:"none",zIndex:0}} width="100" height="100" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <rect x="25" y="25" width="50" height="50" rx="8" stroke="rgba(59,111,190,.06)" strokeWidth="1" transform="rotate(45 50 50)"/>
+          <circle cx="50" cy="50" r="3" fill="rgba(59,111,190,.1)"/>
+        </svg>
+        {/* Scattered dots */}
+        {[{t:"20%",l:"3%"},{t:"75%",l:"92%"},{t:"40%",l:"96%"},{t:"85%",l:"15%"},{t:"12%",l:"45%"},{t:"65%",l:"4%"}].map((p,i)=>(
+          <div key={i} style={{position:"absolute",top:p.t,left:p.l,width: i%2===0 ? 5 : 3,height: i%2===0 ? 5 : 3,borderRadius:"50%",background:"rgba(59,111,190,.1)",pointerEvents:"none",zIndex:0}}/>
+        ))}
+        {/* Diagonal accent line */}
+        <svg style={{position:"absolute",top:"30%",left:"92%",pointerEvents:"none",zIndex:0}} width="60" height="80" viewBox="0 0 60 80" fill="none" aria-hidden="true">
+          <line x1="5" y1="75" x2="55" y2="5" stroke="rgba(59,111,190,.06)" strokeWidth="1" strokeDasharray="6 4"/>
+        </svg>
 
         {/* Header */}
-        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 mb-12 md:mb-16
+        <div className="relative z-10 mx-auto w-full px-5 sm:px-8 lg:px-16 xl:px-24 mb-8 md:mb-10
                         flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-6">
           <div className="flex flex-col gap-3">
             <span className="sec-label">Social proof</span>
@@ -225,7 +243,7 @@ export default function TestimonialsSection() {
           </div>
 
           {/* Subtext — hidden on small, shows on md+ */}
-          <p className="hidden md:block" style={{ color:"#64748b", fontSize:".9rem", lineHeight:1.7, maxWidth:"340px" }}>
+          <p className="hidden md:block" style={{ color:"#64748b", fontSize:".9rem", lineHeight:1.7, maxWidth:"22rem" }}>
             Over 10,000 Shopify stores use DynoWeb to find growth they didn't know was there.
           </p>
         </div>
@@ -244,27 +262,6 @@ export default function TestimonialsSection() {
           >
             {[...testimonials, ...testimonials].map((t, i) => (
               <TestimonialCard key={i} testimonial={t} />
-            ))}
-          </div>
-        </div>
-
-        {/* Trust bar */}
-        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 mt-12 md:mt-16">
-          <div className="trust-bar">
-            {[
-              { v: "10,000+", l: "Active stores"  },
-              { v: "4.9 / 5", l: "Average rating" },
-              { v: "$180M+",  l: "Revenue tracked" },
-              { v: "99.98%",  l: "Uptime SLA"      },
-            ].map((s, i) => (
-              <div key={i} className="flex flex-col items-center gap-0.5">
-                <span style={{ fontFamily:"'Cal Sans',serif", fontSize:"1.3rem", color:"#2d5fa8", lineHeight:1 }}>
-                  {s.v}
-                </span>
-                <span style={{ fontSize:".68rem", color:"#94a3b8", fontWeight:500, letterSpacing:".06em" }}>
-                  {s.l}
-                </span>
-              </div>
             ))}
           </div>
         </div>
