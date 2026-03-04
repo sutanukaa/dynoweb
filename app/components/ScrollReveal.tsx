@@ -43,13 +43,11 @@ export default function ScrollReveal({
   const hidden: Record<string, number | string> = {
     opacity: 0,
     [axis]: offset * sign,
-    filter: blur > 0 ? `blur(${blur}px)` : "blur(0px)",
   };
 
   const visible: Record<string, number | string> = {
     opacity: 1,
     [axis]: 0,
-    filter: "blur(0px)",
   };
 
   return (
@@ -63,7 +61,7 @@ export default function ScrollReveal({
         ease: [0.25, 0.1, 0.25, 1], // smooth ease-out
       }}
       className={className}
-      style={{ willChange: "transform, opacity, filter" }}
+      style={{ willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>
@@ -90,11 +88,10 @@ const containerVariants: Variants = {
 };
 
 export const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
   },
 };

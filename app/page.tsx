@@ -10,7 +10,7 @@ import ScrollReveal from "./components/ScrollReveal";
 
 export default function Home() {
   return (
-    <div className="font-poppins min-h-screen w-full overflow-x-hidden">
+    <div className="font-poppins min-h-screen w-full" style={{ overflowX: 'clip' }}>
       <PillNav />
 
       {/* Hero — no reveal, it's above the fold */}

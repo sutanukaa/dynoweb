@@ -58,6 +58,8 @@ export default function HeroSectionOne() {
   }, []);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = {
         x: (e.clientX / window.innerWidth  - 0.5) * 2,
@@ -66,7 +68,9 @@ export default function HeroSectionOne() {
     };
     window.addEventListener("mousemove", handleMouseMove);
     let t = 0;
+    let isVisible = true;
     const animate = () => {
+      if (!isVisible) return;
       t += 0.008;
       PARTICLES.forEach((p, i) => {
         const el = particleRefs.current[i];
@@ -79,10 +83,19 @@ export default function HeroSectionOne() {
       });
       animFrameRef.current = requestAnimationFrame(animate);
     };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) animFrameRef.current = requestAnimationFrame(animate);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(container);
     animFrameRef.current = requestAnimationFrame(animate);
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(animFrameRef.current);
+      observer.disconnect();
     };
   }, []);
 
@@ -234,14 +247,14 @@ export default function HeroSectionOne() {
         }
       `}</style>
 
-      <div ref={cursorGlowRef} style={{
+      <div ref={cursorGlowRef} className="hidden md:block" style={{
         position:"fixed", width:"600px", height:"600px", borderRadius:"50%",
         background:"radial-gradient(circle,rgba(99,130,200,.15) 0%,rgba(99,130,200,.05) 40%,transparent 70%)",
         pointerEvents:"none", transform:"translate(-50%,-50%)", zIndex:9999,
         filter:"blur(8px)", left:"-9999px", top:"-9999px",
       }} />
 
-      <div ref={containerRef} className="relative mx-auto flex min-h-svh w-full flex-col justify-center overflow-visible px-5 sm:px-8 lg:px-16 xl:px-24 pt-24 pb-12 md:pt-28 md:pb-14">
+      <div ref={containerRef} className="relative mx-auto flex min-h-svh w-full flex-col justify-center overflow-hidden px-5 sm:px-8 lg:px-16 xl:px-24 pt-24 pb-12 md:pt-28 md:pb-14" style={{ contain: "content" }}>
 
         <div style={{ position:"absolute", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden" }}>
           {[25,50,75].map(pct => (
