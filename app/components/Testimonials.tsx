@@ -112,7 +112,7 @@ export default function TestimonialsSection() {
           letter-spacing:.12em; text-transform:uppercase; color:#94a3b8;
         }
         .tsection .divider-line {
-          width:40px; height:2px; border-radius:2px;
+          width:2.5rem; height:0.125rem; border-radius:0.125rem;
           background:linear-gradient(90deg,#3b6fbe,transparent);
         }
 
@@ -164,14 +164,14 @@ export default function TestimonialsSection() {
         .trust-bar {
           display:flex; flex-wrap:wrap;
           align-items:center; justify-content:center;
-          gap: 16px 24px;
-          border-radius:20px; padding:16px 20px;
+          gap: 1rem 1.5rem;
+          border-radius:1.25rem; padding:1rem 1.25rem;
           background:rgba(255,255,255,0.6);
           border:1px solid rgba(99,130,200,0.12);
           backdrop-filter:blur(8px);
           box-shadow:0 2px 16px rgba(99,130,200,0.06);
         }
-        @media (min-width: 640px) { .trust-bar { gap:8px 32px; padding:20px 24px; } }
+        @media (min-width: 640px) { .trust-bar { gap:0.5rem 2rem; padding:1.25rem 1.5rem; } }
       `}</style>
 
       <section className="tsection relative w-full overflow-hidden pt-12 pb-12 md:pt-16 md:pb-16">
