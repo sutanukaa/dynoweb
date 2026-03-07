@@ -30,11 +30,11 @@ export default function InstallationSection() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Instrument+Sans:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700&display=swap');
 
         @keyframes installGlow {
-          0%,100% { opacity:.2; transform:scale(1); }
-          50%      { opacity:.38; transform:scale(1.06); }
+          0%,100% { opacity:.18; transform:scale(1); }
+          50%      { opacity:.32; transform:scale(1.06); }
         }
         @keyframes fadeUp {
           from { opacity:0; transform:translateY(18px); }
@@ -44,6 +44,7 @@ export default function InstallationSection() {
           from { stroke-dashoffset: 900; }
           to   { stroke-dashoffset: 0; }
         }
+
         .sketch-highlight-svg { pointer-events: none; }
         .sketch-fill-1 { stroke-dasharray:900; stroke-dashoffset:900; }
         .sketch-fill-2 { stroke-dasharray:900; stroke-dashoffset:900; }
@@ -51,55 +52,47 @@ export default function InstallationSection() {
         .sketch-visible .sketch-fill-1 { animation: sketchHighlightDraw 0.6s ease-out 0.15s forwards; }
         .sketch-visible .sketch-fill-2 { animation: sketchHighlightDraw 0.55s ease-out 0.15s forwards; }
         .sketch-visible .sketch-fill-3 { animation: sketchHighlightDraw 0.45s ease-out 0.28s forwards; }
-        .sketch-accent-text { position:relative; z-index:1; color:#0f172a; display:inline-block; cursor:default; }
+        .sketch-accent-text {
+          position:relative; z-index:1;
+          color:#e8eaf0;
+          display:inline-block; cursor:default;
+        }
 
-        .inst { font-family:'Instrument Sans',sans-serif; }
+        .inst { font-family:'Karla',sans-serif; }
 
         .inst .sec-heading {
-          font-family:'Cal Sans',Georgia,serif;
-          font-size: clamp(1.75rem, 4vw, 3rem);
-          letter-spacing:-.02em; line-height:1.15; color:#0f172a;
+          font-family:'Montserrat',sans-serif;
+          font-size: clamp(1.75rem, 3.2vw, 3.5rem);
+          letter-spacing:-.02em; line-height:1.15;
+          color:#e8eaf0;
         }
 
-        .inst .top-badge {
-          display:inline-flex; align-items:center; gap:0.44rem;
-          padding:0.375rem 0.875rem; border-radius:99px;
-          background:white; border:1px solid rgba(99,130,200,.2);
-          font-size:.7rem; font-weight:600;
-          letter-spacing:.08em; text-transform:uppercase; color:#64748b;
-          box-shadow:0 1px 6px rgba(99,130,200,.08);
-          animation:fadeUp .5s ease forwards;
-        }
-
-        /* Steps pill bar — horizontal scroll on mobile, wrapped on larger */
+        /* Steps pill bar */
         .inst .steps-bar {
           display:flex; align-items:stretch;
-          border-radius:14px; background:white;
-          border:1px solid rgba(226,232,240,.9);
-          box-shadow:0 2px 12px rgba(99,130,200,.07);
+          border-radius:14px;
+          background:rgba(255,255,255,0.03);
+          border:1px solid rgba(255,255,255,0.08);
           overflow-x:auto; overflow-y:hidden;
-          /* hide scrollbar */
           scrollbar-width:none; -ms-overflow-style:none;
           animation:fadeUp .5s ease .35s forwards; opacity:0;
-          /* full width on mobile */
           width:100%;
         }
         .inst .steps-bar::-webkit-scrollbar { display:none; }
 
         .inst .step-pill {
           display:flex; align-items:center; gap:0.5rem;
-          /* narrower padding on mobile */
           padding:0.7rem 0.875rem; position:relative; flex-shrink:0;
         }
-        .inst .step-pill:not(:last-child) { border-right:1px solid rgba(226,232,240,.9); }
+        .inst .step-pill:not(:last-child) {
+          border-right:1px solid rgba(255,255,255,0.07);
+        }
 
-        /* On sm+ restore comfortable padding */
         @media (min-width:640px) {
           .inst .step-pill { padding:0.75rem 1.25rem; }
           .inst .steps-bar { width:auto; }
         }
 
-        /* On lg+ steps stack vertically */
         @media (min-width:1024px) {
           .inst .steps-bar {
             flex-direction:column !important;
@@ -108,103 +101,65 @@ export default function InstallationSection() {
           }
           .inst .step-pill:not(:last-child) {
             border-right:none;
-            border-bottom:1px solid rgba(226,232,240,.9);
+            border-bottom:1px solid rgba(255,255,255,0.07);
           }
         }
 
         .inst .step-pill-num {
           width:1.375rem; height:1.375rem; border-radius:0.44rem;
-          background:rgba(59,111,190,.08); border:1px solid rgba(59,111,190,.15);
+          background:rgba(110,176,255,0.1);
+          border:1px solid rgba(110,176,255,0.2);
           display:flex; align-items:center; justify-content:center;
-          font-size:.58rem; font-weight:700; color:#3b6fbe;
+          font-size:.58rem; font-weight:700; color:#6eb0ff;
           letter-spacing:.04em; flex-shrink:0;
         }
         .inst .step-pill-title {
-          font-size:.72rem; font-weight:600; color:#0f172a; white-space:nowrap;
-        }
-        @media (min-width:640px) {
-          .inst .step-pill-num  { width:1.5rem; height:1.5rem; font-size:.6rem; }
-          .inst .step-pill-title{ font-size:.78rem; }
+          font-size:clamp(.72rem, .9vw, 1.2rem); font-weight:600;
+          color:rgba(255,255,255,0.7); white-space:nowrap;
         }
 
-        .inst .btn-primary {
-          position:relative;
-          display:inline-flex; align-items:center; justify-content:center; gap:0.4rem;
-          cursor:pointer; outline:none; border:0;
-          font-family:'Instrument Sans', Arial, sans-serif;
-          font-weight:700; color:#fff !important;
-          background:#2452a0 !important;
-          text-shadow: 0 1px 4px rgba(0,0,0,0.18), 0 0px 1px #1a3f7a;
-          text-transform:uppercase; font-size:0.8125rem; letter-spacing:0.05em;
-          padding:0.7em 1.5em; border:2px solid #1a3f7a; border-radius:0.6em;
-          min-width: 5rem;
-          min-height: 2.25rem;
-          box-sizing: border-box;
-          overflow: visible;
-          opacity: 1 !important;
-          transition:background 150ms cubic-bezier(0,0,.58,1),transform 150ms cubic-bezier(0,0,.58,1);
+        @media (min-width:640px) {
+          .inst .step-pill-num   { width:1.5rem; height:1.5rem; font-size:.6rem; }
+          .inst .step-pill-title { font-size:.78rem; }
         }
-        @media (max-width: 640px) {
-          .inst .btn-primary {
-            font-size: 0.75rem;
-            padding: 0.65em 1.3em;
-            min-width: 4.5rem;
-            min-height: 2rem;
-          }
-        }
-        .inst .btn-primary::before {
-          position:absolute; content:'';
-          width:100%; height:100%; top:0; left:0; right:0; bottom:0;
-          background:#2452a0; border-radius:inherit;
-          box-shadow:0 0 0 2px #1a3f7a,0 0.28em 0 0 #1a3f7a;
-          transform:translate3d(0,0.28em,-1em);
-          transition:transform 150ms cubic-bezier(0,0,.58,1),box-shadow 150ms cubic-bezier(0,0,.58,1);
-        }
-        .inst .btn-primary:hover              { background:#4a7dd4; transform:translate(0,0.1em); }
-        .inst .btn-primary:hover::before      { box-shadow:0 0 0 2px #1a3f7a,0 0.18em 0 0 #1a3f7a; transform:translate3d(0,0.18em,-1em); }
-        .inst .btn-primary:active             { background:#4a7dd4; transform:translate(0,0.28em); }
-        .inst .btn-primary:active::before     { box-shadow:0 0 0 2px #1a3f7a,0 0 #1a3f7a; transform:translate3d(0,0,-1em); }
 
         .inst .img-frame {
           overflow:hidden;
+          border-radius:16px;
+          border:1px solid rgba(255,255,255,0.07);
+          box-shadow:0 0 0 1px rgba(255,255,255,0.04), 0 24px 60px rgba(0,0,0,0.4);
           animation:fadeUp .6s ease .55s forwards; opacity:0;
           width:100%;
         }
 
-        /* Subtext responsive */
         .inst .sub-text {
-          color:#64748b; line-height:1.7;
-          font-size:.9rem;
-          max-width:100%;
+          color:rgba(255,255,255,0.35); line-height:1.7;
+          font-size:clamp(.9rem, 1.1vw, 1.6rem); max-width:100%;
           animation:fadeUp .5s ease .2s forwards; opacity:0;
         }
         @media (min-width:640px) {
-          .inst .sub-text { font-size:.9rem; max-width:30rem; }
+          .inst .sub-text { font-size:clamp(.9rem, 1.1vw, 1.6rem); max-width:30rem; }
         }
       `}</style>
 
-      <section className="inst relative w-full overflow-hidden pt-12 pb-12 md:pt-16 md:pb-16">
-
+      <section
+        className="inst relative w-full overflow-hidden"
+        style={{ background: "#0a0a0a" }}
+      >
         {/* Faint grid */}
         <div style={{
-          position:"absolute",inset:0,pointerEvents:"none",zIndex:0,
-          backgroundImage:"linear-gradient(rgba(59,111,190,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(59,111,190,.08) 1px,transparent 1px)",
+          position:"absolute", inset:0, pointerEvents:"none", zIndex:0,
+          backgroundImage:`linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+                           linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px)`,
           backgroundSize:"120px 120px",
-        }}/>
-        {/* Grid glow overlay */}
-        <div style={{
-          position:"absolute",inset:0,pointerEvents:"none",zIndex:0,
-          backgroundImage:"linear-gradient(rgba(59,111,190,.12) 2px,transparent 2px),linear-gradient(90deg,rgba(59,111,190,.12) 2px,transparent 2px)",
-          backgroundSize:"120px 120px",
-          filter:"blur(4px)",
         }}/>
 
-        {/* Background glows */}
+        {/* Ambient glows */}
         <div style={{
           position:"absolute", left:"50%", top:0,
           transform:"translateX(-50%)",
           width:900, height:500, borderRadius:"50%",
-          background:"radial-gradient(ellipse,rgba(99,130,200,.1) 0%,transparent 68%)",
+          background:"radial-gradient(ellipse,rgba(59,111,190,.08) 0%,transparent 68%)",
           filter:"blur(60px)", pointerEvents:"none", zIndex:0,
           animation:"installGlow 7s ease-in-out infinite",
         }}/>
@@ -212,39 +167,39 @@ export default function InstallationSection() {
           position:"absolute", left:"50%", bottom:"10%",
           transform:"translateX(-50%)",
           width:600, height:300,
-          background:"radial-gradient(ellipse,rgba(59,111,190,.07) 0%,transparent 70%)",
+          background:"radial-gradient(ellipse,rgba(59,111,190,.05) 0%,transparent 70%)",
           filter:"blur(40px)", pointerEvents:"none", zIndex:0,
         }}/>
 
-        {/* Abstract decorative elements */}
+        {/* Decorative SVGs */}
         <svg style={{position:"absolute",top:"8%",right:"4%",pointerEvents:"none",zIndex:0}} width="110" height="110" viewBox="0 0 110 110" fill="none" aria-hidden="true">
-          <circle cx="55" cy="55" r="48" stroke="rgba(59,111,190,.07)" strokeWidth="1" strokeDasharray="6 5"/>
-          <circle cx="55" cy="55" r="24" stroke="rgba(59,111,190,.05)" strokeWidth="1"/>
+          <circle cx="55" cy="55" r="48" stroke="rgba(110,176,255,.06)" strokeWidth="1" strokeDasharray="6 5"/>
+          <circle cx="55" cy="55" r="24" stroke="rgba(110,176,255,.04)" strokeWidth="1"/>
         </svg>
         <svg style={{position:"absolute",bottom:"15%",left:"3%",pointerEvents:"none",zIndex:0}} width="70" height="70" viewBox="0 0 70 70" fill="none" aria-hidden="true">
-          <rect x="10" y="10" width="50" height="50" rx="6" stroke="rgba(59,111,190,.06)" strokeWidth="1" transform="rotate(15 35 35)"/>
+          <rect x="10" y="10" width="50" height="50" rx="6" stroke="rgba(110,176,255,.05)" strokeWidth="1" transform="rotate(15 35 35)"/>
         </svg>
-        {/* Plus signs */}
-        {[{t:"18%",l:"8%"},{t:"75%",l:"90%"},{t:"50%",l:"96%"}].map((p,i)=>(
+        {[{t:"18%",l:"8%"},{t:"75%",l:"90%"},{t:"50%",l:"96%"}].map((p,i) => (
           <svg key={i} style={{position:"absolute",top:p.t,left:p.l,pointerEvents:"none",zIndex:0}} width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <line x1="7" y1="1" x2="7" y2="13" stroke="rgba(59,111,190,.1)" strokeWidth="1"/>
-            <line x1="1" y1="7" x2="13" y2="7" stroke="rgba(59,111,190,.1)" strokeWidth="1"/>
+            <line x1="7" y1="1" x2="7" y2="13" stroke="rgba(110,176,255,.08)" strokeWidth="1"/>
+            <line x1="1" y1="7" x2="13" y2="7" stroke="rgba(110,176,255,.08)" strokeWidth="1"/>
           </svg>
         ))}
-        {/* Dot trail */}
-        {[{t:"30%",l:"94%"},{t:"60%",l:"2%"},{t:"88%",l:"55%"},{t:"10%",l:"50%"}].map((p,i)=>(
-          <div key={i} style={{position:"absolute",top:p.t,left:p.l,width:4,height:4,borderRadius:"50%",background:"rgba(59,111,190,.1)",pointerEvents:"none",zIndex:0}}/>
+        {[{t:"30%",l:"94%"},{t:"60%",l:"2%"},{t:"88%",l:"55%"},{t:"10%",l:"50%"}].map((p,i) => (
+          <div key={i} style={{position:"absolute",top:p.t,left:p.l,width:4,height:4,borderRadius:"50%",background:"rgba(110,176,255,.07)",pointerEvents:"none",zIndex:0}}/>
         ))}
 
-        <div className="relative z-10 mx-auto w-full px-5 sm:px-8 lg:px-16 xl:px-24 flex flex-col lg:flex-row lg:items-center lg:gap-12 gap-8">
+        <div className="relative z-10 mx-auto w-full flex flex-col lg:flex-row lg:items-center lg:gap-12 gap-8" style={{padding:"max(5rem, 8vh) max(48px, 5vw)"}}>
 
-          {/* ── Left column: text content ── */}
+          {/* ── Left: text ── */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4 sm:gap-5 lg:flex-1 lg:min-w-0">
 
-            {/* Section label */}
+            {/* Label */}
             <div className="flex flex-col gap-3 items-center lg:items-start">
-              <span style={{fontSize:".7rem",fontWeight:600,letterSpacing:".12em",textTransform:"uppercase",color:"#94a3b8"}}>Get started</span>
-              <div style={{width:40,height:2,borderRadius:2,background:"linear-gradient(90deg,#3b6fbe,transparent)"}}/>
+              <span style={{fontSize:"clamp(.7rem, .85vw, 1.2rem)",fontWeight:600,letterSpacing:".12em",textTransform:"uppercase",color:"rgba(255,255,255,0.25)"}}>
+                Get started
+              </span>
+              <div style={{width:40,height:2,borderRadius:2,background:"linear-gradient(90deg,#6eb0ff,transparent)"}}/>
             </div>
 
             {/* Headline */}
@@ -263,10 +218,10 @@ export default function InstallationSection() {
                     <mask id="instSkMask"><rect x="0" y="0" width="100" height="100" fill="url(#instSkGrad)"/></mask>
                   </defs>
                   <g mask="url(#instSkMask)">
-                    <path className="sketch-fill-1" d="M2 52 C20 48,42 46,62 47 C78 48,90 50,98 49" stroke="#3b6fbe" strokeWidth="52" strokeLinecap="butt" opacity="0.18" fill="none"/>
-                    <path className="sketch-fill-2" d="M2 51 C22 47,46 45,66 46 C80 47,91 49,98 48" stroke="#3b6fbe" strokeWidth="38" strokeLinecap="butt" opacity="0.55" fill="none"/>
-                    <path className="sketch-fill-2" d="M4 74 C24 71,50 70,70 71 C84 72,93 73,98 72" stroke="#3b6fbe" strokeWidth="18" strokeLinecap="butt" opacity="0.55" fill="none"/>
-                    <path className="sketch-fill-3" d="M4 34 C24 31,48 30,68 31 C82 32,92 33,98 32" stroke="#2d5fa8" strokeWidth="3"  strokeLinecap="butt" opacity="0.35" fill="none"/>
+                    <path className="sketch-fill-1" d="M2 52 C20 48,42 46,62 47 C78 48,90 50,98 49" stroke="#3a7adc" strokeWidth="52" strokeLinecap="butt" opacity="0.22" fill="none"/>
+                    <path className="sketch-fill-2" d="M2 51 C22 47,46 45,66 46 C80 47,91 49,98 48" stroke="#5aaeff" strokeWidth="38" strokeLinecap="butt" opacity="0.45" fill="none"/>
+                    <path className="sketch-fill-2" d="M4 74 C24 71,50 70,70 71 C84 72,93 73,98 72" stroke="#5aaeff" strokeWidth="18" strokeLinecap="butt" opacity="0.38" fill="none"/>
+                    <path className="sketch-fill-3" d="M4 34 C24 31,48 30,68 31 C82 32,92 33,98 32" stroke="#9dd8ff" strokeWidth="3"  strokeLinecap="butt" opacity="0.55" fill="none"/>
                   </g>
                 </svg>
                 <span className="sketch-accent-text">in 3 steps.</span>
@@ -290,17 +245,17 @@ export default function InstallationSection() {
                     <mask id="instSkMask2"><rect x="0" y="0" width="100" height="100" fill="url(#instSkGrad2)"/></mask>
                   </defs>
                   <g mask="url(#instSkMask2)">
-                    <path className="sketch-fill-1" d="M2 52 C20 48,42 46,62 47 C78 48,90 50,98 49" stroke="#3b6fbe" strokeWidth="52" strokeLinecap="butt" opacity="0.10" fill="none"/>
-                    <path className="sketch-fill-2" d="M2 51 C22 47,46 45,66 46 C80 47,91 49,98 48" stroke="#3b6fbe" strokeWidth="38" strokeLinecap="butt" opacity="0.30" fill="none"/>
-                    <path className="sketch-fill-2" d="M4 74 C24 71,50 70,70 71 C84 72,93 73,98 72" stroke="#3b6fbe" strokeWidth="16" strokeLinecap="butt" opacity="0.28" fill="none"/>
-                    <path className="sketch-fill-3" d="M4 34 C24 31,48 30,68 31 C82 32,92 33,98 32" stroke="#2d5fa8" strokeWidth="2.5" strokeLinecap="butt" opacity="0.25" fill="none"/>
+                    <path className="sketch-fill-1" d="M2 52 C20 48,42 46,62 47 C78 48,90 50,98 49" stroke="#3a7adc" strokeWidth="52" strokeLinecap="butt" opacity="0.12" fill="none"/>
+                    <path className="sketch-fill-2" d="M2 51 C22 47,46 45,66 46 C80 47,91 49,98 48" stroke="#5aaeff" strokeWidth="38" strokeLinecap="butt" opacity="0.32" fill="none"/>
+                    <path className="sketch-fill-2" d="M4 74 C24 71,50 70,70 71 C84 72,93 73,98 72" stroke="#5aaeff" strokeWidth="16" strokeLinecap="butt" opacity="0.28" fill="none"/>
+                    <path className="sketch-fill-3" d="M4 34 C24 31,48 30,68 31 C82 32,92 33,98 32" stroke="#9dd8ff" strokeWidth="2.5" strokeLinecap="butt" opacity="0.45" fill="none"/>
                   </g>
                 </svg>
-                <span style={{position:"relative",zIndex:1,color:"#0f172a",fontWeight:600}}>immediately.</span>
+                <span style={{position:"relative",zIndex:1,color:"rgba(255,255,255,0.75)",fontWeight:600}}>immediately.</span>
               </span>
             </p>
 
-            {/* Steps pill bar — stack vertically on desktop left-align */}
+            {/* Steps */}
             <div className="steps-bar" style={{flexDirection:"column",alignItems:"stretch"}}>
               {steps.map((s, i) => (
                 <div key={i} className="step-pill">
@@ -311,16 +266,33 @@ export default function InstallationSection() {
             </div>
 
             {/* CTA */}
-            <button className="btn-primary">
-              Install
-              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" aria-hidden="true" style={{width:12,height:12}} xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clipRule="evenodd"/>
-              </svg>
-            </button>
+            <div className="uv-btn-wrapper">
+              <button className="uv-btn">
+                <div className="uv-txt-wrapper">
+                  <div className="uv-txt-1">
+                    {Array.from("Start Optimizing for Free").map((c, i) =>
+                      c === " "
+                        ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
+                        : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
+                    )}
+                  </div>
+                  <div className="uv-txt-2" aria-hidden="true">
+                    {Array.from("Start Optimizing for Free").map((c, i) =>
+                      c === " "
+                        ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
+                        : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
+                    )}
+                  </div>
+                </div>
+                <svg className="uv-btn-svg" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
 
           </div>
 
-          {/* ── Right column: dashboard image ── */}
+          {/* ── Right: image ── */}
           <div className="lg:flex-[1.4] lg:min-w-0">
             <div className="img-frame" style={{maxWidth:"120%",marginRight:"-10%"}}>
               <Image

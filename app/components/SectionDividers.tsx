@@ -16,6 +16,7 @@ export function RibbonDividerTop() {
         pointerEvents: "none",
         zIndex: 1,
         marginTop: "0px",
+        background: "#0a0a0a",
       }}
     >
       <style>{`
@@ -162,6 +163,7 @@ export function RibbonDividerBottom() {
         pointerEvents: "none",
         zIndex: 1,
         marginBottom: "-2px",
+        background: "#0a0a0a",
       }}
     >
       <style>{`
