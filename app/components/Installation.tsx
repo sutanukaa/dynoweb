@@ -268,16 +268,20 @@ export default function InstallationSection() {
             {/* CTA */}
             <div className="uv-btn-wrapper">
               <button className="uv-btn">
+                <svg viewBox="0 0 109.5 124.5" fill="currentColor" style={{width:"1em",height:"1em",flexShrink:0,opacity:0.85}}>
+                  <path d="M95.6 28.2c-.1-.6-.6-1-1.1-1-.5 0-10.2-1.4-10.2-1.4s-6.8-6.8-7.5-7.5c-.7-.7-2.1-.5-2.6-.3 0 0-1.4.4-3.7 1.1-2.2-6.3-6-12.1-12.8-12.1h-.6C55.2 4.7 52.7 3 50.6 3c-15.8.1-23.4 19.7-25.7 29.8-6.1 1.9-10.5 3.2-11 3.4-3.4 1.1-3.5 1.2-4 4.4C9.6 42.7 0 119.7 0 119.7l75.6 13.1 40.9-10.2S95.7 28.8 95.6 28.2zM67.2 21.4l-5 1.5c0-2.5-.3-6.1-1.4-9.2 3.5.7 5.2 4.6 6.4 7.7zM57.8 24.3l-10.7 3.3c1-4 3-8 5.4-10.6 .9-.9 2.1-2 3.5-2.6 1.5 2.9 1.8 7 1.8 9.9zM50.7 7.2c1.1 0 2.1.4 2.9 1.1-1.3.7-2.6 1.7-3.8 2.9-3.2 3.5-5.7 8.9-6.7 14.2l-8.8 2.7C36.5 20.4 42 7.3 50.7 7.2z"/>
+                  <path d="M94.5 27.2c-.5 0-10.2-1.4-10.2-1.4s-6.8-6.8-7.5-7.5c-.3-.3-.6-.4-1-.4l-5.2 106.8 40.9-10.2S95.7 28.8 95.6 28.2c-.1-.7-.6-1-1.1-1z"/>
+                </svg>
                 <div className="uv-txt-wrapper">
                   <div className="uv-txt-1">
-                    {Array.from("Start Optimizing for Free").map((c, i) =>
+                    {Array.from("Install for free on Shopify").map((c, i) =>
                       c === " "
                         ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
                         : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
                     )}
                   </div>
                   <div className="uv-txt-2" aria-hidden="true">
-                    {Array.from("Start Optimizing for Free").map((c, i) =>
+                    {Array.from("Install for free on Shopify").map((c, i) =>
                       c === " "
                         ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
                         : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>

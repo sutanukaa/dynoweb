@@ -16,8 +16,8 @@ export default function HeroSectionOne() {
     return () => observer.disconnect();
   }, []);
 
-  const line1 = ["Stop", "Guessing", "Why", "Customers", "Aren\u2019t"];
-  const line2 = ["Let", "AI", "Fix", "Your", "Storefront."];
+  const line1 = ["Stop"];
+  const line2 = ["Let", "AI", "fix", "your", "store."];
 
   const trustBadges = [
     "Zero impact on page speed (<6KB)",
@@ -68,6 +68,8 @@ export default function HeroSectionOne() {
           cursor: default;
           text-decoration: none;
           transition: background 0.2s, border-color 0.2s;
+          text-align: center;
+          justify-content: center;
         }
         .hero-badge:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
         .hero-badge .divider { display:block; width:1px; height:18px; background: rgba(255,255,255,0.15); }
@@ -131,6 +133,143 @@ export default function HeroSectionOne() {
           animation: marquee 28s linear infinite;
         }
         .marquee-track:hover { animation-play-state: paused; }
+
+        /* ── Glassmorphic floating cards ── */
+        @keyframes floatA {
+          0%,100% { transform: translateY(0px); }
+          50%      { transform: translateY(-7px); }
+        }
+        @keyframes floatB {
+          0%,100% { transform: translateY(0px); }
+          50%      { transform: translateY(-5px); }
+        }
+        @keyframes fadeSlideUp {
+          from { opacity:0; transform: translateY(32px) scale(0.96); filter: blur(4px); }
+          to   { opacity:1; transform: translateY(0) scale(1); filter: blur(0px); }
+        }
+
+        .glass-card {
+          backdrop-filter: blur(14px) saturate(160%);
+          -webkit-backdrop-filter: blur(14px) saturate(160%);
+          background: rgba(255,255,255,0.055);
+          border: 1px solid rgba(255,255,255,0.13);
+          border-radius: 16px;
+          box-shadow:
+            0 4px 24px rgba(0,0,0,0.45),
+            inset 0 1px 0 rgba(255,255,255,0.1);
+          font-family: 'Karla', sans-serif;
+          color: #fff;
+          opacity: 0;
+          position: absolute;
+          pointer-events: none;
+          z-index: 20;
+        }
+
+        /* Live fix card — bottom-left */
+        .glass-card-fix {
+          bottom: 13%;
+          left: max(1.5rem, 3vw);
+          width: clamp(200px, 22vw, 270px);
+          padding: 14px 16px;
+          animation:
+            fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 0.9s forwards,
+            floatA 5s ease-in-out 1.9s infinite;
+        }
+
+        /* Metrics card — top-right */
+        .glass-card-metrics {
+          top: 18%;
+          right: max(1.5rem, 3vw);
+          width: clamp(150px, 16vw, 200px);
+          padding: 10px 12px;
+          animation:
+            fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.2s forwards,
+            floatB 6s ease-in-out 2.2s infinite;
+        }
+
+        /* pulse dot */
+        @keyframes pulse-dot {
+          0%,100% { opacity:1; transform: scale(1); }
+          50%      { opacity:.5; transform: scale(1.5); }
+        }
+        .live-dot {
+          width:7px; height:7px; border-radius:50%;
+          background: #6eb0ff;
+          box-shadow: 0 0 6px #6eb0ff;
+          animation: pulse-dot 1.8s ease-in-out infinite;
+          flex-shrink: 0;
+        }
+
+        /* mini bar sparkline */
+        .spark-bar {
+          display: flex; align-items: flex-end; gap: 2px; height: 22px;
+        }
+        .spark-bar span {
+          flex:1; border-radius: 2px 2px 0 0;
+          background: rgba(255,255,255,0.18);
+          transition: background .2s;
+        }
+        .spark-bar span.hi { background: rgba(255,255,255,0.45); }
+
+        /* conversion metric */
+        .metric-num {
+          font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+          font-weight: 700; letter-spacing: -0.03em;
+          line-height: 1;
+        }
+        .metric-label {
+          font-size: 0.62rem; font-weight: 600;
+          letter-spacing: 0.06em; text-transform: uppercase;
+          color: rgba(255,255,255,0.35);
+          margin-top: 2px;
+        }
+        .metric-delta {
+          display: inline-flex; align-items: center; gap: 3px;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 99px;
+          padding: 2px 6px;
+          font-size: 0.6rem; font-weight: 600;
+          color: rgba(255,255,255,0.45); letter-spacing: 0.01em;
+          white-space: nowrap;
+        }
+
+        /* fix item row */
+        .fix-row {
+          display: flex; align-items: center; gap: 9px;
+          padding: 7px 0;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .fix-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .fix-icon {
+          width: 28px; height: 28px; border-radius: 8px;
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
+          font-size: 13px;
+        }
+        .fix-text { flex:1; }
+        .fix-title { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.85); }
+        .fix-sub   { font-size: 0.68rem; color: rgba(255,255,255,0.38); margin-top:1px; }
+        .fix-badge {
+          font-size: 0.65rem; font-weight: 700;
+          padding: 2px 7px; border-radius: 99px;
+          white-space: nowrap;
+        }
+        .fix-badge.done {
+          background: rgba(110,176,255,0.12);
+          border: 1px solid rgba(110,176,255,0.25);
+          color: #6eb0ff;
+        }
+        .fix-badge.fixing {
+          background: rgba(110,176,255,0.08);
+          border: 1px solid rgba(110,176,255,0.18);
+          color: rgba(110,176,255,0.7);
+        }
+
+        /* hide float cards on very small screens */
+        @media (max-width: 700px) {
+          .glass-card { display: none; }
+        }
       `}</style>
 
       {/* ── Root: pure near-black, full page ── */}
@@ -158,19 +297,14 @@ export default function HeroSectionOne() {
           justifyContent: "center",
         }}>
 
-          {/* ── TOP RADIAL SHADE: faint white glow from very top centre ── */}
+          {/* ── TOP RADIAL SHADE ── */}
           <div aria-hidden="true" style={{
             position: "absolute", inset: 0, top: "-3.5rem",
             pointerEvents: "none", zIndex: 0, overflow: "hidden",
             background: "radial-gradient(35% 80% at 49% 0%, rgba(255,255,255,0.07), transparent)",
           }} />
 
-          {/*
-            ── SIDE BORDER LINES ──
-            These are positioned on the LEFT and RIGHT edges of the max-w-5xl section.
-            They fade out toward the bottom (mask), matching the reference exactly.
-            z-index:10 so they sit above content.
-          */}
+          {/* ── SIDE BORDER LINES ── */}
           <div aria-hidden="true" style={{
             position: "absolute", top: 0, left: 0, bottom: 0, width: "1px",
             background: "rgba(255,255,255,0.13)",
@@ -186,6 +320,76 @@ export default function HeroSectionOne() {
             zIndex: 10, pointerEvents: "none",
           }} />
 
+          {/* ════════════════════════════════════════
+              GLASS CARD 1 — "AI Fix Applied" (bottom-left)
+              Mirrors the "Better AI Assistant" pill from BetterMail
+          ════════════════════════════════════════ */}
+          <div className="glass-card glass-card-fix">
+            {/* Header row */}
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"10px" }}>
+              <div style={{ display:"flex", alignItems:"center", gap:"7px" }}>
+                <div className="live-dot" />
+                <span style={{ fontSize:"0.72rem", fontWeight:700, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,0.4)" }}>
+                  Live Fixes
+                </span>
+              </div>
+              <span style={{ fontSize:"0.68rem", color:"rgba(255,255,255,0.25)" }}>just now</span>
+            </div>
+
+            {/* Fix rows */}
+            <div className="fix-row">
+              <div className="fix-icon" style={{ background:"rgba(255,255,255,0.06)", border:"1px solid rgba(255,255,255,0.1)" }}>🛒</div>
+              <div className="fix-text">
+                <div className="fix-title">Cart abandonment copy</div>
+                <div className="fix-sub">+12% checkout rate</div>
+              </div>
+              <span className="fix-badge done">Fixed</span>
+            </div>
+            <div className="fix-row">
+              <div className="fix-icon" style={{ background:"rgba(255,255,255,0.06)", border:"1px solid rgba(255,255,255,0.1)" }}>📸</div>
+              <div className="fix-text">
+                <div className="fix-title">Product image order</div>
+                <div className="fix-sub">Optimising…</div>
+              </div>
+              <span className="fix-badge fixing">AI working</span>
+            </div>
+          </div>
+
+          {/* ════════════════════════════════════════
+              GLASS CARD 2 — Conversion metric (top-right)
+              Mirrors the "Connect All Your Apps" card from BetterMail
+          ════════════════════════════════════════ */}
+          <div className="glass-card glass-card-metrics">
+            {/* Metric */}
+            <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"space-between", marginBottom:"8px" }}>
+              <div>
+                <div className="metric-num">+24.7%</div>
+                <div className="metric-label">Conversion rate</div>
+              </div>
+              <span className="metric-delta">
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 15l-6-6-6 6"/>
+                </svg>
+                This week
+              </span>
+            </div>
+
+            {/* Sparkline bars */}
+            <div className="spark-bar">
+              {[40, 55, 45, 60, 52, 70, 65, 80, 72, 95].map((h, i) => (
+                <span key={i} className={i >= 8 ? "hi" : ""} style={{ height:`${h}%` }} />
+              ))}
+            </div>
+
+            {/* Footer label */}
+            <div style={{ marginTop:"6px", fontSize:"0.58rem", color:"rgba(255,255,255,0.22)", display:"flex", alignItems:"center", gap:"4px" }}>
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+              </svg>
+              Tracked across 1,204 sessions
+            </div>
+          </div>
+
           {/* ── MAIN CONTENT ── */}
           <div className="relative z-10 mx-auto w-full" style={{
             padding: "6rem max(48px, 5vw)",
@@ -194,17 +398,11 @@ export default function HeroSectionOne() {
             gap: "1.35rem",
           }}>
 
-            {/*
-              ── INNER CONTENT BORDER LINES ──
-              Responsive positioning to match the new padding system
-            */}
             <div aria-hidden="true" style={{ position:"absolute", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden" }}>
-              {/* Left inner line */}
               <div style={{
                 position:"absolute", top:0, bottom:0, left:"1rem", width:"1px",
                 background:"linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 100%)",
               }} />
-              {/* Right inner line */}
               <div style={{
                 position:"absolute", top:0, bottom:0, right:"1rem", width:"1px",
                 background:"linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 100%)",
@@ -231,7 +429,7 @@ export default function HeroSectionOne() {
               {line1.map((word, i) => (
                 <span key={i} className="word-hover" style={{ marginRight:"0.25em" }}>{word}</span>
               ))}
-              <span ref={sketchRef} style={{ position:"relative", display:"inline-block", whiteSpace:"nowrap", marginRight:"0.25em" }}>
+              <span ref={sketchRef} style={{ position:"relative", display:"inline-block", whiteSpace:"nowrap" }}>
                 <svg className="sketch-highlight-svg" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" aria-hidden="true"
                   style={{ position:"absolute", top:0, left:"4%", width:"92%", height:"100%", overflow:"hidden", pointerEvents:"none", zIndex:0 }}>
                   <defs>
@@ -251,8 +449,9 @@ export default function HeroSectionOne() {
                     <path d="M2 51 C22 47,46 45,66 46 C80 47,91 49,98 48" stroke="#9dd8ff" strokeWidth="1.5" strokeLinecap="butt" opacity="0.5" fill="none"/>
                   </g>
                 </svg>
-                <span className="sketch-accent-text">Buying.</span>
+                <span className="sketch-accent-text">guessing.</span>
               </span>
+              <br />
               {line2.map((word, i) => (
                 <span key={i} className="word-hover" style={{ marginRight: i < line2.length - 1 ? "0.25em" : 0 }}>{word}</span>
               ))}
@@ -268,16 +467,20 @@ export default function HeroSectionOne() {
             <div className="anim-in delay-300" style={{ display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap:"0.75rem", paddingTop:"0.5rem" }}>
               <div className="uv-btn-wrapper">
                 <button className="uv-btn">
+                  <svg className="uv-btn-shopify" viewBox="0 0 109.5 124.5" fill="currentColor" style={{width:"1em",height:"1em",flexShrink:0,opacity:0.85}}>
+                    <path d="M95.6 28.2c-.1-.6-.6-1-1.1-1-.5 0-10.2-1.4-10.2-1.4s-6.8-6.8-7.5-7.5c-.7-.7-2.1-.5-2.6-.3 0 0-1.4.4-3.7 1.1-2.2-6.3-6-12.1-12.8-12.1h-.6C55.2 4.7 52.7 3 50.6 3c-15.8.1-23.4 19.7-25.7 29.8-6.1 1.9-10.5 3.2-11 3.4-3.4 1.1-3.5 1.2-4 4.4C9.6 42.7 0 119.7 0 119.7l75.6 13.1 40.9-10.2S95.7 28.8 95.6 28.2zM67.2 21.4l-5 1.5c0-2.5-.3-6.1-1.4-9.2 3.5.7 5.2 4.6 6.4 7.7zM57.8 24.3l-10.7 3.3c1-4 3-8 5.4-10.6 .9-.9 2.1-2 3.5-2.6 1.5 2.9 1.8 7 1.8 9.9zM50.7 7.2c1.1 0 2.1.4 2.9 1.1-1.3.7-2.6 1.7-3.8 2.9-3.2 3.5-5.7 8.9-6.7 14.2l-8.8 2.7C36.5 20.4 42 7.3 50.7 7.2z"/>
+                    <path d="M94.5 27.2c-.5 0-10.2-1.4-10.2-1.4s-6.8-6.8-7.5-7.5c-.3-.3-.6-.4-1-.4l-5.2 106.8 40.9-10.2S95.7 28.8 95.6 28.2c-.1-.7-.6-1-1.1-1z"/>
+                  </svg>
                   <div className="uv-txt-wrapper">
                     <div className="uv-txt-1">
-                      {Array.from("Start Optimizing for Free").map((c, i) =>
+                      {Array.from("Install for free on Shopify").map((c, i) =>
                         c === " "
                           ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
                           : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
                       )}
                     </div>
                     <div className="uv-txt-2" aria-hidden="true">
-                      {Array.from("Start Optimizing for Free").map((c, i) =>
+                      {Array.from("Install for free on Shopify").map((c, i) =>
                         c === " "
                           ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
                           : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>

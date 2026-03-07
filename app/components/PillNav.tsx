@@ -9,30 +9,14 @@ interface NavItem {
   hasDropdown?: boolean;
 }
 
-const features = [
-  { id: 1, title: "Feature 1", desc: "Short description for feature one.",   href: "/features/1" },
-  { id: 2, title: "Feature 2", desc: "Short description for feature two.",   href: "/features/2" },
-  { id: 3, title: "Feature 3", desc: "Short description for feature three.", href: "/features/3" },
-  { id: 4, title: "Feature 4", desc: "Short description for feature four.",  href: "/features/4" },
-  { id: 5, title: "Feature 5", desc: "Short description for feature five.",  href: "/features/5" },
-  { id: 6, title: "Feature 6", desc: "Short description for feature six.",   href: "/features/6" },
-];
-
 const navItems: NavItem[] = [
-  { label: "Features", id: "features", hasDropdown: true },
   { label: "Pricing",  id: "pricing",  href: "#pricing"  },
   { label: "Help",     id: "help",     href: "#help"      },
 ];
 
 export default function Navbar() {
-  const [featuresOpen,  setFeaturesOpen]  = useState(false);
   const [mobileOpen,    setMobileOpen]    = useState(false);
   const [scrolled,      setScrolled]      = useState(false);
-  const [panelX,        setPanelX]        = useState(0);
-  const [panelY,        setPanelY]        = useState(0);
-
-  const featuresButtonRef = useRef<HTMLButtonElement>(null);
-  const featuresTimeout   = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /* Add a subtle border when user scrolls */
   useEffect(() => {
@@ -40,20 +24,6 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  /* ── Features hover ── */
-  const openFeatures = () => {
-    if (featuresTimeout.current) clearTimeout(featuresTimeout.current);
-    if (featuresButtonRef.current) {
-      const r = featuresButtonRef.current.getBoundingClientRect();
-      setPanelX(r.left + r.width / 2);
-      setPanelY(r.bottom + 8);
-    }
-    setFeaturesOpen(true);
-  };
-  const closeFeatures = () => {
-    featuresTimeout.current = setTimeout(() => setFeaturesOpen(false), 160);
-  };
 
   return (
     <>
@@ -137,49 +107,6 @@ export default function Navbar() {
         }
         .nav-link:hover .nav-chevron { opacity: 0.7; }
 
-        /* Feature cards */
-        .feat-card {
-          display: flex; flex-direction: column; gap: 5px;
-          padding: 13px 13px; border-radius: 11px;
-          background: rgba(255,255,255,0.03);
-          border: 1px solid rgba(255,255,255,0.07);
-          text-decoration: none; cursor: pointer;
-          transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
-        }
-        .feat-card:hover {
-          background: rgba(255,255,255,0.07);
-          border-color: rgba(255,255,255,0.13);
-          transform: translateY(-1px);
-        }
-        .feat-card-icon {
-          width: 30px; height: 30px; border-radius: 7px;
-          background: rgba(59,111,190,0.2);
-          border: 1px solid rgba(59,111,190,0.25);
-          display: flex; align-items: center; justify-content: center;
-          margin-bottom: 2px;
-        }
-        .feat-card-num   { font-size: 0.7rem; font-weight: 700; color: rgba(147,197,253,0.72); }
-        .feat-card-title { font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.85); letter-spacing: 0.01em; }
-        .feat-card-desc  { font-size: 0.71rem; font-weight: 400; color: rgba(255,255,255,0.32); line-height: 1.45; }
-
-        /* Dropdown panel — fixed, positioned by JS */
-        .features-panel {
-          position: fixed;
-          width: 468px;
-          transform: translateX(-50%);
-          background: rgba(11,11,16,0.97);
-          border: 1px solid rgba(255,255,255,0.09);
-          border-radius: 18px;
-          backdrop-filter: blur(32px);
-          -webkit-backdrop-filter: blur(32px);
-          box-shadow: 0 8px 40px rgba(0,0,0,0.75),
-                      0 2px 8px rgba(0,0,0,0.5),
-                      inset 0 1px 0 rgba(255,255,255,0.055);
-          padding: 12px;
-          display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px;
-          z-index: 10000;
-        }
-
         /* Mobile menu */
         .mobile-btn {
           display: none;
@@ -238,29 +165,9 @@ export default function Navbar() {
           {/* Nav links — flush left after logo */}
           <nav className="nav-links">
             {navItems.map(item => (
-              item.hasDropdown ? (
-                <button
-                  key={item.id}
-                  ref={featuresButtonRef}
-                  className="nav-link"
-                  onMouseEnter={openFeatures}
-                  onMouseLeave={closeFeatures}
-                >
-                  {item.label}
-                  <motion.svg
-                    className="nav-chevron"
-                    width="11" height="11" viewBox="0 0 12 12" fill="none"
-                    animate={{ rotate: featuresOpen ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                  </motion.svg>
-                </button>
-              ) : (
-                <a key={item.id} href={item.href} className="nav-link">
-                  {item.label}
-                </a>
-              )
+              <a key={item.id} href={item.href} className="nav-link">
+                {item.label}
+              </a>
             ))}
           </nav>
 
@@ -279,39 +186,6 @@ export default function Navbar() {
           </button>
         </div>
       </header>
-
-      {/* ── Features dropdown panel — pinned under Features button ── */}
-      <AnimatePresence>
-        {featuresOpen && (
-          <motion.div
-            className="features-panel"
-            style={{ left: panelX, top: panelY }}
-            initial={{ opacity: 0, y: -6, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0,  scale: 1    }}
-            exit={{    opacity: 0, y: -4, scale: 0.97 }}
-            transition={{ duration: 0.18, ease: [0.4, 0, 0.2, 1] }}
-            onMouseEnter={() => { if (featuresTimeout.current) clearTimeout(featuresTimeout.current); setFeaturesOpen(true); }}
-            onMouseLeave={closeFeatures}
-          >
-            {features.map((f, i) => (
-              <motion.a
-                key={f.id}
-                href={f.href}
-                className="feat-card"
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.035, duration: 0.16 }}
-              >
-                <div className="feat-card-icon">
-                  <span className="feat-card-num">{f.id}</span>
-                </div>
-                <span className="feat-card-title">{f.title}</span>
-                <span className="feat-card-desc">{f.desc}</span>
-              </motion.a>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* ── Mobile menu ── */}
       <AnimatePresence>
