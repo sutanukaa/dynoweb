@@ -208,9 +208,9 @@ export default function Navbar() {
               </a>
             ))}
             <div style={{ height: 1, background: "rgba(255,255,255,0.06)", margin: "6px 0" }} />
-            <button className="mobile-link" style={{ color: "rgba(147,197,253,0.85)", fontWeight: 600 }}>
-              Get Started →
-            </button>
+            <a href="/waitlist" className="mobile-link" style={{ color: "rgba(147,197,253,0.85)", fontWeight: 600, textDecoration: "none" }}>
+              Join the waitlist now →
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
