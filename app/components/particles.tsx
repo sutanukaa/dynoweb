@@ -60,25 +60,29 @@ export const Particles: React.FC<ParticlesProps> = ({
       vy: number;
       alpha: number;
       size: number;
+      width: number;
+      height: number;
 
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+      constructor(width: number, height: number) {
+        this.width = width;
+        this.height = height;
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
         this.vx = (Math.random() - 0.5) * 0.5; // Slow movement
         this.vy = (Math.random() - 0.5) * 0.5; // Slow movement
         this.alpha = Math.random() * 0.5 + 0.3;
         this.size = size + Math.random() * 0.5;
       }
 
-      update() {
+      update(width: number, height: number) {
         this.x += this.vx;
         this.y += this.vy;
 
         // Wrap around edges
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
+        if (this.x > width) this.x = 0;
+        if (this.x < 0) this.x = width;
+        if (this.y > height) this.y = 0;
+        if (this.y < 0) this.y = height;
 
         // Slowly oscillate alpha
         this.alpha += (Math.random() - 0.5) * 0.02;
@@ -95,7 +99,7 @@ export const Particles: React.FC<ParticlesProps> = ({
 
     const particles: Particle[] = [];
     for (let i = 0; i < quantity; i++) {
-      particles.push(new Particle());
+      particles.push(new Particle(canvas.width, canvas.height));
     }
 
     let animationFrameId: number;
@@ -103,7 +107,7 @@ export const Particles: React.FC<ParticlesProps> = ({
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach(particle => {
-        particle.update();
+        particle.update(canvas.width, canvas.height);
         particle.draw(ctx);
       });
 

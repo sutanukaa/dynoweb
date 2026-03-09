@@ -3,10 +3,9 @@ import React, { useRef, useEffect } from "react";
 
 export default function Footer() {
   const navItems = [
-    { label: "About DynoWeb", href: "#about" },
-    { label: "Shopify Extensions", href: "#extensions" },
-    { label: "Privacy", href: "#privacy" },
-    { label: "Terms", href: "#terms" },
+    { label: "Home", href: "/" },
+    { label: "Features", href: "#features-section" },
+    { label: "Join Waitlist", href: "/waitlist" },
   ];
 
   const word = "DynoWeb";
@@ -53,6 +52,14 @@ export default function Footer() {
     return () => ro.disconnect();
   }, []);
 
+  function handleFooterNav(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    if (href === "#features-section") {
+      e.preventDefault();
+      const section = document.getElementById("features-section");
+      if (section) section.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
     <>
       <style>{`
@@ -88,34 +95,29 @@ export default function Footer() {
       >
         {/* Wordmark — padded container, text fills it fully */}
         <div className="pt-20 md:pt-24 pb-6" style={{ overflow: "hidden", textAlign: "center" }}>
-          <h2
-            ref={wordmarkRef}
-            style={{
-              fontFamily: "'Montserrat',sans-serif",
-              fontSize: "500px",
-              fontWeight: 700,
-              lineHeight: 1,
-              letterSpacing: "-0.025em",
-              color: "#f0f0f0",
-              margin: 0,
-              padding: 0,
-              display: "inline-block",
-              userSelect: "none",
-              whiteSpace: "nowrap",
-              width: "100%",
-            }}
-          >
-            {letters.map((char, i) => (
-              <span
-                key={i}
-                style={{
-                  display: "inline-block",
-                }}
-              >
-                {char}
-              </span>
-            ))}
-          </h2>
+          <a href="/">
+            <h2
+              ref={wordmarkRef}
+              style={{
+                fontFamily: "'Montserrat',sans-serif",
+                fontSize: "500px",
+                fontWeight: 700,
+                lineHeight: 1,
+                letterSpacing: "-0.025em",
+                color: "#f0f0f0",
+                margin: 0,
+                padding: 0,
+                display: "inline-block",
+                userSelect: "none",
+                whiteSpace: "nowrap",
+                width: "100%",
+              }}
+            >
+              {letters.map((char, i) => (
+                <span key={i} style={{ display: "inline-block" }}>{char}</span>
+              ))}
+            </h2>
+          </a>
         </div>
 
         {/* Divider */}
@@ -126,22 +128,12 @@ export default function Footer() {
         {/* Footer bar */}
         <footer className="py-5 sm:py-6" style={{padding:"20px max(48px, 5vw)"}}>
           <div className="flex items-center justify-between footer-responsive-bar">
-            <span
-              style={{
-                fontFamily: "'Karla',sans-serif",
-                fontSize: "0.8125rem",
-                fontWeight: 500,
-                color: "rgba(255,255,255,0.25)",
-              }}
-            >
-              DynoWeb
-            </span>
-
+            <a href="/" style={{ textDecoration: "none" }}>
+              <span style={{ fontFamily: "'Karla',sans-serif", fontSize: "0.8125rem", fontWeight: 500, color: "rgba(255,255,255,0.25)" }}>DynoWeb</span>
+            </a>
             <nav className="flex items-center gap-8 footer-responsive-nav">
               {navItems.map((item, i) => (
-                <a key={i} href={item.href} className="footer-nav-link">
-                  {item.label}
-                </a>
+                <a key={i} href={item.href} className="footer-nav-link" onClick={e => handleFooterNav(e, item.href)}>{item.label}</a>
               ))}
             </nav>
           </div>

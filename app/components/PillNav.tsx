@@ -10,9 +10,16 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "Pricing",  id: "pricing",  href: "#pricing"  },
-  { label: "Help",     id: "help",     href: "#help"      },
+  { label: "Features", id: "features" },
+  { label: "Join Waitlist", id: "waitlist", href: "/waitlist" },
 ];
+
+function scrollToFeatures() {
+  const section = document.getElementById("features-section");
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+}
 
 export default function Navbar() {
   const [mobileOpen,    setMobileOpen]    = useState(false);
@@ -162,13 +169,10 @@ export default function Navbar() {
             DynoWeb
           </a>
 
-          {/* Nav links — flush left after logo */}
+          {/* Nav links */}
           <nav className="nav-links">
-            {navItems.map(item => (
-              <a key={item.id} href={item.href} className="nav-link">
-                {item.label}
-              </a>
-            ))}
+            <button className="nav-link" onClick={scrollToFeatures}>Features</button>
+            <a className="nav-link" href="/waitlist">Join Waitlist</a>
           </nav>
 
           {/* Mobile hamburger */}
