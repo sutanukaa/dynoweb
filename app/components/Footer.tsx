@@ -54,11 +54,15 @@ export default function Footer() {
   }, []);
 
   function handleFooterNav(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
-    if (href === "#features-section") {
-      e.preventDefault();
-      const section = document.getElementById("features-section");
-      if (section) section.scrollIntoView({ behavior: "smooth" });
-    }
+      if (href === "#features-section") {
+        e.preventDefault();
+        if (window.location.pathname === "/") {
+          const section = document.getElementById("features-section");
+          if (section) section.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.location.href = "/#features-section";
+        }
+      }
   }
 
   return (

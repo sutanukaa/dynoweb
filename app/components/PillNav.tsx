@@ -16,9 +16,13 @@ const navItems: NavItem[] = [
 ];
 
 function scrollToFeatures() {
-  const section = document.getElementById("features-section");
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth" });
+  if (window.location.pathname === "/") {
+    const section = document.getElementById("features-section");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  } else {
+    window.location.href = "/#features-section";
   }
 }
 
