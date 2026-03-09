@@ -11,6 +11,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Features", id: "features" },
+  { label: "Contact Us", id: "contact", href: "/contact-us" },
   { label: "Join Waitlist", id: "waitlist", href: "/waitlist" },
 ];
 
@@ -42,6 +43,9 @@ export default function Navbar() {
           z-index: 9999;
           font-family: 'Karla', sans-serif;
           transition: border-color 0.3s ease, background 0.3s ease;
+          background: rgba(10,10,10,0.35) !important;
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
         }
 
         .nav-inner {
@@ -49,6 +53,7 @@ export default function Navbar() {
           max-width: 1600px; margin: 0 auto;
           padding: 0 clamp(1.25rem, 4vw, 3rem);
           height: 60px;
+          background: transparent !important;
         }
 
         /* Logo */
@@ -72,25 +77,25 @@ export default function Navbar() {
         }
         .nav-link {
           display: inline-flex; align-items: center; gap: 4px;
-          background: none; border: none; cursor: pointer; outline: none;
-          padding: 7px 14px; border-radius: 8px;
+          background: none;
+          border: none; cursor: pointer; outline: none;
+          padding: 8px 8px;
           font-family: 'Karla', sans-serif;
           font-size: 0.875rem; font-weight: 500;
-          color: rgba(255,255,255,0.45);
+          color: rgba(255,255,255,0.65);
           letter-spacing: 0.01em;
           text-decoration: none;
-          transition: color 0.15s ease, background 0.15s ease;
+          transition: color 0.15s ease;
         }
         .nav-link:hover {
-          color: rgba(255,255,255,0.82);
-          background: rgba(255,255,255,0.05);
+          color: rgba(255,255,255,0.88);
         }
 
         /* CTA button */
         .nav-cta {
           display: inline-flex; align-items: center; gap: 6px;
-          background: rgba(59,111,190,0.18);
-          border: 1px solid rgba(59,111,190,0.35);
+          background: rgba(59,111,190,0.12);
+          border: 1px solid rgba(59,111,190,0.25);
           border-radius: 8px;
           padding: 7px 16px;
           font-family: 'Karla', sans-serif;
@@ -102,8 +107,8 @@ export default function Navbar() {
           white-space: nowrap;
         }
         .nav-cta:hover {
-          background: rgba(59,111,190,0.3);
-          border-color: rgba(59,111,190,0.55);
+          background: rgba(59,111,190,0.22);
+          border-color: rgba(59,111,190,0.45);
           color: #fff;
         }
 
@@ -171,8 +176,17 @@ export default function Navbar() {
 
           {/* Nav links */}
           <nav className="nav-links">
-            <button className="nav-link" onClick={scrollToFeatures}>Features</button>
-            <a className="nav-link" href="/waitlist">Join Waitlist</a>
+            {navItems.map(item =>
+              item.id === "features" ? (
+                <button key={item.id} className="nav-link" onClick={scrollToFeatures}>
+                  {item.label}
+                </button>
+              ) : (
+                <a key={item.id} className="nav-link" href={item.href}>
+                  {item.label}
+                </a>
+              )
+            )}
           </nav>
 
           {/* Mobile hamburger */}

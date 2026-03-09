@@ -5,6 +5,7 @@ import FeaturesSection from "./components/Features";
 import TestimonialsSection from "./components/Testimonials";
 import InstallationSection from "./components/Installation";
 import Footer from "./components/Footer";
+import FAQs from "./components/Faqs";
 import ScrollReveal from "./components/ScrollReveal";
 
 export default function Home() {
@@ -38,6 +39,10 @@ export default function Home() {
 
       <ScrollReveal offset={80} duration={0.85} delay={0.05} blur={8}>
         <InstallationSection />
+      </ScrollReveal>
+
+      <ScrollReveal offset={80} duration={0.85} delay={0.05} blur={8}>
+        <FAQs />
       </ScrollReveal>
 
       <ScrollReveal offset={50} duration={0.7} blur={4}>

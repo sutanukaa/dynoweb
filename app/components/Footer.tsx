@@ -5,6 +5,7 @@ export default function Footer() {
   const navItems = [
     { label: "Home", href: "/" },
     { label: "Features", href: "#features-section" },
+    { label: "Contact Us", href: "/contact-us" },
     { label: "Join Waitlist", href: "/waitlist" },
   ];
 

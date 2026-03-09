@@ -10,19 +10,6 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    id: "install", tab: "Install & Onboarding",
-    headline: "One-Click Installation\n& Guided Onboarding.",
-    subline: "Get started in under two minutes — no coding required.",
-    bullets: [
-      { title: "Shopify OAuth Install", desc: "Install directly from Shopify, no manual steps." },
-      { title: "3-Step Guided Setup", desc: "Account, tracker, and verification — all automated." },
-      { title: "14-Day Free Trial", desc: "Explore all features before committing." },
-    ],
-    caption: "Fast onboarding, zero friction.",
-    videoSrc: "/videos/ai-builder.mp4",
-    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>),
-  },
-  {
     id: "tracking", tab: "Visitor Tracking",
     headline: "Automatic Visitor Tracking\n— Invisible & Lightweight.",
     subline: "A tiny script captures real behavior without slowing your store.",
@@ -172,6 +159,7 @@ export default function FeaturesVideoSection() {
   }, [active]);
 
   const feat = features[active];
+  const mockupImg = `/feature${active + 1}.png`;
 
   return (
     <>
@@ -245,7 +233,7 @@ export default function FeaturesVideoSection() {
         @media(min-width:900px){
           .feat-card {
             display:grid;
-            grid-template-columns:1fr 1fr;
+            grid-template-columns:0.9fr 1.1fr;
             min-height:480px;
             border-radius:20px;
           }
@@ -478,41 +466,16 @@ export default function FeaturesVideoSection() {
               </div>
 
               <div className="feat-mockup-body">
-                {/* Dark skeleton */}
-                <div className="feat-ph">
-                  <div className="feat-ph-side">
-                    {[100,75,60,85,65,50,80,70].map((w,i) => (
-                      <div key={i} className={`feat-ph-line${i===2?" hi":""}`} style={{width:`${w}%`}}/>
-                    ))}
-                  </div>
-                  <div className="feat-ph-main">
-                    <div className="feat-ph-head"/>
-                    <div className="feat-ph-cards">
-                      {[0,1,2].map(i => (
-                        <div key={i} className="feat-ph-card">
-                          <div style={{position:"absolute",inset:0,background:`linear-gradient(135deg,rgba(59,111,190,${.06+i*.025}) 0%,transparent 80%)`}}/>
-                          <div className="feat-ph-accent" style={{width:`${48+i*16}%`}}/>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="feat-ph-rows">
-                      {([[68,32],[52,48],[82,18]] as [number,number][]).map(([a,b],i) => (
-                        <div key={i} className="feat-ph-r">
-                          <div className="feat-ph-line" style={{flex:a}}/>
-                          <div className="feat-ph-line" style={{flex:b,opacity:.4}}/>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="feat-ph-cta"/>
-                  </div>
-                </div>
-                {/* Video */}
-                <video ref={videoRef} key={`v-${active}`} src={feat.videoSrc} className="feat-video" muted loop playsInline autoPlay/>
-                {/* Badge */}
-                <div className="feat-live-badge">
-                  <div className="feat-live-dot"/>
-                  <span style={{fontSize:".58rem",fontWeight:600,color:"rgba(255,255,255,0.5)",letterSpacing:".06em"}}>LIVE PREVIEW</span>
-                </div>
+                <img 
+                  src={mockupImg} 
+                  alt={feat.headline} 
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block"
+                  }}
+                />
               </div>
 
               {/* Caption */}
