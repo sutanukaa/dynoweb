@@ -259,7 +259,7 @@ export default function FeaturesVideoSection() {
 
         .feat-headline {
           font-family:'Montserrat',sans-serif;
-          font-size:clamp(1.25rem,4vw,2rem);
+          font-size:clamp(1.1rem,3.8vw,1.85rem);
           font-weight:700; line-height:1.15;
           letter-spacing:-.02em; color:#e8eaf0; white-space:pre-line;
           animation:featFadeUp .38s ease both;
@@ -472,7 +472,9 @@ export default function FeaturesVideoSection() {
                   style={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
+                    objectFit: "contain",
+                    objectPosition: "50% center",
+                    background: "rgba(0,0,0,0.08)",
                     display: "block"
                   }}
                 />
