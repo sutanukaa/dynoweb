@@ -59,19 +59,19 @@ export default function HeroSectionOne() {
         .hero-badge {
           display: inline-flex; align-items: center; gap: 10px;
           border-radius: 9999px;
-          border: 1px solid rgba(255,255,255,0.12);
-          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.2);
+          background: transparent;
           padding: 6px 14px 6px 10px;
           font-family: 'Karla', sans-serif;
           font-size: clamp(0.8rem, 1vw, 1.4rem);
-          color: rgba(255,255,255,0.65);
+          color: rgba(255,255,255,0.9);
           cursor: default;
           text-decoration: none;
           transition: background 0.2s, border-color 0.2s;
           text-align: center;
           justify-content: center;
         }
-        .hero-badge:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+        .hero-badge:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.4); }
         .hero-badge .divider { display:block; width:1px; height:18px; background: rgba(255,255,255,0.15); }
         .hero-badge .arrow { transition: transform 0.15s ease-out; }
         .hero-badge:hover .arrow { transform: translateX(3px); }
@@ -143,6 +143,14 @@ export default function HeroSectionOne() {
           0%,100% { transform: translateY(0px); }
           50%      { transform: translateY(-5px); }
         }
+        @keyframes floatC {
+          0%,100% { transform: translateY(0px); }
+          50%      { transform: translateY(-6px); }
+        }
+        @keyframes floatD {
+          0%,100% { transform: translateY(0px); }
+          50%      { transform: translateY(-4px); }
+        }
         @keyframes fadeSlideUp {
           from { opacity:0; transform: translateY(32px) scale(0.96); filter: blur(4px); }
           to   { opacity:1; transform: translateY(0) scale(1); filter: blur(0px); }
@@ -169,22 +177,44 @@ export default function HeroSectionOne() {
         .glass-card-fix {
           bottom: 13%;
           left: max(1.5rem, 3vw);
-          width: clamp(200px, 22vw, 270px);
-          padding: 14px 16px;
+          width: clamp(160px, 16vw, 210px);
+          padding: 10px 12px;
           animation:
             fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 0.9s forwards,
             floatA 5s ease-in-out 1.9s infinite;
         }
 
-        /* Metrics card — top-right */
+        /* Metrics card — top-right, pulled inward */
         .glass-card-metrics {
-          top: 18%;
-          right: max(1.5rem, 3vw);
-          width: clamp(150px, 16vw, 200px);
-          padding: 10px 12px;
+          top: 14%;
+          right: max(5rem, 9vw);
+          width: clamp(130px, 13vw, 168px);
+          padding: 9px 11px;
           animation:
             fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.2s forwards,
             floatB 6s ease-in-out 2.2s infinite;
+        }
+
+        /* Heatmap card — top-left, nudged inward and lower */
+        .glass-card-heatmap {
+          top: 24%;
+          left: max(4rem, 7vw);
+          width: clamp(140px, 14vw, 178px);
+          padding: 9px 11px;
+          animation:
+            fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.5s forwards,
+            floatC 7s ease-in-out 2.5s infinite;
+        }
+
+        /* Journey card — bottom-right */
+        .glass-card-journey {
+          bottom: 13%;
+          right: max(1.5rem, 3vw);
+          width: clamp(150px, 15vw, 196px);
+          padding: 10px 12px;
+          animation:
+            fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.8s forwards,
+            floatD 5.5s ease-in-out 2.8s infinite;
         }
 
         /* pulse dot */
@@ -213,12 +243,12 @@ export default function HeroSectionOne() {
 
         /* conversion metric */
         .metric-num {
-          font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+          font-size: clamp(0.95rem, 1.4vw, 1.2rem);
           font-weight: 700; letter-spacing: -0.03em;
           line-height: 1;
         }
         .metric-label {
-          font-size: 0.62rem; font-weight: 600;
+          font-size: 0.55rem; font-weight: 600;
           letter-spacing: 0.06em; text-transform: uppercase;
           color: rgba(255,255,255,0.35);
           margin-top: 2px;
@@ -228,31 +258,31 @@ export default function HeroSectionOne() {
           background: rgba(255,255,255,0.06);
           border: 1px solid rgba(255,255,255,0.12);
           border-radius: 99px;
-          padding: 2px 6px;
-          font-size: 0.6rem; font-weight: 600;
-          color: rgba(255,255,255,0.45); letter-spacing: 0.01em;
+          padding: 2px 5px;
+          font-size: 0.55rem; font-weight: 600;
+          color: rgba(255,255,255,0.4); letter-spacing: 0.01em;
           white-space: nowrap;
         }
 
         /* fix item row */
         .fix-row {
-          display: flex; align-items: center; gap: 9px;
-          padding: 7px 0;
+          display: flex; align-items: center; gap: 7px;
+          padding: 5px 0;
           border-bottom: 1px solid rgba(255,255,255,0.06);
         }
         .fix-row:last-child { border-bottom: none; padding-bottom: 0; }
         .fix-icon {
-          width: 28px; height: 28px; border-radius: 8px;
+          width: 22px; height: 22px; border-radius: 6px;
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0;
-          font-size: 13px;
+          font-size: 11px;
         }
         .fix-text { flex:1; }
-        .fix-title { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.85); }
-        .fix-sub   { font-size: 0.68rem; color: rgba(255,255,255,0.38); margin-top:1px; }
+        .fix-title { font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.75); }
+        .fix-sub   { font-size: 0.6rem; color: rgba(255,255,255,0.3); margin-top:1px; }
         .fix-badge {
-          font-size: 0.65rem; font-weight: 700;
-          padding: 2px 7px; border-radius: 99px;
+          font-size: 0.58rem; font-weight: 700;
+          padding: 2px 6px; border-radius: 99px;
           white-space: nowrap;
         }
         .fix-badge.done {
@@ -264,6 +294,68 @@ export default function HeroSectionOne() {
           background: rgba(110,176,255,0.08);
           border: 1px solid rgba(110,176,255,0.18);
           color: rgba(110,176,255,0.7);
+        }
+
+        /* ── Heatmap card styles ── */
+        .heatmap-grid {
+          display: grid;
+          grid-template-columns: repeat(8, 1fr);
+          grid-template-rows: repeat(4, 1fr);
+          gap: 2px;
+          height: 40px;
+          border-radius: 5px;
+          overflow: hidden;
+          margin-top: 7px;
+        }
+        .heatmap-cell {
+          border-radius: 2px;
+        }
+        .heatmap-stat {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-top: 6px;
+        }
+        .heatmap-stat-item {
+          display: flex; align-items: center; gap: 4px;
+        }
+        .heatmap-dot {
+          width: 5px; height: 5px; border-radius: 50%;
+          flex-shrink: 0;
+        }
+
+        /* ── Journey card styles ── */
+        .journey-step {
+          display: flex; align-items: center; gap: 7px;
+          padding: 4px 0;
+        }
+        .journey-line {
+          display: flex; flex-direction: column; align-items: center;
+          gap: 0;
+        }
+        .journey-node {
+          width: 18px; height: 18px; border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 9px;
+          flex-shrink: 0;
+        }
+        .journey-connector {
+          width: 1px; height: 10px;
+          background: rgba(255,255,255,0.1);
+          margin: 1px auto;
+        }
+        .journey-label {
+          font-size: 0.65rem; font-weight: 600;
+          color: rgba(255,255,255,0.65);
+          flex: 1;
+        }
+        .journey-count {
+          font-size: 0.58rem;
+          color: rgba(255,255,255,0.28);
+          white-space: nowrap;
+        }
+        .journey-pct {
+          font-size: 0.58rem; font-weight: 700;
+          color: rgba(110,176,255,0.7);
+          white-space: nowrap;
         }
 
         /* hide float cards on very small screens */
@@ -322,18 +414,17 @@ export default function HeroSectionOne() {
 
           {/* ════════════════════════════════════════
               GLASS CARD 1 — "AI Fix Applied" (bottom-left)
-              Mirrors the "Better AI Assistant" pill from BetterMail
           ════════════════════════════════════════ */}
           <div className="glass-card glass-card-fix">
             {/* Header row */}
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"10px" }}>
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"8px" }}>
               <div style={{ display:"flex", alignItems:"center", gap:"7px" }}>
                 <div className="live-dot" />
-                <span style={{ fontSize:"0.72rem", fontWeight:700, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,0.4)" }}>
+                <span style={{ fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)" }}>
                   Live Fixes
                 </span>
               </div>
-              <span style={{ fontSize:"0.68rem", color:"rgba(255,255,255,0.25)" }}>just now</span>
+              <span style={{ fontSize:"0.58rem", color:"rgba(255,255,255,0.2)" }}>just now</span>
             </div>
 
             {/* Fix rows */}
@@ -357,7 +448,6 @@ export default function HeroSectionOne() {
 
           {/* ════════════════════════════════════════
               GLASS CARD 2 — Conversion metric (top-right)
-              Mirrors the "Connect All Your Apps" card from BetterMail
           ════════════════════════════════════════ */}
           <div className="glass-card glass-card-metrics">
             {/* Metric */}
@@ -387,6 +477,120 @@ export default function HeroSectionOne() {
                 <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
               </svg>
               Tracked across 1,204 sessions
+            </div>
+          </div>
+
+          {/* ════════════════════════════════════════
+              GLASS CARD 3 — Visual Heatmap (top-left)
+          ════════════════════════════════════════ */}
+          <div className="glass-card glass-card-heatmap">
+            {/* Header */}
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+              <div style={{ display:"flex", alignItems:"center", gap:"6px" }}>
+                <span style={{ fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)" }}>
+                  Heatmap
+                </span>
+              </div>
+              <span style={{
+                fontSize:"0.55rem", fontWeight:700, padding:"2px 6px", borderRadius:"99px",
+                background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.1)",
+                color:"rgba(255,255,255,0.35)",
+              }}>Frustration</span>
+            </div>
+
+            {/* Mini heatmap grid — muted, desaturated tones */}
+            <div className="heatmap-grid">
+              {[
+                // row 1
+                0.05,0.1,0.2,0.6,0.9,0.7,0.15,0.05,
+                // row 2
+                0.05,0.15,0.3,0.85,1.0,0.8,0.2,0.08,
+                // row 3
+                0.08,0.1,0.15,0.4,0.6,0.35,0.1,0.05,
+                // row 4
+                0.03,0.05,0.08,0.15,0.2,0.1,0.05,0.03,
+              ].map((intensity, i) => {
+                // Desaturated: low-intensity = dark grey, high = muted warm grey-red
+                const base = 30 + intensity * 40;
+                const warm = intensity * 25;
+                const a = 0.12 + intensity * 0.55;
+                return (
+                  <div
+                    key={i}
+                    className="heatmap-cell"
+                    style={{ background: `rgba(${Math.round(base + warm)},${Math.round(base - warm * 0.4)},${Math.round(base - warm * 0.4)},${a})` }}
+                  />
+                );
+              })}
+            </div>
+
+            {/* Stats row */}
+            <div className="heatmap-stat">
+              <div className="heatmap-stat-item">
+                <div className="heatmap-dot" style={{ background:"rgba(200,160,140,0.6)" }} />
+                <span style={{ fontSize:"0.58rem", color:"rgba(255,255,255,0.3)" }}>84 rage clicks</span>
+              </div>
+              <div className="heatmap-stat-item">
+                <div className="heatmap-dot" style={{ background:"rgba(180,180,140,0.5)" }} />
+                <span style={{ fontSize:"0.58rem", color:"rgba(255,255,255,0.3)" }}>37 dead</span>
+              </div>
+            </div>
+          </div>
+
+          {/* ════════════════════════════════════════
+              GLASS CARD 4 — Customer Journey (bottom-right)
+          ════════════════════════════════════════ */}
+          <div className="glass-card glass-card-journey">
+            {/* Header */}
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"8px" }}>
+              <div style={{ display:"flex", alignItems:"center", gap:"6px" }}>
+                <span style={{ fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)" }}>
+                  Top Journey
+                </span>
+              </div>
+              <span style={{ fontSize:"0.58rem", color:"rgba(255,255,255,0.2)" }}>last 7d</span>
+            </div>
+
+            {/* Journey steps */}
+            {[
+              { icon:"🏠", label:"Homepage", count:"4,821", pct:null, isStart: true },
+              { icon:"👟", label:"Product page", count:"2,340", pct:"48%", isStart: false },
+              { icon:"🛒", label:"Cart", count:"891", pct:"38%", isStart: false },
+              { icon:"✅", label:"Checkout", count:"412", pct:"46%", isStart: false },
+            ].map((step, i, arr) => (
+              <div key={i}>
+                <div className="journey-step">
+                  <div className="journey-node" style={{
+                    background: step.pct ? "rgba(110,176,255,0.12)" : "rgba(255,255,255,0.08)",
+                    border: `1px solid ${step.pct ? "rgba(110,176,255,0.25)" : "rgba(255,255,255,0.1)"}`,
+                  }}>
+                    {step.icon}
+                  </div>
+                  <span className="journey-label">{step.label}</span>
+                  <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:"1px" }}>
+                    <span className="journey-count">{step.count}</span>
+                    {step.pct && <span className="journey-pct">{step.pct} →</span>}
+                  </div>
+                </div>
+                {i < arr.length - 1 && (
+                  <div style={{ display:"flex", alignItems:"center", gap:"8px", paddingLeft:"6px" }}>
+                    <div style={{ width:"1px", height:"10px", background:"rgba(255,255,255,0.08)", marginLeft:"10px" }} />
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Footer */}
+            <div style={{
+              marginTop:"8px", paddingTop:"8px",
+              borderTop:"1px solid rgba(255,255,255,0.06)",
+              display:"flex", alignItems:"center", justifyContent:"space-between",
+            }}>
+              <span style={{ fontSize:"0.62rem", color:"rgba(255,255,255,0.28)" }}>Conversion funnel</span>
+              <span style={{
+                fontSize:"0.65rem", fontWeight:700,
+                color:"#6eb0ff",
+              }}>8.5% CVR</span>
             </div>
           </div>
 
@@ -466,24 +670,24 @@ export default function HeroSectionOne() {
             {/* CTA */}
             <div className="anim-in delay-300" style={{ display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap:"0.75rem", paddingTop:"0.5rem" }}>
               <a href="/waitlist" className="uv-btn-wrapper" style={{textDecoration:"none"}}>
-                <div className="uv-btn">
+                <div className="uv-btn" style={{background:'#fff', color:'#000', border:'1px solid #000', borderRadius:'999px', padding:'12px 32px', display:'flex', alignItems:'center', gap:'8px', boxShadow:'0 2px 8px rgba(0,0,0,0.08)'}}>
                   <div className="uv-txt-wrapper">
                     <div className="uv-txt-1">
                       {Array.from("Join the waitlist now").map((c, i) =>
                         c === " "
                           ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
-                          : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
+                        : <span key={i} className="uv-btn-letter" style={{color:'#000'}}>{c}</span>
                       )}
                     </div>
                     <div className="uv-txt-2" aria-hidden="true">
                       {Array.from("Join the waitlist now").map((c, i) =>
                         c === " "
                           ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
-                          : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
+                          : <span key={i} className="uv-btn-letter" style={{color:'#000'}}>{c}</span>
                       )}
                     </div>
                   </div>
-                  <svg className="uv-btn-svg" viewBox="0 0 24 24">
+                  <svg className="uv-btn-svg" viewBox="0 0 24 24" style={{stroke:'#000'}}>
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </div>

@@ -545,7 +545,7 @@ export default function WaitlistPage() {
 
         {/* ── Subtitle ── */}
         <p className="wl-sub">
-          Generate leads, build excitement, and grow{"\n"}your email list ahead of launch day.
+          Turn visitor behavior into actionable fixes, optimize your Shopify store, and get launch-ready insights that drive real results.
         </p>
 
         {/* ── Toggle tabs ── */}

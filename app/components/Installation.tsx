@@ -267,24 +267,24 @@ export default function InstallationSection() {
 
             {/* CTA */}
             <a href="/waitlist" className="uv-btn-wrapper" style={{textDecoration:"none"}}>
-              <div className="uv-btn">
+              <div className="uv-btn" style={{background:'#fff', color:'#000', border:'1px solid #000', borderRadius:'999px', padding:'12px 32px', display:'flex', alignItems:'center', gap:'8px', boxShadow:'0 2px 8px rgba(0,0,0,0.08)'}}>
                 <div className="uv-txt-wrapper">
                   <div className="uv-txt-1">
                     {Array.from("Join the waitlist now").map((c, i) =>
                       c === " "
                         ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
-                        : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
+                      : <span key={i} className="uv-btn-letter" style={{color:'#000'}}>{c}</span>
                     )}
                   </div>
                   <div className="uv-txt-2" aria-hidden="true">
                     {Array.from("Join the waitlist now").map((c, i) =>
                       c === " "
                         ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
-                        : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
+                        : <span key={i} className="uv-btn-letter" style={{color:'#000'}}>{c}</span>
                     )}
                   </div>
                 </div>
-                <svg className="uv-btn-svg" viewBox="0 0 24 24">
+                <svg className="uv-btn-svg" viewBox="0 0 24 24" style={{stroke:'#000'}}>
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </div>
