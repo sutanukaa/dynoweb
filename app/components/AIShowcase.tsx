@@ -86,9 +86,9 @@ export default function AIShowcaseSection() {
         }
         @media (min-width: 1100px) {
           .ais-grid {
-            grid-template-columns: 1.1fr 0.85fr 1.05fr;
+            grid-template-columns: 1fr 1.1fr 1fr;
             grid-template-areas: "headline demo bullets";
-            align-items: center;
+            align-items: start;
             column-gap: clamp(2.5rem, 4vw, 5rem);
           }
         }
@@ -96,6 +96,7 @@ export default function AIShowcaseSection() {
         /* ── Headline col ── */
         .ais-headline {
           display: flex; flex-direction: column; gap: 20px;
+          align-self: start;
         }
         .ais-h2 {
           font-family: 'Montserrat', sans-serif;
@@ -155,7 +156,7 @@ export default function AIShowcaseSection() {
         .demo-card {
           position: relative;
           width: 100%;
-          max-width: 300px;
+          max-width: 380px;
           aspect-ratio: 3/4;
           background: rgba(255,255,255,0.03);
           border: 1px solid rgba(255,255,255,0.08);
@@ -616,10 +617,25 @@ export default function AIShowcaseSection() {
               <p className="ais-body">
                 No dashboards to configure. No analysts to hire. Just plug in your store and watch the insights surface.
               </p>
+            </div>
 
-              <div className="ais-rule" />
+            {/* ── Bullets + Stats col ── */}
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div className="ais-bullets">
+                {bullets.map((b, i) => (
+                  <div key={i} className="ais-bullet">
+                    <span className="ais-bullet-num">0{i + 1}</span>
+                    <div>
+                      <p className="ais-bullet-title">{b.title}</p>
+                      <p className="ais-bullet-desc">{b.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-              <div className="ais-stats">
+              <div className="ais-rule" style={{ marginTop: "1.5rem" }} />
+
+              <div className="ais-stats" style={{ marginTop: "1.5rem" }}>
                 {[
                   { v: "SEO Safe", l: "Every fix passes Core Web Vitals. Rankings stay intact." },
                   { v: "Zero Risk", l: "Changes live in a Draft Theme — never your live store." },
@@ -634,19 +650,6 @@ export default function AIShowcaseSection() {
                   </React.Fragment>
                 ))}
               </div>
-            </div>
-
-            {/* ── Bullets col ── */}
-            <div className="ais-bullets">
-              {bullets.map((b, i) => (
-                <div key={i} className="ais-bullet">
-                  <span className="ais-bullet-num">0{i + 1}</span>
-                  <div>
-                    <p className="ais-bullet-title">{b.title}</p>
-                    <p className="ais-bullet-desc">{b.desc}</p>
-                  </div>
-                </div>
-              ))}
             </div>
 
           </div>

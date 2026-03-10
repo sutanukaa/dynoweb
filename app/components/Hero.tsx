@@ -59,19 +59,19 @@ export default function HeroSectionOne() {
         .hero-badge {
           display: inline-flex; align-items: center; gap: 10px;
           border-radius: 9999px;
-          border: 1px solid rgba(255,255,255,0.2);
-          background: transparent;
+          border: 1px solid rgba(255,255,255,0.12);
+          background: rgba(255,255,255,0.05);
           padding: 6px 14px 6px 10px;
           font-family: 'Karla', sans-serif;
           font-size: clamp(0.8rem, 1vw, 1.4rem);
-          color: rgba(255,255,255,0.9);
+          color: rgba(255,255,255,0.65);
           cursor: default;
           text-decoration: none;
           transition: background 0.2s, border-color 0.2s;
           text-align: center;
           justify-content: center;
         }
-        .hero-badge:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.4); }
+        .hero-badge:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
         .hero-badge .divider { display:block; width:1px; height:18px; background: rgba(255,255,255,0.15); }
         .hero-badge .arrow { transition: transform 0.15s ease-out; }
         .hero-badge:hover .arrow { transform: translateX(3px); }
@@ -161,7 +161,7 @@ export default function HeroSectionOne() {
           -webkit-backdrop-filter: blur(14px) saturate(160%);
           background: rgba(255,255,255,0.055);
           border: 1px solid rgba(255,255,255,0.13);
-          border-radius: 16px;
+          border-radius: 4px;
           box-shadow:
             0 4px 24px rgba(0,0,0,0.45),
             inset 0 1px 0 rgba(255,255,255,0.1);
@@ -179,9 +179,7 @@ export default function HeroSectionOne() {
           left: max(1.5rem, 3vw);
           width: clamp(160px, 16vw, 210px);
           padding: 10px 12px;
-          animation:
-            fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 0.9s forwards,
-            floatA 5s ease-in-out 1.9s infinite;
+          animation: fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 0.9s forwards;
         }
 
         /* Metrics card — top-right, pulled inward */
@@ -190,9 +188,7 @@ export default function HeroSectionOne() {
           right: max(5rem, 9vw);
           width: clamp(130px, 13vw, 168px);
           padding: 9px 11px;
-          animation:
-            fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.2s forwards,
-            floatB 6s ease-in-out 2.2s infinite;
+          animation: fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.2s forwards;
         }
 
         /* Heatmap card — top-left, nudged inward and lower */
@@ -201,20 +197,16 @@ export default function HeroSectionOne() {
           left: max(4rem, 7vw);
           width: clamp(140px, 14vw, 178px);
           padding: 9px 11px;
-          animation:
-            fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.5s forwards,
-            floatC 7s ease-in-out 2.5s infinite;
+          animation: fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.5s forwards;
         }
 
-        /* Journey card — bottom-right */
+        /* Journey card — mid-right, scattered diagonal beside subtext */
         .glass-card-journey {
-          bottom: 13%;
-          right: max(1.5rem, 3vw);
-          width: clamp(150px, 15vw, 196px);
+          bottom: 28%;
+          right: max(3rem, 6vw);
+          width: clamp(180px, 17vw, 220px);
           padding: 10px 12px;
-          animation:
-            fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.8s forwards,
-            floatD 5.5s ease-in-out 2.8s infinite;
+          animation: fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.8s forwards;
         }
 
         /* pulse dot */
@@ -418,12 +410,9 @@ export default function HeroSectionOne() {
           <div className="glass-card glass-card-fix">
             {/* Header row */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"8px" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:"7px" }}>
-                <div className="live-dot" />
-                <span style={{ fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)" }}>
-                  Live Fixes
-                </span>
-              </div>
+              <span style={{ fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)" }}>
+                Live Fixes
+              </span>
               <span style={{ fontSize:"0.58rem", color:"rgba(255,255,255,0.2)" }}>just now</span>
             </div>
 
@@ -481,116 +470,27 @@ export default function HeroSectionOne() {
           </div>
 
           {/* ════════════════════════════════════════
-              GLASS CARD 3 — Visual Heatmap (top-left)
+              GLASS CARD 4 — Shopify store pill (bottom-right)
           ════════════════════════════════════════ */}
-          <div className="glass-card glass-card-heatmap">
-            {/* Header */}
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:"6px" }}>
-                <span style={{ fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)" }}>
-                  Heatmap
-                </span>
+          <div className="glass-card glass-card-journey" style={{ padding:"9px 13px" }}>
+            <div style={{ display:"flex", alignItems:"center", gap:"10px" }}>
+              {/* Shopify green bag icon */}
+              <div style={{
+                width:"30px", height:"30px", borderRadius:"8px", flexShrink:0,
+                background:"rgba(150,191,72,0.12)",
+                border:"1px solid rgba(150,191,72,0.2)",
+                display:"flex", alignItems:"center", justifyContent:"center",
+              }}>
+                <svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.7 3.1c0-.1-.1-.2-.2-.2h-.1c-.1 0-1.4-.1-1.4-.1s-1-.9-1-.9c-.1-.1-.3-.1-.4 0l-.5.1c-.1-.2-.2-.4-.3-.6-.4-.7-.9-1-1.5-1h-.1c-.1-.1-.2-.2-.3-.2-.3-.3-.6-.4-1-.4-.7 0-1.5.5-2.1 1.4-.4.6-.7 1.4-.8 2l-1.4.4c-.4.1-.4.1-.5.5L1 13.4l7.9 1.5 4.3-1S12.7 3.2 12.7 3.1zm-4.4-1.8c.1.3.2.7.2 1.3v.1l-1.6.5c.3-1.1.9-1.7 1.4-1.9zm-1.8-.7c.1 0 .2 0 .3.1-.7.3-1.4 1.1-1.7 2.7l-1.3.4C4.1 2.7 5.2.6 6.5.6zm-.6-.5c.1 0 .2 0 .3.1-.7.3-1.4 1.1-1.7 2.7l-1.3.4C3.5 2.2 4.6.1 5.9.1z" fill="#96BF48"/>
+                  <path d="M12.5 2.9h-.1c-.1 0-1.4-.1-1.4-.1s-1-.9-1-.9c-.1-.1-.1-.1-.2-.1v11.7l4.3-1s-1.5-9.5-1.6-9.6z" fill="#5E8E3E"/>
+                  <path d="M8.1 5.4l-.5 1.6s-.5-.3-1-.3c-.9 0-.9.5-.9.7 0 .7 1.9 1 1.9 2.7 0 1.3-.8 2.2-2 2.2-1.4 0-2.1-.9-2.1-.9l.4-1.2s.7.6 1.3.6c.4 0 .6-.3.6-.5 0-.9-1.5-1-1.5-2.5 0-1.3.9-2.6 2.8-2.6.7 0 1 .2 1 .2z" fill="white"/>
+                </svg>
               </div>
-              <span style={{
-                fontSize:"0.55rem", fontWeight:700, padding:"2px 6px", borderRadius:"99px",
-                background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.1)",
-                color:"rgba(255,255,255,0.35)",
-              }}>Frustration</span>
-            </div>
-
-            {/* Mini heatmap grid — muted, desaturated tones */}
-            <div className="heatmap-grid">
-              {[
-                // row 1
-                0.05,0.1,0.2,0.6,0.9,0.7,0.15,0.05,
-                // row 2
-                0.05,0.15,0.3,0.85,1.0,0.8,0.2,0.08,
-                // row 3
-                0.08,0.1,0.15,0.4,0.6,0.35,0.1,0.05,
-                // row 4
-                0.03,0.05,0.08,0.15,0.2,0.1,0.05,0.03,
-              ].map((intensity, i) => {
-                // Desaturated: low-intensity = dark grey, high = muted warm grey-red
-                const base = 30 + intensity * 40;
-                const warm = intensity * 25;
-                const a = 0.12 + intensity * 0.55;
-                return (
-                  <div
-                    key={i}
-                    className="heatmap-cell"
-                    style={{ background: `rgba(${Math.round(base + warm)},${Math.round(base - warm * 0.4)},${Math.round(base - warm * 0.4)},${a})` }}
-                  />
-                );
-              })}
-            </div>
-
-            {/* Stats row */}
-            <div className="heatmap-stat">
-              <div className="heatmap-stat-item">
-                <div className="heatmap-dot" style={{ background:"rgba(200,160,140,0.6)" }} />
-                <span style={{ fontSize:"0.58rem", color:"rgba(255,255,255,0.3)" }}>84 rage clicks</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize:"0.68rem", fontWeight:700, color:"rgba(255,255,255,0.75)", lineHeight:1.2, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>my-store.myshopify.com</div>
+                <div style={{ fontSize:"0.58rem", color:"rgba(255,255,255,0.28)", marginTop:"2px" }}>Connected · Tracking active</div>
               </div>
-              <div className="heatmap-stat-item">
-                <div className="heatmap-dot" style={{ background:"rgba(180,180,140,0.5)" }} />
-                <span style={{ fontSize:"0.58rem", color:"rgba(255,255,255,0.3)" }}>37 dead</span>
-              </div>
-            </div>
-          </div>
-
-          {/* ════════════════════════════════════════
-              GLASS CARD 4 — Customer Journey (bottom-right)
-          ════════════════════════════════════════ */}
-          <div className="glass-card glass-card-journey">
-            {/* Header */}
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"8px" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:"6px" }}>
-                <span style={{ fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)" }}>
-                  Top Journey
-                </span>
-              </div>
-              <span style={{ fontSize:"0.58rem", color:"rgba(255,255,255,0.2)" }}>last 7d</span>
-            </div>
-
-            {/* Journey steps */}
-            {[
-              { icon:"🏠", label:"Homepage", count:"4,821", pct:null, isStart: true },
-              { icon:"👟", label:"Product page", count:"2,340", pct:"48%", isStart: false },
-              { icon:"🛒", label:"Cart", count:"891", pct:"38%", isStart: false },
-              { icon:"✅", label:"Checkout", count:"412", pct:"46%", isStart: false },
-            ].map((step, i, arr) => (
-              <div key={i}>
-                <div className="journey-step">
-                  <div className="journey-node" style={{
-                    background: step.pct ? "rgba(110,176,255,0.12)" : "rgba(255,255,255,0.08)",
-                    border: `1px solid ${step.pct ? "rgba(110,176,255,0.25)" : "rgba(255,255,255,0.1)"}`,
-                  }}>
-                    {step.icon}
-                  </div>
-                  <span className="journey-label">{step.label}</span>
-                  <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:"1px" }}>
-                    <span className="journey-count">{step.count}</span>
-                    {step.pct && <span className="journey-pct">{step.pct} →</span>}
-                  </div>
-                </div>
-                {i < arr.length - 1 && (
-                  <div style={{ display:"flex", alignItems:"center", gap:"8px", paddingLeft:"6px" }}>
-                    <div style={{ width:"1px", height:"10px", background:"rgba(255,255,255,0.08)", marginLeft:"10px" }} />
-                  </div>
-                )}
-              </div>
-            ))}
-
-            {/* Footer */}
-            <div style={{
-              marginTop:"8px", paddingTop:"8px",
-              borderTop:"1px solid rgba(255,255,255,0.06)",
-              display:"flex", alignItems:"center", justifyContent:"space-between",
-            }}>
-              <span style={{ fontSize:"0.62rem", color:"rgba(255,255,255,0.28)" }}>Conversion funnel</span>
-              <span style={{
-                fontSize:"0.65rem", fontWeight:700,
-                color:"#6eb0ff",
-              }}>8.5% CVR</span>
             </div>
           </div>
 
@@ -670,24 +570,24 @@ export default function HeroSectionOne() {
             {/* CTA */}
             <div className="anim-in delay-300" style={{ display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap:"0.75rem", paddingTop:"0.5rem" }}>
               <a href="/waitlist" className="uv-btn-wrapper" style={{textDecoration:"none"}}>
-                <div className="uv-btn" style={{background:'#fff', color:'#000', border:'1px solid #000', borderRadius:'999px', padding:'12px 32px', display:'flex', alignItems:'center', gap:'8px', boxShadow:'0 2px 8px rgba(0,0,0,0.08)'}}>
+                <div className="uv-btn">
                   <div className="uv-txt-wrapper">
                     <div className="uv-txt-1">
                       {Array.from("Join the waitlist now").map((c, i) =>
                         c === " "
                           ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
-                        : <span key={i} className="uv-btn-letter" style={{color:'#000'}}>{c}</span>
+                          : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
                       )}
                     </div>
                     <div className="uv-txt-2" aria-hidden="true">
                       {Array.from("Join the waitlist now").map((c, i) =>
                         c === " "
                           ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
-                          : <span key={i} className="uv-btn-letter" style={{color:'#000'}}>{c}</span>
+                          : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
                       )}
                     </div>
                   </div>
-                  <svg className="uv-btn-svg" viewBox="0 0 24 24" style={{stroke:'#000'}}>
+                  <svg className="uv-btn-svg" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </div>
@@ -701,43 +601,6 @@ export default function HeroSectionOne() {
               ))}
             </div>
 
-          </div>
-        </section>
-
-        {/* ── Logos section ── */}
-        <section style={{
-          position: "relative",
-          borderTop: "1px solid rgba(255,255,255,0.07)",
-          paddingTop: "1.5rem",
-          paddingBottom: "2.5rem",
-        }}>
-          <h2 style={{
-            textAlign: "center", fontWeight: 500,
-            fontSize: "clamp(1.1rem, 1.3vw, 1.8rem)", letterSpacing: "-0.01em",
-            color: "rgba(255,255,255,0.35)",
-            marginBottom: "1.25rem",
-            fontFamily: "'Karla', sans-serif",
-          }}>
-            Trusted by <span style={{ color:"rgba(255,255,255,0.7)" }}>top Shopify brands</span>
-          </h2>
-          <div style={{
-            position: "relative", maxWidth: "56rem", margin: "0 auto", overflow: "hidden",
-            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
-            maskImage: "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
-          }}>
-            <div className="marquee-track">
-              {[...Array(2)].map((_, pass) => (
-                <div key={pass} style={{ display:"flex", alignItems:"center", gap:"3.5rem", paddingRight:"3.5rem" }}>
-                  {["Shopify Plus","Klaviyo","Gorgias","Recharge","Triple Whale","Postscript","Attentive","Yotpo"].map(name => (
-                    <span key={name} style={{
-                      fontFamily: "'Karla', sans-serif",
-                      fontWeight: 600, fontSize: "clamp(0.85rem, 1vw, 1.4rem)", letterSpacing: "0.05em",
-                      color: "rgba(255,255,255,0.18)", whiteSpace: "nowrap", textTransform: "uppercase",
-                    }}>{name}</span>
-                  ))}
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
