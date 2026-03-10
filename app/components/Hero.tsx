@@ -28,7 +28,21 @@ export default function HeroSectionOne() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700&display=swap');
+          .uv-btn-svg {
+            stroke: #222 !important;
+            color: #222 !important;
+          }
+          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700&display=swap');
+          .uv-btn-letter {
+            color: #222 !important;
+            font-weight: 600;
+            opacity: 1 !important;
+          }
+          .uv-txt-1, .uv-txt-2 {
+            color: #222 !important;
+            font-weight: 600;
+            opacity: 1 !important;
+          }
 
         @keyframes fadeSlideIn {
           from { opacity: 0; transform: translateY(10px); }
