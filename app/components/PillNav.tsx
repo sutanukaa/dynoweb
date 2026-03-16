@@ -13,6 +13,7 @@ const navItems: NavItem[] = [
   { label: "Features", id: "features" },
   { label: "Contact Us", id: "contact", href: "/contact-us" },
   { label: "Join Waitlist", id: "waitlist", href: "/waitlist" },
+  { label: "Privacy Policy", id: "privacy", href: "/privacy-policy" },
 ];
 
 function scrollToFeatures() {
@@ -174,8 +175,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <a href="/" className="nav-logo">
-            <div className="nav-logo-dot" />
-            DynoWeb
+            <img src="/logo.png" alt="DynoWeb Logo" style={{ height: "95px", width: "auto", display: "block" }} />
           </a>
 
           {/* Nav links */}

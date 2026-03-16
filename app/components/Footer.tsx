@@ -7,6 +7,7 @@ export default function Footer() {
     { label: "Features", href: "#features-section" },
     { label: "Contact Us", href: "/contact-us" },
     { label: "Join Waitlist", href: "/waitlist" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
   ];
 
   const word = "DynoWeb";
