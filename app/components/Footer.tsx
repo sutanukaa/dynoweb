@@ -126,10 +126,7 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Divider */}
-        <div
-          style={{ height: 1, background: "rgba(255,255,255,0.12)" }}
-        />
+        {/* Divider removed */}
 
         {/* Footer bar */}
         <footer className="py-5 sm:py-6" style={{padding:"20px max(48px, 5vw)"}}>
@@ -144,6 +141,7 @@ export default function Footer() {
             </nav>
           </div>
         </footer>
+        <div style={{textAlign:'center', color:'rgba(255,255,255,0.38)', fontFamily:'Karla, sans-serif', fontSize:'0.82rem', paddingBottom:'16px'}}>Official contact: <a href="mailto:info@dynoweb.app" style={{color:'rgba(255,255,255,0.7)'}}>info@dynoweb.app</a></div>
       </div>
     </>
   );

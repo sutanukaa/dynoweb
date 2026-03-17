@@ -166,7 +166,7 @@ export default function Navbar() {
             : "1px solid transparent",
           background: scrolled
             ? "rgba(10,10,10,0.85)"
-            : "transparent",
+            : "#000",
           backdropFilter: scrolled ? "blur(20px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
         }}

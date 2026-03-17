@@ -62,6 +62,19 @@ const features: Feature[] = [
     icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>),
   },
   {
+    id: "dynoagent", tab: "DynoAgent",
+    headline: "DynoAgent\n— Ask Anything About Your Store.",
+    subline: "An AI analytics assistant that answers questions about your store data in plain English.",
+    bullets: [
+      { title: "Natural Language Queries", desc: "Ask things like 'What were my most visited pages this week?' or 'Which elements have the most rage clicks?' — no SQL, no dashboards." },
+      { title: "Deep Data Access", desc: "DynoAgent pulls from traffic, clicks, frustration signals, revenue, and conversion data to give complete answers." },
+      { title: "CRO Recommendations", desc: "Ask for improvement ideas and get actionable suggestions tailored to your store's real behavior data." },
+    ],
+    caption: "Your store's data, answered instantly.",
+    videoSrc: "/videos/ai-builder.mp4",
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>),
+  },
+  {
     id: "preview", tab: "Live Preview",
     headline: "Live Preview &\nSide-by-Side Comparison.",
     subline: "See exactly what your changes will look like before you commit.",
@@ -159,7 +172,7 @@ export default function FeaturesVideoSection() {
   }, [active]);
 
   const feat = features[active];
-  const mockupImg = `/feature${active + 1}.png`;
+  const mockupImg = feat.id === "dynoagent" ? "/feature5.png" : `/feature${active + 1}.png`;
 
   return (
     <>
@@ -222,6 +235,20 @@ export default function FeaturesVideoSection() {
         .feat-tab.active { color:rgba(255,255,255,0.88); font-weight:600; }
         .feat-tab-icon { opacity:.5; transition:opacity .2s; flex-shrink:0; }
         .feat-tab.active .feat-tab-icon { opacity:1; }
+
+        /* DynoAgent tab special highlight */
+        .feat-tab.dynoagent-tab {
+          /* No special color, use default tab color */
+        }
+        .feat-tab.dynoagent-tab.active {
+          /* No special color, use default active tab color */
+        }
+        .feat-tab.dynoagent-tab .feat-tab-icon {
+          /* Use default icon opacity */
+        }
+        .feat-tab.dynoagent-tab.active .feat-tab-icon {
+          /* Use default icon opacity */
+        }
 
         /* ── Main card ── */
         .feat-card {
@@ -392,6 +419,74 @@ export default function FeaturesVideoSection() {
           font-size:clamp(.72rem, .9vw, 1.2rem); font-weight:500;
           color:rgba(255,255,255,0.3); line-height:1.5;
         }
+
+        /* ── DynoAgent mockup ── */
+        .dynoagent-mockup {
+          position: absolute; inset: 0;
+          display: flex; flex-direction: column;
+          background: #111;
+          color: #fff;
+          animation: featFadeIn .3s ease both;
+          overflow: hidden;
+        }
+        .da-topbar {
+          display: flex; align-items: center; justify-content: space-between;
+          padding: 10px 16px;
+          background: #111;
+          border-bottom: 1px solid #222;
+          flex-shrink: 0;
+        }
+        .da-topbar-left {
+          display: flex; align-items: center; gap: 8px;
+        }
+        .da-logo-dot {
+          width: 22px; height: 22px; border-radius: 50%;
+          background: #3b6fbe;
+          display: flex; align-items: center; justify-content: center;
+        }
+        .da-title { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: #fff; }
+        .da-subtitle { font-size: .65rem; color: #bfc7d5; margin-top: 1px; }
+        .da-badge {
+          font-size: .6rem; font-weight: 600;
+          background: #23272f; color: #bfc7d5;
+          padding: 3px 8px; border-radius: 999px;
+          white-space: nowrap;
+        }
+        .da-body {
+          flex: 1; overflow: hidden;
+          display: flex; flex-direction: column;
+          padding: 12px 14px; gap: 10px;
+          background: #181a1b;
+        }
+        .da-welcome {
+          background: #181a1b; border-radius: 10px;
+          padding: 14px 16px; text-align: center;
+          border: 1px solid #23272f;
+        }
+        .da-welcome-title { font-family: 'Montserrat', sans-serif; font-size: .85rem; font-weight: 700; color: #fff; margin-bottom: 5px; }
+        .da-welcome-desc { font-size: .65rem; color: #bfc7d5; line-height: 1.5; margin-bottom: 8px; }
+        .da-welcome-chips { display: flex; flex-direction: column; gap: 3px; }
+        .da-chip { font-size: .6rem; color: #bfc7d5; background: #23272f; border: 1px solid #23272f; border-radius: 6px; padding: 3px 8px; text-align: center; }
+        .da-input-row {
+          margin-top: auto;
+          display: flex; align-items: center; gap: 8px;
+          background: #23272f; border: 2px solid #3b6fbe;
+          border-radius: 8px; padding: 7px 10px; flex-shrink: 0;
+        }
+        .da-input-text { font-size: .65rem; color: #bfc7d5; flex: 1; }
+        .da-send-btn {
+          width: 22px; height: 22px; border-radius: 6px;
+          background: #181a1b;
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
+        }
+        .da-hint { font-size: .55rem; color: #bfc7d5; text-align: center; margin-top: 4px; flex-shrink: 0; }
+        .da-ready-dot {
+          display: inline-flex; align-items: center; gap: 4px;
+          background: #23272f; color: #bfc7d5;
+          font-size: .55rem; font-weight: 600;
+          padding: 2px 7px; border-radius: 999px;
+        }
       `}</style>
 
       <section className="fvs relative w-full" style={{background:"#0a0a0a"}} id="features-section">
@@ -440,7 +535,11 @@ export default function FeaturesVideoSection() {
             <div ref={tabsRef} className="feat-tabs-wrap" style={{position:"relative"}}>
               <div ref={indicatorRef} className="feat-tab-indicator"/>
               {features.map((f, i) => (
-                <button key={f.id} className={`feat-tab${i===active?" active":""}`} onClick={() => changeTab(i)}>
+                <button
+                  key={f.id}
+                  className={`feat-tab${i===active?" active":""}${f.id==="dynoagent"?" dynoagent-tab":""}`}
+                  onClick={() => changeTab(i)}
+                >
                   <span className="feat-tab-icon">{f.icon}</span>
                   {f.tab}
                 </button>
@@ -461,14 +560,16 @@ export default function FeaturesVideoSection() {
                   <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeLinecap="round">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
-                  <span className="feat-browser-url">dynoweb.app/dashboard</span>
+                  <span className="feat-browser-url">
+                    {feat.id === "dynoagent" ? "dynoweb.app/agent" : "dynoweb.app/dashboard"}
+                  </span>
                 </div>
               </div>
 
               <div className="feat-mockup-body">
-                <img 
-                  src={mockupImg} 
-                  alt={feat.headline} 
+                <img
+                  src={mockupImg}
+                  alt={feat.headline}
                   style={{
                     width: "100%",
                     height: "100%",

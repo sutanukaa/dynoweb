@@ -123,7 +123,7 @@ const sections = [
         <li>Storefront visitors should usually contact the merchant first</li>
         <li>We support Shopify privacy/compliance webhook workflows</li>
       </ul>
-      <p>To submit a privacy request, contact us at <a href="mailto:privacy@dynoweb.com">privacy@dynoweb.com</a>.</p>
+      <p>To submit a privacy request, contact us at <a href="mailto:info@dynoweb.app">info@dynoweb.app</a>.</p>
     </>),
   },
   // Children section removed
@@ -405,7 +405,7 @@ export default function PrivacyPolicy() {
             </div>
             <div className="pp-left-foot">
               Questions?<br />
-              <a href="mailto:privacy@dynoweb.com">privacy@dynoweb.com</a>
+              <a href="mailto:info@dynoweb.com">info@dynoweb.com</a>
             </div>
           </div>
 

@@ -65,6 +65,7 @@ export default function ContactSection() {
   return (
     <>
       <PillNav />
+      {/* Removed email info banner at top as requested */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700&display=swap');
 
@@ -362,10 +363,13 @@ export default function ContactSection() {
                 "We typically respond within a few hours",
                 "No sales pitch — just real answers",
                 "Available for demos & early access",
+                "Contact us: info@dynoweb.app"
               ].map((item, i) => (
                 <div key={i} className="contact-chip">
                   <span className="contact-chip-dot" />
-                  {item}
+                  {item.includes('info@dynoweb.app') ? (
+                    <span>Contact us: <a href="mailto:info@dynoweb.app" style={{color:'rgba(255,255,255,0.7)'}}>info@dynoweb.app</a></span>
+                  ) : item}
                 </div>
               ))}
             </div>

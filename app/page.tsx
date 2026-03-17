@@ -2,7 +2,7 @@ import FUIHeroSectionWithLogoClouds from "./components/Hero";
 import PillNav from "./components/PillNav";
 import AIShowcaseSection from "./components/AIShowcase";
 import FeaturesSection from "./components/Features";
-import TestimonialsSection from "./components/Testimonials";
+// ...existing code...
 import InstallationSection from "./components/Installation";
 import Footer from "./components/Footer";
 import FAQs from "./components/Faqs";
@@ -33,8 +33,8 @@ export default function Home() {
         <FeaturesSection />
       </ScrollReveal>
 
-      <ScrollReveal offset={70} duration={0.8} delay={0.05} blur={8}>
-        <TestimonialsSection />
+      <ScrollReveal offset={70} duration={0.8} delay={0.05} blur={8} children={undefined}>
+        {/* Testimonials removed */}
       </ScrollReveal>
 
       <ScrollReveal offset={80} duration={0.85} delay={0.05} blur={8}>
