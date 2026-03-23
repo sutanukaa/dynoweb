@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -14,7 +14,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "DynoWeb - Shopify Analytics Extension",
   description: "Powerful Shopify store analytics and insights extension for admins",
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

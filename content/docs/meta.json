@@ -1,0 +1,5 @@
+{
+  "title": "DynoWeb Help",
+  "description": "Internal product documentation, content authoring notes, and API reference.",
+  "pages": ["overview", "getting-started", "dashboard", "dynoagent", "heatmaps", "suggestions", "experiments", "journeys", "conversions", "cart-overview", "replays"]
+}

@@ -1,0 +1,92 @@
+---
+title: Heatmaps
+description: Understand how Heatmaps show clicks and scroll depth on tracked storefront pages.
+---
+
+Heatmaps help users understand how visitors interact with a specific storefront page.
+
+Instead of only showing totals, this page places interaction data directly on top of a page preview so users can see where people click and how far they scroll.
+
+## What It Does
+
+Users can select a tracked page, choose a time range, device, and country, and then view that page in either Clicks or Scroll mode.
+
+<img src="/heatmapFilter.png" alt="Heatmaps page filters" />
+
+The overlay makes it easy to spot hotspots, ignored areas, weak sections, and content that visitors are not reaching.
+
+<img src="/clickHeatmap.png" alt="Heatmaps click mode overlay" />
+
+<img src="/scrollHeatmap.png" alt="Heatmaps scroll mode overlay" />
+
+Below the main heatmap, the page also shows the most interacted selectors on that page, page-level summary metrics, event breakdowns, and optional deeper diagnostics for click events and scroll sessions.
+
+This makes Heatmaps useful both for quick visual checks and for more detailed investigation.
+
+## How To Use It Best
+
+The best way to use Heatmaps is to start with an important page, usually a product page, collection page, landing page, or homepage.
+
+First look at the heatmap overlay to understand where users are focusing attention.
+
+Then switch between Clicks and Scroll to compare where people interact versus how far they actually reach down the page.
+
+After that, users should check Top selectors to see which elements get the most clicks or friction, and open the selector details if they want more context.
+
+If something looks off, they can expand the analytics and raw diagnostics sections to investigate device patterns, event mix, click activity, and scroll sessions in more detail.
+
+## Analytics Details
+
+This expandable section gives users a deeper view of how the selected page is performing beyond the main heatmap.
+
+It helps them understand whether the page has enough tracking coverage, how visitors are engaging with it, and which behavior signals matter most.
+
+### Row 1: Tracking Coverage
+
+This row shows how much usable tracking data exists for the selected page and filters.
+
+It helps users understand whether they are looking at a strong sample of visitor activity or a lighter dataset.
+
+<img src="/tracking.png" alt="Heatmaps tracking coverage" />
+
+### Row 2: Page Analytics
+
+This row summarizes the page's interaction quality, including engagement, friction, scroll depth, and above-the-fold behavior.
+
+When expanded, it also shows more advanced page behavior metrics like scroll velocity, time to depth, and excessive scrolling.
+
+<img src="/pageAnalytics.png" alt="Heatmaps page analytics" />
+
+### Row 3: Event Type Breakdown
+
+This row breaks activity down by event type, such as clicks, views, rage clicks, dead clicks, error clicks, and gesture events.
+
+It helps users quickly identify whether the page is showing healthy engagement or signs of confusion and friction.
+
+<img src="/eventType.png" alt="Heatmaps event type breakdown" />
+
+## Raw Diagnostics
+
+This is the troubleshooting layer of the Heatmaps page.
+
+It is meant for users who want to inspect recent interaction data more closely instead of only relying on summaries and overlays.
+
+### Row 1: Click Events
+
+This row shows recent click-level activity for the selected page.
+
+Users can review what was clicked, which device it happened on, what type of click it was, and inspect additional element-level details.
+
+<img src="/clickEvents.png" alt="Heatmaps click events diagnostics" />
+
+### Row 2: Scroll Sessions
+
+This row shows recent scroll-session data for the selected page.
+
+It helps users understand how deeply visitors scroll, how quickly they move, and whether scrolling behavior looks normal or excessive.
+
+<img src="/scrollSessions.png" alt="Heatmaps scroll sessions diagnostics" />
+
+## Good Help-Guide Positioning
+
+"Heatmaps show where visitors click and how far they scroll on each tracked page, helping you spot high-attention areas, weak sections, and elements that may need improvement."

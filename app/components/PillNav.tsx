@@ -11,6 +11,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Features", id: "features" },
+  { label: "Help", id: "help", href: "/help" },
   { label: "Contact Us", id: "contact", href: "/contact-us" },
   { label: "Join Waitlist", id: "waitlist", href: "/waitlist" },
   { label: "Privacy Policy", id: "privacy", href: "/privacy-policy" },
@@ -37,6 +38,18 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  function handleMobileNav(
+    e: React.MouseEvent<HTMLAnchorElement>,
+    item: NavItem
+  ) {
+    setMobileOpen(false);
+
+    if (item.id === "features") {
+      e.preventDefault();
+      scrollToFeatures();
+    }
+  }
 
   return (
     <>
@@ -224,7 +237,7 @@ export default function Navbar() {
                 key={item.id}
                 href={item.href ?? "#"}
                 className="mobile-link"
-                onClick={() => setMobileOpen(false)}
+                onClick={(e) => handleMobileNav(e, item)}
               >
                 {item.label}
               </a>
