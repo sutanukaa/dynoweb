@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { ComponentProps, ReactNode } from "react";
+import type { ComponentProps } from "react";
 
 import Footer from "@/app/components/Footer";
 import PillNav from "@/app/components/PillNav";
+import HelpSidebar, {
+  type HelpSearchEntry,
+  type HelpSidebarNode,
+  type HelpSidebarPageNode,
+} from "@/app/help/HelpSidebar";
 import { source } from "@/lib/source";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +25,8 @@ type DocsNode = DocsTree["children"][number];
 
 const docsTree = source.getPageTree();
 const orderedPages = flattenPages(docsTree);
+const sidebarTree = serializeDocsTree(docsTree.children);
+const searchEntriesPromise = buildHelpSearchEntries(orderedPages);
 const defaultDescription =
   "Help articles, product guides, and API reference for the DynoWeb site.";
 const articleClassName = cn(
@@ -74,6 +81,7 @@ export default async function DocsPage({ params }: PageProps) {
 
   if (!page) notFound();
 
+  const searchEntries = await searchEntriesPromise;
   const Content = page.data.body;
   const mdxComponents = {
     img: DocsImage,
@@ -91,17 +99,11 @@ export default async function DocsPage({ params }: PageProps) {
         <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-8">
           <div className="grid gap-8 xl:grid-cols-[250px_minmax(0,1fr)_220px]">
             <aside className="xl:sticky xl:top-24 xl:self-start">
-              <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
-                <nav className="space-y-2" aria-label="Documentation navigation">
-                  {docsTree.children.map((node, index) => (
-                    <SidebarNode
-                      key={`${getNodeKey(node)}-${index}`}
-                      node={node}
-                      currentUrl={currentUrl}
-                    />
-                  ))}
-                </nav>
-              </div>
+              <HelpSidebar
+                currentUrl={currentUrl}
+                tree={sidebarTree}
+                searchEntries={searchEntries}
+              />
             </aside>
 
             <article className="rounded-[1.75rem] border border-white/10 bg-[#020817]/85 p-6 shadow-[0_18px_60px_rgba(2,6,23,0.4)] sm:p-8">
@@ -198,134 +200,6 @@ function DocsImage({
   );
 }
 
-function SidebarNode({
-  node,
-  currentUrl,
-  level = 0,
-}: {
-  node: DocsNode;
-  currentUrl: string;
-  level?: number;
-}) {
-  const indentClass =
-    level === 0 ? "" : level === 1 ? "ml-3" : "ml-6";
-
-  if (node.type === "separator") {
-    if (!node.name) {
-      return <div className="my-4 border-t border-white/10" />;
-    }
-
-    return (
-      <div className="pt-4 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-500">
-        {node.name}
-      </div>
-    );
-  }
-
-  if (node.type === "page") {
-    return (
-      <NavLink
-        href={node.url}
-        external={node.external}
-        active={node.url === currentUrl}
-        className={indentClass}
-      >
-        {node.name}
-      </NavLink>
-    );
-  }
-
-  const isOpen = node.defaultOpen ?? nodeContainsUrl(node, currentUrl);
-  const children = [
-    ...(node.index ? [node.index] : []),
-    ...node.children,
-  ];
-
-  if (node.collapsible === false) {
-    return (
-      <div className={cn("space-y-2", indentClass)}>
-        <div className="px-3 pt-2 text-sm font-semibold tracking-tight text-zinc-100">
-          {node.name}
-        </div>
-        {node.description ? (
-          <p className="px-3 text-sm leading-6 text-zinc-500">
-            {node.description}
-          </p>
-        ) : null}
-        <div className="space-y-2">
-          {children.map((child, index) => (
-            <SidebarNode
-              key={`${getNodeKey(child)}-${index}`}
-              node={child}
-              currentUrl={currentUrl}
-              level={level + 1}
-            />
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <details open={isOpen} className={cn("group space-y-2", indentClass)}>
-      <summary className="cursor-pointer list-none rounded-2xl px-3 py-2 text-sm font-semibold tracking-tight text-zinc-100 transition hover:bg-white/[0.05]">
-        <span>{node.name}</span>
-        {node.description ? (
-          <span className="mt-1 block text-sm font-normal leading-6 text-zinc-500">
-            {node.description}
-          </span>
-        ) : null}
-      </summary>
-      <div className="space-y-2">
-        {children.map((child, index) => (
-          <SidebarNode
-            key={`${getNodeKey(child)}-${index}`}
-            node={child}
-            currentUrl={currentUrl}
-            level={level + 1}
-          />
-        ))}
-      </div>
-    </details>
-  );
-}
-
-function NavLink({
-  href,
-  active,
-  external,
-  className,
-  children,
-}: {
-  href: string;
-  active?: boolean;
-  external?: boolean;
-  className?: string;
-  children: ReactNode;
-}) {
-  const classes = cn(
-    "block rounded-2xl border px-3 py-2 text-sm leading-6 transition",
-    active
-      ? "border-cyan-300/30 bg-cyan-400/10 text-white shadow-[0_0_0_1px_rgba(103,232,249,0.12)]"
-      : "border-transparent text-zinc-400 hover:border-white/10 hover:bg-white/[0.05] hover:text-white",
-    className
-  );
-
-  if (external) {
-    return (
-      <a className={classes} href={href} target="_blank" rel="noreferrer">
-        {children}
-      </a>
-    );
-  }
-
-  return (
-    <Link className={classes} href={href}>
-      {children}
-    </Link>
-  );
-}
-
 function PagerCard({
   label,
   page,
@@ -387,20 +261,6 @@ function flattenPages(tree: DocsTree): DocsPage[] {
   return pages;
 }
 
-function nodeContainsUrl(node: DocsNode, currentUrl: string): boolean {
-  switch (node.type) {
-    case "page":
-      return node.url === currentUrl;
-    case "folder":
-      return (
-        (node.index?.url ?? "") === currentUrl ||
-        node.children.some((child) => nodeContainsUrl(child, currentUrl))
-      );
-    case "separator":
-      return false;
-  }
-}
-
 function getNeighborPages(currentUrl: string) {
   const index = orderedPages.findIndex((page) => page.url === currentUrl);
 
@@ -413,13 +273,61 @@ function getNeighborPages(currentUrl: string) {
   };
 }
 
-function getNodeKey(node: DocsNode): string {
+function serializeDocsTree(nodes: DocsNode[]): HelpSidebarNode[] {
+  return nodes.map(serializeDocsNode);
+}
+
+function serializeDocsNode(node: DocsNode): HelpSidebarNode {
   switch (node.type) {
     case "page":
-      return `page:${node.url}`;
+      return serializePageNode(node);
     case "folder":
-      return `folder:${String(node.name)}`;
+      return {
+        type: "folder",
+        name: String(node.name),
+        description: node.description ? String(node.description) : undefined,
+        defaultOpen: node.defaultOpen,
+        collapsible: node.collapsible,
+        index: node.index ? serializePageNode(node.index) : undefined,
+        children: node.children.map(serializeDocsNode),
+      };
     case "separator":
-      return `separator:${String(node.name ?? "divider")}`;
+      return {
+        type: "separator",
+        name: node.name ? String(node.name) : undefined,
+      };
   }
+}
+
+function serializePageNode(node: Extract<DocsNode, { type: "page" }>): HelpSidebarPageNode {
+  return {
+    type: "page",
+    name: String(node.name),
+    url: node.url,
+    external: node.external,
+  };
+}
+
+async function buildHelpSearchEntries(
+  pages: DocsPage[]
+): Promise<HelpSearchEntry[]> {
+  return Promise.all(
+    pages.map(async (page, order) => {
+      const content = page.data.structuredData.contents
+        .map((item) => item.content)
+        .join(" ");
+
+      return {
+        order,
+        url: page.url,
+        title: page.data.title ?? "Help",
+        description: page.data.description ?? "",
+        content,
+        sections: page.data.structuredData.headings.map((heading) => ({
+          title: heading.content,
+          url: `${page.url}#${heading.id}`,
+        })),
+      };
+    })
+  );
 }

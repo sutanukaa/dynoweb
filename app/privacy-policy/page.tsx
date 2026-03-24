@@ -6,135 +6,326 @@ import Footer from "../components/Footer";
 
 const sections = [
   {
-    id: "who", number: "01", title: "Who this policy applies to",
-    content: (<>
-      <p>This Privacy Policy covers:</p>
-      <ul>
-        <li>Dynoweb's Shopify embedded app and dashboard</li>
-        <li>Dynoweb's tracker running on merchant storefronts</li>
-        <li>Dynoweb's marketing/promotional website</li>
-      </ul>
-      <p>For storefront tracking data, the merchant is generally the data controller and Dynoweb acts as a service provider/processor.</p>
-    </>),
+    id: "controller",
+    number: "01",
+    title: "Data Controller",
+    content: (
+      <>
+        <p className="pp-sub-label">For Merchants and Store Visitors</p>
+        <p>DynoWeb is a Shopify application that helps merchants understand storefront behavior, generate AI-driven suggestions, and optionally apply changes to draft themes.</p>
+        <p>For merchant account data, support data, billing data, and app-usage data, DynoWeb generally acts as a data controller.</p>
+        <p>For storefront visitor analytics and replay data collected from a merchant's Shopify store through the DynoWeb tracker, DynoWeb generally acts as a data processor or service provider on behalf of that merchant. The merchant remains responsible for providing any required notices and obtaining any consent required by applicable law. Where Shopify's Customer Privacy API is available, DynoWeb's storefront tracker is designed to wait until analytics processing is allowed before it starts collecting analytics data.</p>
+      </>
+    ),
   },
   {
-    id: "collect", number: "02", title: "What we collect",
-    content: (<>
-      <p className="pp-sub-label">Merchant / app data</p>
-      <ul>
-        <li>Shop domain and installation metadata</li>
-        <li>App settings and preferences</li>
-        <li>Subscription and billing status from Shopify Billing APIs</li>
-      </ul>
-      <p className="pp-sub-label">Storefront interaction data</p>
-      <ul>
-        <li>Clicks, rage clicks, dead clicks, error clicks</li>
-        <li>Scroll depth and scroll behavior</li>
-        <li>Element view and impression events</li>
-        <li>Form interaction metadata (field-level timing and change flags)</li>
-        <li>Page path, referrer, viewport/device info, timestamps</li>
-        <li>Session ID generated in browser session storage</li>
-      </ul>
-      <p className="pp-sub-label">Location and technical metadata</p>
-      <ul>
-        <li>Country/region/city (derived from IP)</li>
-        <li>Hashed IP in event records (not raw IP in analytics tables)</li>
-      </ul>
-      <p className="pp-sub-label">Conversion attribution data</p>
-      <ul>
-        <li>Shopify order ID, total, currency, and session attribution ID (when available)</li>
-      </ul>
-      <p className="pp-sub-label">Security and audit logs</p>
-      <ul>
-        <li>Operational logs for security, abuse prevention, troubleshooting, and compliance</li>
-      </ul>
-    </>),
+    id: "storage",
+    number: "02",
+    title: "Cookies, Local Storage, and Similar Technologies",
+    content: (
+      <>
+        <p>DynoWeb uses browser-based storage and platform session technologies to operate the website, Shopify app, and storefront tracker.</p>
+        <p>Depending on the context, these technologies may include:</p>
+        <ul>
+          <li>session technologies used by Shopify and the embedded app environment for authentication and app operation</li>
+          <li><code>sessionStorage</code> used to keep a DynoWeb session identifier on the storefront during a browsing session</li>
+          <li><code>localStorage</code> used to temporarily queue failed event batches for retry, store replay quota counters, and store debug flags where enabled</li>
+          <li><code>sessionStorage</code> used to store replay sequencing state during a browsing session</li>
+        </ul>
+        <p>In the storefront integration currently implemented in the codebase, DynoWeb does not set its own custom marketing cookies. Instead, the tracker relies mainly on <code>sessionStorage</code> and <code>localStorage</code> for operational purposes. Shopify and other platform components may still use their own cookies or similar technologies for authentication, storefront operation, consent handling, billing, and embedded app behavior.</p>
+        <p>On Shopify storefronts, DynoWeb is designed to integrate with Shopify's Customer Privacy API. Where that API is available, DynoWeb checks whether analytics processing is allowed before loading the tracker. DynoWeb also listens for Shopify's consent-change event so that tracking can respond to updated visitor choices.</p>
+        <p>If a browser blocks cookies, <code>localStorage</code>, or <code>sessionStorage</code>, parts of DynoWeb may not work properly. For example, login, batching, replay limits, or revenue attribution may not operate as intended.</p>
+        <p>Visitors and merchants can control cookies and similar technologies through their browser settings and, on Shopify storefronts, through the merchant's configured privacy or consent banner.</p>
+      </>
+    ),
   },
   {
-    id: "not-collect", number: "03", title: "What we do not intend to collect",
-    content: (<>
-      <ul>
-        <li>Payment card data</li>
-        <li>Raw typed form input values for analytics</li>
-        <li>Direct shopper identity fields as part of behavioral event analytics</li>
-      </ul>
-      <p>Dynoweb is built for behavioral insights, not identity profiling.</p>
-    </>),
+    id: "processing",
+    number: "03",
+    title: "Data Processing on the Website and in the App",
+    content: (
+      <>
+        <p className="pp-sub-label">A. Shopify installation, login, and account access</p>
+        <p>DynoWeb may process the following data when a merchant installs or uses the app:</p>
+        <ul>
+          <li>shop domain</li>
+          <li>Shopify access tokens and refresh-token related data</li>
+          <li>granted scopes</li>
+          <li>session identifiers</li>
+          <li>Shopify user ID</li>
+          <li>merchant first name and last name, if provided by Shopify</li>
+          <li>merchant e-mail address, if provided by Shopify</li>
+          <li>locale, collaborator status, account-owner status, and e-mail verification status, if provided by Shopify</li>
+        </ul>
+        <p className="pp-sub-label">Purpose of processing</p>
+        <ul>
+          <li>merchant authentication</li>
+          <li>operating the embedded Shopify app</li>
+          <li>maintaining app sessions</li>
+          <li>verifying billing and scopes</li>
+          <li>handling installation, reinstallation, uninstallation, and app access</li>
+        </ul>
+        <p className="pp-sub-label">Legal basis</p>
+        <ul>
+          <li>performance of a contract or steps taken at the request of the merchant before entering into a contract (GDPR Article 6(1)(b))</li>
+          <li>our legitimate interests in securing the app, preventing abuse, and maintaining service integrity (GDPR Article 6(1)(f))</li>
+        </ul>
+        <p className="pp-sub-label">Retention</p>
+        <p>Generally for as long as necessary to operate the merchant's installation and account access, subject to uninstall events, token expiry, deletion requests, and legal obligations.</p>
+
+        <p className="pp-sub-label">B. Merchant settings and support</p>
+        <p>DynoWeb may process the following merchant-provided or merchant-configured data:</p>
+        <ul>
+          <li>tracking settings and replay settings</li>
+          <li>notification preferences</li>
+          <li>storefront password submitted by the merchant for protected storefront screenshots</li>
+          <li>default profitability settings such as COGS percentage</li>
+          <li>support and feedback form submissions, including subject, category, message, and optional contact e-mail address</li>
+        </ul>
+        <p className="pp-sub-label">Purpose of processing</p>
+        <ul>
+          <li>configuring the product for the merchant's store</li>
+          <li>providing support and troubleshooting</li>
+          <li>collecting product feedback</li>
+          <li>capturing screenshots of password-protected storefronts when requested by the merchant</li>
+        </ul>
+        <p className="pp-sub-label">Legal basis</p>
+        <ul>
+          <li>performance of a contract (GDPR Article 6(1)(b))</li>
+          <li>our legitimate interests in support, service improvement, and troubleshooting (GDPR Article 6(1)(f))</li>
+          <li>where relevant, consent for optional data provided voluntarily (GDPR Article 6(1)(a))</li>
+        </ul>
+        <p className="pp-sub-label">Retention</p>
+        <p>Until the settings are changed or removed, or for as long as support and service records are reasonably needed.</p>
+
+        <p className="pp-sub-label">C. Storefront analytics, heatmaps, journeys, and form interaction analytics</p>
+        <p>When a merchant enables DynoWeb tracking on its Shopify storefront, DynoWeb may process:</p>
+        <ul>
+          <li>page path, referrer, and page title</li>
+          <li>DynoWeb session ID</li>
+          <li>viewport width and height, device type, orientation, and pixel ratio</li>
+          <li>click events, rage clicks, dead clicks, error clicks, mouse-shake signals, mobile gestures, visibility events, and scroll metrics</li>
+          <li>limited element metadata, such as selector, xpath, HTML tag, and limited visible element text associated with the interaction</li>
+          <li>form interaction metadata, such as hashed field identifiers, time spent, and whether a field was changed</li>
+          <li>cart or conversion-intent related metadata such as product handle, quantity, and variant ID where available</li>
+          <li>coarse geolocation fields such as country, region, and city</li>
+          <li>a one-way hash of the visitor IP address</li>
+        </ul>
+        <p>DynoWeb's current tracker implementation is designed not to store:</p>
+        <ul>
+          <li>raw IP addresses</li>
+          <li>form field values</li>
+          <li>customer names, e-mail addresses, phone numbers, or postal addresses as part of the standard tracker payload</li>
+        </ul>
+        <p className="pp-sub-label">Purpose of processing</p>
+        <ul>
+          <li>heatmaps</li>
+          <li>journey and funnel analysis</li>
+          <li>frustration and UX diagnostics</li>
+          <li>conversion analysis</li>
+          <li>revenue attribution support</li>
+          <li>analytics dashboards</li>
+          <li>AI-generated suggestions and optimization workflows</li>
+        </ul>
+        <p className="pp-sub-label">Legal basis</p>
+        <p>For storefront visitor data, DynoWeb generally acts on the merchant's instructions; the merchant is responsible for identifying and documenting the appropriate legal basis and obtaining any required consent under applicable law.</p>
+        <p className="pp-sub-label">Retention</p>
+        <p>The current implementation is designed to retain raw click, scroll, form, and page-view records for the applicable analysis history window, which is set to 90 days by default in the codebase, after which older raw events are deleted during scheduled rollups.</p>
+        <p>Aggregated analytics and derived insights may be retained longer while the merchant account remains active.</p>
+
+        <p className="pp-sub-label">D. Session replay</p>
+        <p>If session replay is enabled by a merchant, DynoWeb may process:</p>
+        <ul>
+          <li>rrweb replay event data and DOM snapshots</li>
+          <li>replay metadata such as session ID, device type, entry page, exit page, duration, frustration score, country, and conversion status</li>
+          <li>order-total linkage where a tracked session later converts</li>
+        </ul>
+        <p>DynoWeb's current replay configuration is designed to:</p>
+        <ul>
+          <li>mask input values broadly, including password, text, email, telephone, search, textarea, and select fields</li>
+          <li>block password fields and explicitly marked private regions</li>
+          <li>respect replay retention settings configured by the merchant</li>
+        </ul>
+        <p className="pp-sub-label">Purpose of processing</p>
+        <p>Replaying real browsing sessions so the merchant can diagnose friction, hesitation, or broken UX.</p>
+        <p className="pp-sub-label">Legal basis</p>
+        <p>DynoWeb generally processes replay data on the merchant's instructions, subject to the merchant's own privacy and consent obligations.</p>
+        <p className="pp-sub-label">Retention</p>
+        <p>Configurable by the merchant.</p>
+        <p>Default replay retention in the current codebase is 7 days.</p>
+        <p>The current implementation supports a configurable retention period and purges expired replay data from storage after the retention period ends.</p>
+
+        <p className="pp-sub-label">E. Orders and revenue attribution</p>
+        <p>DynoWeb receives limited order-related data from Shopify webhooks and stores:</p>
+        <ul>
+          <li>Shopify order ID</li>
+          <li>DynoWeb session ID if passed through cart attributes or note attributes</li>
+          <li>total price</li>
+          <li>currency</li>
+          <li>order creation or processing timestamps</li>
+        </ul>
+        <p className="pp-sub-label">Purpose of processing</p>
+        <ul>
+          <li>connecting orders back to tracked sessions</li>
+          <li>attributing revenue to storefront pages, sessions, and elements</li>
+          <li>supporting conversion analytics</li>
+        </ul>
+        <p className="pp-sub-label">Legal basis</p>
+        <ul>
+          <li>performance of a contract (GDPR Article 6(1)(b))</li>
+          <li>our legitimate interests in providing attribution and analytics requested by the merchant (GDPR Article 6(1)(f))</li>
+          <li>in the storefront visitor context, processing also occurs on the merchant's instructions</li>
+        </ul>
+        <p>DynoWeb does not store payment card numbers through its own billing flow. Merchant subscription charging is handled through Shopify billing.</p>
+
+        <p className="pp-sub-label">F. DynoAgent, AI suggestions, screenshots, theme analysis, and generated images</p>
+        <p>If a merchant uses DynoAgent or other AI features, DynoWeb may process:</p>
+        <ul>
+          <li>merchant prompts and chat messages</li>
+          <li>uploaded files or images submitted in the chat</li>
+          <li>message metadata and token-usage metadata</li>
+          <li>saved AI insights and memory items</li>
+          <li>pending approval records, action previews, and before/after payloads for write actions</li>
+          <li>theme files, theme snippets, template structure, and brand settings needed for audits, previews, or draft-theme changes</li>
+          <li>screenshots of storefront pages</li>
+          <li>product, page, collection, blog, or theme content the merchant asks DynoWeb to analyze or modify</li>
+          <li>generated images and related prompts</li>
+          <li>selected analytics context needed to produce AI suggestions or reports</li>
+        </ul>
+        <p className="pp-sub-label">Purpose of processing</p>
+        <ul>
+          <li>AI-powered analysis</li>
+          <li>suggestion generation</li>
+          <li>content generation</li>
+          <li>theme code generation</li>
+          <li>search-grounded answers</li>
+          <li>image generation</li>
+          <li>approval-gated store actions</li>
+          <li>draft-theme previews and screenshots</li>
+        </ul>
+        <p className="pp-sub-label">Legal basis</p>
+        <ul>
+          <li>performance of a contract (GDPR Article 6(1)(b))</li>
+          <li>our legitimate interests in operating and improving merchant-requested AI features (GDPR Article 6(1)(f))</li>
+        </ul>
+        <p className="pp-sub-label">Retention</p>
+        <ul>
+          <li>chat conversations and action history are generally retained while needed for the feature or until related shop data is deleted</li>
+          <li>saved AI insight memory currently expires after 30 days</li>
+          <li>the LLM response cache currently uses a short-lived cache window of approximately 6 hours</li>
+          <li>generated images are currently cached for approximately 2 hours</li>
+          <li>screenshot cache entries are currently cached for approximately 1 hour for preview-theme captures and approximately 6 hours for other captures</li>
+        </ul>
+
+        <p className="pp-sub-label">G. Customer data accessed through Shopify admin tools</p>
+        <p>DynoWeb's Shopify app scopes and agent tooling may permit access to certain Shopify customer data if a merchant explicitly uses customer-related admin tools.</p>
+        <p>If such tools are used, DynoWeb may process customer-related data returned by Shopify, such as:</p>
+        <ul>
+          <li>customer names</li>
+          <li>customer e-mail addresses</li>
+          <li>customer postal addresses</li>
+          <li>segment information</li>
+          <li>other customer data available through Shopify Admin APIs or connected tool-routing services</li>
+        </ul>
+        <p className="pp-sub-label">Purpose of processing</p>
+        <p>Fulfilling the merchant's explicit request inside the app.</p>
+        <p className="pp-sub-label">Legal basis</p>
+        <p>Performance of a contract with the merchant and processing on the merchant's instructions.</p>
+        <p className="pp-sub-label">Important note</p>
+        <p>DynoWeb's standard storefront analytics views are designed not to expose individual customer names, e-mail addresses, or IDs. Customer-level data is relevant only if the merchant explicitly invokes customer-related admin functionality.</p>
+      </>
+    ),
   },
   {
-    id: "use", number: "04", title: "How we use data",
-    content: (<>
-      <p>We use data to:</p>
-      <ul>
-        <li>Generate heatmaps and behavior analytics</li>
-        <li>Provide AI-driven UX suggestions</li>
-        <li>Support preview/draft-theme optimization workflows</li>
-        <li>Measure conversions and usage limits</li>
-        <li>Keep the service secure, reliable, and performant</li>
-        <li>Meet Shopify and legal compliance requirements</li>
-      </ul>
-    </>),
+    id: "compliance",
+    number: "04",
+    title: "Legal Obligations, Security, and Platform Compliance",
+    content: (
+      <>
+        <p>DynoWeb may process personal data where necessary to comply with legal obligations, platform requirements, or security obligations, including:</p>
+        <ul>
+          <li>handling Shopify mandatory privacy or compliance webhooks such as <code>customers/data_request</code>, <code>customers/redact</code>, and <code>shop/redact</code></li>
+          <li>handling app lifecycle and operational webhooks such as <code>app/uninstalled</code>, <code>app/scopes_update</code>, and <code>orders/create</code></li>
+          <li>maintaining audit logs, error logs, and security-related records</li>
+          <li>responding to lawful requests, defending legal claims, or enforcing our terms</li>
+        </ul>
+        <p>DynoWeb's standard storefront tracker is intentionally designed not to associate analytics events with direct customer identifiers such as customer name, e-mail, or phone number. However, if customer-related admin tools are used by a merchant, applicable records may need to be reviewed and deleted in response to valid deletion requests.</p>
+        <p className="pp-sub-label">Legal basis</p>
+        <ul>
+          <li>compliance with legal obligations (GDPR Article 6(1)(c))</li>
+          <li>our legitimate interests in security, fraud prevention, service integrity, and legal defense (GDPR Article 6(1)(f))</li>
+        </ul>
+      </>
+    ),
   },
   {
-    id: "cookies", number: "05", title: "Cookies and browser storage",
-    content: (<>
-      <p>Dynoweb uses browser storage and similar technologies, including:</p>
-      <ul>
-        <li><code>sessionStorage</code> for session IDs used in attribution</li>
-        <li><code>localStorage</code> for temporary retry queues when network delivery fails</li>
-      </ul>
-      <p>Merchants are responsible for implementing any required storefront consent mechanisms under applicable laws.</p>
-    </>),
+    id: "processors",
+    number: "05",
+    title: "Data Transfer and Data Processors",
+    content: (
+      <>
+        <p>DynoWeb may use the following categories of processors or sub-processors, based on the current codebase:</p>
+        <p className="pp-sub-label">Shopify</p>
+        <p>Purpose: authentication, embedded app operation, billing, Admin API access, theme operations, customer privacy API integration, and platform webhooks.</p>
+        <p className="pp-sub-label">Google / Google Cloud</p>
+        <p>Purpose: Gemini-powered chat, grounded search, image generation, and Google Cloud Storage-based storage or caching for replay and screenshot assets where configured; hosting and infrastructure may also run on Google Cloud services.</p>
+        <p className="pp-sub-label">OpenRouter</p>
+        <p>Purpose: AI suggestion generation, quick-wins audits, and theme code generation. Prompts sent to OpenRouter may include merchant prompts, analytics context, screenshots, theme snippets, and merchant-supplied storefront content. OpenRouter may route requests to underlying model providers.</p>
+        <p className="pp-sub-label">Composio</p>
+        <p>Purpose: optional Shopify tool routing and automation used by DynoAgent. In the current implementation, Shopify access tokens and tool inputs may be sent to Composio when these features are used.</p>
+        <p className="pp-sub-label">Sentry</p>
+        <p>Purpose: application error monitoring and technical diagnostics.</p>
+        <p className="pp-sub-label">Our database, storage, and hosting providers</p>
+        <p>Purpose: storing merchant account data, analytics data, support records, billing usage, chat history, and temporary caches.</p>
+        <p>DynoWeb may transfer data to countries outside the country where the merchant or visitor is located. Where such transfers occur, they should be assessed and handled in accordance with applicable law and the contractual or technical safeguards used by the relevant provider.</p>
+      </>
+    ),
   },
   {
-    id: "sharing", number: "06", title: "How data is shared",
-    content: (<>
-      <p>We may share data with:</p>
-      <ul>
-        <li>Shopify (to operate as a Shopify app)</li>
-        <li>Trusted infrastructure and service providers (hosting, database, analytics/AI processing)</li>
-        <li>Legal authorities or advisors when required</li>
-        <li>Successors in a merger, acquisition, or asset sale</li>
-      </ul>
-      <p>We do not sell personal information for money.</p>
-    </>),
+    id: "rights",
+    number: "06",
+    title: "Your Rights",
+    content: (
+      <>
+        <p>Subject to applicable law, data subjects may have the right to:</p>
+        <ul>
+          <li>request access to their personal data</li>
+          <li>request correction of inaccurate or incomplete data</li>
+          <li>request deletion of personal data</li>
+          <li>request restriction of processing</li>
+          <li>object to certain processing based on legitimate interests</li>
+          <li>request data portability where applicable</li>
+          <li>withdraw consent where processing is based on consent</li>
+          <li>lodge a complaint with a competent supervisory authority or regulator</li>
+          <li>seek a judicial or other legal remedy where permitted by law</li>
+        </ul>
+        <p>If your personal data was collected on a merchant's Shopify storefront through the DynoWeb tracker, you should usually contact that merchant first, because DynoWeb generally processes that data on the merchant's behalf.</p>
+        <p>Requests may be sent to <a href="mailto:support@dynoweb.ai">support@dynoweb.ai</a> or to any other privacy contact details published by the Data Controller.</p>
+        <p>DynoWeb will review and respond to valid requests within the timeframe required by applicable law.</p>
+      </>
+    ),
   },
   {
-    id: "retention", number: "07", title: "Retention",
-    content: (<>
-      <p>We keep data only as long as needed for product and legal purposes.</p>
-      <ul>
-        <li>Event retention follows product configuration (commonly up to 90 days by default, depending on plan/settings)</li>
-        <li>Some technical records are kept for shorter operational windows</li>
-        <li>Shopify redaction/compliance requests are handled through required webhook flows</li>
-      </ul>
-    </>),
-  },
-  {
-    id: "security", number: "08", title: "Security",
-    content: (<p>We apply reasonable technical and organizational safeguards, including secure transport, access controls, validation, and monitoring. No system can guarantee absolute security.</p>),
-  },
-  {
-    id: "rights", number: "09", title: "Your rights",
-    content: (<>
-      <p>Depending on location, users may have rights to access, correct, delete, or restrict personal data processing.</p>
-      <ul>
-        <li>Merchants can contact us directly</li>
-        <li>Storefront visitors should usually contact the merchant first</li>
-        <li>We support Shopify privacy/compliance webhook workflows</li>
-      </ul>
-      <p>To submit a privacy request, contact us at <a href="mailto:info@dynoweb.app">info@dynoweb.app</a>.</p>
-    </>),
-  },
-  // Children section removed
-  {
-    id: "updates", number: "11", title: "Policy updates",
-    content: (<p>We may update this Privacy Policy from time to time. Changes will be posted here with an updated "Last updated" date.</p>),
+    id: "remedies",
+    number: "07",
+    title: "Complaints and Legal Remedies",
+    content: (
+      <>
+        <p>If you believe your personal data has been processed unlawfully, you may:</p>
+        <ul>
+          <li>contact DynoWeb first at <a href="mailto:support@dynoweb.ai">support@dynoweb.ai</a></li>
+          <li>contact the merchant whose storefront collected the data, where relevant</li>
+          <li>lodge a complaint with your local data protection or privacy authority</li>
+          <li>seek another remedy available under applicable law</li>
+        </ul>
+        <p>Effective from: March 24, 2026</p>
+      </>
+    ),
   },
 ];
 
 export default function PrivacyPolicy() {
-  const [activeId, setActiveId] = useState("who");
+  const [activeId, setActiveId] = useState(sections[0].id);
   const [animKey, setAnimKey] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -401,11 +592,11 @@ export default function PrivacyPolicy() {
           <div className="pp-left">
             <div>
               <h1 className="pp-main-title">Privacy<br /><span>Policy</span></h1>
-              <p className="pp-updated">Last updated: March 16, 2026</p>
+              <p className="pp-updated">Last updated: March 24, 2026</p>
             </div>
             <div className="pp-left-foot">
               Questions?<br />
-              <a href="mailto:info@dynoweb.com">info@dynoweb.com</a>
+              <a href="mailto:support@dynoweb.ai">support@dynoweb.ai</a>
             </div>
           </div>
 
