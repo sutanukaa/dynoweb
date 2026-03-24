@@ -42,9 +42,8 @@ export default function AIShowcaseSection() {
 
         .ais-inner {
           position: relative; z-index: 1;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 5rem);
+          width: 100%;
+          padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 4vw, 4rem);
           display: flex;
           flex-direction: column;
           gap: clamp(3rem, 5vw, 5rem);
@@ -86,7 +85,7 @@ export default function AIShowcaseSection() {
         }
         @media (min-width: 1100px) {
           .ais-grid {
-            grid-template-columns: 1fr 1.1fr 1fr;
+            grid-template-columns: minmax(300px, 1.05fr) minmax(340px, 430px) minmax(300px, 1fr);
             grid-template-areas: "headline demo bullets";
             align-items: start;
             column-gap: clamp(2.5rem, 4vw, 5rem);

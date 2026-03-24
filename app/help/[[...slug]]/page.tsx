@@ -38,13 +38,13 @@ const articleClassName = cn(
   "[&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:text-zinc-300",
   "[&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-zinc-300",
   "[&_li]:my-2",
-  "[&_a]:font-medium [&_a]:text-cyan-300 [&_a]:underline [&_a]:decoration-cyan-400/50 [&_a]:underline-offset-4",
+  "[&_a]:font-medium [&_a]:text-sky-300 [&_a]:underline [&_a]:decoration-sky-400/35 [&_a]:underline-offset-4",
   "[&_strong]:font-semibold [&_strong]:text-white",
-  "[&_img]:my-6 [&_img]:block [&_img]:w-full [&_img]:rounded-[1.5rem] [&_img]:border [&_img]:border-white/10 [&_img]:bg-[#020817] [&_img]:shadow-[0_16px_45px_rgba(2,6,23,0.45)]",
-  "[&_code]:rounded-md [&_code]:bg-white/10 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.95em] [&_code]:text-cyan-100",
-  "[&_pre]:my-6 [&_pre]:overflow-x-auto [&_pre]:rounded-[1.5rem] [&_pre]:border [&_pre]:border-white/10 [&_pre]:bg-[#020617] [&_pre]:p-5",
+  "[&_img]:my-6 [&_img]:block [&_img]:w-full [&_img]:rounded-[1.5rem] [&_img]:border [&_img]:border-white/10 [&_img]:bg-[#090a0f] [&_img]:shadow-[0_16px_45px_rgba(0,0,0,0.35)]",
+  "[&_code]:rounded-md [&_code]:bg-white/10 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.95em] [&_code]:text-sky-100",
+  "[&_pre]:my-6 [&_pre]:overflow-x-auto [&_pre]:rounded-[1.5rem] [&_pre]:border [&_pre]:border-white/10 [&_pre]:bg-[#08090d] [&_pre]:p-5",
   "[&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-zinc-100",
-  "[&_blockquote]:my-6 [&_blockquote]:rounded-r-[1.5rem] [&_blockquote]:border-l-4 [&_blockquote]:border-cyan-400/60 [&_blockquote]:bg-white/[0.03] [&_blockquote]:px-5 [&_blockquote]:py-4 [&_blockquote]:text-zinc-300",
+  "[&_blockquote]:my-6 [&_blockquote]:rounded-r-[1.5rem] [&_blockquote]:border-l-4 [&_blockquote]:border-sky-400/45 [&_blockquote]:bg-white/[0.02] [&_blockquote]:px-5 [&_blockquote]:py-4 [&_blockquote]:text-zinc-300",
   "[&_hr]:my-10 [&_hr]:border-white/10",
   "[&_table]:my-6 [&_table]:w-full [&_table]:border-collapse [&_table]:overflow-hidden [&_table]:rounded-2xl",
   "[&_thead]:border-b [&_thead]:border-white/10",
@@ -93,8 +93,8 @@ export default async function DocsPage({ params }: PageProps) {
     <>
       <PillNav />
 
-      <main className="relative min-h-screen bg-[#050816] pt-24 text-white">
-        <div className="absolute inset-x-0 top-0 h-[32rem] bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.14),_transparent_45%),linear-gradient(180deg,_rgba(255,255,255,0.05),_transparent)]" />
+      <main className="relative min-h-screen bg-[#050505] pt-24 text-white">
+        <div className="absolute inset-x-0 top-0 h-[32rem] bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.08),_transparent_42%),linear-gradient(180deg,_rgba(255,255,255,0.035),_transparent)]" />
 
         <div className="relative w-full px-4 py-10 sm:px-6 lg:px-8 xl:px-10 2xl:px-14">
           <div className="grid gap-6 xl:grid-cols-[280px_minmax(0,1fr)_240px] 2xl:grid-cols-[320px_minmax(0,1fr)_260px]">
@@ -106,7 +106,7 @@ export default async function DocsPage({ params }: PageProps) {
               />
             </aside>
 
-            <article className="min-w-0 rounded-[1.75rem] border border-white/10 bg-[#020817]/85 p-6 shadow-[0_18px_60px_rgba(2,6,23,0.4)] sm:p-8 xl:p-10">
+            <article className="min-w-0 rounded-[1.75rem] border border-white/10 bg-[#09090b]/88 p-6 shadow-[0_18px_60px_rgba(4,8,18,0.28)] sm:p-8 xl:p-10">
               <header className="mb-8 border-b border-white/10 pb-6">
                 <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                   {page.data.title}
@@ -135,7 +135,7 @@ export default async function DocsPage({ params }: PageProps) {
             </article>
 
             <aside className="xl:sticky xl:top-24 xl:self-start">
-              <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
+              <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.02] p-5 backdrop-blur">
                 <p className="text-xs font-semibold uppercase tracking-[0.26em] text-zinc-400">
                   On This Page
                 </p>

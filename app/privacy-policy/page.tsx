@@ -449,14 +449,14 @@ export default function PrivacyPolicy() {
         }
         .pp-main-title {
           font-family: 'Montserrat', sans-serif;
-          font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+          font-size: clamp(2.2rem, 3vw, 3rem);
           font-weight: 800; line-height: 1.06; letter-spacing: -0.03em;
           color: #fff; text-shadow: 0 0 50px rgba(255,255,255,0.1);
           margin-bottom: 0.85rem;
         }
         .pp-main-title span { color: rgba(255,255,255,0.2); }
-        .pp-updated { font-size: 0.7rem; color: rgba(255,255,255,0.18); font-weight: 500; letter-spacing: 0.03em; }
-        .pp-left-foot { font-size: 0.68rem; color: rgba(255,255,255,0.12); line-height: 1.75; }
+        .pp-updated { font-size: 0.85rem; color: rgba(255,255,255,0.22); font-weight: 500; letter-spacing: 0.02em; }
+        .pp-left-foot { font-size: 0.84rem; color: rgba(255,255,255,0.18); line-height: 1.75; }
         .pp-left-foot a { color: rgba(110,176,255,0.4); text-decoration: none; transition: color 0.15s; }
         .pp-left-foot a:hover { color: rgba(110,176,255,0.75); }
 
@@ -467,12 +467,12 @@ export default function PrivacyPolicy() {
           display: flex; flex-direction: column; overflow-y: auto;
         }
         .pp-mid-label {
-          font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+          font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
           color: rgba(255,255,255,0.16); padding: 0 1.1rem 0.7rem;
         }
         .pp-mid-btn {
           display: flex; align-items: flex-start; gap: 9px;
-          padding: 7px 1.1rem;
+          padding: 9px 1.1rem;
           border: none; border-left: 2px solid transparent;
           background: transparent; cursor: pointer; text-align: left; width: 100%;
           transition: background 0.12s, border-color 0.12s;
@@ -483,12 +483,12 @@ export default function PrivacyPolicy() {
           border-left-color: rgba(110,176,255,0.45);
         }
         .pp-mid-num {
-          font-family: 'Montserrat', sans-serif; font-size: 0.56rem; font-weight: 700;
+          font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
           letter-spacing: 0.06em; color: rgba(255,255,255,0.16); min-width: 18px; padding-top: 2px;
         }
         .pp-mid-btn.active .pp-mid-num { color: rgba(110,176,255,0.5); }
         .pp-mid-text {
-          font-family: 'Karla', sans-serif; font-size: 0.76rem; font-weight: 500;
+          font-family: 'Karla', sans-serif; font-size: 0.95rem; font-weight: 500;
           color: rgba(255,255,255,0.28); line-height: 1.4;
         }
         .pp-mid-btn.active .pp-mid-text { color: rgba(255,255,255,0.78); }
@@ -505,14 +505,14 @@ export default function PrivacyPolicy() {
         }
         .pp-section-view {
           animation: sectionFadeUp 0.28s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-          max-width: 620px;
+          max-width: 760px;
         }
 
         .pp-eyebrow {
           display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.6rem;
         }
         .pp-eyebrow-num {
-          font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700;
+          font-family: 'Montserrat', sans-serif; font-size: 0.74rem; font-weight: 700;
           letter-spacing: 0.1em; color: rgba(110,176,255,0.5);
           border: 1px solid rgba(110,176,255,0.18);
           background: rgba(110,176,255,0.06);
@@ -522,17 +522,17 @@ export default function PrivacyPolicy() {
 
         .pp-section-h {
           font-family: 'Montserrat', sans-serif;
-          font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+          font-size: clamp(1.75rem, 2.5vw, 2.25rem);
           font-weight: 800; line-height: 1.12; letter-spacing: -0.02em;
           color: #fff; margin-bottom: 1.5rem;
         }
 
         .pp-section-view p {
-          font-size: 0.91rem; line-height: 1.88; color: rgba(255,255,255,0.42); margin-bottom: 0.8rem;
+          font-size: 1.02rem; line-height: 1.85; color: rgba(255,255,255,0.56); margin-bottom: 0.95rem;
         }
         .pp-section-view p:last-child { margin-bottom: 0; }
-        .pp-section-view ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.9rem; padding: 0; }
-        .pp-section-view ul li { display: flex; align-items: baseline; gap: 0.75rem; font-size: 0.9rem; line-height: 1.72; color: rgba(255,255,255,0.38); }
+        .pp-section-view ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; padding: 0; }
+        .pp-section-view ul li { display: flex; align-items: baseline; gap: 0.75rem; font-size: 1rem; line-height: 1.72; color: rgba(255,255,255,0.5); }
         .pp-section-view ul li::before {
           content: ''; display: inline-block; width: 4px; height: 4px; border-radius: 50%;
           background: rgba(255,255,255,0.13); flex-shrink: 0; margin-top: 0.55em;
@@ -540,16 +540,16 @@ export default function PrivacyPolicy() {
         .pp-section-view a { color: rgba(110,176,255,0.72); text-decoration: none; transition: color 0.15s; }
         .pp-section-view a:hover { color: rgba(110,176,255,1); }
         .pp-section-view code {
-          font-family: 'Courier New', monospace; font-size: 0.79rem;
+          font-family: 'Courier New', monospace; font-size: 0.92rem;
           background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09);
           border-radius: 4px; padding: 1px 6px; color: rgba(255,255,255,0.52);
         }
         .pp-sub-label {
           font-family: 'Montserrat', sans-serif !important;
-          font-size: 0.6rem !important; font-weight: 700 !important;
+          font-size: 0.78rem !important; font-weight: 700 !important;
           letter-spacing: 0.09em !important; text-transform: uppercase !important;
-          color: rgba(255,255,255,0.18) !important;
-          margin-top: 1.2rem !important; margin-bottom: 0.4rem !important;
+          color: rgba(255,255,255,0.24) !important;
+          margin-top: 1.35rem !important; margin-bottom: 0.5rem !important;
         }
 
         /* prev / next */
@@ -557,18 +557,18 @@ export default function PrivacyPolicy() {
           display: flex; align-items: center; justify-content: space-between;
           margin-top: 3rem; padding-top: 1.5rem;
           border-top: 1px solid rgba(255,255,255,0.06);
-          max-width: 620px;
+          max-width: 760px;
         }
         .pp-page-btn {
           display: inline-flex; align-items: center; gap: 6px;
-          font-family: 'Karla', sans-serif; font-size: 0.76rem; font-weight: 600;
-          color: rgba(255,255,255,0.28); background: transparent; border: none;
+          font-family: 'Karla', sans-serif; font-size: 0.92rem; font-weight: 600;
+          color: rgba(255,255,255,0.38); background: transparent; border: none;
           cursor: pointer; padding: 0; transition: color 0.15s;
         }
         .pp-page-btn:hover { color: rgba(255,255,255,0.65); }
         .pp-page-btn:disabled { opacity: 0.15; cursor: default; }
         .pp-page-progress {
-          font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700;
+          font-family: 'Montserrat', sans-serif; font-size: 0.76rem; font-weight: 700;
           letter-spacing: 0.07em; color: rgba(255,255,255,0.13);
         }
       `}</style>
