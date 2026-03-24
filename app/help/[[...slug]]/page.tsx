@@ -96,8 +96,8 @@ export default async function DocsPage({ params }: PageProps) {
       <main className="relative min-h-screen bg-[#050816] pt-24 text-white">
         <div className="absolute inset-x-0 top-0 h-[32rem] bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.14),_transparent_45%),linear-gradient(180deg,_rgba(255,255,255,0.05),_transparent)]" />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-8">
-          <div className="grid gap-8 xl:grid-cols-[250px_minmax(0,1fr)_220px]">
+        <div className="relative w-full px-4 py-10 sm:px-6 lg:px-8 xl:px-10 2xl:px-14">
+          <div className="grid gap-6 xl:grid-cols-[280px_minmax(0,1fr)_240px] 2xl:grid-cols-[320px_minmax(0,1fr)_260px]">
             <aside className="xl:sticky xl:top-24 xl:self-start">
               <HelpSidebar
                 currentUrl={currentUrl}
@@ -106,19 +106,19 @@ export default async function DocsPage({ params }: PageProps) {
               />
             </aside>
 
-            <article className="rounded-[1.75rem] border border-white/10 bg-[#020817]/85 p-6 shadow-[0_18px_60px_rgba(2,6,23,0.4)] sm:p-8">
+            <article className="min-w-0 rounded-[1.75rem] border border-white/10 bg-[#020817]/85 p-6 shadow-[0_18px_60px_rgba(2,6,23,0.4)] sm:p-8 xl:p-10">
               <header className="mb-8 border-b border-white/10 pb-6">
                 <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                   {page.data.title}
                 </h1>
                 {page.data.description ? (
-                  <p className="mt-3 max-w-3xl text-base leading-7 text-zinc-300">
+                  <p className="mt-3 max-w-[72ch] text-base leading-7 text-zinc-300">
                     {page.data.description}
                   </p>
                 ) : null}
               </header>
 
-              <div className={articleClassName}>
+              <div className={cn(articleClassName, "max-w-[82ch]")}>
                 <Content components={mdxComponents} />
               </div>
 
