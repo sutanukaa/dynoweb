@@ -83,6 +83,20 @@ export default function Navbar() {
           color: rgba(255,255,255,0.88);
           letter-spacing: -0.01em;
         }
+        .nav-logo-img {
+          height: 95px;
+          width: auto;
+          display: block;
+          opacity: 0.98;
+          filter: brightness(1.52) contrast(1.12) saturate(1.1)
+            drop-shadow(0 0 16px rgba(255,255,255,0.05));
+          transition: opacity 0.15s ease, filter 0.15s ease;
+        }
+        .nav-logo:hover .nav-logo-img {
+          opacity: 1;
+          filter: brightness(1.62) contrast(1.14) saturate(1.12)
+            drop-shadow(0 0 20px rgba(255,255,255,0.07));
+        }
         .nav-logo-dot {
           width: 8px; height: 8px; border-radius: 50%;
           background: #3b6fbe;
@@ -188,7 +202,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <a href="/" className="nav-logo">
-            <img src="/logo.png" alt="DynoWeb Logo" style={{ height: "95px", width: "auto", display: "block" }} />
+            <img src="/logo.png" alt="DynoWeb Logo" className="nav-logo-img" />
           </a>
 
           {/* Nav links */}

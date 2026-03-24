@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { ComponentProps } from "react";
+import { Children, isValidElement, type ComponentProps, type ReactNode } from "react";
 
 import Footer from "@/app/components/Footer";
+import HelpMobileNav from "@/app/help/HelpMobileNav";
 import PillNav from "@/app/components/PillNav";
 import HelpSidebar, {
   type HelpSearchEntry,
@@ -98,7 +99,19 @@ export default async function DocsPage({ params }: PageProps) {
 
         <div className="relative w-full px-4 py-10 sm:px-6 lg:px-8 xl:px-10 2xl:px-14">
           <div className="grid gap-6 xl:grid-cols-[280px_minmax(0,1fr)_240px] 2xl:grid-cols-[320px_minmax(0,1fr)_260px]">
-            <aside className="xl:sticky xl:top-24 xl:self-start">
+            <div className="xl:hidden">
+              <HelpMobileNav
+                currentUrl={currentUrl}
+                tree={sidebarTree}
+                searchEntries={searchEntries}
+                toc={page.data.toc.map((item) => ({
+                  ...item,
+                  title: getNodeText(item.title),
+                }))}
+              />
+            </div>
+
+            <aside className="hidden xl:sticky xl:top-24 xl:block xl:self-start">
               <HelpSidebar
                 currentUrl={currentUrl}
                 tree={sidebarTree}
@@ -134,7 +147,7 @@ export default async function DocsPage({ params }: PageProps) {
               ) : null}
             </article>
 
-            <aside className="xl:sticky xl:top-24 xl:self-start">
+            <aside className="hidden xl:sticky xl:top-24 xl:block xl:self-start">
               <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.02] p-5 backdrop-blur">
                 <p className="text-xs font-semibold uppercase tracking-[0.26em] text-zinc-400">
                   On This Page
@@ -330,4 +343,20 @@ async function buildHelpSearchEntries(
       };
     })
   );
+}
+
+function getNodeText(node: ReactNode): string {
+  if (typeof node === "string" || typeof node === "number") {
+    return String(node);
+  }
+
+  if (Array.isArray(node)) {
+    return node.map(getNodeText).join("");
+  }
+
+  if (isValidElement<{ children?: ReactNode }>(node)) {
+    return getNodeText(node.props.children);
+  }
+
+  return Children.toArray(node).map(getNodeText).join("");
 }

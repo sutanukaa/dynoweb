@@ -57,10 +57,16 @@ export default function HelpSidebar({
   tree,
   currentUrl,
   searchEntries,
+  className,
+  embedded = false,
+  searchOnly = false,
 }: {
   tree: HelpSidebarNode[];
   currentUrl: string;
   searchEntries: HelpSearchEntry[];
+  className?: string;
+  embedded?: boolean;
+  searchOnly?: boolean;
 }) {
   const [query, setQuery] = useState("");
   const normalizedQuery = query.trim().toLowerCase();
@@ -73,7 +79,14 @@ export default function HelpSidebar({
   );
 
   return (
-    <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.02] p-5 backdrop-blur">
+    <div
+      className={cn(
+        embedded
+          ? "rounded-[1.5rem] border border-white/10 bg-black/30 p-4 backdrop-blur-sm"
+          : "rounded-[1.75rem] border border-white/10 bg-white/[0.02] p-5 backdrop-blur",
+        className
+      )}
+    >
       <div className="border-b border-white/10 pb-5">
         <p className="text-xs font-semibold uppercase tracking-[0.26em] text-zinc-400">
           Search Help
@@ -118,7 +131,7 @@ export default function HelpSidebar({
           query={query.trim()}
           results={results}
         />
-      ) : (
+      ) : !searchOnly ? (
         <nav className="mt-5 space-y-2" aria-label="Documentation navigation">
           {tree.map((node, index) => (
             <SidebarNode
@@ -128,7 +141,7 @@ export default function HelpSidebar({
             />
           ))}
         </nav>
-      )}
+      ) : null}
     </div>
   );
 }
