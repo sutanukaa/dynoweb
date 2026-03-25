@@ -11,6 +11,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Features", id: "features" },
+  { label: "Use Cases", id: "use-cases", href: "/use-cases" },
   { label: "Help", id: "help", href: "/help" },
   { label: "Contact Us", id: "contact", href: "/contact-us" },
   { label: "Join Waitlist", id: "waitlist", href: "/waitlist" },
