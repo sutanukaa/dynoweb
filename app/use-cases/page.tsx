@@ -88,6 +88,11 @@ const workflowSteps = [
   },
 ];
 
+const pageShell = "relative w-full";
+const pageShellStyle = {
+  paddingInline: "clamp(1.25rem, 5vw, 7rem)",
+};
+
 export const metadata: Metadata = {
   title: "Use Cases | DynoWeb",
   description:
@@ -103,16 +108,19 @@ export default function UseCasesPage() {
         <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.08),_transparent_42%),linear-gradient(180deg,_rgba(255,255,255,0.035),_transparent)]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:44px_44px] opacity-25" />
 
-        <section className="relative mx-auto w-full max-w-[1500px] px-4 pb-10 pt-8 sm:px-6 lg:px-8 xl:px-10 2xl:px-14">
-          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] xl:gap-12">
-            <div className="max-w-[760px]">
+        <section
+          className={`${pageShell} pb-12 pt-10 2xl:pb-16 2xl:pt-12`}
+          style={pageShellStyle}
+        >
+          <div className="grid items-start gap-8 xl:grid-cols-[minmax(0,1.2fr)_minmax(360px,0.8fr)] xl:gap-14 2xl:grid-cols-[minmax(0,1.35fr)_minmax(430px,0.85fr)] 2xl:gap-16">
+            <div className="max-w-[940px] 2xl:max-w-[1040px]">
               <p className="text-[0.78rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">
                 Why Merchants Use DynoWeb
               </p>
-              <h1 className="mt-5 font-[Montserrat] text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl xl:text-[4.5rem]">
+              <h1 className="mt-5 font-[Montserrat] text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl xl:text-[4.9rem] 2xl:text-[5.6rem]">
                 Turn shopper behavior into clearer fixes and more sales
               </h1>
-              <p className="mt-6 max-w-[64ch] text-base leading-8 text-zinc-300 sm:text-lg">
+              <p className="mt-6 max-w-[70ch] text-base leading-8 text-zinc-300 sm:text-lg 2xl:text-[1.18rem] 2xl:leading-9">
                 DynoWeb shows where shoppers click, hesitate, scroll, drop off, and buy, then helps you act on those insights with AI suggestions, draft-theme previews, and safer optimization workflows.
               </p>
 
@@ -128,7 +136,7 @@ export default function UseCasesPage() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur sm:p-6">
+            <div className="w-full rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur sm:p-6 xl:justify-self-end 2xl:max-w-[520px]">
               <div className="rounded-[1.5rem] border border-white/10 bg-black/35 p-5">
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div>
@@ -168,7 +176,7 @@ export default function UseCasesPage() {
           </div>
         </section>
 
-        <section className="relative mx-auto w-full max-w-[1500px] px-4 pb-16 pt-8 sm:px-6 lg:px-8 xl:px-10 2xl:px-14">
+        <section className={`${pageShell} pb-20 pt-10`} style={pageShellStyle}>
           <div className="mb-8 flex items-end justify-between gap-6 border-b border-white/10 pb-6">
             <div>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">
@@ -181,7 +189,7 @@ export default function UseCasesPage() {
           </div>
 
           <div className="grid gap-6">
-            {useCases.map((item, index) => (
+            {useCases.map((item) => (
               <article
                 key={item.number}
                 className="group rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.2)] transition duration-200 hover:border-sky-300/20 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] sm:p-6 lg:p-7"
@@ -195,70 +203,72 @@ export default function UseCasesPage() {
                   </span>
                 </div>
 
-                <div className="mt-5 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0b0b0d] shadow-[0_20px_40px_rgba(0,0,0,0.24)]">
-                  <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-3">
-                    <span className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-zinc-500">
-                      {item.imageLabel}
-                    </span>
-                    <span className="rounded-full border border-sky-300/18 bg-sky-400/[0.08] px-2.5 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-sky-200">
-                      DynoWeb UI
-                    </span>
-                  </div>
-                  <div className="relative flex min-h-[220px] items-center justify-center bg-[#f6f8fb] p-4 sm:min-h-[240px] sm:p-5 lg:min-h-[300px]">
-                    <Image
-                      src={item.image}
-                      alt={item.imageAlt}
-                      fill
-                      sizes="100vw"
-                      className="object-contain p-4 sm:p-5"
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <h3 className="max-w-[34ch] font-[Montserrat] text-[1.8rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2rem]">
-                    {item.title}
-                  </h3>
-
-                  <div className="mt-5 rounded-[1.35rem] border border-white/10 bg-black/25 px-4 py-4">
-                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
-                      Real scenario
-                    </p>
-                    <p className="mt-2 text-[1rem] leading-8 text-zinc-300">
-                      {item.scenario}
-                    </p>
+                <div className="mt-5 xl:grid xl:grid-cols-[minmax(360px,0.82fr)_minmax(0,1.18fr)] xl:items-start xl:gap-8 2xl:grid-cols-[minmax(460px,0.78fr)_minmax(0,1.22fr)] 2xl:gap-10">
+                  <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0b0b0d] shadow-[0_20px_40px_rgba(0,0,0,0.24)]">
+                    <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-3">
+                      <span className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-zinc-500">
+                        {item.imageLabel}
+                      </span>
+                      <span className="rounded-full border border-sky-300/18 bg-sky-400/[0.08] px-2.5 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-sky-200">
+                        DynoWeb UI
+                      </span>
+                    </div>
+                    <div className="relative flex min-h-[220px] items-center justify-center bg-[#f6f8fb] p-4 sm:min-h-[240px] sm:p-5 lg:min-h-[300px] 2xl:min-h-[360px]">
+                      <Image
+                        src={item.image}
+                        alt={item.imageAlt}
+                        fill
+                        sizes="(min-width: 1536px) 34vw, (min-width: 1280px) 36vw, 100vw"
+                        className="object-contain p-4 sm:p-5"
+                      />
+                    </div>
                   </div>
 
-                  <div className="mt-4 rounded-[1.35rem] border border-white/10 bg-white/[0.02] px-4 py-4">
-                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
-                      What DynoWeb shows
-                    </p>
-                    <p className="mt-2 text-[1rem] leading-8 text-zinc-300">
-                      {item.diagnosis}
+                  <div className="mt-6 xl:mt-0 xl:flex xl:min-h-full xl:flex-col xl:justify-center">
+                    <h3 className="max-w-[34ch] font-[Montserrat] text-[1.8rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2rem] 2xl:max-w-[26ch] 2xl:text-[2.35rem]">
+                      {item.title}
+                    </h3>
+
+                    <div className="mt-5 rounded-[1.35rem] border border-white/10 bg-black/25 px-4 py-4">
+                      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                        Real scenario
+                      </p>
+                      <p className="mt-2 text-[1rem] leading-8 text-zinc-300">
+                        {item.scenario}
+                      </p>
+                    </div>
+
+                    <div className="mt-4 rounded-[1.35rem] border border-white/10 bg-white/[0.02] px-4 py-4">
+                      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                        What DynoWeb shows
+                      </p>
+                      <p className="mt-2 text-[1rem] leading-8 text-zinc-300">
+                        {item.diagnosis}
+                      </p>
+                    </div>
+
+                    <div className="mt-4 rounded-[1.35rem] border border-sky-300/14 bg-sky-400/[0.05] px-4 py-4">
+                      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-200/80">
+                        How it gets fixed
+                      </p>
+                      <p className="mt-2 text-[1rem] leading-8 text-zinc-200">
+                        {item.fix}
+                      </p>
+                    </div>
+
+                    <p className="mt-5 text-base font-medium leading-8 text-sky-100">
+                      {item.outcome}
                     </p>
                   </div>
-
-                  <div className="mt-4 rounded-[1.35rem] border border-sky-300/14 bg-sky-400/[0.05] px-4 py-4">
-                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-200/80">
-                      How it gets fixed
-                    </p>
-                    <p className="mt-2 text-[1rem] leading-8 text-zinc-200">
-                      {item.fix}
-                    </p>
-                  </div>
-
-                  <p className="mt-5 text-base font-medium leading-8 text-sky-100">
-                    {item.outcome}
-                  </p>
                 </div>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="relative mx-auto w-full max-w-[1500px] px-4 pb-24 sm:px-6 lg:px-8 xl:px-10 2xl:px-14">
+        <section className={`${pageShell} pb-24`} style={pageShellStyle}>
           <div className="rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_48%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] sm:p-8 lg:p-10">
-            <div className="max-w-[860px]">
+            <div className="max-w-[960px] 2xl:max-w-[1080px]">
               <p className="text-[0.74rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">
                 Closing CTA
               </p>
