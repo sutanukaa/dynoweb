@@ -1,5 +1,6 @@
 // @ts-nocheck
-import * as __fd_glob_12 from "../content/docs/suggestions.mdx?collection=docs"
+import * as __fd_glob_13 from "../content/docs/suggestions.mdx?collection=docs"
+import * as __fd_glob_12 from "../content/docs/smartnudge.mdx?collection=docs"
 import * as __fd_glob_11 from "../content/docs/replays.mdx?collection=docs"
 import * as __fd_glob_10 from "../content/docs/overview.mdx?collection=docs"
 import * as __fd_glob_9 from "../content/docs/journeys.mdx?collection=docs"
@@ -20,4 +21,4 @@ const create = server<typeof Config, import("fumadocs-mdx/runtime/types").Intern
   }
 }>({"doc":{"passthroughs":["extractedReferences"]}});
 
-export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, }, {"cart-overview.mdx": __fd_glob_1, "conversions.mdx": __fd_glob_2, "dashboard.mdx": __fd_glob_3, "dynoagent.mdx": __fd_glob_4, "experiments.mdx": __fd_glob_5, "getting-started.mdx": __fd_glob_6, "heatmaps.mdx": __fd_glob_7, "index.mdx": __fd_glob_8, "journeys.mdx": __fd_glob_9, "overview.mdx": __fd_glob_10, "replays.mdx": __fd_glob_11, "suggestions.mdx": __fd_glob_12, });
+export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, }, {"cart-overview.mdx": __fd_glob_1, "conversions.mdx": __fd_glob_2, "dashboard.mdx": __fd_glob_3, "dynoagent.mdx": __fd_glob_4, "experiments.mdx": __fd_glob_5, "getting-started.mdx": __fd_glob_6, "heatmaps.mdx": __fd_glob_7, "index.mdx": __fd_glob_8, "journeys.mdx": __fd_glob_9, "overview.mdx": __fd_glob_10, "replays.mdx": __fd_glob_11, "smartnudge.mdx": __fd_glob_12, "suggestions.mdx": __fd_glob_13, });

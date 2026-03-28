@@ -22,6 +22,20 @@ const useCases = [
   },
   {
     number: "02",
+    title: "Convert hesitating visitors before they leave",
+    scenario:
+      "A store runs consistent paid traffic to its product pages. Visitors browse, interact with images, check reviews — then leave without purchasing. Standard analytics shows the drop-off but not the moment it happens or who to target. Retargeting ads recapture some visitors, but the majority are gone with no recovery attempt made while they were still on-site.",
+    diagnosis:
+      "DynoWeb identifies the exact behavioral signals that precede abandonment — rage clicks, extended time on page with no add-to-cart action, cursor movement toward the browser chrome. It surfaces which visitor segments trigger these patterns most frequently: frustrated browsers, price hesitators, cart abandoners. SmartNudge maps those signals to intervention opportunities, showing how many eligible sessions occurred in the last 14 days and what conversion lift is possible.",
+    fix:
+      "From there, the merchant activates a targeted nudge — an exit-intent popup for hesitating visitors, a discount offer for price hesitators, or a cart reminder for abandoners. Copy is generated in one click using AI, pre-filled with a headline, body, and CTA matched to the visitor moment. The nudge fires automatically when behavioral conditions are met, at the right frequency, on the right pages. No developer needed, no live theme changes — just a rule set and a message that shows up when it matters.",
+    outcome: "The visitor who was about to leave sees exactly the right message at exactly the right moment.",
+    image: "/SmartNudge-usecase.png",
+    imageAlt: "DynoWeb SmartNudge use case screenshot",
+    imageLabel: "SmartNudge",
+  },
+  {
+    number: "03",
     title: "Fix mobile friction before it costs revenue",
     scenario:
       "A store converts well on desktop, but mobile sessions bounce more often and product pages get lots of interaction with very few add-to-cart clicks.",
@@ -35,7 +49,7 @@ const useCases = [
     imageLabel: "Suggested Improvements",
   },
   {
-    number: "03",
+    number: "04",
     title: "See which journeys and pages drive purchases",
     scenario:
       "Merchants often know which pages get traffic, but not which paths actually lead to checkout. A collection page may look busy, while a quieter landing page or product sequence is doing more revenue work than expected.",
@@ -49,7 +63,7 @@ const useCases = [
     imageLabel: "Journey Flow",
   },
   {
-    number: "04",
+    number: "05",
     title: "Make better storefront changes with less risk",
     scenario:
       "A merchant knows something needs to change before a promotion or product launch, but does not want to edit the live theme blindly and hope nothing breaks.",

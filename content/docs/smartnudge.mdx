@@ -1,0 +1,81 @@
+---
+title: SmartNudge
+description: Understand how SmartNudge turns visitor behavior into targeted on-site interventions that show at the right moment.
+---
+
+SmartNudge is where DynoWeb moves from observing visitor behavior to acting on it in real time. It lets users create behavior-triggered messages that appear on the storefront when a visitor matches a specific pattern — without touching the live theme and without writing code.
+
+<img src="/SmartNudge-usecases.png" alt="SmartNudge dashboard overview showing the list of interventions with status badges, performance stats, and action buttons" />
+
+## What It Does
+
+SmartNudge has two connected parts.
+
+The **intervention list** shows every nudge that has been created, its current status (active, paused, or draft), and performance data including how many times it was shown, clicked, and dismissed. AI-suggested nudges also appear here and can be reviewed before activating.
+
+The **creation flow** is a four-step wizard that walks through choosing a component, configuring copy, setting a behavioral trigger, and reviewing before going live.
+
+Once an intervention is active, it fires automatically on the storefront whenever a visitor matches its trigger conditions — no further action required.
+
+## Components
+
+Nine component types are available, each suited to a different moment in the visitor journey:
+
+- **Promotional Popup** — a centered modal with a headline, body copy, and CTA button. Best for discount offers and rescue moments.
+- **Sticky Announcement Bar** — a persistent bar at the top of the page. Best for store-wide messages and free-shipping reminders.
+- **Exit-Intent Rescue** — a popup triggered when a visitor's cursor moves toward the browser chrome. Best for last-chance retention.
+- **Floating Cart Nudge** — a widget showing progress toward a free-shipping threshold on the cart page.
+- **Social Proof Toast** — a compact notification showing recent buyer activity on product pages.
+- **Combo Bundle Suggestion** — a frequently-bought-together recommendation shown on product pages.
+- **Countdown Timer** — a sticky bar with a live countdown. Best for limited-time campaigns.
+- **Product Badge** — a label injected directly onto product cards.
+- **Free Shipping Progress Bar** — a bottom bar showing distance to the free-shipping threshold throughout the store.
+
+<img src="/SmartNudge-step1.png" alt="The component selection grid showing all 9 component types as cards with Select buttons" />
+
+## Configuring Content
+
+After selecting a component and a visual style (Minimal, Bold, or Branded), the Content step asks for:
+
+- **Intervention name** — an internal label only visible in the dashboard, never shown to visitors.
+- **Headline** — the shopper-facing heading.
+- **Body text** — one to two sentences with the core message or offer.
+- **CTA button text** — the action label on the button.
+- **Promo code** — optional. Pre-create the code in Shopify Discounts first, then reference it here so visitors can copy it with one click.
+
+The **Make with AI** button at the top right of this step generates all fields automatically based on the component type, visual style, and behavioral trigger selected. It produces copy matched to the specific visitor moment — a frustrated browser gets a different message than a cart abandoner.
+
+<img src="/SmartNudge-step2.png" alt="The Configure Content step showing all form fields filled in with the Make with AI button in the top right corner" />
+
+## Behavioral Triggers
+
+The Trigger step controls who sees the nudge and when. Users select a visitor segment — a behavioral pattern that must be matched for the nudge to fire — from options including:
+
+- **Frustrated Browsers** — rage-clicks with no conversion intent
+- **Price Hesitators** — 30+ seconds on a product page without adding to cart
+- **Cart Abandoners** — added to cart then abandoned checkout
+- **High-Intent Browsers** — 3+ page views with deep scroll
+- **Exit Intent** — cursor moving toward the browser chrome
+- **Scroll Passers** — scrolled past 80% but never clicked
+
+Additional controls include **frequency** (once per session, once per day, once ever, or always) and **target pages** (all pages, product pages, collection pages, or cart page only).
+
+<img src="/SmartNudge-step3.png" alt="The Set Behavioral Trigger step showing the segment dropdown, live condition preview panel, and frequency and page selectors" />
+
+## How To Use It Best
+
+The best starting point is to pick one visitor segment that represents a known problem — if mobile bounce rates are high, start with Frustrated Browsers or Price Hesitators. Choose the component that fits the moment: a popup for discount offers, a sticky bar for shipping reminders, an exit-intent popup for last-chance retention.
+
+Use **Make with AI** to generate copy immediately rather than writing from scratch. Review the generated headline, body, and CTA, adjust if needed, then move to the Trigger step to confirm the behavioral conditions.
+
+On the Review step, check that the component, copy, trigger, and frequency all match the intended scenario before activating. Nudges can be saved as drafts and activated later, or activated immediately from the dashboard.
+
+After a nudge has been running for a few days, check the performance column in the intervention list. A high shown count with a low click count usually means the copy or CTA needs adjusting. A high dismiss count can mean the nudge is firing too early or too frequently.
+
+## A/B Testing Nudges
+
+Active interventions can be placed into an A/B test to compare two variants — different copy, different components, or different trigger timing — against each other. Results are tracked in the SmartNudge dashboard with conversion metrics per variant.
+
+<img src="/AB-testing.png" alt="A/B test results dashboard showing variant comparison with traffic split, conversion metrics, and performance charts" />
+
+SmartNudge turns the behavioral signals DynoWeb collects into real-time actions on the storefront, helping users reach the right visitor at the right moment with a message matched to where they are in the journey.
