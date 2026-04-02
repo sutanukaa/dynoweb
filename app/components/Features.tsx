@@ -51,13 +51,13 @@ const features: Feature[] = [
   {
     id: "ai", tab: "AI Suggestions",
     headline: "AI-Powered Suggestions\n— Actionable Fixes.",
-    subline: "DynoWeb tells you exactly what to fix and why.",
+    subline: "DynoWeb tells you exactly what to fix and why. CSS suggestions are fully available now — more types coming soon.",
     bullets: [
+      { title: "CSS Suggestions ✦ Available Now", desc: "Style and layout fixes you can preview and apply to a draft theme today." },
       { title: "Rule Engine", desc: "17+ built-in rules catch common UX problems automatically." },
-      { title: "Pattern Detection", desc: "Finds anomalies and trends in your data." },
-      { title: "AI Reasoning", desc: "Advanced language model analysis for complex layout optimization." },
+      { title: "More Types Coming Soon", desc: "Pattern detection, AI reasoning, and additional suggestion categories are on the way." },
     ],
-    caption: "Clear, actionable cards with impact scores.",
+    caption: "CSS suggestions live now. More types coming soon.",
     videoSrc: "/videos/mobile-performance.mp4",
     icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>),
   },
@@ -106,7 +106,7 @@ const features: Feature[] = [
     subline: "Apply improvements as a draft theme — never touch your live store.",
     bullets: [
       { title: "Draft Theme Safety", desc: "Every fix lands in an isolated Draft Theme — never your live theme." },
-      { title: "CSS Changes Auto-Apply", desc: "Style-based suggestions are applied automatically." },
+      { title: "CSS Changes Auto-Apply ✦ Available Now", desc: "CSS suggestions are fully supported and applied automatically. Other suggestion types are coming soon." },
       { title: "Full Revert Capability", desc: "Changed your mind? One click to undo and restore the original state." },
     ],
     caption: "Safe, reversible deployments.",

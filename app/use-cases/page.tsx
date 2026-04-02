@@ -68,7 +68,7 @@ const useCases = [
     scenario:
       "A merchant knows something needs to change before a promotion or product launch, but does not want to edit the live theme blindly and hope nothing breaks.",
     diagnosis:
-      "DynoWeb turns that moment into a safer workflow. It ranks suggestions by likely impact, shows the proposed change in context, and lets the merchant compare live and draft versions before approving anything.",
+      "DynoWeb turns that moment into a safer workflow. It ranks CSS suggestions (available now) by likely impact, shows the proposed change in context, and lets the merchant compare live and draft versions before approving anything. Additional suggestion types are coming soon.",
     fix:
       "Instead of making manual live edits under pressure, the team can apply the update to a draft theme, review the before-and-after state, and track whether the change actually improved engagement or conversion after launch.",
     outcome: "That means faster iteration with less risk, fewer last-minute theme mistakes, and a cleaner path from insight to action.",
@@ -98,7 +98,7 @@ const workflowSteps = [
   },
   {
     label: "Improve",
-    description: "Review AI suggestions, preview draft changes, and move faster with less risk.",
+    description: "Review AI suggestions (CSS suggestions available now, more coming soon), preview draft changes, and move faster with less risk.",
   },
 ];
 
@@ -135,7 +135,7 @@ export default function UseCasesPage() {
                 Turn shopper behavior into clearer fixes and more sales
               </h1>
               <p className="mt-6 max-w-[70ch] text-base leading-8 text-zinc-300 sm:text-lg 2xl:text-[1.18rem] 2xl:leading-9">
-                DynoWeb shows where shoppers click, hesitate, scroll, drop off, and buy, then helps you act on those insights with AI suggestions, draft-theme previews, and safer optimization workflows.
+                DynoWeb shows where shoppers click, hesitate, scroll, drop off, and buy, then helps you act on those insights with AI suggestions (CSS suggestions available now, more coming soon), draft-theme previews, and safer optimization workflows.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
