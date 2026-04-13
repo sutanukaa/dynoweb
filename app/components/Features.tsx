@@ -11,133 +11,171 @@ interface Feature {
 const features: Feature[] = [
   {
     id: "tracking", tab: "Visitor Tracking",
-    headline: "Automatic Visitor Tracking\n— Invisible & Lightweight.",
-    subline: "A tiny script captures real behavior without slowing your store.",
+    headline: "Automatic Visitor Tracking\n— Invisible & Lightweight",
+    subline: "Invisible tracker, powerful insights.",
     bullets: [
-      { title: "Behavior Signals", desc: "Clicks, rage clicks, dead clicks, error clicks, mouse shake, scroll depth, form interactions, mobile gestures, fat finger taps, element visibility, page views." },
-      { title: "Zero Impact", desc: "Loads asynchronously, no layout shifts, bot filtering, session tracking, device/country detection." },
-      { title: "Privacy-First", desc: "All data anonymized, no personal info collected." },
+      { title: "11 Behavioral Signals", desc: "Clicks, rage clicks, dead clicks, error clicks, mouse shaking, scroll depth, form interactions, mobile gestures, fat finger taps, element visibility, page views." },
+      { title: "Session Intelligence", desc: "Bot filtering, session-level tracking across pages, device and country detection." },
+      { title: "Privacy-First", desc: "All data anonymized — no personal information collected, ever." },
+      { title: "Full Control", desc: "Toggle individual signals on or off from Settings. Native Shopify app extension — no code pasted into your theme." },
     ],
-    caption: "Invisible tracker, powerful insights.",
+    caption: "<5KB · 0ms impact · 11 signals",
     videoSrc: "/videos/ai-builder.mp4",
-    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>),
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>),
   },
   {
-    id: "dashboard", tab: "Real-Time Dashboard",
-    headline: "Live Dashboard\n— Your Command Center.",
-    subline: "See everything happening on your store at a glance.",
+    id: "dashboard", tab: "Dashboard",
+    headline: "Everything Happening in\nYour Store — Right Now",
+    subline: "Live metrics, zero delay.",
     bullets: [
-      { title: "Live Event Counter", desc: "Events tracked today with trend arrows." },
-      { title: "Key Metrics Cards", desc: "Clicks, rage clicks, dead clicks, error clicks, mobile gestures, form interactions, scroll sessions." },
-      { title: "Top Pages & Trend Charts", desc: "Highest-traffic pages, event frequency, device breakdown, signal distribution, smart filters." },
+      { title: "Live Event Counter", desc: "Trend arrows show direction vs. previous period — up or down at a glance." },
+      { title: "Top Pages", desc: "Pages ranked by visitor engagement so you know where attention goes." },
+      { title: "Charts & Breakdowns", desc: "Event frequency chart, device breakdown, and signal type distribution." },
+      { title: "Smart Filters", desc: "Date range, device type, country, region. Plan usage indicator so you always know where you stand." },
     ],
-    caption: "Instant visibility, actionable metrics.",
+    caption: "Real-time visibility into every session.",
     videoSrc: "/videos/template-system.mp4",
     icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17v-6"/><path d="M12 17v-2"/><path d="M17 17v-8"/></svg>),
   },
   {
-    id: "heatmaps", tab: "Visual Heatmaps",
-    headline: "Visual Heatmaps\n— See Where Visitors Click.",
-    subline: "Click, frustration, and scroll depth maps overlaid on your store.",
+    id: "heatmaps", tab: "Heatmaps",
+    headline: "See Where They Click,\nRage, and Scroll",
+    subline: "Three views. Every device. Every frustration.",
     bullets: [
-      { title: "Click Heatmap", desc: "Color-coded intensity shows where visitors click most." },
-      { title: "Frustration Heatmap", desc: "Highlights rage clicks, dead clicks, error clicks." },
-      { title: "Scroll Depth Map", desc: "See exactly where visitors lose interest and stop reading." },
+      { title: "Three View Modes", desc: "Click heatmap, frustration heatmap, and scroll depth map." },
+      { title: "Interactive Page Selector", desc: "Pick any page on your store and see the overlay instantly." },
+      { title: "Element Detail Panel", desc: "Click count, click rate, rage clicks, dead clicks per element. Device breakdown per element." },
+      { title: "Color-Coded Intensity", desc: "Cool blue (low) to hot red (high) — spot problems at a glance." },
     ],
     caption: "Understand engagement visually.",
     videoSrc: "/videos/safe-publishing.mp4",
-    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>),
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>),
+  },
+  {
+    id: "replays", tab: "Session Replays",
+    headline: "Watch Every Visitor's\nJourney — Frame by Frame",
+    subline: "Full-motion recordings. Frustration auto-flagged.",
+    bullets: [
+      { title: "Auto-Flagged Frustration", desc: "Red markers on the playback timeline highlight rage clicks, dead clicks, and error moments." },
+      { title: "Smart Filters", desc: "Filter replays by device, country, date, or frustration signals." },
+      { title: "Smart Recording", desc: "Capture all sessions or only frustrated ones. Set daily recording caps and retention periods." },
+      { title: "Privacy-First", desc: "No keystrokes or sensitive fields recorded." },
+    ],
+    caption: "See exactly what your visitors see.",
+    videoSrc: "/videos/ai-builder.mp4",
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>),
   },
   {
     id: "ai", tab: "AI Suggestions",
-    headline: "AI-Powered Suggestions\n— Actionable Fixes.",
-    subline: "DynoWeb tells you exactly what to fix and why. CSS suggestions are fully available now — more types coming soon.",
+    headline: "AI Finds the Revenue Leaks.\nYou Click Fix.",
+    subline: "Three-layer intelligence. One prioritized list.",
     bullets: [
-      { title: "CSS Suggestions ✦ Available Now", desc: "Style and layout fixes you can preview and apply to a draft theme today." },
-      { title: "Rule Engine", desc: "17+ built-in rules catch common UX problems automatically." },
-      { title: "More Types Coming Soon", desc: "Pattern detection, AI reasoning, and additional suggestion categories are on the way." },
+      { title: "17+ Built-In Rules", desc: "Button sizing, heading structure, contrast, CTA placement, form visibility, and more." },
+      { title: "Pattern Detection", desc: "Frustration clusters, scroll cliffs, engagement drops, mobile gaps, form abandonment." },
+      { title: "AI Reasoning", desc: "Powered by advanced LLMs with configurable monthly cost budgets." },
+      { title: "PECTI Scoring", desc: "Proof, Ease, Cost, Time, Impact — broken down per suggestion. Tier badges: Quick Win, Strategic, or Ambitious." },
     ],
-    caption: "CSS suggestions live now. More types coming soon.",
+    caption: "17+ rules · 3 intelligence layers · PECTI scored",
     videoSrc: "/videos/mobile-performance.mp4",
-    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>),
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>),
   },
   {
-    id: "dynoagent", tab: "DynoAgent",
-    headline: "DynoAgent\n— Ask Anything About Your Store.",
-    subline: "An AI analytics assistant that answers questions about your store data in plain English.",
+    id: "cro-report", tab: "CRO Report",
+    headline: "Your Weekly Conversion\nHealth Check",
+    subline: "Benchmarks. KPIs. Prioritized actions. Delivered.",
     bullets: [
-      { title: "Natural Language Queries", desc: "Ask things like 'What were my most visited pages this week?' or 'Which elements have the most rage clicks?' — no SQL, no dashboards." },
-      { title: "Deep Data Access", desc: "DynoAgent pulls from traffic, clicks, frustration signals, revenue, and conversion data to give complete answers." },
-      { title: "CRO Recommendations", desc: "Ask for improvement ideas and get actionable suggestions tailored to your store's real behavior data." },
+      { title: "Key Metrics Tracked", desc: "Conversion rate, AOV, bounce rate, cart abandonment — with trend arrows over time." },
+      { title: "Industry Benchmarks", desc: "Benchmarked against industry averages so you know where you stand." },
+      { title: "Actionable Insights", desc: "Ranked by impact — fix the biggest leaks first." },
+      { title: "Export & Deliver", desc: "Export as PDF or share via a secure public link. Weekly digest emails — never miss a shift." },
     ],
-    caption: "Your store's data, answered instantly.",
+    caption: "Automated weekly conversion intelligence.",
     videoSrc: "/videos/ai-builder.mp4",
-    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>),
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>),
+  },
+  {
+    id: "revenue", tab: "Revenue Attribution",
+    headline: "Know Exactly Which Fix\nMade You Money",
+    subline: "Dollar-level tracking from click to purchase.",
+    bullets: [
+      { title: "Click-to-Purchase Attribution", desc: "Every click on your store is tied back to revenue." },
+      { title: "Top Converting Elements", desc: "Ranked by revenue generated — see which buttons, links, and CTAs actually lead to purchases." },
+      { title: "Optimization Opportunities", desc: "Bottom converting CTAs flagged. Revenue breakdown by page." },
+      { title: "Device Comparison", desc: "Desktop vs. mobile conversion rate comparison. Order count and dollar amount per element." },
+    ],
+    caption: "Tie every action to real revenue.",
+    videoSrc: "/videos/safe-publishing.mp4",
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>),
+  },
+  {
+    id: "cart", tab: "Cart Overview",
+    headline: "See Exactly Where Carts\nGo to Die",
+    subline: "Product by product. Stage by stage.",
+    bullets: [
+      { title: "Abandonment Tracking", desc: "Cart abandonment rate with trend tracking over time." },
+      { title: "Top Abandoned Products", desc: "Ranked by lost revenue so you know where to focus." },
+      { title: "Cart Value Trends", desc: "See how cart values change over time and spot patterns." },
+      { title: "Checkout Funnel", desc: "Product-level funnel: added to cart → reached checkout → purchased. Checkout stage drop-off analysis." },
+    ],
+    caption: "Stop the revenue leak at checkout.",
+    videoSrc: "/videos/ai-builder.mp4",
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>),
+  },
+  {
+    id: "journey", tab: "Journeys",
+    headline: "Map the Path From\nLanding to Purchase",
+    subline: "Visual flow. Converted vs. abandoned. Every route.",
+    bullets: [
+      { title: "Page Flow Diagram", desc: "Traffic volume shown by line width — see the most common routes visitors take through your store." },
+      { title: "Converted vs. Abandoned", desc: "Top converting journeys vs. top abandoned journeys — side by side." },
+      { title: "Session Drill-Down", desc: "Full action timeline per session. Click any session to jump into full replay." },
+      { title: "Overview Metrics", desc: "Bounce rate, pages per session, and average session duration at a glance." },
+    ],
+    caption: "See the full journey, not just the end.",
+    videoSrc: "/videos/ai-builder.mp4",
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>),
+  },
+  {
+    id: "referrers", tab: "Referrers",
+    headline: "Know Where Your Best\nVisitors Come From",
+    subline: "Not all traffic is equal.",
+    bullets: [
+      { title: "Traffic Source Breakdown", desc: "See which channels — Google, Instagram, email, direct — bring visitors that actually buy." },
+      { title: "Conversion Rate per Referrer", desc: "Stop spending on sources that drive volume but not revenue." },
+      { title: "Engagement Metrics", desc: "Pages per session and time on site by source." },
+      { title: "Filterable", desc: "Filter by date range and device type for granular insights." },
+    ],
+    caption: "Spend where it converts.",
+    videoSrc: "/videos/ai-builder.mp4",
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>),
   },
   {
     id: "smartnudge", tab: "SmartNudge",
-    headline: "SmartNudge\n— Convert Visitors Before They Leave.",
-    subline: "Detect hesitation in real time and trigger the right message at the right moment.",
+    headline: "Turn Frustrated Visitors\nInto Buyers — Automatically",
+    subline: "Behavior-triggered. Not timer-triggered.",
     bullets: [
-      { title: "Behavioral Triggers", desc: "Detects rage clicks, exit intent, idle browsing, price hesitation, and cart abandonment signals automatically." },
-      { title: "AI-Generated Copy", desc: "One-click AI generates the headline, body, and CTA matched to the visitor's moment — no copywriting needed." },
-      { title: "Smart Delivery", desc: "Nudges fire at the right frequency, on the right pages, only when behavioral conditions are met. No developer needed." },
+      { title: "13 Component Types", desc: "Exit-intent rescue, social proof toast, countdown timer, sticky bar, cart nudge, combo/bundle offer, product badges, and more." },
+      { title: "5 Behavioral Triggers", desc: "Frustrated browsing, price hesitation, cart abandonment, high-intent browsing, scroll passers." },
+      { title: "AI-Powered", desc: "AI suggests which intervention to deploy. A/B test nudge variants against each other." },
+      { title: "Revenue Attribution", desc: "See exactly how much each nudge earns. Auto-creates discount codes in Shopify when needed. Monthly impact report." },
     ],
-    caption: "The right message at the right moment.",
+    caption: "13 components · 5 triggers · A/B tested",
     videoSrc: "/videos/ai-builder.mp4",
     icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>),
   },
   {
-    id: "preview", tab: "Live Preview",
-    headline: "Live Preview &\nSide-by-Side Comparison.",
-    subline: "See exactly what your changes will look like before you commit.",
+    id: "dynoagent", tab: "DynoAgent",
+    headline: "Your AI Store Manager\nThat Actually Does the Work",
+    subline: "Ask questions. Request changes. Approve. Done.",
     bullets: [
-      { title: "Current vs. Optimized", desc: "Two real screenshots side by side, labeled 'LIVE' and 'DRAFT'." },
-      { title: "Device Switcher", desc: "Preview on desktop, tablet, or mobile viewport." },
-      { title: "Element Highlighting", desc: "The specific element being modified is outlined clearly." },
+      { title: "Content Optimization", desc: "Rewrite product descriptions, generate SEO titles and meta descriptions, create blog posts, update pages — all in your brand voice." },
+      { title: "Store Actions", desc: "Build targeted discount codes, manage collections, update About and FAQ pages based on your store data." },
+      { title: "AI Image Generation", desc: "Generate product lifestyle images and marketing banners with AI." },
+      { title: "Full Control", desc: "Preview every change before it goes live. One-click revert. Export conversations as Markdown or CSV." },
     ],
-    caption: "Review before you publish.",
+    caption: "Your store's AI operator.",
     videoSrc: "/videos/ai-builder.mp4",
-    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h10v10H7z"/></svg>),
-  },
-  {
-    id: "draft", tab: "Draft Theme Apply",
-    headline: "One-Click Apply\n— Safe Draft Themes.",
-    subline: "Apply improvements as a draft theme — never touch your live store.",
-    bullets: [
-      { title: "Draft Theme Safety", desc: "Every fix lands in an isolated Draft Theme — never your live theme." },
-      { title: "CSS Changes Auto-Apply ✦ Available Now", desc: "CSS suggestions are fully supported and applied automatically. Other suggestion types are coming soon." },
-      { title: "Full Revert Capability", desc: "Changed your mind? One click to undo and restore the original state." },
-    ],
-    caption: "Safe, reversible deployments.",
-    videoSrc: "/videos/mobile-performance.mp4",
-    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M10 6h4"/></svg>),
-  },
-  {
-    id: "revenue", tab: "Revenue Attribution",
-    headline: "Revenue & Conversion\nAttribution.",
-    subline: "Know which elements actually make you money.",
-    bullets: [
-      { title: "Conversion Clicks", desc: "Clicks that led to purchases." },
-      { title: "Order Conversions", desc: "How many orders are attributed to tracked interactions." },
-      { title: "Revenue by Element", desc: "See exactly which buttons, images, and links drive the most sales." },
-    ],
-    caption: "Tie actions to real results.",
-    videoSrc: "/videos/safe-publishing.mp4",
-    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>),
-  },
-  {
-    id: "journey", tab: "Journey Analytics",
-    headline: "Customer Journey\nAnalytics.",
-    subline: "Understand the complete visitor experience from landing to leaving (or buying).",
-    bullets: [
-      { title: "Overview Stats", desc: "Total sessions, average session duration, average pages per session, bounce rate, conversion rate." },
-      { title: "Flow Visualization", desc: "Visual flow chart showing most common page transitions, entry/exit pages, traffic volume." },
-      { title: "Session Drill-Down", desc: "Click into any session to see a full timeline, actions, and outcome." },
-    ],
-    caption: "See the full journey, not just the end.",
-    videoSrc: "/videos/ai-builder.mp4",
-    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h10v10H7z"/></svg>),
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>),
   },
 ];
 
@@ -185,7 +223,21 @@ export default function FeaturesVideoSection() {
   }, [active]);
 
   const feat = features[active];
-  const mockupImg = feat.id === "dynoagent" ? "/feature5.png" : feat.id === "smartnudge" ? "/SmartNudge-usecase.png" : active > 5 ? `/feature${active}.png` : `/feature${active + 1}.png`;
+  const mockupImgMap: Record<string, string> = {
+    tracking: "/VisitorTracking.png",
+    dashboard: "/Dashboard.png",
+    heatmaps: "/Heatmaps.png",
+    replays: "/Replays.png",
+    ai: "/AISuggestions.png",
+    "cro-report": "/CROReport.png",
+    revenue: "/RevenueAttribution.png",
+    cart: "/CartOverview.png",
+    journey: "/Journeys.png",
+    referrers: "/Referrers.png",
+    smartnudge: "/SmartNudge.png",
+    dynoagent: "/DynoAgent.png",
+  };
+  const mockupImg = mockupImgMap[feat.id] ?? `/feature${active + 1}.png`;
 
   return (
     <>
@@ -239,11 +291,11 @@ export default function FeaturesVideoSection() {
           display:inline-flex; align-items:center; gap:6px;
           padding:8px 14px; border-radius:8px; border:none; background:none;
           font-family:'Karla',sans-serif;
-          font-size:.8rem; font-weight:500; color:rgba(255,255,255,0.38);
+          font-size:.72rem; font-weight:500; color:rgba(255,255,255,0.38);
           cursor:pointer; white-space:nowrap; flex-shrink:0;
           transition:color .2s ease;
         }
-        @media(min-width:640px){ .feat-tab{ font-size:.82rem; padding:9px 18px; } }
+        @media(min-width:640px){ .feat-tab{ font-size:.76rem; padding:8px 14px; } }
         .feat-tab:hover { color:rgba(255,255,255,0.65); }
         .feat-tab.active { color:rgba(255,255,255,0.88); font-weight:600; }
         .feat-tab-icon { opacity:.5; transition:opacity .2s; flex-shrink:0; }
@@ -539,7 +591,7 @@ export default function FeaturesVideoSection() {
             <div className="divider-line"/>
             <h2 className="sec-heading">See DynoWeb in action.</h2>
             <p style={{fontSize:"clamp(.875rem, 1.05vw, 1.5rem)",color:"rgba(255,255,255,0.3)",lineHeight:1.7,maxWidth:"28rem"}}>
-              Five capabilities working as one continuous loop — from raw signal to deployed fix.
+              Twelve capabilities working as one continuous loop — from raw signal to deployed fix.
             </p>
           </div>
 
@@ -574,7 +626,7 @@ export default function FeaturesVideoSection() {
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
                   <span className="feat-browser-url">
-                    {feat.id === "dynoagent" ? "dynoweb.app/agent" : "dynoweb.app/dashboard"}
+                    dynoweb.app/{feat.id === "dynoagent" ? "agent" : feat.id === "ai" ? "suggestions" : feat.id === "cro-report" ? "report" : feat.id}
                   </span>
                 </div>
               </div>

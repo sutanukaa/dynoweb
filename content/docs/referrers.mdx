@@ -1,0 +1,102 @@
+---
+title: Referrers
+description: Understand how Referrers reveals where your visitors come from and which traffic sources drive conversions and revenue.
+---
+
+Referrers is where DynoWeb turns raw traffic data into a clear picture of acquisition performance. It shows which channels, domains, and marketing campaigns are sending visitors to the store — and crucially, which of those visitors are converting and generating revenue.
+
+<img src="/Referrers.png" alt="Referrers dashboard overview showing the four KPI cards, stacked area trend chart, and channel donut chart" />
+
+## What It Does
+
+Referrers has two connected parts.
+
+The **traffic dashboard** shows an at-a-glance view of where visitors are coming from, how traffic volume is trending over time, and which channels dominate the mix. Four KPI cards, a daily trend chart, and a channel breakdown donut chart give an immediate read on acquisition health.
+
+The **source tables** below the charts go deeper, listing every referrer domain and UTM campaign with visits, sessions, conversions, conversion rate, and attributed revenue. This is where a merchant finds out whether that Instagram campaign is actually driving purchases or just sending window shoppers.
+
+Every visit is automatically classified into one of six channels — direct, organic search, paid search, social, email, or referral — using a priority-based system that checks UTM parameters first, then matches the referrer domain against a library of known search engines, social networks, and email providers.
+
+## The Dashboard
+
+**KPI Cards** — four cards across the top of the page:
+
+- **Total Visits** — page views in the selected period, with a percentage trend compared to the previous equal-length period.
+- **Unique Sources** — how many distinct referrer domains sent traffic.
+- **Top Source** — the single domain that drove the most visits, with its count.
+- **Source CVR** — the overall conversion rate across all traffic sources.
+
+<img src="/ReferrersKPI.png" alt="Close-up of the four KPI metric cards showing Total Visits with trend percentage, Unique Sources count, Top Source domain, and Source CVR" />
+
+**Traffic Trend Chart** — a stacked area chart showing daily visit volume broken down by the six traffic channels over the selected date range. Each channel is color-coded (direct in slate, organic search in green, paid search in amber, social in blue, email in purple, referral in cyan) with gradient fills. Hovering over any day shows a tooltip with the exact count per channel.
+
+**Channel Breakdown** — a donut chart beside the trend chart showing the proportion of total visits per channel. The legend lists each channel with its color, and the tooltip shows the visit count and percentage.
+
+<img src="/ReferrerCharts.png" alt="Traffic trend stacked area chart beside the channel breakdown donut chart, showing a 30-day view with all six channels color-coded" />
+
+## Top Traffic Sources
+
+The sources table ranks up to fifty referrer domains by visit volume. Each row shows:
+
+- **Source** — the domain name and medium (if available).
+- **Channel** — a color-coded badge indicating which channel the source belongs to.
+- **Visits** — total page views from this source.
+- **Sessions** — unique visitor sessions.
+- **Conversions** — sessions that resulted in an order.
+- **CVR** — conversion rate, highlighted in green when above two percent.
+- **Revenue** — total order value attributed to this source.
+
+The table shows the top ten sources by default with a toggle to expand and view all.
+
+<img src="/TopSources.png" alt="Top Traffic Sources table showing ranked referrer domains with channel badges, visit counts, conversion rates, and revenue columns" />
+
+## UTM Campaigns
+
+When visitors arrive with UTM parameters in the URL, the campaigns table appears below the sources table. It groups traffic by the combination of campaign name, source, and medium, showing:
+
+- **Campaign** — the utm_campaign value.
+- **Source** — the utm_source value.
+- **Medium** — the utm_medium value.
+- **Visits** — page views from this campaign.
+- **Conversions** — orders attributed to the campaign.
+- **CVR** — campaign conversion rate.
+- **Revenue** — total revenue from the campaign.
+
+This table is where paid marketing performance becomes measurable — a merchant can see exactly which campaign tags are converting and at what return.
+
+<img src="/UTMCampaigns.png" alt="UTM Campaigns table showing campaign names with source, medium, visit counts, conversion metrics, and revenue" />
+
+## Filtering
+
+Four filters at the top of the page control what data is shown:
+
+- **Date Range** — last seven days, last thirty days, or last ninety days.
+- **Device Type** — all devices, desktop, mobile, or tablet.
+- **Country** — all countries or a specific country from the top thirty by visit count.
+- **Channel** — all channels or a single channel to isolate its performance.
+
+Filters update the URL parameters, so filtered views can be bookmarked or shared.
+
+## How Traffic Is Classified
+
+Every visit is classified automatically using a priority-based system:
+
+- **UTM parameters take priority.** If utm_source or utm_medium is present, the medium value determines the channel — "cpc" and "ppc" map to paid search, "email" maps to email, "social" maps to social.
+- **Known domains are matched next.** Over twenty search engines, seventeen social networks, and eight email providers are recognized by domain.
+- **Everything else falls through.** If the referrer is an unrecognized domain, the visit is classified as referral. If there is no referrer at all, it is classified as direct.
+
+This means UTM-tagged links always get the correct channel attribution regardless of what domain they come from, while untagged organic traffic is still classified correctly by domain matching.
+
+## How To Use It Best
+
+Start with the thirty-day view to get a stable picture of traffic mix. The channel breakdown donut chart immediately shows whether the store depends too heavily on a single source — a store where eighty percent of traffic is direct has a discovery problem, while one dominated by paid search has a margin problem.
+
+Check the Source CVR card. If overall conversion rate is low, switch to the sources table and sort mentally by CVR. Sources with high visits but near-zero conversion are sending the wrong audience. Sources with high CVR but low volume are underinvested.
+
+Use the device filter to compare mobile versus desktop traffic quality. A source that converts well on desktop but poorly on mobile may indicate a landing page that is not optimized for small screens.
+
+For paid campaigns, the UTM campaigns table is the single source of truth. Compare campaign CVR and revenue against ad spend (tracked externally) to calculate return on ad spend. Campaigns with visits but no conversions should be paused or retargeted.
+
+After making changes — adjusting ad targeting, launching a new campaign, or posting on a new social channel — check back in seven days to see whether the new source appears in the table and how it compares.
+
+Referrers turns the traffic data DynoWeb collects into a clear acquisition map, showing merchants not just where visitors come from but which sources are worth investing in — measured by the conversions and revenue they actually produce.
