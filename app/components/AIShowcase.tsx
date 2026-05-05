@@ -11,8 +11,8 @@ const bullets = [
     desc: "The 3-layer AI engine processes data, spots revenue-leaking gaps, and scores them by ROI.",
   },
   {
-    title: "Step 3: Fix (Automatically)",
-    desc: 'Click "Apply" and DynoWeb builds a safe Draft Theme with the UX fixes already coded.',
+    title: "Step 3: Show You How to Fix",
+    desc: "Get an implementation guide with the exact file, before/after diff, and projected lift — ready for your dev to ship.",
   },
 ];
 
@@ -332,69 +332,138 @@ export default function AIShowcaseSection() {
           56%, 100%{ opacity: 0; transform: translateY(-3px); }
         }
 
-        /* ── Suggestion tooltip ── */
-        .demo-suggestion {
+        /* ── Implementation Guide card ── */
+        .demo-impl-guide {
           position: absolute;
-          bottom: 70px; left: 12px; right: 12px;
+          bottom: 62px; left: 10px; right: 10px;
           background: rgba(14,14,18,0.97);
           border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 12px;
-          padding: 10px 12px;
+          border-radius: 10px;
           box-shadow: 0 8px 32px rgba(0,0,0,0.6);
           pointer-events: none; z-index: 30;
-          animation: suggestionPop 9s ease-in-out infinite;
+          overflow: hidden;
+          animation: implGuidePop 9s ease-in-out infinite;
         }
-        @keyframes suggestionPop {
+        @keyframes implGuidePop {
           0%,  26% { opacity: 0; transform: translateY(8px) scale(0.97); }
-          33%, 52% { opacity: 1; transform: translateY(0) scale(1); }
-          58%, 100%{ opacity: 0; transform: translateY(-4px) scale(0.97); }
+          33%, 78% { opacity: 1; transform: translateY(0) scale(1); }
+          84%, 100%{ opacity: 0; transform: translateY(-4px) scale(0.97); }
         }
-        .demo-sug-header {
+
+        .demo-ig-header {
           display: flex; align-items: center; justify-content: space-between;
-          margin-bottom: 6px;
+          padding: 7px 10px;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          background: rgba(255,255,255,0.02);
         }
-        .demo-sug-title {
+        .demo-ig-title {
           font-family: 'Karla', sans-serif;
-          font-size: 0.65rem; font-weight: 700;
-          color: rgba(255,255,255,0.85);
+          font-size: 0.62rem; font-weight: 700;
+          color: rgba(255,255,255,0.88);
+          letter-spacing: 0.01em;
         }
-        .demo-sug-score {
-          font-size: 0.55rem; font-weight: 700;
-          padding: 2px 6px; border-radius: 99px;
-          background: rgba(110,176,255,0.08);
-          border: 1px solid rgba(110,176,255,0.2);
-          color: #6eb0ff;
-          letter-spacing: 0.04em;
+        .demo-ig-tab {
+          font-family: 'Karla', sans-serif;
+          font-size: 0.48rem; font-weight: 700;
+          letter-spacing: 0.08em;
+          padding: 2px 6px;
+          border-radius: 4px;
+          background: rgba(255,255,255,0.08);
+          color: rgba(255,255,255,0.7);
+          text-transform: uppercase;
         }
-        .demo-sug-body {
-          font-size: 0.6rem;
-          color: rgba(255,255,255,0.35);
+
+        .demo-ig-body {
+          padding: 8px 10px 4px;
+          display: flex; flex-direction: column; gap: 7px;
+        }
+        .demo-ig-desc {
+          font-size: 0.55rem;
+          color: rgba(255,255,255,0.42);
           line-height: 1.5;
-          margin-bottom: 9px;
         }
-        .demo-sug-actions {
-          display: flex; gap: 6px;
+        .demo-ig-desc strong {
+          color: rgba(255,255,255,0.78);
+          font-weight: 600;
         }
-        .demo-sug-accept {
+
+        .demo-ig-file {
+          display: flex; align-items: center; gap: 6px;
+          padding: 4px 7px;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.06);
+          border-radius: 5px;
+        }
+        .demo-ig-file-path {
+          font-family: 'JetBrains Mono', ui-monospace, monospace;
+          font-size: 0.52rem; font-weight: 600;
+          color: rgba(255,255,255,0.7);
+          letter-spacing: -0.01em;
+        }
+        .demo-ig-file-tag {
+          font-family: 'Karla', sans-serif;
+          font-size: 0.45rem; font-weight: 700;
+          padding: 1px 5px;
+          border-radius: 3px;
+          background: rgba(110,176,255,0.1);
+          border: 1px solid rgba(110,176,255,0.22);
+          color: #6eb0ff;
+          letter-spacing: 0.03em;
+        }
+
+        .demo-ig-diff {
+          display: flex; flex-direction: column;
+          border-radius: 5px;
+          overflow: hidden;
+          font-family: 'JetBrains Mono', ui-monospace, monospace;
+        }
+        .demo-ig-diff-row {
+          padding: 3px 7px;
+          display: flex; align-items: center; gap: 5px;
+          font-size: 0.5rem;
+          line-height: 1.3;
+          letter-spacing: -0.01em;
+        }
+        .demo-ig-diff-before {
+          background: rgba(255, 90, 90, 0.06);
+          color: rgba(255, 145, 145, 0.7);
+          border-left: 2px solid rgba(255, 90, 90, 0.35);
+        }
+        .demo-ig-diff-after {
+          background: rgba(90, 200, 130, 0.06);
+          color: rgba(140, 220, 160, 0.78);
+          border-left: 2px solid rgba(90, 200, 130, 0.4);
+        }
+        .demo-ig-diff-sign {
+          font-weight: 700;
+          opacity: 0.85;
+        }
+
+        .demo-ig-actions {
+          display: flex; gap: 5px;
+          padding: 8px 10px 9px;
+        }
+        .demo-ig-mark-done {
           flex: 1;
-          height: 26px; border-radius: 7px;
+          height: 24px; border-radius: 6px;
           display: flex; align-items: center; justify-content: center; gap: 4px;
           font-family: 'Karla', sans-serif;
-          font-size: 0.6rem; font-weight: 700;
+          font-size: 0.58rem; font-weight: 700;
           background: #ffffff; color: #0a0a0a;
           border: none;
-          animation: acceptClick 9s ease-in-out infinite;
+          animation: markDoneClick 9s ease-in-out infinite;
         }
-        @keyframes acceptClick {
-          0%,  48% { transform: scale(1); background: #ffffff; }
-          50%, 52% { transform: scale(0.92); background: rgba(255,255,255,0.85); }
-          53%, 100% { transform: scale(1); background: #ffffff; }
+        @keyframes markDoneClick {
+          0%,  48% { transform: scale(1); background: #ffffff; color: #0a0a0a; }
+          50%, 52% { transform: scale(0.92); background: rgba(255,255,255,0.85); color: #0a0a0a; }
+          53%, 75% { transform: scale(1); background: rgba(120, 220, 150, 0.95); color: #0a0a0a; }
+          80%, 100% { transform: scale(1); background: #ffffff; color: #0a0a0a; }
         }
-        .demo-sug-dismiss {
-          height: 26px; padding: 0 10px; border-radius: 7px;
+        .demo-ig-dismiss {
+          height: 24px; padding: 0 9px; border-radius: 6px;
           display: flex; align-items: center; justify-content: center;
           font-family: 'Karla', sans-serif;
-          font-size: 0.6rem; font-weight: 600;
+          font-size: 0.58rem; font-weight: 600;
           background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,255,255,0.08);
           color: rgba(255,255,255,0.3);
@@ -570,23 +639,47 @@ export default function AIShowcaseSection() {
                     </div>
                   </div>
 
-                  {/* Suggestion tooltip */}
-                  <div className="demo-suggestion">
-                    <div className="demo-sug-header">
-                      <span className="demo-sug-title">CTA Placement Issue</span>
-                      <span className="demo-sug-score">Impact 87</span>
+                  {/* Implementation Guide */}
+                  <div className="demo-impl-guide">
+                    <div className="demo-ig-header">
+                      <span className="demo-ig-title">Implementation Guide</span>
+                      <span className="demo-ig-tab">Code</span>
                     </div>
-                    <p className="demo-sug-body">
-                      Add to Cart button is too small and off-center on mobile — costing ~18% of checkout clicks.
-                    </p>
-                    <div className="demo-sug-actions">
-                      <div className="demo-sug-accept">
-                        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+
+                    <div className="demo-ig-body">
+                      <p className="demo-ig-desc">
+                        CTA contrast too low — costing <strong>~18% of checkout taps</strong>. Increase weight & size.
+                      </p>
+
+                      <div className="demo-ig-file">
+                        <span className="demo-ig-file-path">assets/theme.css</span>
+                        <span className="demo-ig-file-tag">modify</span>
+                      </div>
+
+                      <div className="demo-ig-diff">
+                        <div className="demo-ig-diff-row demo-ig-diff-before">
+                          <span className="demo-ig-diff-sign">−</span>
+                          <span>background: #aaa;</span>
+                        </div>
+                        <div className="demo-ig-diff-row demo-ig-diff-after">
+                          <span className="demo-ig-diff-sign">+</span>
+                          <span>background: #111;</span>
+                        </div>
+                        <div className="demo-ig-diff-row demo-ig-diff-after">
+                          <span className="demo-ig-diff-sign">+</span>
+                          <span>padding: 12px 24px;</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="demo-ig-actions">
+                      <div className="demo-ig-mark-done">
+                        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M20 6L9 17l-5-5"/>
                         </svg>
-                        Apply fix
+                        Mark as done
                       </div>
-                      <div className="demo-sug-dismiss">Dismiss</div>
+                      <div className="demo-ig-dismiss">Dismiss</div>
                     </div>
                   </div>
 
@@ -611,10 +704,10 @@ export default function AIShowcaseSection() {
               <div className="ais-rule" />
 
               <p className="ais-body">
-                Regular analytics show you <strong>what happened</strong>. DynoWeb tells you <strong>what to fix</strong> — and does it for you. Our AI watches every tap, scroll, and rage-click, then surfaces the highest-ROI fixes automatically.
+                Regular analytics show you <strong>what happened</strong>. DynoWeb shows you <strong>exactly what to fix</strong> — with the file, the diff, and the projected lift. Our AI watches every tap, scroll, and rage-click, then surfaces the highest-ROI fixes ranked by impact.
               </p>
               <p className="ais-body">
-                No dashboards to configure. No analysts to hire. Just plug in your store and watch the insights surface.
+                No dashboards to configure. No analysts to hire. Just plug in your store and the insights — with implementation guides — surface automatically.
               </p>
             </div>
 
@@ -636,8 +729,8 @@ export default function AIShowcaseSection() {
 
               <div className="ais-stats" style={{ marginTop: "1.5rem" }}>
                 {[
-                  { v: "SEO Safe", l: "Every fix passes Core Web Vitals. Rankings stay intact." },
-                  { v: "Zero Risk", l: "Changes live in a Draft Theme — never your live store." },
+                  { v: "Dev-Ready", l: "Every fix ships with the file path, before/after diff, and impact estimate." },
+                  { v: "You're In Control", l: "Nothing touches your store until your team decides to ship it." },
                   { v: "Action, Not Data", l: "Hotjar shows a heatmap. We give you the fix." },
                 ].map((s, i) => (
                   <React.Fragment key={s.v}>

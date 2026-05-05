@@ -67,7 +67,7 @@ const features: Feature[] = [
   },
   {
     id: "ai", tab: "AI Suggestions",
-    headline: "AI Finds the Revenue Leaks.\nYou Click Fix.",
+    headline: "AI Finds the Revenue Leaks.\nYou Get the Fix.",
     subline: "Three-layer intelligence. One prioritized list.",
     bullets: [
       { title: "17+ Built-In Rules", desc: "Button sizing, heading structure, contrast, CTA placement, form visibility, and more." },
@@ -151,7 +151,7 @@ const features: Feature[] = [
   },
   {
     id: "smartnudge", tab: "SmartNudge",
-    headline: "Turn Frustrated Visitors\nInto Buyers — Automatically",
+    headline: "Convert Frustrated Visitors\nWith Behavior-Triggered Nudges",
     subline: "Behavior-triggered. Not timer-triggered.",
     bullets: [
       { title: "13 Component Types", desc: "Exit-intent rescue, social proof toast, countdown timer, sticky bar, cart nudge, combo/bundle offer, product badges, and more." },
@@ -591,7 +591,7 @@ export default function FeaturesVideoSection() {
             <div className="divider-line"/>
             <h2 className="sec-heading">See DynoWeb in action.</h2>
             <p style={{fontSize:"clamp(.875rem, 1.05vw, 1.5rem)",color:"rgba(255,255,255,0.3)",lineHeight:1.7,maxWidth:"28rem"}}>
-              Twelve capabilities working as one continuous loop — from raw signal to deployed fix.
+              Twelve capabilities working as one continuous loop — from raw signal to the exact fix.
             </p>
           </div>
 

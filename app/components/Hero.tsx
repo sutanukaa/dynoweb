@@ -17,7 +17,7 @@ export default function HeroSectionOne() {
   }, []);
 
   const line1 = ["Stop"];
-  const line2 = ["Let", "AI", "fix", "your", "store."];
+  const line2 = ["See", "exactly", "what", "to", "fix."];
 
   const trustBadges = [
     "Zero impact on page speed (<6KB)",
@@ -425,7 +425,7 @@ export default function HeroSectionOne() {
             {/* Header row */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"8px" }}>
               <span style={{ fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)" }}>
-                Live Fixes
+                Fixes Ready
               </span>
               <span style={{ fontSize:"0.58rem", color:"rgba(255,255,255,0.2)" }}>just now</span>
             </div>
@@ -435,17 +435,17 @@ export default function HeroSectionOne() {
               <div className="fix-icon" style={{ background:"rgba(255,255,255,0.06)", border:"1px solid rgba(255,255,255,0.1)" }}>🛒</div>
               <div className="fix-text">
                 <div className="fix-title">Cart abandonment copy</div>
-                <div className="fix-sub">+12% checkout rate</div>
+                <div className="fix-sub">+12% projected lift</div>
               </div>
-              <span className="fix-badge done">Fixed</span>
+              <span className="fix-badge done">Fix ready</span>
             </div>
             <div className="fix-row">
               <div className="fix-icon" style={{ background:"rgba(255,255,255,0.06)", border:"1px solid rgba(255,255,255,0.1)" }}>📸</div>
               <div className="fix-text">
                 <div className="fix-title">Product image order</div>
-                <div className="fix-sub">Optimising…</div>
+                <div className="fix-sub">Scoring impact…</div>
               </div>
-              <span className="fix-badge fixing">AI working</span>
+              <span className="fix-badge fixing">Analyzing</span>
             </div>
           </div>
 
@@ -577,8 +577,8 @@ export default function HeroSectionOne() {
 
             {/* Sub */}
             <p className="hero-sub anim-in delay-200">
-              Dynoweb invisibly watches your visitors, finds exactly where they get frustrated,
-              and automatically fixes it in one click. Zero code. Zero risk.
+              Dynoweb invisibly watches your visitors, pinpoints where they get frustrated,
+              and hands your dev the exact fix — file, diff, and projected lift. Zero guesswork. Zero risk.
             </p>
 
             {/* CTA */}

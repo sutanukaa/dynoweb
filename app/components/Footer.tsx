@@ -143,7 +143,7 @@ export default function Footer() {
             </nav>
           </div>
         </footer>
-        <div style={{textAlign:'center', color:'rgba(255,255,255,0.38)', fontFamily:'Karla, sans-serif', fontSize:'0.82rem', paddingBottom:'16px'}}>Official contact: <a href="mailto:info@dynoweb.app" style={{color:'rgba(255,255,255,0.7)'}}>info@dynoweb.app</a></div>
+        <div style={{textAlign:'center', color:'rgba(255,255,255,0.38)', fontFamily:'Karla, sans-serif', fontSize:'0.82rem', paddingBottom:'16px'}}>Official contact: <a href="mailto:support@dynoweb.ai" style={{color:'rgba(255,255,255,0.7)'}}>support@dynoweb.ai</a></div>
       </div>
     </>
   );

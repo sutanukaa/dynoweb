@@ -30,7 +30,7 @@ const useCases = [
     fix:
       "From there, the merchant activates a targeted nudge — an exit-intent popup for hesitating visitors, a discount offer for price hesitators, or a cart reminder for abandoners. Copy is generated in one click using AI, pre-filled with a headline, body, and CTA matched to the visitor moment. The nudge fires automatically when behavioral conditions are met, at the right frequency, on the right pages. No developer needed, no live theme changes — just a rule set and a message that shows up when it matters.",
     outcome: "The visitor who was about to leave sees exactly the right message at exactly the right moment.",
-    image: "/SmartNudge-usecase.png",
+    image: "/SmartNudge-usecases.png",
     imageAlt: "DynoWeb SmartNudge use case screenshot",
     imageLabel: "SmartNudge",
   },
