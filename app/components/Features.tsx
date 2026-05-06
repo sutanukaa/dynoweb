@@ -19,7 +19,7 @@ const features: Feature[] = [
       { title: "Privacy-First", desc: "All data anonymized — no personal information collected, ever." },
       { title: "Full Control", desc: "Toggle individual signals on or off from Settings. Native Shopify app extension — no code pasted into your theme." },
     ],
-    caption: "<5KB · 0ms impact · 11 signals",
+    caption: "~34 KB · gzipped · 11 signals",
     videoSrc: "/videos/ai-builder.mp4",
     icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>),
   },

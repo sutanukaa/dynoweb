@@ -4,7 +4,7 @@ import React from "react";
 const bullets = [
   {
     title: "Step 1: Watch (Invisibly)",
-    desc: "Our 6KB tracker captures 11 behavioral signals without slowing your store by a single millisecond.",
+    desc: "Our lightweight ~34 KB tracker captures 11 behavioral signals without slowing your store by a single millisecond.",
   },
   {
     title: "Step 2: Think (Like a CRO Expert)",

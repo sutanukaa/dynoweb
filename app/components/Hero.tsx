@@ -20,7 +20,7 @@ export default function HeroSectionOne() {
   const line2 = ["See", "exactly", "what", "to", "fix."];
 
   const trustBadges = [
-    "Zero impact on page speed (<6KB)",
+    "Sub-40 KB tracker",
     "100% SEO Safe",
     "Native Shopify App",
   ];

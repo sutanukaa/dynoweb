@@ -11,7 +11,7 @@ const faqs = [
   {
     question: "Will this affect my store's page speed?",
     answer:
-      "DynoWeb is built to be as lightweight as possible. The tracking script is under 6KB and loads asynchronously, so it won’t impact your Core Web Vitals.",
+      "DynoWeb is built to be as lightweight as possible. The tracking script is ~34 KB gzipped and loads asynchronously, with minimal page-speed impact.",
   },
   {
     question: "Can I use it with existing analytics tools?",
