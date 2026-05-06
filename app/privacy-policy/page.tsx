@@ -108,6 +108,7 @@ const sections = [
           <li>limited element metadata, such as selector, xpath, HTML tag, and limited visible element text associated with the interaction</li>
           <li>form interaction metadata, such as hashed field identifiers, time spent, and whether a field was changed</li>
           <li>cart or conversion-intent related metadata such as product handle, quantity, and variant ID where available</li>
+          <li>marketing attribution parameters present in the page URL, such as UTM source, medium, campaign, term, and content</li>
           <li>coarse geolocation fields such as country, region, and city</li>
           <li>a one-way hash of the visitor IP address</li>
         </ul>
@@ -217,7 +218,49 @@ const sections = [
           <li>screenshot cache entries are currently cached for approximately 1 hour for preview-theme captures and approximately 6 hours for other captures</li>
         </ul>
 
-        <p className="pp-sub-label">G. Customer data accessed through Shopify admin tools</p>
+        <p className="pp-sub-label">G. SmartNudge interventions, exposure logs, and conditional visitor data</p>
+        <p>If a merchant enables SmartNudge, DynoWeb may process:</p>
+        <ul>
+          <li>intervention configuration, targeting rules, copy, A/B variants, and holdout settings</li>
+          <li>exposure events such as <code>shown</code>, <code>clicked</code>, <code>dismissed</code>, <code>converted</code>, and <code>holdout</code> bucket assignments</li>
+          <li>session ID, page URL, device type, and timestamp associated with each exposure</li>
+          <li>conversion linkage including order ID and order total when a tracked session converts</li>
+          <li>the <strong>visitor e-mail address</strong> only if the merchant configures a SmartNudge intervention that prompts visitors to submit an e-mail (for example, to receive a discount code) and only when the visitor submits a value that looks like an e-mail address</li>
+          <li>discount code metadata when a merchant configures auto-generated Shopify discount codes inside an intervention</li>
+        </ul>
+        <p className="pp-sub-label">Purpose of processing</p>
+        <ul>
+          <li>delivering and measuring on-site interventions and experiments</li>
+          <li>delivering coupon codes to visitors who explicitly request them</li>
+          <li>conversion and revenue attribution for SmartNudge campaigns</li>
+        </ul>
+        <p className="pp-sub-label">Legal basis</p>
+        <p>DynoWeb processes SmartNudge data on the merchant's instructions. The merchant is responsible for displaying any required notices, obtaining consent where required by applicable law (including for storing visitor e-mail addresses), and respecting the visitor's choices via the merchant's consent banner and Shopify's Customer Privacy API.</p>
+        <p className="pp-sub-label">Retention</p>
+        <p>Exposure events are retained alongside other storefront analytics under the same default analytics history window. Visitor e-mail addresses captured through a SmartNudge intervention are retained while the related intervention or shop record is active and are removed on shop redact, customer redact, or merchant request.</p>
+
+        <p className="pp-sub-label">H. Brand DNA and storefront brand asset extraction</p>
+        <p>To power AI-driven design and copy suggestions, DynoWeb may extract and store:</p>
+        <ul>
+          <li>logo URLs, favicon URLs, and OG image URLs taken from the merchant's storefront</li>
+          <li>brand color palettes and typography</li>
+          <li>brand voice descriptors and imagery style attributes inferred from the storefront</li>
+        </ul>
+        <p className="pp-sub-label">Purpose of processing</p>
+        <p>Producing on-brand AI suggestions, generated copy, and generated imagery for the merchant.</p>
+        <p className="pp-sub-label">Legal basis</p>
+        <p>Performance of a contract with the merchant (GDPR Article 6(1)(b)) and our legitimate interests in operating merchant-requested AI features (GDPR Article 6(1)(f)).</p>
+        <p className="pp-sub-label">Retention</p>
+        <p>Brand DNA records are retained while the merchant account is active and refreshed when the merchant re-runs brand extraction.</p>
+
+        <p className="pp-sub-label">I. Agent action history and approval audit trail</p>
+        <p>For DynoAgent write actions, DynoWeb stores an audit record of each pending and executed action, which may include the input payload, a "before" snapshot, and an "after" snapshot of the affected Shopify resource or theme file.</p>
+        <p className="pp-sub-label">Purpose of processing</p>
+        <p>Approval-gated execution, rollback safety, debugging, and audit transparency for the merchant.</p>
+        <p className="pp-sub-label">Retention</p>
+        <p>Agent action history is retained while the merchant account is active and is purged when the shop is redacted or on validated merchant request.</p>
+
+        <p className="pp-sub-label">J. Customer data accessed through Shopify admin tools</p>
         <p>DynoWeb's Shopify app scopes and agent tooling may permit access to certain Shopify customer data if a merchant explicitly uses customer-related admin tools.</p>
         <p>If such tools are used, DynoWeb may process customer-related data returned by Shopify, such as:</p>
         <ul>
@@ -273,6 +316,8 @@ const sections = [
         <p>Purpose: AI suggestion generation, quick-wins audits, and theme code generation. Prompts sent to OpenRouter may include merchant prompts, analytics context, screenshots, theme snippets, and merchant-supplied storefront content. OpenRouter may route requests to underlying model providers.</p>
         <p className="pp-sub-label">Composio</p>
         <p>Purpose: optional Shopify tool routing and automation used by DynoAgent. In the current implementation, Shopify access tokens and tool inputs may be sent to Composio when these features are used.</p>
+        <p className="pp-sub-label">Resend</p>
+        <p>Purpose: transactional and notification e-mail delivery, including SmartNudge coupon e-mails, weekly CRO digests, customer data-request exports, and operational notifications.</p>
         <p className="pp-sub-label">Sentry</p>
         <p>Purpose: application error monitoring and technical diagnostics.</p>
         <p className="pp-sub-label">Our database, storage, and hosting providers</p>
@@ -318,7 +363,7 @@ const sections = [
           <li>lodge a complaint with your local data protection or privacy authority</li>
           <li>seek another remedy available under applicable law</li>
         </ul>
-        <p>Effective from: March 24, 2026</p>
+        <p>Effective from: May 5, 2026</p>
       </>
     ),
   },
@@ -592,7 +637,7 @@ export default function PrivacyPolicy() {
           <div className="pp-left">
             <div>
               <h1 className="pp-main-title">Privacy<br /><span>Policy</span></h1>
-              <p className="pp-updated">Last updated: March 24, 2026</p>
+              <p className="pp-updated">Last updated: May 5, 2026</p>
             </div>
             <div className="pp-left-foot">
               Questions?<br />
