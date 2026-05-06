@@ -38,14 +38,38 @@ const useCases = [
     number: "03",
     title: "Fix mobile friction before it costs revenue",
     scenario:
-      "A store converts well on desktop, but mobile sessions bounce more often and product pages get lots of interaction with very few add-to-cart clicks.",
-    diagnosis:
-      "DynoWeb picks up touch-heavy behavior that standard analytics usually miss: repeated taps on cramped buttons, pinch-zooming because product details are hard to read, and thumb-zone friction near filters, drawers, or sticky elements.",
-    fix:
-      "That gives the merchant a concrete mobile fix list: increase tap targets, simplify the first viewport, reduce competing actions, and test cleaner CTA placement in a draft before rolling the update out.",
-    outcome: "The result is a mobile experience shaped around how shoppers actually use their phones, not how the theme looked in design review.",
-    image: "/suggestionss.png",
-    imageAlt: "DynoWeb suggestions screenshot",
+      "A store converts well on desktop, but mobile sessions tell a different story. Bounce rates are higher, product pages collect plenty of taps, and yet very few of those taps turn into add-to-cart events. The merchant can see the gap in their analytics, but they can't see why.",
+    diagnosis: (
+      <>
+        <p>DynoWeb picks up the touch-heavy behaviors that standard analytics miss — the signals that only show up when you actually watch how a thumb moves on a phone:</p>
+        <ul className="list-disc space-y-2 pl-5">
+          <li>Repeated taps on buttons that are too small or sit too close together.</li>
+          <li>Pinch-zooming on product details because text and images aren&apos;t legible at mobile widths.</li>
+          <li>Rage-clicks and dead-clicks clustered around filters, drawers, and sticky elements in the thumb zone.</li>
+          <li>Drop-offs that happen the moment a competing CTA shows up in the first viewport.</li>
+        </ul>
+        <p>Each of these signals is summarized into a suggestion on the Suggestions page, complete with the evidence behind it (impressions, clicks, CTR, matching session replays), the page it applies to, an expected-impact rating, and a difficulty badge.</p>
+      </>
+    ),
+    fix: (
+      <>
+        <p>DynoWeb doesn&apos;t push changes into the live theme. Instead, every suggestion opens into an Implementation Guide that explains the fix two ways:</p>
+        <ul className="list-disc space-y-2 pl-5">
+          <li><strong>Theme Editor Steps</strong> — a numbered, click-by-click walkthrough for non-technical users. Find the section, change the setting, save.</li>
+          <li><strong>Code Changes</strong> — for merchants with a developer, the exact file path and the code snippet to add or modify, with a one-click Copy button.</li>
+        </ul>
+        <p>Every guide includes a short summary of why the change matters, a How to Verify section so the merchant can confirm the fix landed, and an Expected Outcome describing what should improve.</p>
+        <p>For the mobile scenario, that translates into a concrete fix list the merchant can actually act on: enlarge tap targets to recommended thumb-zone sizes, simplify the first viewport, reduce competing actions, and reposition the primary CTA where the data shows shoppers are reaching. Each item has its own guide.</p>
+      </>
+    ),
+    outcome: (
+      <>
+        <p>The merchant ships the changes themselves — confidently, because every step is spelled out — and the store&apos;s mobile experience starts matching how shoppers actually use their phones, not how the theme looked in design review.</p>
+        <p>DynoWeb does the diagnosis and writes the playbook. The merchant stays in control of what ships.</p>
+      </>
+    ),
+    image: "/Suggestion-usecase.png",
+    imageAlt: "DynoWeb suggestion card showing recommendation, evidence, and the View Implementation Guide action",
     imageLabel: "Suggested Improvements",
   },
   {
@@ -247,32 +271,32 @@ export default function UseCasesPage() {
                       <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
                         Real scenario
                       </p>
-                      <p className="mt-2 text-[1rem] leading-8 text-zinc-300">
+                      <div className="mt-2 space-y-3 text-[1rem] leading-8 text-zinc-300">
                         {item.scenario}
-                      </p>
+                      </div>
                     </div>
 
                     <div className="mt-4 rounded-[1.35rem] border border-white/10 bg-white/[0.02] px-4 py-4">
                       <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
                         What DynoWeb shows
                       </p>
-                      <p className="mt-2 text-[1rem] leading-8 text-zinc-300">
+                      <div className="mt-2 space-y-3 text-[1rem] leading-8 text-zinc-300">
                         {item.diagnosis}
-                      </p>
+                      </div>
                     </div>
 
                     <div className="mt-4 rounded-[1.35rem] border border-sky-300/14 bg-sky-400/[0.05] px-4 py-4">
                       <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-200/80">
                         How it gets fixed
                       </p>
-                      <p className="mt-2 text-[1rem] leading-8 text-zinc-200">
+                      <div className="mt-2 space-y-3 text-[1rem] leading-8 text-zinc-200">
                         {item.fix}
-                      </p>
+                      </div>
                     </div>
 
-                    <p className="mt-5 text-base font-medium leading-8 text-sky-100">
+                    <div className="mt-5 space-y-3 text-base font-medium leading-8 text-sky-100">
                       {item.outcome}
-                    </p>
+                    </div>
                   </div>
                 </div>
               </article>

@@ -1,54 +1,98 @@
 ---
 title: Suggestions
-description: Understand how Suggestions turns checks and visitor behavior into prioritized recommendations.
+description: Understand how Suggestions turns theme checks and visitor behavior into prioritized, fix-it-yourself recommendations.
 ---
 
-The Suggestions page is where DynoWeb turns store data into prioritized recommendations.
+The Suggestions page is where DynoWeb turns store data into a prioritized list of what to fix and exactly how to fix it.
 
-It combines quick theme checks, behavior-based analysis, previews, and draft-safe actions so users can move from insight to improvement in one place.
+DynoWeb does the diagnosis and writes the playbook. You stay in control of the change — every suggestion comes with a step-by-step guide so you (or your developer) can implement it confidently in the Shopify admin or in code.
 
-> **Currently available: CSS suggestions.** CSS-based suggestions (style and layout changes) are fully supported and can be previewed and applied to a draft theme today. All other suggestion types are coming soon.
-
-<img src="/suggestionsOverview.png" alt="Suggestions page overview" />
+<img src="/suggestionsOverview.png" alt="Suggestions page overview showing prioritized recommendations and the workflow tools below" />
 
 ## What It Does
 
-This page has two starting points.
+Suggestions has two starting points.
 
-Quick Store Check looks through the live theme for easy wins and works even before the store has traffic.
+**Quick Store Check** scans the live theme for easy wins. It works even before the store has any traffic, so new merchants get value on day one.
 
-Traffic Analysis uses real visitor behavior to find higher-confidence opportunities based on what shoppers are actually doing.
+**Traffic Analysis** uses real visitor behavior — clicks, frustration signals, scroll depth, journey drop-offs — to surface higher-confidence opportunities based on what shoppers are actually doing on the store.
 
-<img src="/storechecks.png" alt="Suggestions page quick store check and traffic analysis options" />
+Once suggestions are generated, they're grouped into four tiers so users know what to tackle first:
 
-Once suggestions are available, they are grouped into tiers like Quick Wins, Strategic, Ambitious, and Needs Triage so users can decide what to tackle first.
+- **Quick Wins** — low-effort, high-leverage fixes ranked first.
+- **Strategic** — bigger improvements with strong evidence behind them.
+- **Ambitious** — high-impact changes that need more planning.
+- **Needs Triage** — items that don't fit the primary tiers and warrant manual review.
 
-Each suggestion card includes the recommendation, page context, evidence, important signals, and actions like Open Preview, Matching Replays, Apply to Draft for supported changes, Dismiss, or Revert Draft when already applied.
+<img src="/suggestionGroups-1.png" alt="Suggestion groups view showing the Quick Wins tier" />
 
-<img src="/suggestion1.png" alt="Suggestions page prioritized recommendation cards" />
+<img src="/suggestionGroups-2.png" alt="Suggestion groups view showing Strategic and Ambitious tiers" />
 
-<img src="/suggestion2.png" alt="Suggestions page recommendation preview and actions" />
+<img src="/suggestionGroups-3.png" alt="Suggestion groups view showing the Needs Triage tier" />
 
-The lower part of the page helps users manage the suggestion workflow.
+Every suggestion card carries the recommendation, the page it applies to, the evidence behind it, an expected impact signal, a difficulty rating (Easy / Medium / Hard), and a confidence rating based on how strong the data is.
 
-Analysis Runs shows recent engine jobs and their results, while Preview Candidates shows unpublished candidate changes that passed internal validation and can be filtered by target, modification type, source, and sort order.
+<img src="/suggestionCard.png" alt="Suggestion card detail showing recommendation, page, evidence, impact, difficulty, and confidence" />
 
-<img src="/suggestionss.png" alt="Suggestions page analysis runs and preview candidates" />
+Opening a suggestion takes the user to a dedicated detail page — this is where DynoWeb explains how to fix it.
+
+### The Implementation Guide (the heart of every suggestion)
+
+DynoWeb does not push code into your theme. Instead, every suggestion comes with a complete Implementation Guide that gives users two routes to applying the fix:
+
+**Theme Editor Steps** — a clean, numbered walkthrough written for non-technical users. Each step describes exactly what to click, where to find the setting in the Shopify theme editor, and what value to enter. No code required.
+
+<img src="/implementationguide-theme.png" alt="Implementation Guide Theme Editor Steps with a numbered walkthrough for non-technical users" />
+
+**Code Changes** — for developers or merchants who prefer editing the theme files directly. Each file change shows the file path, the exact code to add or modify, and a one-click Copy button so the snippet can be dropped straight into the theme editor or a Git workflow.
+
+<img src="/implementationguide-code.png" alt="Implementation Guide Code Changes view with file path, before/after diff, and Copy button" />
+
+Every guide also includes:
+
+- A short **Summary** explaining what the change does and why it matters.
+- A **How to Verify** section so users can confirm the fix landed correctly after applying it.
+- An **Expected Outcome** describing the metric or behavior they should see improve.
+
+If a suggestion doesn't yet have a fully detailed guide, users can click **Enrich with AI** to generate a developer-ready, theme-aware plan on demand. The enrichment uses the merchant's actual theme files as context, so the steps and code refer to the right sections, classes, and templates.
+
+For behavior-driven suggestions (rage-click hotspots, drop-off pages, frustrated journeys), the detail page also opens an **Investigation Dossier** that deep-links into matching session replays — so users can watch the issue happen before deciding what to change.
+
+<img src="/suggestion-analytics-replays.png" alt="Investigation Dossier showing analytics evidence and deep-links to matching session replays" />
+
+### Other Card Actions
+
+Beyond opening the guide, each suggestion card supports:
+
+- **Open Preview** — see the affected page on the live storefront.
+- **Matching Replays** — jump straight to recorded sessions that triggered the suggestion.
+- **Dismiss** — remove suggestions that don't apply to the store.
 
 ## How To Use It Best
 
-The best flow is to start with Quick Store Check right away, especially for a newer store, because it does not depend on traffic.
+The intended flow is:
 
-After the store has enough visitor activity, users should run Traffic Analysis to generate evidence-backed suggestions based on real behavior.
+1. Run **Quick Store Check** first, especially for newer stores. It surfaces theme-level fixes that don't need traffic.
+2. Once the store has been collecting events for a few days, run **Traffic Analysis** to layer in evidence-backed recommendations from real visitor behavior.
+3. Sort the list by **Quick Wins** and start there. They're the smallest changes with the strongest leverage.
+4. Open any suggestion to read the **Implementation Guide**. Pick the route that fits — Theme Editor for no-code, Code Changes for development work.
+5. Apply the change yourself, then use **How to Verify** to check that it landed.
+6. Track results over time as new metrics flow in. Suggestions that no longer apply will fall out of the list automatically.
 
-From there, users should review the highest-priority suggestions first, open previews before making decisions, and apply only supported changes to a draft theme.
+The page works best when treated as a decision queue: review the priority, read the evidence, follow the guide, ship the change, and confirm the outcome.
 
-This page works best when users treat it as a decision queue: check the priority, review the evidence, preview the change, apply it safely to draft, and then validate results later through Experiments.
+## Workflow Tools
 
-One important note for the guide: not every suggestion is one-click auto-applicable.
+The bottom of the page helps users manage and audit the suggestion pipeline.
 
-Currently, only **CSS suggestions** (style and layout changes) can be applied directly to a draft theme. All other suggestion types are coming soon and should be treated as guided recommendations for now.
+**Analysis Runs** shows recent engine jobs and what each run produced — useful for understanding when the last refresh happened and whether anything is queued.
+
+**Preview Candidates (Pending Publishing)** lists engine-generated suggestions that have been validated against baseline metrics but haven't been promoted to the main list yet. Filter by target, modification type, source, or sort order to inspect what's waiting in the pipeline.
+
+## A Note on How DynoWeb Applies Changes
+
+DynoWeb does not auto-apply suggestions to the live theme. Every change is something the user — or their developer — implements with the guidance DynoWeb provides. This keeps the merchant in full control of what ships, while still removing the hardest part of CRO work: knowing what to change and exactly how to change it.
 
 ## Good Help-Guide Positioning
 
-"Suggestions is where DynoWeb turns theme checks and visitor behavior into prioritized recommendations. Currently, CSS suggestions are fully available — helping users preview style fixes, apply them safely to a draft theme, and track improvement opportunities over time. Additional suggestion types are coming soon."
+"Suggestions is where DynoWeb turns theme checks and visitor behavior into a prioritized to-do list — each one paired with a step-by-step guide and ready-to-paste code so you (or your developer) can implement the fix confidently in the Shopify admin or theme files."
