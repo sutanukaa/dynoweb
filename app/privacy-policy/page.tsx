@@ -300,7 +300,7 @@ const sections = [
           <li>seek a judicial or other legal remedy where permitted by law</li>
         </ul>
         <p>If your personal data was collected on a merchant's Shopify storefront through the DynoWeb tracker, you should usually contact that merchant first, because DynoWeb generally processes that data on the merchant's behalf.</p>
-        <p>Requests may be sent to <a href="mailto:support@dynoweb.ai">support@dynoweb.ai</a> or to any other privacy contact details published by the Data Controller.</p>
+        <p>Requests may be sent to <a href="mailto:help@dynoweb.app">help@dynoweb.app</a> or to any other privacy contact details published by the Data Controller.</p>
         <p>DynoWeb will review and respond to valid requests within the timeframe required by applicable law.</p>
       </>
     ),
@@ -313,7 +313,7 @@ const sections = [
       <>
         <p>If you believe your personal data has been processed unlawfully, you may:</p>
         <ul>
-          <li>contact DynoWeb first at <a href="mailto:support@dynoweb.ai">support@dynoweb.ai</a></li>
+          <li>contact DynoWeb first at <a href="mailto:help@dynoweb.app">help@dynoweb.app</a></li>
           <li>contact the merchant whose storefront collected the data, where relevant</li>
           <li>lodge a complaint with your local data protection or privacy authority</li>
           <li>seek another remedy available under applicable law</li>
@@ -596,7 +596,7 @@ export default function PrivacyPolicy() {
             </div>
             <div className="pp-left-foot">
               Questions?<br />
-              <a href="mailto:support@dynoweb.ai">support@dynoweb.ai</a>
+              <a href="mailto:help@dynoweb.app">help@dynoweb.app</a>
             </div>
           </div>
 

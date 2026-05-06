@@ -363,12 +363,12 @@ export default function ContactSection() {
                 "We typically respond within a few hours",
                 "No sales pitch — just real answers",
                 "Available for demos & early access",
-                "Contact us: support@dynoweb.ai"
+                "Contact us: help@dynoweb.app"
               ].map((item, i) => (
                 <div key={i} className="contact-chip">
                   <span className="contact-chip-dot" />
-                  {item.includes('support@dynoweb.ai') ? (
-                    <span>Contact us: <a href="mailto:support@dynoweb.ai" style={{color:'rgba(255,255,255,0.7)'}}>support@dynoweb.ai</a></span>
+                  {item.includes('help@dynoweb.app') ? (
+                    <span>Contact us: <a href="mailto:help@dynoweb.app" style={{color:'rgba(255,255,255,0.7)'}}>help@dynoweb.app</a></span>
                   ) : item}
                 </div>
               ))}
