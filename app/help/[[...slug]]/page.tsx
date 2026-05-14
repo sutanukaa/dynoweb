@@ -208,6 +208,8 @@ function DocsImage({
       src={resolvedSrc}
       width={resolvedWidth}
       height={resolvedHeight}
+      loading="lazy"
+      decoding="async"
       className={cn("h-auto", className)}
     />
   );

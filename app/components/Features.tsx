@@ -2,6 +2,21 @@
 import { useState, useRef, useEffect } from "react";
 import LightRays from "@/components/LightRays";
 
+const mockupImgPaths = [
+  "/VisitorTracking.png",
+  "/Dashboard.png",
+  "/Heatmaps.png",
+  "/Replays.png",
+  "/AISuggestions.png",
+  "/CROReport.png",
+  "/RevenueAttribution.png",
+  "/CartOverview.png",
+  "/Journeys.png",
+  "/Referrers.png",
+  "/SmartNudge.png",
+  "/DynoAgent.png",
+];
+
 interface Bullet { title: string; desc: string; }
 interface Feature {
   id: string; tab: string; headline: string; subline: string;
@@ -187,6 +202,15 @@ export default function FeaturesVideoSection() {
   const indicatorRef = useRef<HTMLDivElement>(null);
 
   const didMountRef = useRef(false);
+
+  // Preload every tab's mockup once on mount so switching tabs feels instant
+  useEffect(() => {
+    mockupImgPaths.forEach((src) => {
+      const img = new window.Image();
+      img.decoding = "async";
+      img.src = src;
+    });
+  }, []);
 
   const changeTab = (i: number) => {
     if (i === active) return;
@@ -635,6 +659,8 @@ export default function FeaturesVideoSection() {
                 <img
                   src={mockupImg}
                   alt={feat.headline}
+                  decoding="async"
+                  loading="eager"
                   style={{
                     width: "100%",
                     height: "100%",
