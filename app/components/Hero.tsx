@@ -93,10 +93,10 @@ export default function HeroSectionOne() {
         /* ── Headline ── */
         .hero-headline {
           font-family: 'Montserrat', sans-serif;
-          font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+          font-size: clamp(2.5rem, 5.3vw, 4.75rem);
           font-weight: 800;
-          line-height: 1.08;
-          letter-spacing: -0.025em;
+          line-height: 1.06;
+          letter-spacing: -0.02em;
           text-align: center;
           color: #ffffff;
           text-shadow: 0 0 50px rgba(255,255,255,0.2);
@@ -105,10 +105,10 @@ export default function HeroSectionOne() {
           text-wrap: balance;
         }
         @media (min-width: 900px) {
-          .hero-headline { max-width: 80vw; }
+          .hero-headline { max-width: 85vw; }
         }
         @media (min-width: 1400px) {
-          .hero-headline { max-width: 70vw; }
+          .hero-headline { max-width: 78vw; }
         }
         .word-hover { display:inline-block; cursor:default; }
 
@@ -116,11 +116,12 @@ export default function HeroSectionOne() {
         .hero-sub {
           font-family: 'Karla', sans-serif;
           font-size: clamp(1rem, 1.4vw, 1.5rem);
-          line-height: 1.65;
+          line-height: 1.6;
           text-align: center;
           color: rgba(255,255,255,0.5);
           letter-spacing: 0.02em;
-          max-width: max(36rem, 38vw);
+          max-width: max(50rem, 52vw);
+          text-wrap: balance;
         }
 
         /* ── Trust badges ── */
@@ -577,8 +578,7 @@ export default function HeroSectionOne() {
 
             {/* Sub */}
             <p className="hero-sub anim-in delay-200">
-              Dynoweb invisibly watches your visitors, pinpoints where they get frustrated,
-              and hands your dev the exact fix — file, diff, and projected lift. Zero guesswork. Zero risk.
+              Dynoweb pinpoints where visitors get frustrated and hands your dev the exact fix — file, diff, and projected lift. Zero guesswork. Zero risk.
             </p>
 
             {/* CTA */}
