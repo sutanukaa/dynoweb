@@ -319,8 +319,10 @@ export default function UseCasesPage() {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link
-                href="/waitlist"
+              <a
+                href="https://apps.shopify.com/dynoweb"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="uv-btn-wrapper"
                 style={{ textDecoration: "none" }}
               >
@@ -340,7 +342,7 @@ export default function UseCasesPage() {
                 >
                   <div className="uv-txt-wrapper">
                     <div className="uv-txt-1">
-                      {Array.from("Join the waitlist now").map((c, i) =>
+                      {Array.from("Get DynoWeb on Shopify").map((c, i) =>
                         c === " " ? (
                           <span key={i} style={{ display: "inline-block", width: "0.4em" }} />
                         ) : (
@@ -355,7 +357,7 @@ export default function UseCasesPage() {
                       )}
                     </div>
                     <div className="uv-txt-2" aria-hidden="true">
-                      {Array.from("Join the waitlist now").map((c, i) =>
+                      {Array.from("Get DynoWeb on Shopify").map((c, i) =>
                         c === " " ? (
                           <span key={i} style={{ display: "inline-block", width: "0.4em" }} />
                         ) : (
@@ -374,7 +376,7 @@ export default function UseCasesPage() {
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </div>
-              </Link>
+              </a>
               <Link
                 href="/help"
                 className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-semibold text-zinc-200 transition hover:border-white/15 hover:bg-white/[0.06] hover:text-white"

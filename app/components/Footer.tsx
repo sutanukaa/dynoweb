@@ -8,7 +8,7 @@ export default function Footer() {
     { label: "Use Cases", href: "/use-cases" },
     { label: "Help", href: "/help" },
     { label: "Contact Us", href: "/contact-us" },
-    { label: "Join Waitlist", href: "/waitlist" },
+    { label: "Get on Shopify", href: "https://apps.shopify.com/dynoweb" },
     { label: "Privacy Policy", href: "/privacy-policy" },
   ];
 
@@ -137,9 +137,20 @@ export default function Footer() {
               <span style={{ fontFamily: "'Karla',sans-serif", fontSize: "0.8125rem", fontWeight: 500, color: "rgba(255,255,255,0.25)" }}>DynoWeb</span>
             </a>
             <nav className="flex items-center gap-8 footer-responsive-nav">
-              {navItems.map((item, i) => (
-                <a key={i} href={item.href} className="footer-nav-link" onClick={e => handleFooterNav(e, item.href)}>{item.label}</a>
-              ))}
+              {navItems.map((item, i) => {
+                const isExternal = item.href.startsWith("http");
+                return (
+                  <a
+                    key={i}
+                    href={item.href}
+                    className="footer-nav-link"
+                    onClick={e => handleFooterNav(e, item.href)}
+                    {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
             </nav>
           </div>
         </footer>

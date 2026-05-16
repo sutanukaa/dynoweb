@@ -266,18 +266,18 @@ export default function InstallationSection() {
             </div>
 
             {/* CTA */}
-            <a href="/waitlist" className="uv-btn-wrapper" style={{textDecoration:"none"}}>
+            <a href="https://apps.shopify.com/dynoweb" target="_blank" rel="noopener noreferrer" className="uv-btn-wrapper" style={{textDecoration:"none"}}>
               <div className="uv-btn" style={{background:'#fff', color:'#000', border:'1px solid #000', borderRadius:'999px', padding:'12px 32px', display:'flex', alignItems:'center', gap:'8px', boxShadow:'0 2px 8px rgba(0,0,0,0.08)'}}>
                 <div className="uv-txt-wrapper">
                   <div className="uv-txt-1">
-                    {Array.from("Join the waitlist now").map((c, i) =>
+                    {Array.from("Get DynoWeb on Shopify").map((c, i) =>
                       c === " "
                         ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
                       : <span key={i} className="uv-btn-letter" style={{color:'#000'}}>{c}</span>
                     )}
                   </div>
                   <div className="uv-txt-2" aria-hidden="true">
-                    {Array.from("Join the waitlist now").map((c, i) =>
+                    {Array.from("Get DynoWeb on Shopify").map((c, i) =>
                       c === " "
                         ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
                         : <span key={i} className="uv-btn-letter" style={{color:'#000'}}>{c}</span>

@@ -583,18 +583,18 @@ export default function HeroSectionOne() {
 
             {/* CTA */}
             <div className="anim-in delay-300" style={{ display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap:"0.75rem", paddingTop:"0.5rem" }}>
-              <a href="/waitlist" className="uv-btn-wrapper" style={{textDecoration:"none"}}>
+              <a href="https://apps.shopify.com/dynoweb" target="_blank" rel="noopener noreferrer" className="uv-btn-wrapper" style={{textDecoration:"none"}}>
                 <div className="uv-btn">
                   <div className="uv-txt-wrapper">
                     <div className="uv-txt-1">
-                      {Array.from("Join the waitlist now").map((c, i) =>
+                      {Array.from("Get DynoWeb on Shopify").map((c, i) =>
                         c === " "
                           ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
                           : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
                       )}
                     </div>
                     <div className="uv-txt-2" aria-hidden="true">
-                      {Array.from("Join the waitlist now").map((c, i) =>
+                      {Array.from("Get DynoWeb on Shopify").map((c, i) =>
                         c === " "
                           ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
                           : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>

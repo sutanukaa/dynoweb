@@ -14,7 +14,6 @@ const navItems: NavItem[] = [
   { label: "Use Cases", id: "use-cases", href: "/use-cases" },
   { label: "Help", id: "help", href: "/help" },
   { label: "Contact Us", id: "contact", href: "/contact-us" },
-  { label: "Join Waitlist", id: "waitlist", href: "/waitlist" },
   { label: "Privacy Policy", id: "privacy", href: "/privacy-policy" },
 ];
 
@@ -258,8 +257,8 @@ export default function Navbar() {
               </a>
             ))}
             <div style={{ height: 1, background: "rgba(255,255,255,0.06)", margin: "6px 0" }} />
-            <a href="/waitlist" className="mobile-link" style={{ color: "rgba(147,197,253,0.85)", fontWeight: 600, textDecoration: "none" }}>
-              Join the waitlist now →
+            <a href="https://apps.shopify.com/dynoweb" target="_blank" rel="noopener noreferrer" className="mobile-link" style={{ color: "rgba(147,197,253,0.85)", fontWeight: 600, textDecoration: "none" }}>
+              Get DynoWeb on Shopify →
             </a>
           </motion.div>
         )}
