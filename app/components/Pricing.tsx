@@ -13,6 +13,14 @@ const plans = [
       "Basic heatmaps",
       "7-day data retention",
     ],
+    notIncluded: [
+      "AI write actions",
+      "Session replays",
+      "Full CRO reports",
+      "Advanced + scroll heatmaps",
+      "Full SmartNudge AI tools",
+      "Priority support",
+    ],
     highlighted: false,
   },
   {
@@ -26,6 +34,12 @@ const plans = [
       "Advanced heatmaps & scroll maps",
       "30-day data retention",
       "Priority support",
+    ],
+    notIncluded: [
+      "Unlimited sessions & queries",
+      "90-day data retention",
+      "Dedicated support",
+      "Custom integrations",
     ],
     highlighted: true,
   },
@@ -177,6 +191,14 @@ export default function PricingSection() {
           height: 18px;
           margin-top: 1px;
         }
+
+        .not-included { color: rgba(255,255,255,0.22); }
+        .not-included .label {
+          font-size: .78rem; color: rgba(255,255,255,0.32); text-transform: uppercase;
+          letter-spacing: .08em; font-weight: 700; margin-top: .75rem;
+        }
+        .not-included-item { display:flex; gap:.6rem; align-items:flex-start; margin-top:.6rem; color: rgba(255,255,255,0.28); font-size: .9rem }
+        .not-included-x { width:18px; height:18px; display:inline-block; border-radius:4px; background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.38); text-align:center; line-height:18px; font-weight:700 }
 
       `}</style>
 
@@ -444,6 +466,18 @@ export default function PricingSection() {
                     </div>
                   ))}
                 </div>
+
+                {plan.notIncluded && (
+                  <div className="not-included">
+                    <div className="label">Not included</div>
+                    {plan.notIncluded.map((n, ni) => (
+                      <div key={ni} className="not-included-item">
+                        <div className="not-included-x">✕</div>
+                        <div>{n}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
               </div>
             ))}
