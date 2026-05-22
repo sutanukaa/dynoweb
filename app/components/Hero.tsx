@@ -1,6 +1,30 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { Particles } from "@/components/particles";
+
+// Confetti burst pattern for the hero CTA hover — 22 deterministic pieces
+const CONFETTI_COLORS = [
+  "#6eb0ff",
+  "#ffffff",
+  "#3b6fbe",
+  "#ffd166",
+  "#ff8b9a",
+  "#6ee7c7",
+  "#c8b4ff",
+];
+const CONFETTI_PIECES = Array.from({ length: 22 }, (_, i) => {
+  const angle = (i / 22) * Math.PI * 2 + (i % 2 === 0 ? 0 : 0.18);
+  const distance = 120 + (i % 5) * 22; // 120, 142, 164, 186, 208 cycling
+  return {
+    cx: Math.round(Math.cos(angle) * distance),
+    cy: Math.round(Math.sin(angle) * distance),
+    cr: 260 + ((i * 53) % 260),
+    cc: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+    cw: 6 + (i % 3),
+    ch: 10 + (i % 4),
+    cd: (i * 17) % 140,
+  };
+});
 
 export default function HeroSectionOne() {
   const sketchRef   = useRef<HTMLSpanElement>(null);
@@ -122,6 +146,38 @@ export default function HeroSectionOne() {
           letter-spacing: 0.02em;
           max-width: max(50rem, 52vw);
           text-wrap: balance;
+        }
+
+        /* ── Secondary CTA — ghost pill ── */
+        .hero-secondary-cta {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 10px 22px;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.18);
+          border-radius: 999px;
+          color: rgba(255,255,255,0.85);
+          font-family: 'Karla', sans-serif;
+          font-size: clamp(0.85rem, 1vw, 1rem);
+          font-weight: 500;
+          letter-spacing: 0.005em;
+          text-decoration: none;
+          cursor: pointer;
+          transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+        }
+        .hero-secondary-cta:hover {
+          background: rgba(255,255,255,0.08);
+          border-color: rgba(255,255,255,0.4);
+          color: #ffffff;
+        }
+        .hero-secondary-cta svg {
+          opacity: 0.65;
+          transition: transform 0.18s ease, opacity 0.18s ease;
+        }
+        .hero-secondary-cta:hover svg {
+          transform: translateX(3px);
+          opacity: 1;
         }
 
         /* ── Trust badges ── */
@@ -582,19 +638,36 @@ export default function HeroSectionOne() {
             </p>
 
             {/* CTA */}
-            <div className="anim-in delay-300" style={{ display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap:"0.75rem", paddingTop:"0.5rem" }}>
+            <div className="anim-in delay-300" style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"0.85rem", paddingTop:"0.5rem" }}>
               <a href="https://apps.shopify.com/dynoweb" target="_blank" rel="noopener noreferrer" className="uv-btn-wrapper" style={{textDecoration:"none"}}>
+                <div className="confetti-burst" aria-hidden="true">
+                  {CONFETTI_PIECES.map((p, i) => (
+                    <span
+                      key={i}
+                      className="confetti-piece"
+                      style={{
+                        "--cx": `${p.cx}px`,
+                        "--cy": `${p.cy}px`,
+                        "--cr": `${p.cr}deg`,
+                        "--cc": p.cc,
+                        "--cw": `${p.cw}px`,
+                        "--ch": `${p.ch}px`,
+                        "--cd": `${p.cd}ms`,
+                      } as CSSProperties}
+                    />
+                  ))}
+                </div>
                 <div className="uv-btn">
                   <div className="uv-txt-wrapper">
                     <div className="uv-txt-1">
-                      {Array.from("Get DynoWeb on Shopify").map((c, i) =>
+                      {Array.from("We're Live — Check out DynoWeb on Shopify").map((c, i) =>
                         c === " "
                           ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
                           : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
                       )}
                     </div>
                     <div className="uv-txt-2" aria-hidden="true">
-                      {Array.from("Get DynoWeb on Shopify").map((c, i) =>
+                      {Array.from("We're Live — Check out DynoWeb on Shopify").map((c, i) =>
                         c === " "
                           ? <span key={i} style={{display:"inline-block",width:"0.4em"}} />
                           : <span key={i} className="uv-btn-letter" style={{animationDelay:`${i * 0.045}s`}}>{c}</span>
@@ -605,6 +678,19 @@ export default function HeroSectionOne() {
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </div>
+              </a>
+
+              {/* Secondary CTA: demo store */}
+              <a
+                href="https://demo.dynoweb.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-secondary-cta"
+              >
+                <span>Try on demo store</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
               </a>
             </div>
 

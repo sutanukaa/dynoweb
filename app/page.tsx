@@ -1,5 +1,6 @@
 import FUIHeroSectionWithLogoClouds from "./components/Hero";
 import PillNav from "./components/PillNav";
+import VideoShowcase from "./components/VideoShowcase";
 import AIShowcaseSection from "./components/AIShowcase";
 import FeaturesSection from "./components/Features";
 // ...existing code...
@@ -19,6 +20,16 @@ export default function Home() {
 
       {/* Hero — no reveal, it's above the fold */}
       <FUIHeroSectionWithLogoClouds />
+
+      <ScrollReveal
+        offset={70}
+        duration={0.8}
+        delay={0.05}
+        blur={8}
+        margin="-120px"
+      >
+        <VideoShowcase />
+      </ScrollReveal>
 
       <ScrollReveal
         offset={70}

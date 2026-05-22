@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavItem {
@@ -151,6 +151,145 @@ export default function Navbar() {
         }
         .nav-link:hover .nav-chevron { opacity: 0.7; }
 
+        /* Launch banner — bold, glowy, celebratory (brand-blue palette) */
+        .launch-banner {
+          position: relative;
+          background:
+            radial-gradient(ellipse 60% 90% at 50% 50%, #eef4ff 0%, #ffffff 70%);
+          color: #000;
+          padding: 11px 16px;
+          text-align: center;
+          font-family: 'Karla', sans-serif;
+          font-size: 0.92rem;
+          font-weight: 500;
+          letter-spacing: 0.005em;
+          border-bottom: 1px solid rgba(80,130,200,0.22);
+          overflow: hidden;
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.9),
+            inset 0 -1px 0 rgba(80,130,200,0.08),
+            0 0 24px rgba(110,176,255,0.22);
+        }
+        /* Animated shimmer sweep — brand-blue light moves across the banner */
+        .launch-banner::before {
+          content: "";
+          position: absolute;
+          top: 0; bottom: 0;
+          left: -45%;
+          width: 45%;
+          background: linear-gradient(
+            90deg,
+            rgba(110,176,255,0) 0%,
+            rgba(110,176,255,0.45) 45%,
+            rgba(150,200,255,0.75) 50%,
+            rgba(110,176,255,0.45) 55%,
+            rgba(110,176,255,0) 100%
+          );
+          filter: blur(10px);
+          pointer-events: none;
+          animation: bannerShimmer 4.5s linear infinite;
+        }
+        @keyframes bannerShimmer {
+          0%   { left: -45%; }
+          100% { left: 100%; }
+        }
+        /* Downward outer glow — emanates from banner into the dark nav below */
+        .launch-banner::after {
+          content: "";
+          position: absolute;
+          left: 0; right: 0; top: 100%;
+          height: 22px;
+          background: linear-gradient(
+            180deg,
+            rgba(110,176,255,0.45) 0%,
+            rgba(110,176,255,0) 100%
+          );
+          pointer-events: none;
+          z-index: 1;
+        }
+        .launch-banner-link {
+          position: relative;
+          z-index: 2;
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          color: #000;
+          text-decoration: none;
+          transition: opacity 0.15s ease;
+        }
+        .launch-banner-link:hover { opacity: 0.82; }
+        /* Sparkle accents that twinkle */
+        .launch-sparkle {
+          flex-shrink: 0;
+          color: #3b6fbe;
+          filter: drop-shadow(0 0 5px rgba(110,176,255,0.7));
+          animation: sparkleTwinkle 2.2s ease-in-out infinite;
+        }
+        .launch-sparkle-2 { animation-delay: 0.7s; }
+        .launch-sparkle-3 { animation-delay: 1.4s; }
+        @keyframes sparkleTwinkle {
+          0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+          50%      { transform: scale(1.3) rotate(15deg); opacity: 1; }
+        }
+        /* LIVE pill — solid black with pulsing green dot inside */
+        .launch-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: #0a0a0a;
+          color: #fff;
+          padding: 3px 9px 3px 8px;
+          border-radius: 999px;
+          font-size: 0.66rem;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          box-shadow:
+            0 2px 8px rgba(0,0,0,0.18),
+            0 0 0 1px rgba(255,255,255,0.1) inset;
+        }
+        .launch-pill-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #22c55e;
+          box-shadow: 0 0 6px rgba(34,197,94,0.95);
+          animation: pillDotPulse 1.6s ease-in-out infinite;
+        }
+        @keyframes pillDotPulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50%      { opacity: 0.55; transform: scale(0.85); }
+        }
+        .launch-banner-text strong {
+          font-weight: 700;
+        }
+        .launch-banner-link-cta {
+          font-weight: 600;
+          background: linear-gradient(90deg, #3b6fbe 0%, #1a3a7a 50%, #3b6fbe 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin-left: 2px;
+        }
+        .launch-banner-arrow {
+          transition: transform 0.18s ease;
+          flex-shrink: 0;
+          color: #3b6fbe;
+          filter: drop-shadow(0 0 4px rgba(110,176,255,0.6));
+        }
+        .launch-banner-link:hover .launch-banner-arrow {
+          transform: translateX(4px);
+        }
+        @media (max-width: 600px) {
+          .launch-banner { font-size: 0.78rem; padding: 9px 12px; }
+          .launch-banner-link { gap: 9px; }
+          .launch-banner-mobile-hide { display: none; }
+          .launch-sparkle { width: 12px; height: 12px; }
+        }
+        @media (max-width: 380px) {
+          .launch-sparkle-3 { display: none; }
+        }
+
         /* Mobile menu */
         .mobile-btn {
           display: none;
@@ -198,6 +337,69 @@ export default function Navbar() {
           WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
         }}
       >
+        {/* Launch banner */}
+        <div className="launch-banner">
+          <a
+            href="https://apps.shopify.com/dynoweb"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="launch-banner-link"
+          >
+            <svg
+              className="launch-sparkle launch-sparkle-1"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12 2l1.8 6.4L20 10l-6.2 1.6L12 18l-1.8-6.4L4 10l6.2-1.6L12 2z" />
+            </svg>
+            <span className="launch-pill" aria-hidden="true">
+              <span className="launch-pill-dot" />
+              LIVE
+            </span>
+            <span className="launch-banner-text">
+              <strong>DynoWeb is now on the Shopify App Store</strong>
+              <span className="launch-banner-link-cta launch-banner-mobile-hide"> &nbsp;Get it now</span>
+            </span>
+            <svg
+              className="launch-banner-arrow"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+            <svg
+              className="launch-sparkle launch-sparkle-2"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12 2l1.8 6.4L20 10l-6.2 1.6L12 18l-1.8-6.4L4 10l6.2-1.6L12 2z" />
+            </svg>
+            <svg
+              className="launch-sparkle launch-sparkle-3 launch-banner-mobile-hide"
+              width="10"
+              height="10"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12 2l1.8 6.4L20 10l-6.2 1.6L12 18l-1.8-6.4L4 10l6.2-1.6L12 2z" />
+            </svg>
+          </a>
+        </div>
+
         <div className="nav-inner">
 
           {/* Logo */}

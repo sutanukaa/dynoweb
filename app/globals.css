@@ -365,6 +365,54 @@ html {
   animation: none;
 }
 
+/* ── Confetti burst on CTA hover ── */
+.confetti-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: visible;
+}
+.confetti-piece {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--cw, 10px);
+  height: var(--ch, 14px);
+  background: var(--cc, #6eb0ff);
+  border-radius: 2px;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+  box-shadow:
+    0 0 10px var(--cc, #6eb0ff),
+    0 0 4px rgba(255,255,255,0.7);
+  will-change: transform, opacity;
+}
+.uv-btn-wrapper:hover .confetti-piece {
+  animation: confettiBurst 1.4s cubic-bezier(0.18, 0.7, 0.4, 1) var(--cd, 0ms) forwards;
+}
+@keyframes confettiBurst {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  10% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform:
+      translate(
+        calc(-50% + var(--cx, 0px)),
+        calc(-50% + var(--cy, 0px) + 40px)
+      )
+      rotate(var(--cr, 360deg))
+      scale(0.9);
+    opacity: 0;
+  }
+}
+
 .dark {
   --background: #0a0a0a;
   --foreground: oklch(0.985 0 0);
