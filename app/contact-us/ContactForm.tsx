@@ -1,13 +1,38 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Footer from "../components/Footer";
 import PillNav from "../components/PillNav";
+
+function buildDraftMessage(params: URLSearchParams): string {
+  const plan = params.get("plan");
+  if (plan !== "custom") return "";
+  const sessions = Number(params.get("sessions"));
+  const price = Number(params.get("price"));
+  if (!Number.isFinite(sessions) || !Number.isFinite(price) || sessions <= 0 || price <= 0) {
+    return "";
+  }
+  return `Hi DynoWeb team,
+
+I'm interested in the Custom plan with ${sessions.toLocaleString("en-US")} sessions per month ($${price}/mo).
+
+A bit about my store:
+- Shopify store URL:
+- Primary goals:
+- Anything else we should know:
+
+Looking forward to hearing from you!`;
+}
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
   const sketchRef = useRef<HTMLHeadingElement>(null);
+  const searchParams = useSearchParams();
+  const [message, setMessage] = useState<string>(() =>
+    buildDraftMessage(new URLSearchParams(searchParams?.toString() ?? ""))
+  );
 
   useEffect(() => {
     const el = sketchRef.current;
@@ -56,6 +81,7 @@ export default function ContactForm() {
 
       setStatus("success");
       form.reset();
+      setMessage("");
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Unknown error");
@@ -420,7 +446,15 @@ export default function ContactForm() {
 
             <div className="field-group">
               <label className="field-label">Message</label>
-              <textarea name="message" className="field-textarea" placeholder="Tell us what's on your mind…" required />
+              <textarea
+                name="message"
+                className="field-textarea"
+                placeholder="Tell us what's on your mind…"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                rows={message ? 10 : 4}
+                required
+              />
             </div>
 
             <div className="submit-row">

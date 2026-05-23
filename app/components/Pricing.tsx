@@ -1,67 +1,127 @@
 "use client";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 
-const plans = [
+// Custom-plan slider — fixed stops only
+const CUSTOM_STOPS = [
+  { sessions: 50_000,    price: 79  },
+  { sessions: 100_000,   price: 134 },
+  { sessions: 250_000,   price: 254 },
+  { sessions: 500_000,   price: 454 },
+  { sessions: 1_000_000, price: 854 },
+];
+const DEFAULT_STOP_INDEX = 1; // 100K sessions
+
+function formatSessions(sessions: number): string {
+  return sessions.toLocaleString("en-US");
+}
+
+type Plan = {
+  name: string;
+  price: string;
+  period: string;
+  priceSubtitle?: string;
+  trial?: string;
+  features: string[];
+  notIncluded?: string[];
+  addon?: { label: string; price: string };
+  cta: { label: string; href: string };
+  highlighted?: boolean;
+  custom?: boolean;
+};
+
+const plans: Plan[] = [
   {
     name: "Free",
-    price: 0,
-    trial: null,
+    price: "$0",
+    period: "/ mo",
     features: [
-      "10,000 sessions / month",
-      "5 AI suggestions / day",
-      "$1.00 AI budget / month",
-      "Basic heatmaps",
-      "7-day data retention",
+      "Up to 1,500 sessions / month",
+      "Click + scroll heatmaps",
+      "7-day replay retention",
+      "AI session summaries",
+      "MCP access (500 calls / day)",
+      "2 SmartNudges",
+      "1 CRO Report / mo (summary only)",
     ],
     notIncluded: [
-      "AI write actions",
-      "Session replays",
-      "Full CRO reports",
-      "Advanced + scroll heatmaps",
-      "Full SmartNudge AI tools",
-      "Priority support",
+      "AI Agent (DynoAgent chat)",
+      "Publish nudges live",
     ],
-    highlighted: false,
+    cta: { label: "Install free", href: "https://apps.shopify.com/dynoweb" },
+  },
+  {
+    name: "Growth",
+    price: "$14",
+    period: "/ mo",
+    trial: "7-day free trial",
+    features: [
+      "Up to 5,000 sessions / month",
+      "Click + scroll heatmaps",
+      "30-day replay retention",
+      "5 SmartNudges (publish live)",
+      "$5 AI Agent credit included",
+      "Revenue attribution UI",
+      "4 CRO Reports / mo (full)",
+      "Email support",
+    ],
+    notIncluded: [
+      "Rage-click heatmaps",
+      "A/B testing on nudges",
+    ],
+    addon: { label: "AI Assistant", price: "+$5/mo" },
+    cta: { label: "Start 7-day free trial", href: "https://apps.shopify.com/dynoweb" },
   },
   {
     name: "Pro",
-    price: 29,
-    trial: "14-day free trial",
+    price: "$29",
+    period: "/ mo",
+    trial: "7-day free trial",
     features: [
-      "100,000 sessions / month",
-      "50 AI suggestions / day",
-      "$15.00 AI budget / month",
-      "Advanced heatmaps & scroll maps",
-      "30-day data retention",
-      "Priority support",
+      "Up to 25,000 sessions / month",
+      "Rage-click heatmaps",
+      "60-day replay retention",
+      "15 SmartNudges + A/B testing",
+      "$15 AI Agent credit included",
+      "Bounce + revenue click tracking",
+      "MCP access (1,500 calls / day)",
+      "16 CRO Reports / mo",
+      "Priority email support",
     ],
     notIncluded: [
-      "Unlimited sessions & queries",
-      "90-day data retention",
-      "Dedicated support",
-      "Custom integrations",
+      "Event-type filter (all heatmap modes)",
     ],
+    addon: { label: "AI Assistant", price: "+$10/mo" },
+    cta: { label: "Start 7-day free trial", href: "https://apps.shopify.com/dynoweb" },
     highlighted: true,
   },
   {
-    name: "Enterprise",
-    price: 99,
-    trial: "14-day free trial",
+    name: "Custom",
+    price: "$79",
+    period: "/ mo",
+    priceSubtitle: "Up to 50,000 sessions",
+    custom: true,
     features: [
-      "1,000,000 sessions / month",
-      "Unlimited AI suggestions",
-      "$75.00 AI budget / month",
-      "Full heatmaps, scroll & rage-click maps",
-      "90-day data retention",
-      "Dedicated support",
-      "Custom integrations",
+      "Sessions sized to your traffic (slider)",
+      "All heatmap modes + event-type filter",
+      "90-day replay retention",
+      "Unlimited SmartNudges",
+      "$40 AI Agent credit included",
+      "MCP access (5,000 calls / day)",
+      "Unlimited CRO Reports",
+      "Dedicated Slack support",
     ],
-    highlighted: false,
+    addon: { label: "AI Assistant", price: "+$15/mo" },
+    cta: { label: "Contact sales", href: "/contact-us" },
   },
 ];
 
 export default function PricingSection() {
-  const [hovered, setHovered] = useState<number | null>(null);
+  const [, setHovered] = useState<number | null>(null);
+  const [stopIndex, setStopIndex] = useState<number>(DEFAULT_STOP_INDEX);
+  const currentStop = CUSTOM_STOPS[stopIndex];
+  const sessions = currentStop.sessions;
+  const customPrice = currentStop.price;
+  const sliderFillPct = (stopIndex / (CUSTOM_STOPS.length - 1)) * 100;
 
   return (
     <>
@@ -98,17 +158,18 @@ export default function PricingSection() {
           background: rgba(255,255,255,0.025);
           border: 1px solid rgba(255,255,255,0.08);
           border-radius: 16px;
-          padding: clamp(1.5rem, 2.5vw, 2.5rem) clamp(1.25rem, 2vw, 2rem);
+          padding: clamp(1.5rem, 2vw, 2rem) clamp(1.25rem, 1.6vw, 1.6rem);
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1.1rem;
           transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
           animation: priceFadeUp .6s ease forwards;
           opacity: 0;
         }
-        .pricing-card:nth-child(1) { animation-delay: .15s; }
-        .pricing-card:nth-child(2) { animation-delay: .25s; }
-        .pricing-card:nth-child(3) { animation-delay: .35s; }
+        .pricing-card:nth-child(1) { animation-delay: .12s; }
+        .pricing-card:nth-child(2) { animation-delay: .2s; }
+        .pricing-card:nth-child(3) { animation-delay: .28s; }
+        .pricing-card:nth-child(4) { animation-delay: .36s; }
 
         .pricing-card:hover {
           border-color: rgba(110,176,255,0.2);
@@ -117,12 +178,13 @@ export default function PricingSection() {
         }
 
         .pricing-card.card-highlighted {
-          border-color: rgba(110,176,255,0.25);
-          background: rgba(110,176,255,0.04);
+          border-color: rgba(110,176,255,0.35);
+          background: rgba(110,176,255,0.05);
+          box-shadow: 0 0 40px rgba(110,176,255,0.08);
         }
         .pricing-card.card-highlighted:hover {
-          border-color: rgba(110,176,255,0.35);
-          background: rgba(110,176,255,0.06);
+          border-color: rgba(110,176,255,0.5);
+          background: rgba(110,176,255,0.07);
         }
 
         .pricing-badge {
@@ -132,18 +194,19 @@ export default function PricingSection() {
           transform: translateX(-50%);
           background: linear-gradient(135deg, #6eb0ff, #3a7adc);
           color: #fff;
-          font-size: .7rem;
+          font-size: .68rem;
           font-weight: 700;
-          letter-spacing: .08em;
+          letter-spacing: .1em;
           text-transform: uppercase;
-          padding: 4px 16px;
+          padding: 5px 14px;
           border-radius: 999px;
           white-space: nowrap;
+          box-shadow: 0 4px 12px rgba(58, 122, 220, 0.3);
         }
 
         .pricing-plan-name {
           font-family: 'Montserrat', sans-serif;
-          font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+          font-size: clamp(1.1rem, 1.4vw, 1.4rem);
           font-weight: 700;
           color: #e8eaf0;
           text-align: center;
@@ -151,54 +214,275 @@ export default function PricingSection() {
 
         .pricing-price {
           text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.4rem;
+        }
+        .pricing-price-row {
+          display: inline-flex;
+          align-items: baseline;
+          gap: 4px;
         }
         .pricing-price .amount {
           font-family: 'Montserrat', sans-serif;
-          font-size: clamp(2rem, 3vw, 3rem);
+          font-size: clamp(2rem, 2.8vw, 2.6rem);
           font-weight: 800;
           color: #e8eaf0;
           letter-spacing: -.02em;
+          line-height: 1;
         }
         .pricing-price .period {
-          font-size: clamp(.85rem, 1vw, 1.1rem);
+          font-size: clamp(.78rem, .9vw, 1rem);
           color: rgba(255,255,255,0.35);
-          margin-left: 4px;
         }
+        .pricing-price-subtitle {
+          font-size: .82rem;
+          color: rgba(255,255,255,0.5);
+          margin-top: 2px;
+        }
+
         .pricing-trial {
-          text-align: center;
-          font-size: clamp(.72rem, .85vw, .9rem);
-          color: rgba(255,255,255,0.35);
-          margin-top: -0.75rem;
+          display: inline-flex;
+          align-items: center;
+          align-self: center;
+          background: rgba(34, 197, 94, 0.1);
+          border: 1px solid rgba(34, 197, 94, 0.22);
+          color: #5dde94;
+          padding: 4px 12px;
+          border-radius: 999px;
+          font-size: 0.72rem;
+          font-weight: 600;
+          letter-spacing: 0.01em;
+        }
+
+        .pricing-divider {
+          width: 100%;
+          height: 1px;
+          background: rgba(255,255,255,0.06);
         }
 
         .pricing-features {
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
+          gap: 0.65rem;
           flex: 1;
         }
         .pricing-feature {
           display: flex;
           align-items: flex-start;
-          gap: 0.6rem;
-          font-size: clamp(.8rem, .95vw, 1rem);
-          color: rgba(255,255,255,0.55);
+          gap: 0.55rem;
+          font-size: clamp(.78rem, .9vw, .92rem);
+          color: rgba(255,255,255,0.62);
           line-height: 1.4;
         }
         .pricing-check {
           flex-shrink: 0;
-          width: 18px;
-          height: 18px;
-          margin-top: 1px;
+          width: 16px;
+          height: 16px;
+          margin-top: 2px;
         }
 
-        .not-included { color: rgba(255,255,255,0.22); }
+        .not-included { margin-top: .35rem; }
         .not-included .label {
-          font-size: .78rem; color: rgba(255,255,255,0.32); text-transform: uppercase;
-          letter-spacing: .08em; font-weight: 700; margin-top: .75rem;
+          font-size: .68rem;
+          color: rgba(255,255,255,0.32);
+          text-transform: uppercase;
+          letter-spacing: .1em;
+          font-weight: 700;
+          margin-bottom: .5rem;
         }
-        .not-included-item { display:flex; gap:.6rem; align-items:flex-start; margin-top:.6rem; color: rgba(255,255,255,0.28); font-size: .9rem }
-        .not-included-x { width:18px; height:18px; display:inline-block; border-radius:4px; background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.38); text-align:center; line-height:18px; font-weight:700 }
+        .not-included-item {
+          display: flex;
+          gap: .55rem;
+          align-items: flex-start;
+          margin-top: .45rem;
+          color: rgba(255,255,255,0.28);
+          font-size: .82rem;
+          line-height: 1.4;
+        }
+        .not-included-x {
+          flex-shrink: 0;
+          width: 16px;
+          height: 16px;
+          margin-top: 2px;
+          color: rgba(255,255,255,0.32);
+        }
+
+        /* Custom plan slider — draggable */
+        .custom-slider-wrap {
+          padding: 0.25rem 0;
+        }
+        .custom-slider-input {
+          width: 100%;
+          margin: 4px 0 0;
+          height: 4px;
+          background: transparent;
+          cursor: pointer;
+          -webkit-appearance: none;
+          appearance: none;
+          outline: none;
+        }
+        .custom-slider-input::-webkit-slider-runnable-track {
+          height: 4px;
+          background: linear-gradient(
+            to right,
+            #6eb0ff 0%,
+            #6eb0ff var(--slider-fill, 0%),
+            rgba(255,255,255,0.08) var(--slider-fill, 0%),
+            rgba(255,255,255,0.08) 100%
+          );
+          border-radius: 2px;
+        }
+        .custom-slider-input::-moz-range-track {
+          height: 4px;
+          background: rgba(255,255,255,0.08);
+          border-radius: 2px;
+        }
+        .custom-slider-input::-moz-range-progress {
+          height: 4px;
+          background: #6eb0ff;
+          border-radius: 2px;
+        }
+        .custom-slider-input::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #ffffff;
+          border: 2px solid #6eb0ff;
+          box-shadow: 0 0 0 4px rgba(110,176,255,0.18);
+          cursor: grab;
+          margin-top: -5px;
+          transition: box-shadow 0.15s ease, transform 0.15s ease;
+        }
+        .custom-slider-input::-moz-range-thumb {
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #ffffff;
+          border: 2px solid #6eb0ff;
+          box-shadow: 0 0 0 4px rgba(110,176,255,0.18);
+          cursor: grab;
+          transition: box-shadow 0.15s ease, transform 0.15s ease;
+        }
+        .custom-slider-input:hover::-webkit-slider-thumb {
+          box-shadow: 0 0 0 6px rgba(110,176,255,0.22);
+          transform: scale(1.08);
+        }
+        .custom-slider-input:hover::-moz-range-thumb {
+          box-shadow: 0 0 0 6px rgba(110,176,255,0.22);
+          transform: scale(1.08);
+        }
+        .custom-slider-input:active::-webkit-slider-thumb {
+          cursor: grabbing;
+          box-shadow: 0 0 0 7px rgba(110,176,255,0.28);
+        }
+        .custom-slider-input:active::-moz-range-thumb {
+          cursor: grabbing;
+          box-shadow: 0 0 0 7px rgba(110,176,255,0.28);
+        }
+        .custom-slider-input:focus-visible::-webkit-slider-thumb {
+          box-shadow: 0 0 0 4px rgba(110,176,255,0.4);
+        }
+        .custom-slider-input:focus-visible::-moz-range-thumb {
+          box-shadow: 0 0 0 4px rgba(110,176,255,0.4);
+        }
+        .custom-slider-labels {
+          display: flex;
+          justify-content: space-between;
+          font-size: 0.68rem;
+          color: rgba(255,255,255,0.35);
+          margin-top: 8px;
+          letter-spacing: 0.04em;
+        }
+        .custom-callout {
+          font-size: 0.78rem;
+          color: rgba(110,176,255,0.85);
+          text-align: center;
+          line-height: 1.5;
+          margin-top: 0.25rem;
+        }
+
+        /* AI Assistant addon row */
+        .pricing-addon {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 8px 12px;
+          background: rgba(255,255,255,0.025);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 8px;
+          font-size: 0.82rem;
+        }
+        .pricing-addon-left {
+          display: flex;
+          flex-direction: column;
+        }
+        .pricing-addon-label {
+          color: rgba(255,255,255,0.7);
+          font-weight: 600;
+          font-size: 0.85rem;
+        }
+        .pricing-addon-price {
+          color: rgba(255,255,255,0.4);
+          font-size: 0.72rem;
+        }
+        .pricing-addon-btn {
+          padding: 4px 12px;
+          background: transparent;
+          border: 1px solid rgba(255,255,255,0.16);
+          border-radius: 6px;
+          color: rgba(255,255,255,0.75);
+          font-size: 0.72rem;
+          font-weight: 600;
+          font-family: 'Karla', sans-serif;
+          cursor: pointer;
+          letter-spacing: 0.02em;
+          transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        .pricing-addon-btn:hover {
+          background: rgba(255,255,255,0.04);
+          border-color: rgba(255,255,255,0.28);
+          color: #ffffff;
+        }
+
+        /* CTA button */
+        .pricing-cta {
+          display: block;
+          width: 100%;
+          padding: 0.7rem 1rem;
+          background: #ffffff;
+          color: #0a0a0a;
+          border: none;
+          border-radius: 10px;
+          font-family: 'Karla', sans-serif;
+          font-size: 0.88rem;
+          font-weight: 700;
+          text-align: center;
+          text-decoration: none;
+          cursor: pointer;
+          letter-spacing: 0.005em;
+          transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .pricing-cta:hover {
+          opacity: 0.92;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 18px rgba(0,0,0,0.28);
+        }
+        .pricing-cta.cta-outline {
+          background: transparent;
+          border: 1px solid rgba(255,255,255,0.2);
+          color: rgba(255,255,255,0.88);
+          box-shadow: none;
+        }
+        .pricing-cta.cta-outline:hover {
+          background: rgba(255,255,255,0.05);
+          border-color: rgba(255,255,255,0.4);
+          color: #ffffff;
+        }
 
       `}</style>
 
@@ -253,122 +537,6 @@ export default function PricingSection() {
           }}
         />
 
-        {/* Decorative SVGs */}
-        <svg
-          style={{
-            position: "absolute",
-            top: "6%",
-            left: "5%",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-          width="90"
-          height="90"
-          viewBox="0 0 90 90"
-          fill="none"
-          aria-hidden="true"
-        >
-          <circle
-            cx="45"
-            cy="45"
-            r="38"
-            stroke="rgba(110,176,255,.06)"
-            strokeWidth="1"
-            strokeDasharray="6 5"
-          />
-          <circle
-            cx="45"
-            cy="45"
-            r="18"
-            stroke="rgba(110,176,255,.04)"
-            strokeWidth="1"
-          />
-        </svg>
-        <svg
-          style={{
-            position: "absolute",
-            bottom: "12%",
-            right: "4%",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-          width="70"
-          height="70"
-          viewBox="0 0 70 70"
-          fill="none"
-          aria-hidden="true"
-        >
-          <rect
-            x="10"
-            y="10"
-            width="50"
-            height="50"
-            rx="6"
-            stroke="rgba(110,176,255,.05)"
-            strokeWidth="1"
-            transform="rotate(-12 35 35)"
-          />
-        </svg>
-        {[
-          { t: "20%", l: "92%" },
-          { t: "70%", l: "6%" },
-          { t: "45%", l: "97%" },
-        ].map((p, i) => (
-          <svg
-            key={i}
-            style={{
-              position: "absolute",
-              top: p.t,
-              left: p.l,
-              pointerEvents: "none",
-              zIndex: 0,
-            }}
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
-            fill="none"
-            aria-hidden="true"
-          >
-            <line
-              x1="7"
-              y1="1"
-              x2="7"
-              y2="13"
-              stroke="rgba(110,176,255,.08)"
-              strokeWidth="1"
-            />
-            <line
-              x1="1"
-              y1="7"
-              x2="13"
-              y2="7"
-              stroke="rgba(110,176,255,.08)"
-              strokeWidth="1"
-            />
-          </svg>
-        ))}
-        {[
-          { t: "25%", l: "3%" },
-          { t: "65%", l: "95%" },
-          { t: "85%", l: "50%" },
-          { t: "12%", l: "55%" },
-        ].map((p, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              top: p.t,
-              left: p.l,
-              width: 4,
-              height: 4,
-              borderRadius: "50%",
-              background: "rgba(110,176,255,.07)",
-              pointerEvents: "none",
-              zIndex: 0,
-            }}
-          />
-        ))}
-
         <div
           className="relative z-10 mx-auto w-full flex flex-col items-center"
           style={{ padding: "max(5rem, 8vh) max(48px, 5vw)" }}
@@ -404,16 +572,16 @@ export default function PricingSection() {
               Simple, transparent pricing
             </h2>
             <p className="sub-text" style={{ textAlign: "center" }}>
-              Start free. Upgrade when you need more power.
+              Start free. Scale when you need more sessions, AI credits, and CRO firepower.
             </p>
           </div>
 
           {/* Cards */}
           <div
-            className="grid w-full gap-6"
+            className="grid w-full gap-5"
             style={{
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              maxWidth: 1080,
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              maxWidth: 1280,
             }}
           >
             {plans.map((plan, i) => (
@@ -430,21 +598,46 @@ export default function PricingSection() {
                 <div className="pricing-plan-name">{plan.name}</div>
 
                 <div className="pricing-price">
-                  <span className="amount">${plan.price}</span>
-                  <span className="period">/ month</span>
+                  <div className="pricing-price-row">
+                    <span className="amount">{plan.custom ? `$${customPrice}` : plan.price}</span>
+                    <span className="period">{plan.period}</span>
+                  </div>
+                  {plan.custom ? (
+                    <div className="pricing-price-subtitle">
+                      Up to <strong>{formatSessions(sessions)}</strong> sessions
+                    </div>
+                  ) : plan.priceSubtitle ? (
+                    <div className="pricing-price-subtitle">{plan.priceSubtitle}</div>
+                  ) : null}
+                  {plan.trial && <span className="pricing-trial">{plan.trial}</span>}
                 </div>
 
-                {plan.trial && (
-                  <div className="pricing-trial">{plan.trial}</div>
-                )}
+                <div className="pricing-divider" />
 
-                <div
-                  style={{
-                    width: "100%",
-                    height: 1,
-                    background: "rgba(255,255,255,0.06)",
-                  }}
-                />
+                {/* Custom plan: draggable slider + callout */}
+                {plan.custom && (
+                  <div className="custom-slider-wrap">
+                    <input
+                      type="range"
+                      min={0}
+                      max={CUSTOM_STOPS.length - 1}
+                      step={1}
+                      value={stopIndex}
+                      onChange={(e) => setStopIndex(Number(e.target.value))}
+                      className="custom-slider-input"
+                      style={{ "--slider-fill": `${sliderFillPct}%` } as CSSProperties}
+                      aria-label="Adjust monthly sessions"
+                      aria-valuetext={`${formatSessions(sessions)} sessions, $${customPrice} per month`}
+                    />
+                    <div className="custom-slider-labels">
+                      <span>50K</span>
+                      <span>1M</span>
+                    </div>
+                    <p className="custom-callout">
+                      $40 AI Agent credit bundled · all features included
+                    </p>
+                  </div>
+                )}
 
                 <div className="pricing-features">
                   {plan.features.map((f, fi) => (
@@ -453,11 +646,12 @@ export default function PricingSection() {
                         className="pricing-check"
                         viewBox="0 0 20 20"
                         fill="none"
+                        aria-hidden="true"
                       >
                         <path
                           d="M5 10.5l3.5 3.5L15 7"
                           stroke={plan.highlighted ? "#6eb0ff" : "#4a9a6e"}
-                          strokeWidth="2"
+                          strokeWidth="2.4"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
@@ -472,12 +666,50 @@ export default function PricingSection() {
                     <div className="label">Not included</div>
                     {plan.notIncluded.map((n, ni) => (
                       <div key={ni} className="not-included-item">
-                        <div className="not-included-x">✕</div>
+                        <svg
+                          className="not-included-x"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M6 6l8 8M14 6l-8 8"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                          />
+                        </svg>
                         <div>{n}</div>
                       </div>
                     ))}
                   </div>
                 )}
+
+                {plan.addon && (
+                  <div className="pricing-addon">
+                    <div className="pricing-addon-left">
+                      <span className="pricing-addon-label">{plan.addon.label}</span>
+                      <span className="pricing-addon-price">{plan.addon.price}</span>
+                    </div>
+                  </div>
+                )}
+
+                {(() => {
+                  const ctaHref = plan.custom
+                    ? `/contact-us?plan=custom&sessions=${sessions}&price=${customPrice}`
+                    : plan.cta.href;
+                  const isExternal = ctaHref.startsWith("http");
+                  return (
+                    <a
+                      href={ctaHref}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                      className={`pricing-cta${plan.custom ? " cta-outline" : ""}`}
+                    >
+                      {plan.cta.label}
+                    </a>
+                  );
+                })()}
 
               </div>
             ))}
