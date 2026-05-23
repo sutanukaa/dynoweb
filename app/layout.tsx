@@ -45,6 +45,9 @@ export const metadata: Metadata = {
     "conversion rate optimization",
     "Shopify heatmaps",
   ],
+  verification: {
+    google: "Ps587Wbp6dD6eiRop85qP60iw1yAxvwp1FPuhjdG3-I",
+  },
 };
 
 export const viewport: Viewport = {
