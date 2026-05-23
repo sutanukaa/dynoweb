@@ -20,6 +20,19 @@ const faqs = [
   },
 ];
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
 export default function FAQs() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const sketchRef = useRef<HTMLSpanElement>(null);
@@ -41,6 +54,11 @@ export default function FAQs() {
   }, []);
 
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+    />
     <section
       className="faq-root"
       style={{ background: "#0a0a0a", padding: "5.5rem 0", position: "relative" }}
@@ -160,5 +178,6 @@ export default function FAQs() {
         </div>
       </div>
     </section>
+    </>
   );
 }

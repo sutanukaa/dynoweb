@@ -62,17 +62,32 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug = [] } = await params;
   const page = source.getPage(slug);
+  const canonicalPath = slug.length > 0 ? `/help/${slug.join("/")}` : "/help";
 
   if (!page) {
     return {
-      title: "Help | DynoWeb",
-      description: defaultDescription,
+      title: "Help Center",
+      description: "Find setup guidance and product documentation for DynoWeb.",
+      alternates: { canonical: "/help" },
     };
   }
 
+  const title = slug.length === 0
+    ? "Help Center"
+    : `${page.data.title ?? "Help"} | DynoWeb Help`;
+  const description = slug.length === 0
+    ? "Find setup guidance and product documentation for DynoWeb."
+    : (page.data.description ?? defaultDescription);
+
   return {
-    title: `${page.data.title ?? "Help"} | DynoWeb Help`,
-    description: page.data.description ?? defaultDescription,
+    title,
+    description,
+    alternates: { canonical: canonicalPath },
+    openGraph: {
+      title,
+      description,
+      url: `https://www.dynoweb.app${canonicalPath}`,
+    },
   };
 }
 
@@ -90,8 +105,26 @@ export default async function DocsPage({ params }: PageProps) {
   const currentUrl = page.url;
   const { previous, next } = getNeighborPages(currentUrl);
 
+  const pageName = slug.length === 0 ? "Help Center" : (page.data.title ?? "Help");
+  const canonicalPath = slug.length > 0 ? `/help/${slug.join("/")}` : "/help";
+  const helpBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.dynoweb.app/" },
+      { "@type": "ListItem", position: 2, name: "Help Center", item: "https://www.dynoweb.app/help" },
+      ...(slug.length > 0
+        ? [{ "@type": "ListItem", position: 3, name: pageName, item: `https://www.dynoweb.app${canonicalPath}` }]
+        : []),
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(helpBreadcrumb) }}
+      />
       <PillNav />
 
       <main className="relative min-h-screen bg-[#050505] pt-24 text-white">

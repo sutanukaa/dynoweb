@@ -1,0 +1,22 @@
+# DynoWeb
+> AI-powered CRO tool that finds revenue-leaking pages in Shopify stores
+> and hands developers the exact file, before/after diff, and projected lift.
+> Native Shopify app. Sub-40 KB tracker. 100% SEO-safe.
+
+## Core docs
+- [Home](https://www.dynoweb.app/): product overview, hero, how it works, pricing, FAQ
+- [Use cases](https://www.dynoweb.app/use-cases): friction, conversions, mobile UX, journeys, safer storefront changes
+- [Help center](https://www.dynoweb.app/help): setup, configuration, and product documentation
+- [Case studies](https://www.dynoweb.app/case-studies): merchant outcomes
+- [Install on Shopify](https://apps.shopify.com/dynoweb): app listing in the Shopify App Store
+
+## Compare
+- [DynoWeb vs Hotjar](https://www.dynoweb.app/compare/hotjar)
+- [DynoWeb vs Microsoft Clarity](https://www.dynoweb.app/compare/microsoft-clarity)
+- [DynoWeb vs Lucky Orange](https://www.dynoweb.app/compare/lucky-orange)
+
+## Legal
+- [Privacy policy](https://www.dynoweb.app/privacy-policy)
+
+## Contact
+- [Contact us](https://www.dynoweb.app/contact-us): help@dynoweb.app

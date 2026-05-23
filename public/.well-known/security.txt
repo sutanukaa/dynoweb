@@ -1,0 +1,4 @@
+Contact: mailto:help@dynoweb.app
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://www.dynoweb.app/.well-known/security.txt

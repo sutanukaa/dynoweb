@@ -135,11 +135,31 @@ export const metadata: Metadata = {
   title: "Use Cases | DynoWeb",
   description:
     "See how DynoWeb helps Shopify merchants find friction, improve mobile UX, understand journeys, and make safer storefront changes.",
+  alternates: { canonical: "/use-cases" },
+  openGraph: {
+    title: "Use Cases | DynoWeb",
+    description:
+      "See how DynoWeb helps Shopify merchants find friction, improve mobile UX, understand journeys, and make safer storefront changes.",
+    url: "https://www.dynoweb.app/use-cases",
+  },
+};
+
+const useCasesBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.dynoweb.app/" },
+    { "@type": "ListItem", position: 2, name: "Use Cases", item: "https://www.dynoweb.app/use-cases" },
+  ],
 };
 
 export default function UseCasesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(useCasesBreadcrumb) }}
+      />
       <PillNav />
 
       <main className="relative overflow-hidden bg-[#050505] pt-24 text-white">
