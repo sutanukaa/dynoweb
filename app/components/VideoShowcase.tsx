@@ -1,10 +1,91 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const VIDEO_ID = "SesqgJlC0ao";
 
+// Load the YouTube IFrame Player API once per page lifetime
+let apiLoadPromise: Promise<void> | null = null;
+function loadYouTubeAPI(): Promise<void> {
+  if (typeof window === "undefined") return Promise.resolve();
+  if (apiLoadPromise) return apiLoadPromise;
+  apiLoadPromise = new Promise<void>((resolve) => {
+    const w = window as unknown as {
+      YT?: { Player?: unknown };
+      onYouTubeIframeAPIReady?: () => void;
+    };
+    if (w.YT?.Player) {
+      resolve();
+      return;
+    }
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    const prev = w.onYouTubeIframeAPIReady;
+    w.onYouTubeIframeAPIReady = () => {
+      prev?.();
+      resolve();
+    };
+    document.head.appendChild(tag);
+  });
+  return apiLoadPromise;
+}
+
 export default function VideoShowcase() {
   const [playing, setPlaying] = useState(false);
+  const mountRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const playerRef = useRef<any>(null);
+
+  // Preload the YT API on mount so the first click feels instant
+  useEffect(() => {
+    loadYouTubeAPI();
+  }, []);
+
+  // Spin up YT.Player once the user clicks play; force 720p on ready
+  useEffect(() => {
+    if (!playing || !mountRef.current) return;
+    let cancelled = false;
+    loadYouTubeAPI().then(() => {
+      if (cancelled || !mountRef.current) return;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const YT = (window as any).YT;
+      if (!YT?.Player) return;
+      playerRef.current = new YT.Player(mountRef.current, {
+        videoId: VIDEO_ID,
+        width: "100%",
+        height: "100%",
+        playerVars: {
+          autoplay: 1,
+          rel: 0,
+          modestbranding: 1,
+          playsinline: 1,
+        },
+        events: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onReady: (e: any) => {
+            try {
+              e.target.setPlaybackQuality("hd720");
+              e.target.playVideo();
+            } catch {}
+          },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onPlaybackQualityChange: (e: any) => {
+            // If the player drops below 720p, push it back up
+            const lower = ["small", "medium", "large"];
+            if (lower.includes(e.data)) {
+              try { e.target.setPlaybackQuality("hd720"); } catch {}
+            }
+          },
+        },
+      });
+    });
+    return () => {
+      cancelled = true;
+      if (playerRef.current?.destroy) {
+        try { playerRef.current.destroy(); } catch {}
+        playerRef.current = null;
+      }
+    };
+  }, [playing]);
 
   return (
     <>
@@ -176,7 +257,8 @@ export default function VideoShowcase() {
           aspect-ratio: 16 / 9;
         }
         .vs-aspect iframe,
-        .vs-aspect .vs-thumb {
+        .vs-aspect .vs-thumb,
+        .vs-aspect .vs-player-mount {
           position: absolute;
           inset: 0;
           width: 100%;
@@ -185,6 +267,7 @@ export default function VideoShowcase() {
         .vs-aspect iframe {
           border: 0;
         }
+        .vs-player-mount { background: #050507; }
 
         /* Thumbnail with custom play button */
         .vs-thumb {
@@ -287,12 +370,7 @@ export default function VideoShowcase() {
             <div className="vs-frame-inner">
               <div className="vs-aspect">
                 {playing ? (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
-                    title="DynoWeb promo"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  />
+                  <div ref={mountRef} className="vs-player-mount" />
                 ) : (
                   <button
                     className="vs-thumb"

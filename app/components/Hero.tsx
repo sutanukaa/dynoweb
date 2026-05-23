@@ -428,7 +428,7 @@ export default function HeroSectionOne() {
       `}</style>
 
       {/* ── Root: pure near-black, full page ── */}
-      <div style={{ background: "#0a0a0a", position: "relative", minHeight: "100svh", display: "flex", flexDirection: "column" }}>
+      <div style={{ background: "#0a0a0a", position: "relative", minHeight: "100svh", display: "flex", flexDirection: "column", paddingTop: "2rem" }}>
 
         {/* Particles background */}
         <Particles
@@ -634,7 +634,7 @@ export default function HeroSectionOne() {
 
             {/* Sub */}
             <p className="hero-sub anim-in delay-200">
-              Dynoweb pinpoints where visitors get frustrated and hands your dev the exact fix — file, diff, and projected lift. Zero guesswork. Zero risk.
+              Find the friction. Ship the exact fix — file, diff, projected lift.
             </p>
 
             {/* CTA */}
