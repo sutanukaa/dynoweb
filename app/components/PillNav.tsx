@@ -84,7 +84,7 @@ export default function Navbar() {
           letter-spacing: -0.01em;
         }
         .nav-logo-img {
-          height: 95px;
+          height: 140px;
           width: auto;
           display: block;
           opacity: 0.98;

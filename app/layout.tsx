@@ -92,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
+    <html lang="en" className={cn("font-sans", geist.variable)} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo-short.png" type="image/png" />
         <script
@@ -102,6 +102,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.variable} antialiased font-inter`}
+        suppressHydrationWarning
       >
         {children}
       </body>
