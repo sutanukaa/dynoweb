@@ -4,10 +4,10 @@ import { useState, type CSSProperties } from "react";
 // Custom-plan slider — fixed stops only
 const CUSTOM_STOPS = [
   { sessions: 50_000,    price: 79  },
-  { sessions: 100_000,   price: 134 },
-  { sessions: 250_000,   price: 254 },
-  { sessions: 500_000,   price: 454 },
-  { sessions: 1_000_000, price: 854 },
+  { sessions: 100_000,   price: 119 },
+  { sessions: 250_000,   price: 239 },
+  { sessions: 500_000,   price: 439 },
+  { sessions: 1_000_000, price: 839 },
 ];
 const DEFAULT_STOP_INDEX = 1; // 100K sessions
 
