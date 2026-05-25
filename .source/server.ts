@@ -1,9 +1,10 @@
 // @ts-nocheck
-import * as __fd_glob_14 from "../content/docs/suggestions.mdx?collection=docs"
-import * as __fd_glob_13 from "../content/docs/smartnudge.mdx?collection=docs"
-import * as __fd_glob_12 from "../content/docs/replays.mdx?collection=docs"
-import * as __fd_glob_11 from "../content/docs/referrers.mdx?collection=docs"
-import * as __fd_glob_10 from "../content/docs/overview.mdx?collection=docs"
+import * as __fd_glob_15 from "../content/docs/suggestions.mdx?collection=docs"
+import * as __fd_glob_14 from "../content/docs/smartnudge.mdx?collection=docs"
+import * as __fd_glob_13 from "../content/docs/replays.mdx?collection=docs"
+import * as __fd_glob_12 from "../content/docs/referrers.mdx?collection=docs"
+import * as __fd_glob_11 from "../content/docs/overview.mdx?collection=docs"
+import * as __fd_glob_10 from "../content/docs/mcp.mdx?collection=docs"
 import * as __fd_glob_9 from "../content/docs/journeys.mdx?collection=docs"
 import * as __fd_glob_8 from "../content/docs/index.mdx?collection=docs"
 import * as __fd_glob_7 from "../content/docs/heatmaps.mdx?collection=docs"
@@ -22,4 +23,4 @@ const create = server<typeof Config, import("fumadocs-mdx/runtime/types").Intern
   }
 }>({"doc":{"passthroughs":["extractedReferences"]}});
 
-export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, }, {"cart-overview.mdx": __fd_glob_1, "conversions.mdx": __fd_glob_2, "cro-report.mdx": __fd_glob_3, "dashboard.mdx": __fd_glob_4, "dynoagent.mdx": __fd_glob_5, "getting-started.mdx": __fd_glob_6, "heatmaps.mdx": __fd_glob_7, "index.mdx": __fd_glob_8, "journeys.mdx": __fd_glob_9, "overview.mdx": __fd_glob_10, "referrers.mdx": __fd_glob_11, "replays.mdx": __fd_glob_12, "smartnudge.mdx": __fd_glob_13, "suggestions.mdx": __fd_glob_14, });
+export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, }, {"cart-overview.mdx": __fd_glob_1, "conversions.mdx": __fd_glob_2, "cro-report.mdx": __fd_glob_3, "dashboard.mdx": __fd_glob_4, "dynoagent.mdx": __fd_glob_5, "getting-started.mdx": __fd_glob_6, "heatmaps.mdx": __fd_glob_7, "index.mdx": __fd_glob_8, "journeys.mdx": __fd_glob_9, "mcp.mdx": __fd_glob_10, "overview.mdx": __fd_glob_11, "referrers.mdx": __fd_glob_12, "replays.mdx": __fd_glob_13, "smartnudge.mdx": __fd_glob_14, "suggestions.mdx": __fd_glob_15, });

@@ -15,6 +15,7 @@ const mockupImgPaths = [
   "/Referrers.png",
   "/SmartNudge.png",
   "/DynoAgent.png",
+  "/MCP-feature.png",
 ];
 
 interface Bullet { title: string; desc: string; }
@@ -192,6 +193,20 @@ const features: Feature[] = [
     videoSrc: "/videos/ai-builder.mp4",
     icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>),
   },
+  {
+    id: "mcp", tab: "MCP",
+    headline: "Your Store. In Any AI.\nVia MCP.",
+    subline: "One connection. Every AI client. Every plan.",
+    bullets: [
+      { title: "Full Tool Surface", desc: "Analytics, product and page writes, blog publishing, discounts, SmartNudge, image generation — every connection gets the comprehensive DynoWeb surface." },
+      { title: "Works With Every Major AI Client", desc: "Claude.ai (one-click OAuth), Claude Code, Cursor, ChatGPT Custom GPTs, and the MCP Inspector for debugging — anything that speaks the MCP protocol." },
+      { title: "Included On Every Plan", desc: "500 MCP calls/day on Free and Growth, 1,500/day on Pro, 5,000/day on Custom — quota separate from in-admin agent chat." },
+      { title: "Scoped & Auditable", desc: "Per-shop scope. Revocable in one click. Every call audit-logged with token, client, and outcome." },
+    ],
+    caption: "1 endpoint · every AI client · every plan",
+    videoSrc: "/videos/ai-builder.mp4",
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.5 13.5l7 3M8.5 10.5l7-3"/></svg>),
+  },
 ];
 
 export default function FeaturesVideoSection() {
@@ -260,6 +275,7 @@ export default function FeaturesVideoSection() {
     referrers: "/Referrers.png",
     smartnudge: "/SmartNudge.png",
     dynoagent: "/DynoAgent.png",
+    mcp: "/MCP-feature.png",
   };
   const mockupImg = mockupImgMap[feat.id] ?? `/feature${active + 1}.png`;
 

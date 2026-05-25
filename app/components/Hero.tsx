@@ -271,6 +271,48 @@ export default function HeroSectionOne() {
           animation: fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.5s forwards;
         }
 
+        /* MCP connectors card — top-left, AI integrations */
+        .glass-card-mcp {
+          top: 14%;
+          left: max(1.5rem, 3vw);
+          width: clamp(155px, 14vw, 185px);
+          padding: 10px 12px;
+          animation: fadeSlideUp 1s cubic-bezier(0.16,1,0.3,1) 1.5s forwards;
+        }
+        .mcp-logo-stack {
+          display: flex;
+          align-items: center;
+          margin: 4px 0 9px;
+        }
+        .mcp-logo {
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid #0c0c12;
+          margin-left: -7px;
+          position: relative;
+          flex-shrink: 0;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+        }
+        .mcp-logo:first-child { margin-left: 0; }
+        .mcp-logo-claude { background: #D97757; z-index: 3; }
+        .mcp-logo-cursor { background: #111114; z-index: 2; }
+        .mcp-logo-gpt    { background: #10A37F; z-index: 1; }
+        .mcp-logo svg { width: 60%; height: 60%; }
+        .mcp-caption {
+          font-size: 0.66rem;
+          color: rgba(255,255,255,0.45);
+          line-height: 1.55;
+          margin: 0;
+        }
+        .mcp-caption strong {
+          color: rgba(255,255,255,0.78);
+          font-weight: 600;
+        }
+
         /* Journey card — mid-right, scattered diagonal beside subtext */
         .glass-card-journey {
           bottom: 28%;
@@ -538,6 +580,43 @@ export default function HeroSectionOne() {
               </svg>
               Tracked across 1,204 sessions
             </div>
+          </div>
+
+          {/* ════════════════════════════════════════
+              GLASS CARD 3 — MCP connectors (top-left)
+          ════════════════════════════════════════ */}
+          <div className="glass-card glass-card-mcp">
+            {/* Header */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "4px" }}>
+              <span style={{ fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
+                MCP Connectors
+              </span>
+              <span className="live-dot" style={{ width: 6, height: 6 }} />
+            </div>
+
+            {/* Stacked logos */}
+            <div className="mcp-logo-stack" aria-label="Supported AI clients">
+              <span className="mcp-logo mcp-logo-claude" title="Claude">
+                <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+                  <path d="M12 3 L13.4 10.6 L21 12 L13.4 13.4 L12 21 L10.6 13.4 L3 12 L10.6 10.6 Z" />
+                </svg>
+              </span>
+              <span className="mcp-logo mcp-logo-cursor" title="Cursor">
+                <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+                  <path d="M5 4 L20 12 L13 13.5 L11 20 Z" />
+                </svg>
+              </span>
+              <span className="mcp-logo mcp-logo-gpt" title="ChatGPT">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3.5 L19 7.5 L19 16.5 L12 20.5 L5 16.5 L5 7.5 Z" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinejoin="round" />
+                  <circle cx="12" cy="12" r="2.6" fill="#fff" />
+                </svg>
+              </span>
+            </div>
+
+            <p className="mcp-caption">
+              Plug into <strong>Claude</strong>, <strong>Cursor</strong> &amp; <strong>ChatGPT</strong>
+            </p>
           </div>
 
           {/* ════════════════════════════════════════
