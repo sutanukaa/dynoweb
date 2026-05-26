@@ -162,7 +162,10 @@ export default function UseCasesPage() {
       />
       <PillNav />
 
-      <main className="relative overflow-hidden bg-[#050505] pt-24 text-white">
+      <main
+        className="relative overflow-hidden bg-[#050505] pt-24 text-white"
+        style={{ fontFamily: "'Karla', sans-serif" }}
+      >
         <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.08),_transparent_42%),linear-gradient(180deg,_rgba(255,255,255,0.035),_transparent)]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:44px_44px] opacity-25" />
 
@@ -172,10 +175,10 @@ export default function UseCasesPage() {
         >
           <div className="grid items-start gap-8 xl:grid-cols-[minmax(0,1.2fr)_minmax(360px,0.8fr)] xl:gap-14 2xl:grid-cols-[minmax(0,1.35fr)_minmax(430px,0.85fr)] 2xl:gap-16">
             <div className="max-w-[940px] 2xl:max-w-[1040px]">
-              <p className="text-[0.78rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">
+              <p className="text-[0.78rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">
                 Why Merchants Use DynoWeb
               </p>
-              <h1 className="mt-5 font-[Montserrat] text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl xl:text-[4.9rem] 2xl:text-[5.6rem]">
+              <h1 className="mt-5 font-[Montserrat] text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl xl:text-[4.5rem] 2xl:text-[4.75rem]">
                 Turn shopper behavior into clearer fixes and more sales
               </h1>
               <p className="mt-6 max-w-[70ch] text-base leading-8 text-zinc-300 sm:text-lg 2xl:text-[1.18rem] 2xl:leading-9">
@@ -198,10 +201,10 @@ export default function UseCasesPage() {
               <div className="rounded-[1.5rem] border border-white/10 bg-black/35 p-5">
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-500">
+                    <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-zinc-500">
                       Optimization Flow
                     </p>
-                    <p className="mt-2 text-lg font-semibold tracking-tight text-white">
+                    <p className="mt-2 text-lg font-extrabold tracking-tight text-white">
                       From behavior signal to safer change
                     </p>
                   </div>
@@ -214,11 +217,11 @@ export default function UseCasesPage() {
                       className="rounded-[1.35rem] border border-white/10 bg-white/[0.02] p-4"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-sky-300/20 bg-sky-400/[0.08] text-sm font-semibold text-sky-100">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-sky-300/20 bg-sky-400/[0.08] text-sm font-extrabold text-sky-100">
                           0{index + 1}
                         </div>
                         <div>
-                          <p className="text-base font-semibold tracking-tight text-white">
+                          <p className="text-base font-extrabold tracking-tight text-white">
                             {step.label}
                           </p>
                           <p className="mt-2 text-sm leading-7 text-zinc-400">
@@ -237,10 +240,10 @@ export default function UseCasesPage() {
         <section className={`${pageShell} pb-20 pt-10`} style={pageShellStyle}>
           <div className="mb-8 flex items-end justify-between gap-6 border-b border-white/10 pb-6">
             <div>
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">
+              <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">
                 Core Use Cases
               </p>
-              <h2 className="mt-3 font-[Montserrat] text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
+              <h2 className="mt-3 font-[Montserrat] text-3xl font-extrabold tracking-[-0.03em] text-white sm:text-4xl">
                 Where DynoWeb fits into everyday optimization work
               </h2>
             </div>
@@ -253,7 +256,7 @@ export default function UseCasesPage() {
                 className="group rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.2)] transition duration-200 hover:border-sky-300/20 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] sm:p-6 lg:p-7"
               >
                 <div className="flex items-center justify-between gap-4">
-                  <span className="rounded-full border border-sky-300/18 bg-sky-400/[0.08] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-sky-200">
+                  <span className="rounded-full border border-sky-300/18 bg-sky-400/[0.08] px-3 py-1 text-xs font-extrabold uppercase tracking-[0.24em] text-sky-200">
                     Use Case {item.number}
                   </span>
                   <span className="text-sm font-medium text-zinc-600 transition group-hover:text-zinc-500">
@@ -264,10 +267,10 @@ export default function UseCasesPage() {
                 <div className="mt-5 xl:grid xl:grid-cols-[minmax(360px,0.82fr)_minmax(0,1.18fr)] xl:items-start xl:gap-8 2xl:grid-cols-[minmax(460px,0.78fr)_minmax(0,1.22fr)] 2xl:gap-10">
                   <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0b0b0d] shadow-[0_20px_40px_rgba(0,0,0,0.24)]">
                     <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-3">
-                      <span className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-zinc-500">
+                      <span className="text-[0.72rem] font-extrabold uppercase tracking-[0.22em] text-zinc-500">
                         {item.imageLabel}
                       </span>
-                      <span className="rounded-full border border-sky-300/18 bg-sky-400/[0.08] px-2.5 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-sky-200">
+                      <span className="rounded-full border border-sky-300/18 bg-sky-400/[0.08] px-2.5 py-1 text-[0.66rem] font-extrabold uppercase tracking-[0.18em] text-sky-200">
                         DynoWeb UI
                       </span>
                     </div>
@@ -283,12 +286,12 @@ export default function UseCasesPage() {
                   </div>
 
                   <div className="mt-6 xl:mt-0 xl:flex xl:min-h-full xl:flex-col xl:justify-center">
-                    <h3 className="max-w-[34ch] font-[Montserrat] text-[1.8rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2rem] 2xl:max-w-[26ch] 2xl:text-[2.35rem]">
+                    <h3 className="max-w-[34ch] font-[Montserrat] text-[1.8rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2rem] 2xl:max-w-[26ch] 2xl:text-[2.35rem]">
                       {item.title}
                     </h3>
 
                     <div className="mt-5 rounded-[1.35rem] border border-white/10 bg-black/25 px-4 py-4">
-                      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                      <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-zinc-500">
                         Real scenario
                       </p>
                       <div className="mt-2 space-y-3 text-[1rem] leading-8 text-zinc-300">
@@ -297,7 +300,7 @@ export default function UseCasesPage() {
                     </div>
 
                     <div className="mt-4 rounded-[1.35rem] border border-white/10 bg-white/[0.02] px-4 py-4">
-                      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                      <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-zinc-500">
                         What DynoWeb shows
                       </p>
                       <div className="mt-2 space-y-3 text-[1rem] leading-8 text-zinc-300">
@@ -306,7 +309,7 @@ export default function UseCasesPage() {
                     </div>
 
                     <div className="mt-4 rounded-[1.35rem] border border-sky-300/14 bg-sky-400/[0.05] px-4 py-4">
-                      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-200/80">
+                      <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-sky-200/80">
                         How it gets fixed
                       </p>
                       <div className="mt-2 space-y-3 text-[1rem] leading-8 text-zinc-200">
@@ -327,10 +330,10 @@ export default function UseCasesPage() {
         <section className={`${pageShell} pb-24`} style={pageShellStyle}>
           <div className="rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_48%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] sm:p-8 lg:p-10">
             <div className="max-w-[960px] 2xl:max-w-[1080px]">
-              <p className="text-[0.74rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">
+              <p className="text-[0.74rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">
                 Closing CTA
               </p>
-              <h2 className="mt-4 font-[Montserrat] text-3xl font-semibold leading-[1.06] tracking-[-0.04em] text-white sm:text-4xl lg:text-[3.2rem]">
+              <h2 className="mt-4 font-[Montserrat] text-3xl font-extrabold leading-[1.06] tracking-[-0.04em] text-white sm:text-4xl lg:text-[3.2rem]">
                 See what shoppers do. Know what to fix. Apply changes with confidence.
               </h2>
               <p className="mt-5 max-w-[62ch] text-base leading-8 text-zinc-300 sm:text-lg">
@@ -399,7 +402,7 @@ export default function UseCasesPage() {
               </a>
               <Link
                 href="/help"
-                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-semibold text-zinc-200 transition hover:border-white/15 hover:bg-white/[0.06] hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-extrabold text-zinc-200 transition hover:border-white/15 hover:bg-white/[0.06] hover:text-white"
               >
                 Explore the Help Center
               </Link>

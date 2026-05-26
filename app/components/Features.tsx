@@ -300,7 +300,7 @@ export default function FeaturesVideoSection() {
         }
         .fvs .sec-heading {
           font-family:'Montserrat',sans-serif;
-          font-size:clamp(1.6rem,3.2vw,3.5rem);
+          font-size:clamp(1.75rem,3vw,3.2rem);
           letter-spacing:-.02em; line-height:1.12; color:#e8eaf0;
         }
 

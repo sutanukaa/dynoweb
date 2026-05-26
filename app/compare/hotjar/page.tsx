@@ -70,16 +70,19 @@ export default function VsHotjarPage() {
     <>
       <PillNav />
 
-      <main className="relative overflow-hidden bg-[#050505] pt-24 text-white">
+      <main
+        className="relative overflow-hidden bg-[#050505] pt-24 text-white"
+        style={{ fontFamily: "'Karla', sans-serif" }}
+      >
         <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.08),_transparent_42%),linear-gradient(180deg,_rgba(255,255,255,0.035),_transparent)]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:44px_44px] opacity-25" />
 
         {/* Hero */}
         <section className={`${pageShell} pb-12 pt-10 2xl:pb-16 2xl:pt-12`} style={pageShellStyle}>
-          <p className="text-[0.78rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">
+          <p className="text-[0.78rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">
             Tool comparison — 2026
           </p>
-          <h1 className="mt-5 max-w-[24ch] font-[Montserrat] text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl xl:text-[4.2rem]">
+          <h1 className="mt-5 max-w-[24ch] font-[Montserrat] text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl xl:text-[4.5rem] 2xl:text-[4.75rem]">
             DynoWeb vs Hotjar for Shopify
           </h1>
           <p className="mt-6 max-w-[66ch] text-base leading-8 text-zinc-300 sm:text-lg">
@@ -91,8 +94,8 @@ export default function VsHotjarPage() {
         <section className={`${pageShell} pb-16`} style={pageShellStyle}>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-6 lg:p-8">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">Best for</p>
-              <p className="mt-3 font-[Montserrat] text-xl font-semibold tracking-tight text-white">DynoWeb</p>
+              <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">Best for</p>
+              <p className="mt-3 font-[Montserrat] text-xl font-extrabold tracking-tight text-white">DynoWeb</p>
               <ul className="mt-4 space-y-2 text-[0.95rem] leading-7 text-zinc-300">
                 <li className="flex gap-2"><span className="mt-1 text-sky-400">→</span>Shopify merchants who want actionable fix recommendations, not raw data to interpret</li>
                 <li className="flex gap-2"><span className="mt-1 text-sky-400">→</span>Non-technical teams who need guided implementation (theme editor and code paths)</li>
@@ -101,8 +104,8 @@ export default function VsHotjarPage() {
               </ul>
             </div>
             <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-6 lg:p-8">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">Best for</p>
-              <p className="mt-3 font-[Montserrat] text-xl font-semibold tracking-tight text-white">Hotjar</p>
+              <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">Best for</p>
+              <p className="mt-3 font-[Montserrat] text-xl font-extrabold tracking-tight text-white">Hotjar</p>
               <ul className="mt-4 space-y-2 text-[0.95rem] leading-7 text-zinc-300">
                 <li className="flex gap-2"><span className="mt-1 text-zinc-500">→</span>Teams on any platform (not just Shopify) who need flexible observation tooling</li>
                 <li className="flex gap-2"><span className="mt-1 text-zinc-500">→</span>UX researchers who need in-product surveys, NPS widgets, and user feedback collection</li>
@@ -115,8 +118,8 @@ export default function VsHotjarPage() {
         {/* Comparison table */}
         <section className={`${pageShell} pb-20`} style={pageShellStyle}>
           <div className="mb-6 border-b border-white/10 pb-5">
-            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">Feature comparison</p>
-            <h2 className="mt-3 font-[Montserrat] text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl">
+            <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">Feature comparison</p>
+            <h2 className="mt-3 font-[Montserrat] text-3xl font-extrabold tracking-[-0.03em] text-white sm:text-4xl">
               Side-by-side breakdown
             </h2>
           </div>
@@ -125,9 +128,9 @@ export default function VsHotjarPage() {
             <table className="w-full min-w-[520px] text-sm">
               <thead>
                 <tr className="border-b border-white/10 bg-white/[0.03]">
-                  <th className="px-5 py-4 text-left font-semibold uppercase tracking-[0.18em] text-zinc-500" style={{ fontSize: "0.7rem" }}>Feature</th>
-                  <th className="px-5 py-4 text-center font-semibold uppercase tracking-[0.18em] text-sky-300" style={{ fontSize: "0.7rem" }}>DynoWeb</th>
-                  <th className="px-5 py-4 text-center font-semibold uppercase tracking-[0.18em] text-zinc-400" style={{ fontSize: "0.7rem" }}>Hotjar</th>
+                  <th className="px-5 py-4 text-left font-extrabold uppercase tracking-[0.18em] text-zinc-500" style={{ fontSize: "0.7rem" }}>Feature</th>
+                  <th className="px-5 py-4 text-center font-extrabold uppercase tracking-[0.18em] text-sky-300" style={{ fontSize: "0.7rem" }}>DynoWeb</th>
+                  <th className="px-5 py-4 text-center font-extrabold uppercase tracking-[0.18em] text-zinc-400" style={{ fontSize: "0.7rem" }}>Hotjar</th>
                 </tr>
               </thead>
               <tbody>
@@ -162,15 +165,15 @@ export default function VsHotjarPage() {
         {/* FAQ */}
         <section className={`${pageShell} pb-20`} style={pageShellStyle}>
           <div className="mb-8 border-b border-white/10 pb-5">
-            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">Common questions</p>
-            <h2 className="mt-3 font-[Montserrat] text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
+            <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">Common questions</p>
+            <h2 className="mt-3 font-[Montserrat] text-2xl font-extrabold tracking-[-0.03em] text-white sm:text-3xl">
               Switching from Hotjar?
             </h2>
           </div>
           <div className="grid gap-4">
             {faqs.map((item) => (
               <div key={item.q} className="rounded-[1.5rem] border border-white/10 bg-white/[0.02] p-5 sm:p-6">
-                <p className="font-semibold text-white">{item.q}</p>
+                <p className="font-extrabold text-white">{item.q}</p>
                 <p className="mt-3 text-[0.95rem] leading-7 text-zinc-300">{item.a}</p>
               </div>
             ))}
@@ -180,8 +183,8 @@ export default function VsHotjarPage() {
         {/* CTA */}
         <section className={`${pageShell} pb-24`} style={pageShellStyle}>
           <div className="rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_48%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] sm:p-8 lg:p-10">
-            <p className="text-[0.74rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">Try DynoWeb</p>
-            <h2 className="mt-4 font-[Montserrat] text-3xl font-semibold leading-[1.06] tracking-[-0.04em] text-white sm:text-4xl">
+            <p className="text-[0.74rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">Try DynoWeb</p>
+            <h2 className="mt-4 font-[Montserrat] text-3xl font-extrabold leading-[1.06] tracking-[-0.04em] text-white sm:text-4xl">
               Move from observing to actually fixing
             </h2>
             <p className="mt-5 max-w-[58ch] text-base leading-8 text-zinc-300 sm:text-lg">
@@ -192,7 +195,7 @@ export default function VsHotjarPage() {
                 href="https://apps.shopify.com/dynoweb"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-black bg-white px-7 py-3 text-sm font-semibold text-black shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition hover:bg-zinc-100"
+                className="inline-flex items-center gap-2 rounded-full border border-black bg-white px-7 py-3 text-sm font-extrabold text-black shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition hover:bg-zinc-100"
               >
                 Install DynoWeb free
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -201,7 +204,7 @@ export default function VsHotjarPage() {
               </a>
               <Link
                 href="/use-cases"
-                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-semibold text-zinc-200 transition hover:border-white/15 hover:bg-white/[0.06] hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-extrabold text-zinc-200 transition hover:border-white/15 hover:bg-white/[0.06] hover:text-white"
               >
                 See use cases
               </Link>

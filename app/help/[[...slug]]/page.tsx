@@ -32,9 +32,9 @@ const defaultDescription =
   "Help articles, product guides, and API reference for the DynoWeb site.";
 const articleClassName = cn(
   "max-w-none text-[1.02rem] leading-8 text-zinc-200",
-  "[&_h1]:mt-0 [&_h1]:text-4xl [&_h1]:font-semibold [&_h1]:tracking-tight [&_h1]:text-white",
-  "[&_h2]:mt-12 [&_h2]:scroll-mt-28 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-white",
-  "[&_h3]:mt-8 [&_h3]:scroll-mt-28 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-white",
+  "[&_h1]:mt-0 [&_h1]:font-[Montserrat] [&_h1]:text-4xl [&_h1]:font-extrabold [&_h1]:tracking-tight [&_h1]:text-white",
+  "[&_h2]:mt-12 [&_h2]:scroll-mt-28 [&_h2]:font-[Montserrat] [&_h2]:text-3xl [&_h2]:font-extrabold [&_h2]:tracking-tight [&_h2]:text-white",
+  "[&_h3]:mt-8 [&_h3]:scroll-mt-28 [&_h3]:font-[Montserrat] [&_h3]:text-2xl [&_h3]:font-extrabold [&_h3]:text-white",
   "[&_p]:my-5 [&_p]:text-zinc-300",
   "[&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:text-zinc-300",
   "[&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-zinc-300",
@@ -127,7 +127,10 @@ export default async function DocsPage({ params }: PageProps) {
       />
       <PillNav />
 
-      <main className="relative min-h-screen bg-[#050505] pt-24 text-white">
+      <main
+        className="relative min-h-screen bg-[#050505] pt-24 text-white"
+        style={{ fontFamily: "'Karla', sans-serif" }}
+      >
         <div className="absolute inset-x-0 top-0 h-[32rem] bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.08),_transparent_42%),linear-gradient(180deg,_rgba(255,255,255,0.035),_transparent)]" />
 
         <div className="relative w-full px-4 py-10 sm:px-6 lg:px-8 xl:px-10 2xl:px-14">
@@ -154,7 +157,7 @@ export default async function DocsPage({ params }: PageProps) {
 
             <article className="min-w-0 rounded-[1.75rem] border border-white/10 bg-[#09090b]/88 p-6 shadow-[0_18px_60px_rgba(4,8,18,0.28)] sm:p-8 xl:p-10">
               <header className="mb-8 border-b border-white/10 pb-6">
-                <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                <h1 className="font-[Montserrat] text-4xl font-extrabold leading-[1.06] tracking-[-0.025em] text-white sm:text-5xl xl:text-[3.75rem]">
                   {page.data.title}
                 </h1>
                 {page.data.description ? (

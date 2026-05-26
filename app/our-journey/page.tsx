@@ -39,8 +39,9 @@ export default function OurJourneyPage() {
           .oj-frame {
             position: relative;
             width: 100%;
+            max-width: clamp(940px, 75vw, 1200px);
             margin: 0 auto;
-            padding: 0 clamp(1.5rem, 6vw, 7rem);
+            padding: 0 clamp(1.25rem, 4vw, 3rem);
             z-index: 1;
           }
 
@@ -48,6 +49,7 @@ export default function OurJourneyPage() {
             position: relative;
             z-index: 1;
             width: 100%;
+            max-width: clamp(720px, 62vw, 960px);
             margin: 0 auto;
           }
 
@@ -70,12 +72,12 @@ export default function OurJourneyPage() {
           }
           .oj-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+            font-size: clamp(2.25rem, 5.3vw, 4.75rem);
             font-weight: 800;
             line-height: 1.06;
             letter-spacing: -0.03em;
             color: #ffffff;
-            margin: 0 0 1.35rem;
+            margin: 0 0 1.25rem;
             text-shadow: 0 0 50px rgba(255,255,255,0.1);
           }
 
@@ -96,11 +98,11 @@ export default function OurJourneyPage() {
             color: #ffffff;
           }
           .oj-lead {
-            font-size: clamp(1.05rem, 1.35vw, 1.4rem);
+            font-size: clamp(1rem, 1.15vw, 1.2rem);
             line-height: 1.7;
             color: rgba(255,255,255,0.55);
             margin: 0 0 clamp(3rem, 6vh, 4.5rem);
-            max-width: 90ch;
+            max-width: 70ch;
           }
 
           /* Story sections */
@@ -109,18 +111,18 @@ export default function OurJourneyPage() {
           }
           .oj-section h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.4rem, 2.7vw, 2.4rem);
+            font-size: clamp(1.3rem, 1.9vw, 1.75rem);
             font-weight: 700;
             line-height: 1.22;
             letter-spacing: -0.015em;
             color: #ffffff;
-            margin: 0 0 1.2rem;
+            margin: 0 0 1rem;
           }
           .oj-section p {
-            font-size: clamp(1rem, 1.45vw, 1.55rem);
-            line-height: 1.75;
-            color: rgba(255,255,255,0.7);
-            margin: 0 0 1.2rem;
+            font-size: clamp(0.95rem, 1.05vw, 1.12rem);
+            line-height: 1.8;
+            color: rgba(255,255,255,0.65);
+            margin: 0 0 1rem;
           }
           .oj-section p:last-child { margin-bottom: 0; }
           .oj-section p em {

@@ -140,7 +140,7 @@ export default function PricingSection() {
 
         .pricing .sec-heading {
           font-family:'Montserrat',sans-serif;
-          font-size: clamp(1.75rem, 3.2vw, 3.5rem);
+          font-size: clamp(1.75rem, 3vw, 3.2rem);
           letter-spacing:-.02em; line-height:1.15;
           color:#e8eaf0;
         }
