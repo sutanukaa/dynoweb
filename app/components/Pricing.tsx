@@ -3,13 +3,12 @@ import { useState, type CSSProperties } from "react";
 
 // Custom-plan slider — fixed stops only
 const CUSTOM_STOPS = [
-  { sessions: 50_000,    price: 79  },
-  { sessions: 100_000,   price: 119 },
-  { sessions: 250_000,   price: 239 },
-  { sessions: 500_000,   price: 439 },
-  { sessions: 1_000_000, price: 839 },
+  { sessions: 100_000,   price: 79  },
+  { sessions: 250_000,   price: 139 },
+  { sessions: 500_000,   price: 239 },
+  { sessions: 1_000_000, price: 439 },
 ];
-const DEFAULT_STOP_INDEX = 1; // 100K sessions
+const DEFAULT_STOP_INDEX = 0; // 100K sessions (entry)
 
 function formatSessions(sessions: number): string {
   return sessions.toLocaleString("en-US");
@@ -59,7 +58,6 @@ const plans: Plan[] = [
       "Click + scroll heatmaps",
       "30-day replay retention",
       "5 SmartNudges (publish live)",
-      "$5 AI Agent credit included",
       "Revenue attribution UI",
       "4 CRO Reports / mo (full)",
       "Email support",
@@ -81,7 +79,6 @@ const plans: Plan[] = [
       "Rage-click heatmaps",
       "60-day replay retention",
       "15 SmartNudges + A/B testing",
-      "$15 AI Agent credit included",
       "Bounce + revenue click tracking",
       "MCP access (1,500 calls / day)",
       "16 CRO Reports / mo",
@@ -630,7 +627,7 @@ export default function PricingSection() {
                       aria-valuetext={`${formatSessions(sessions)} sessions, $${customPrice} per month`}
                     />
                     <div className="custom-slider-labels">
-                      <span>50K</span>
+                      <span>100K</span>
                       <span>1M</span>
                     </div>
                     <p className="custom-callout">
