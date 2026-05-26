@@ -118,6 +118,16 @@ export default function OurJourneyPage() {
             color: rgba(255,255,255,0.88);
             font-style: italic;
           }
+          .oj-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 1.75rem 0 0;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: #090a0f;
+            box-shadow: 0 18px 50px rgba(0,0,0,0.4);
+          }
 
           /* Final closing block */
           .oj-closing {
@@ -314,6 +324,13 @@ export default function OurJourneyPage() {
             <p>
               For the first time, we had a tool that didn&apos;t just hand merchants a dashboard. It handed them an answer.
             </p>
+            <img
+              src="/Dashboard.png"
+              alt="The DynoWeb dashboard for a real client store — friction signals, conversion metrics, and prioritized fixes in one view"
+              className="oj-image"
+              loading="lazy"
+              decoding="async"
+            />
           </section>
 
           <section className="oj-section">
