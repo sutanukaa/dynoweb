@@ -34,12 +34,21 @@ export default function OurJourneyPage() {
             overflow: hidden;
           }
 
+          /* Visual frame that brackets the article on wide screens
+             so the side border lines don't sit miles away from the text */
+          .oj-frame {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 6vw, 7rem);
+            z-index: 1;
+          }
+
           .oj-article {
             position: relative;
             z-index: 1;
-            max-width: 720px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 clamp(1.25rem, 5vw, 2.5rem);
           }
 
           /* Hero: eyebrow + bar + title + lead */
@@ -87,11 +96,11 @@ export default function OurJourneyPage() {
             color: #ffffff;
           }
           .oj-lead {
-            font-size: clamp(1rem, 1.2vw, 1.15rem);
+            font-size: clamp(1.05rem, 1.35vw, 1.4rem);
             line-height: 1.7;
             color: rgba(255,255,255,0.55);
             margin: 0 0 clamp(3rem, 6vh, 4.5rem);
-            max-width: 60ch;
+            max-width: 90ch;
           }
 
           /* Story sections */
@@ -100,18 +109,18 @@ export default function OurJourneyPage() {
           }
           .oj-section h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.35rem, 2.1vw, 1.7rem);
+            font-size: clamp(1.4rem, 2.7vw, 2.4rem);
             font-weight: 700;
             line-height: 1.22;
             letter-spacing: -0.015em;
             color: #ffffff;
-            margin: 0 0 1rem;
+            margin: 0 0 1.2rem;
           }
           .oj-section p {
-            font-size: 1rem;
-            line-height: 1.85;
-            color: rgba(255,255,255,0.68);
-            margin: 0 0 1rem;
+            font-size: clamp(1rem, 1.45vw, 1.55rem);
+            line-height: 1.75;
+            color: rgba(255,255,255,0.7);
+            margin: 0 0 1.2rem;
           }
           .oj-section p:last-child { margin-bottom: 0; }
           .oj-section p em {
@@ -127,6 +136,24 @@ export default function OurJourneyPage() {
             border: 1px solid rgba(255,255,255,0.08);
             background: #090a0f;
             box-shadow: 0 18px 50px rgba(0,0,0,0.4);
+          }
+          .oj-image-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.75rem 0 0;
+            align-items: stretch;
+          }
+          .oj-image-row .oj-image {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            object-position: top center;
+          }
+          @media (max-width: 720px) {
+            .oj-image-row { grid-template-columns: 1fr; }
           }
 
           /* Final closing block */
@@ -177,43 +204,44 @@ export default function OurJourneyPage() {
           }}
         />
 
-        {/* Side border lines */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            width: "1px",
-            background: "rgba(255,255,255,0.13)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 0%, black 8%, black 78%, transparent 100%)",
-            maskImage:
-              "linear-gradient(to bottom, transparent 0%, black 8%, black 78%, transparent 100%)",
-            zIndex: 10,
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: "1px",
-            background: "rgba(255,255,255,0.13)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 0%, black 8%, black 78%, transparent 100%)",
-            maskImage:
-              "linear-gradient(to bottom, transparent 0%, black 8%, black 78%, transparent 100%)",
-            zIndex: 10,
-            pointerEvents: "none",
-          }}
-        />
+        <div className="oj-frame">
+          {/* Side border lines — bracket the article, not the viewport */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              bottom: 0,
+              width: "1px",
+              background: "rgba(255,255,255,0.13)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent 0%, black 8%, black 78%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to bottom, transparent 0%, black 8%, black 78%, transparent 100%)",
+              zIndex: 10,
+              pointerEvents: "none",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              bottom: 0,
+              width: "1px",
+              background: "rgba(255,255,255,0.13)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent 0%, black 8%, black 78%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to bottom, transparent 0%, black 8%, black 78%, transparent 100%)",
+              zIndex: 10,
+              pointerEvents: "none",
+            }}
+          />
 
-        <article className="oj-article">
+          <article className="oj-article">
           <p className="oj-eyebrow">Our Journey</p>
           <div className="oj-eyebrow-bar" />
           <h1 className="oj-title">
@@ -324,13 +352,22 @@ export default function OurJourneyPage() {
             <p>
               For the first time, we had a tool that didn&apos;t just hand merchants a dashboard. It handed them an answer.
             </p>
-            <img
-              src="/Dashboard.png"
-              alt="The DynoWeb dashboard for a real client store — friction signals, conversion metrics, and prioritized fixes in one view"
-              className="oj-image"
-              loading="lazy"
-              decoding="async"
-            />
+            <div className="oj-image-row">
+              <img
+                src="/Dashboard.png"
+                alt="The DynoWeb dashboard for a real client store — friction signals, conversion metrics, and prioritized fixes in one view"
+                className="oj-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src="/Yetibeds.png"
+                alt="YetiBeds storefront — one of the real client stores we tested DynoWeb on"
+                className="oj-image"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </section>
 
           <section className="oj-section">
@@ -346,7 +383,8 @@ export default function OurJourneyPage() {
           <div className="oj-closing">
             <p className="oj-signoff">— The Dynoweb Team</p>
           </div>
-        </article>
+          </article>
+        </div>
       </main>
 
       <Footer />

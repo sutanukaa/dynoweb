@@ -20,6 +20,7 @@ type Plan = {
   period: string;
   priceSubtitle?: string;
   trial?: string;
+  featuresHeader?: string;
   features: string[];
   notIncluded?: string[];
   addon?: { label: string; price: string };
@@ -53,8 +54,9 @@ const plans: Plan[] = [
     price: "$14",
     period: "/ mo",
     trial: "7-day free trial",
+    featuresHeader: "All features in Free Plan and:",
     features: [
-      "Up to 5,000 sessions / month",
+      "Up to 7,500 sessions / month",
       "Click + scroll heatmaps",
       "30-day replay retention",
       "5 SmartNudges (publish live)",
@@ -74,8 +76,9 @@ const plans: Plan[] = [
     price: "$29",
     period: "/ mo",
     trial: "7-day free trial",
+    featuresHeader: "All features in Growth Plan and:",
     features: [
-      "Up to 25,000 sessions / month",
+      "Up to 35,000 sessions / month",
       "Rage-click heatmaps",
       "60-day replay retention",
       "15 SmartNudges + A/B testing",
@@ -107,7 +110,6 @@ const plans: Plan[] = [
       "Unlimited CRO Reports",
       "Dedicated Slack support",
     ],
-    addon: { label: "AI Assistant", price: "+$15/mo" },
     cta: { label: "Contact sales", href: "/contact-us" },
   },
 ];
@@ -259,6 +261,13 @@ export default function PricingSection() {
           background: rgba(255,255,255,0.06);
         }
 
+        .pricing-features-header {
+          font-size: 0.82rem;
+          color: rgba(255,255,255,0.6);
+          font-weight: 500;
+          letter-spacing: 0.005em;
+          margin: 0 0 0.35rem;
+        }
         .pricing-features {
           display: flex;
           flex-direction: column;
@@ -636,6 +645,9 @@ export default function PricingSection() {
                   </div>
                 )}
 
+                {plan.featuresHeader && (
+                  <p className="pricing-features-header">{plan.featuresHeader}</p>
+                )}
                 <div className="pricing-features">
                   {plan.features.map((f, fi) => (
                     <div key={fi} className="pricing-feature">
