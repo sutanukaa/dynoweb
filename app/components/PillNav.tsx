@@ -320,7 +320,12 @@ export default function Navbar() {
         .mobile-link:hover { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.88); }
 
         @media (max-width: 768px) {
-          .nav-inner { justify-content: space-between; }
+          .nav-inner {
+            justify-content: space-between;
+            padding: 0 0.5rem;
+          }
+          .nav-logo { margin-right: 0; }
+          .nav-logo-img { height: 80px; }
           .nav-links, .nav-cta { display: none !important; }
           .mobile-btn { display: flex; }
         }
