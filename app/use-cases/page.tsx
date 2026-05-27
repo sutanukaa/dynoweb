@@ -189,7 +189,7 @@ export default function UseCasesPage() {
                 {signalChips.map((chip) => (
                   <span
                     key={chip}
-                    className="rounded-full border border-sky-300/15 bg-sky-400/[0.07] px-4 py-2 text-sm font-medium text-sky-100"
+                    className="rounded-full border border-[#6eb0ff]/15 bg-[#6eb0ff]/[0.07] px-4 py-2 text-sm font-medium text-[#6eb0ff]"
                   >
                     {chip}
                   </span>
@@ -217,7 +217,7 @@ export default function UseCasesPage() {
                       className="rounded-[1.35rem] border border-white/10 bg-white/[0.02] p-4"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-sky-300/20 bg-sky-400/[0.08] text-sm font-extrabold text-sky-100">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-[#6eb0ff]/20 bg-[#6eb0ff]/[0.08] text-sm font-extrabold text-[#6eb0ff]">
                           0{index + 1}
                         </div>
                         <div>
@@ -253,10 +253,10 @@ export default function UseCasesPage() {
             {useCases.map((item) => (
               <article
                 key={item.number}
-                className="group rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.2)] transition duration-200 hover:border-sky-300/20 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] sm:p-6 lg:p-7"
+                className="group rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.2)] transition duration-200 hover:border-[#6eb0ff]/20 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] sm:p-6 lg:p-7"
               >
                 <div className="flex items-center justify-between gap-4">
-                  <span className="rounded-full border border-sky-300/18 bg-sky-400/[0.08] px-3 py-1 text-xs font-extrabold uppercase tracking-[0.24em] text-sky-200">
+                  <span className="rounded-full border border-[#6eb0ff]/18 bg-[#6eb0ff]/[0.08] px-3 py-1 text-xs font-extrabold uppercase tracking-[0.24em] text-[#6eb0ff]">
                     Use Case {item.number}
                   </span>
                   <span className="text-sm font-medium text-zinc-600 transition group-hover:text-zinc-500">
@@ -270,7 +270,7 @@ export default function UseCasesPage() {
                       <span className="text-[0.72rem] font-extrabold uppercase tracking-[0.22em] text-zinc-500">
                         {item.imageLabel}
                       </span>
-                      <span className="rounded-full border border-sky-300/18 bg-sky-400/[0.08] px-2.5 py-1 text-[0.66rem] font-extrabold uppercase tracking-[0.18em] text-sky-200">
+                      <span className="rounded-full border border-[#6eb0ff]/18 bg-[#6eb0ff]/[0.08] px-2.5 py-1 text-[0.66rem] font-extrabold uppercase tracking-[0.18em] text-[#6eb0ff]">
                         DynoWeb UI
                       </span>
                     </div>
@@ -308,8 +308,8 @@ export default function UseCasesPage() {
                       </div>
                     </div>
 
-                    <div className="mt-4 rounded-[1.35rem] border border-sky-300/14 bg-sky-400/[0.05] px-4 py-4">
-                      <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-sky-200/80">
+                    <div className="mt-4 rounded-[1.35rem] border border-[#6eb0ff]/14 bg-[#6eb0ff]/[0.05] px-4 py-4">
+                      <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-[#6eb0ff]/80">
                         How it gets fixed
                       </p>
                       <div className="mt-2 space-y-3 text-[1rem] leading-8 text-zinc-200">
@@ -317,7 +317,7 @@ export default function UseCasesPage() {
                       </div>
                     </div>
 
-                    <div className="mt-5 space-y-3 text-base font-medium leading-8 text-sky-100">
+                    <div className="mt-5 space-y-3 text-base font-medium leading-8 text-[#6eb0ff]">
                       {item.outcome}
                     </div>
                   </div>

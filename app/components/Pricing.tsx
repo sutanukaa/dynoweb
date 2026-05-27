@@ -44,7 +44,6 @@ const plans: Plan[] = [
       "1 CRO Report / mo (summary only)",
     ],
     notIncluded: [
-      "AI Agent (DynoAgent chat)",
       "Publish nudges live",
     ],
     cta: { label: "Install free", href: "https://apps.shopify.com/dynoweb" },
@@ -272,7 +271,6 @@ export default function PricingSection() {
           display: flex;
           flex-direction: column;
           gap: 0.65rem;
-          flex: 1;
         }
         .pricing-feature {
           display: flex;
@@ -458,6 +456,7 @@ export default function PricingSection() {
         .pricing-cta {
           display: block;
           width: 100%;
+          margin-top: auto;
           padding: 0.7rem 1rem;
           background: #ffffff;
           color: #0a0a0a;

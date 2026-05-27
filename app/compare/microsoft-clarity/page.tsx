@@ -102,10 +102,10 @@ export default function VsMicrosoftClarityPage() {
               <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">Best for</p>
               <p className="mt-3 font-[Montserrat] text-xl font-extrabold tracking-tight text-white">DynoWeb</p>
               <ul className="mt-4 space-y-2 text-[0.95rem] leading-7 text-zinc-300">
-                <li className="flex gap-2"><span className="mt-1 text-sky-400">→</span>Shopify merchants who want to move from "I see the problem" to "I know the fix"</li>
-                <li className="flex gap-2"><span className="mt-1 text-sky-400">→</span>Teams that need revenue-attributed journey analysis tied to actual Shopify orders</li>
-                <li className="flex gap-2"><span className="mt-1 text-sky-400">→</span>Non-technical merchants who need guided theme-editor walkthroughs to implement changes</li>
-                <li className="flex gap-2"><span className="mt-1 text-sky-400">→</span>Stores prioritising Customer Privacy API compliance for GDPR / CCPA</li>
+                <li className="flex gap-2"><span className="mt-1 text-[#6eb0ff]">→</span>Shopify merchants who want to move from "I see the problem" to "I know the fix"</li>
+                <li className="flex gap-2"><span className="mt-1 text-[#6eb0ff]">→</span>Teams that need revenue-attributed journey analysis tied to actual Shopify orders</li>
+                <li className="flex gap-2"><span className="mt-1 text-[#6eb0ff]">→</span>Non-technical merchants who need guided theme-editor walkthroughs to implement changes</li>
+                <li className="flex gap-2"><span className="mt-1 text-[#6eb0ff]">→</span>Stores prioritising Customer Privacy API compliance for GDPR / CCPA</li>
               </ul>
             </div>
             <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-6 lg:p-8">
@@ -134,7 +134,7 @@ export default function VsMicrosoftClarityPage() {
               <thead>
                 <tr className="border-b border-white/10 bg-white/[0.03]">
                   <th className="px-5 py-4 text-left font-extrabold uppercase tracking-[0.18em] text-zinc-500" style={{ fontSize: "0.7rem" }}>Feature</th>
-                  <th className="px-5 py-4 text-center font-extrabold uppercase tracking-[0.18em] text-sky-300" style={{ fontSize: "0.7rem" }}>DynoWeb</th>
+                  <th className="px-5 py-4 text-center font-extrabold uppercase tracking-[0.18em] text-[#6eb0ff]" style={{ fontSize: "0.7rem" }}>DynoWeb</th>
                   <th className="px-5 py-4 text-center font-extrabold uppercase tracking-[0.18em] text-zinc-400" style={{ fontSize: "0.7rem" }}>Microsoft Clarity</th>
                 </tr>
               </thead>
@@ -144,7 +144,7 @@ export default function VsMicrosoftClarityPage() {
                     <td className="px-5 py-3 text-zinc-300">{row.feature}</td>
                     <td className="px-5 py-3 text-center">
                       {row.dynoweb === true ? (
-                        <span className="text-sky-400">✓</span>
+                        <span className="text-[#6eb0ff]">✓</span>
                       ) : row.dynoweb === false ? (
                         <span className="text-zinc-700">—</span>
                       ) : (

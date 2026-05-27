@@ -39,9 +39,8 @@ export default function OurJourneyPage() {
           .oj-frame {
             position: relative;
             width: 100%;
-            max-width: clamp(940px, 75vw, 1200px);
             margin: 0 auto;
-            padding: 0 clamp(1.25rem, 4vw, 3rem);
+            padding: 0 clamp(1.25rem, 5vw, 7rem);
             z-index: 1;
           }
 
@@ -49,7 +48,6 @@ export default function OurJourneyPage() {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: clamp(720px, 62vw, 960px);
             margin: 0 auto;
           }
 

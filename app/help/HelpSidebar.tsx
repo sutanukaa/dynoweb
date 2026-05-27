@@ -103,7 +103,7 @@ export default function HelpSidebar({
             placeholder="Search guides and topics"
             aria-label="Search help articles"
             autoComplete="off"
-            className="w-full rounded-2xl border border-white/10 bg-[#09090d]/85 py-3 pl-11 pr-12 text-sm text-white outline-none transition placeholder:text-zinc-500 focus:border-sky-300/35 focus:ring-2 focus:ring-sky-300/12"
+            className="w-full rounded-2xl border border-white/10 bg-[#09090d]/85 py-3 pl-11 pr-12 text-sm text-white outline-none transition placeholder:text-zinc-500 focus:border-[#6eb0ff]/35 focus:ring-2 focus:ring-[#6eb0ff]/12"
           />
           {query ? (
             <button
@@ -172,13 +172,13 @@ function SearchResults({
           className={cn(
             "rounded-[1.5rem] border bg-[#0a0b10]/78 p-4 transition",
             currentUrl === result.url
-              ? "border-sky-300/25 shadow-[0_0_0_1px_rgba(125,211,252,0.1)]"
+              ? "border-[#6eb0ff]/25 shadow-[0_0_0_1px_rgba(110,176,255,0.1)]"
               : "border-white/10"
           )}
         >
           <Link
             href={result.url}
-            className="block rounded-2xl text-sm transition hover:text-sky-200"
+            className="block rounded-2xl text-sm transition hover:text-[#6eb0ff]"
           >
             <p className="text-base font-semibold tracking-tight text-white">
               {result.title}
@@ -199,7 +199,7 @@ function SearchResults({
                 <Link
                   key={section.url}
                   href={section.url}
-                  className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1 text-xs font-medium text-zinc-300 transition hover:border-sky-300/25 hover:text-white"
+                  className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1 text-xs font-medium text-zinc-300 transition hover:border-[#6eb0ff]/25 hover:text-white"
                 >
                   {section.title}
                 </Link>
@@ -316,7 +316,7 @@ function NavLink({
   const classes = cn(
     "block rounded-2xl border px-3 py-2 text-sm leading-6 transition",
     active
-      ? "border-sky-300/20 bg-sky-400/[0.08] text-white shadow-[0_0_0_1px_rgba(125,211,252,0.1)]"
+      ? "border-[#6eb0ff]/20 bg-[#6eb0ff]/[0.08] text-white shadow-[0_0_0_1px_rgba(110,176,255,0.1)]"
       : "border-transparent text-zinc-400 hover:border-white/10 hover:bg-white/[0.05] hover:text-white",
     className
   );

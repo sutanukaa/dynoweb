@@ -99,13 +99,13 @@ export default function CaseStudiesPage() {
             {pilotResults.map((result) => (
               <article
                 key={result.label}
-                className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.2)] transition duration-200 hover:border-sky-300/20 lg:p-8"
+                className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.2)] transition duration-200 hover:border-[#6eb0ff]/20 lg:p-8"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <h3 className="font-[Montserrat] text-xl font-extrabold tracking-tight text-white sm:text-2xl">
                     {result.label}
                   </h3>
-                  <span className="rounded-full border border-sky-300/15 bg-sky-400/[0.07] px-3 py-1 text-xs font-extrabold uppercase tracking-[0.2em] text-sky-200">
+                  <span className="rounded-full border border-[#6eb0ff]/15 bg-[#6eb0ff]/[0.07] px-3 py-1 text-xs font-extrabold uppercase tracking-[0.2em] text-[#6eb0ff]">
                     {result.volume}
                   </span>
                 </div>
@@ -119,8 +119,8 @@ export default function CaseStudiesPage() {
                     <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-zinc-500">What DynoWeb found</p>
                     <p className="mt-2 text-[0.95rem] leading-7 text-zinc-300">{result.whatDynoWebFound}</p>
                   </div>
-                  <div className="rounded-[1.35rem] border border-sky-300/14 bg-sky-400/[0.05] px-4 py-4">
-                    <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-sky-200/80">Actions &amp; outcome</p>
+                  <div className="rounded-[1.35rem] border border-[#6eb0ff]/14 bg-[#6eb0ff]/[0.05] px-4 py-4">
+                    <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#6eb0ff]/80">Actions &amp; outcome</p>
                     <p className="mt-2 text-[0.95rem] leading-7 text-zinc-200">{result.actionsAndOutcome}</p>
                   </div>
                 </div>

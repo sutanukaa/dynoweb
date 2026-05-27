@@ -93,7 +93,7 @@ export default function HelpMobileNav({
                     key={`${item.url}-row`}
                     href={item.url}
                     className={cn(
-                      "block rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm leading-6 text-zinc-300 transition hover:border-sky-300/20 hover:text-white",
+                      "block rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm leading-6 text-zinc-300 transition hover:border-[#6eb0ff]/20 hover:text-white",
                       item.depth > 2 ? "ml-4" : ""
                     )}
                   >
