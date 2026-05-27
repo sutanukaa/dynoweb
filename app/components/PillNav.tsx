@@ -299,7 +299,7 @@ export default function Navbar() {
           margin-left: auto;
         }
         .mobile-menu {
-          position: fixed; top: 64px; left: 1rem; right: 1rem;
+          position: fixed; top: 140px; left: 1rem; right: 1rem;
           background: rgba(11,11,16,0.97);
           border: 1px solid rgba(255,255,255,0.09);
           border-radius: 16px;
@@ -307,6 +307,9 @@ export default function Navbar() {
           padding: 8px;
           z-index: 9998;
           box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+        }
+        @media (max-width: 380px) {
+          .mobile-menu { top: 150px; }
         }
         .mobile-link {
           display: block; padding: 11px 14px; border-radius: 10px;
