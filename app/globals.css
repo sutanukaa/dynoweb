@@ -365,6 +365,20 @@ html {
   animation: none;
 }
 
+/* Mobile: shrink the CTA so the long "We're Live — Check out DynoWeb on Shopify"
+   string doesn't span the entire viewport */
+@media (max-width: 600px) {
+  .uv-btn {
+    font-size: 0.78rem;
+    padding: 0.6em 1.2em 0.6em 1.5em;
+  }
+  .uv-btn-letter { letter-spacing: 0.02em; }
+  .uv-btn-svg { width: 14px; height: 14px; }
+}
+@media (max-width: 380px) {
+  .uv-btn { font-size: 0.72rem; padding: 0.55em 1em 0.55em 1.2em; }
+}
+
 /* ── Confetti burst on CTA hover ── */
 .confetti-burst {
   position: absolute;
