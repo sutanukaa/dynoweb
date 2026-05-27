@@ -492,10 +492,95 @@ export default function PrivacyPolicyClient() {
           display: grid;
           grid-template-columns: 240px 210px 1fr;
         }
+        /* Mobile-only header — shown when the 3-col layout collapses */
+        .pp-mobile-header { display: none; }
+        .pp-mobile-title {
+          font-family: 'Montserrat', sans-serif;
+          font-size: clamp(1.9rem, 7.5vw, 2.6rem);
+          font-weight: 800;
+          line-height: 1.06;
+          letter-spacing: -0.03em;
+          color: #fff;
+          margin-bottom: 0.5rem;
+        }
+        .pp-mobile-title span { color: rgba(255,255,255,0.3); }
+        .pp-mobile-updated {
+          font-size: 0.82rem;
+          color: rgba(255,255,255,0.28);
+          font-weight: 500;
+          letter-spacing: 0.02em;
+          margin-bottom: 1.5rem;
+        }
+        .pp-mobile-select {
+          width: 100%;
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 10px;
+          color: rgba(255,255,255,0.85);
+          font-family: 'Karla', sans-serif;
+          font-size: 0.95rem;
+          padding: 12px 40px 12px 14px;
+          margin-bottom: 1.75rem;
+          appearance: none;
+          -webkit-appearance: none;
+          outline: none;
+          cursor: pointer;
+          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+          background-repeat: no-repeat;
+          background-position: right 14px center;
+          transition: border-color 0.15s, background-color 0.15s;
+        }
+        .pp-mobile-select:focus,
+        .pp-mobile-select:hover {
+          border-color: rgba(110,176,255,0.35);
+          background-color: rgba(255,255,255,0.06);
+        }
+        .pp-mobile-select option {
+          background: #0a0a0a;
+          color: #fff;
+        }
+
         @media (max-width: 860px) {
-          .pp-body { grid-template-columns: 1fr; }
+          /* page scrolls naturally on mobile — no internal scrollers */
+          .pp-root {
+            height: auto;
+            min-height: calc(100svh - var(--pillnav-height, 72px));
+            overflow: visible;
+          }
+          .pp-body {
+            grid-template-columns: 1fr;
+            overflow: visible;
+          }
           .pp-left { display: none; }
           .pp-mid { display: none; }
+          .pp-right {
+            overflow: visible;
+            padding: 1.75rem 1.25rem 3rem;
+          }
+          .pp-mobile-header { display: block; }
+          .pp-section-view { max-width: 100%; }
+          .pp-section-h {
+            font-size: clamp(1.5rem, 6vw, 2rem);
+            margin-bottom: 1.2rem;
+          }
+          .pp-section-view p {
+            font-size: 0.98rem;
+            line-height: 1.78;
+          }
+          .pp-section-view ul li {
+            font-size: 0.95rem;
+            line-height: 1.65;
+          }
+          .pp-page-nav {
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: space-between;
+          }
+          .pp-page-progress { order: 3; width: 100%; text-align: center; }
+        }
+        @media (max-width: 480px) {
+          .pp-right { padding: 1.25rem 1rem 2.5rem; }
+          .pp-page-btn { font-size: 0.84rem; }
         }
 
         /* LEFT — static title */
@@ -674,6 +759,24 @@ export default function PrivacyPolicyClient() {
 
           {/* RIGHT — active section */}
           <div className="pp-right">
+            {/* Mobile-only header: title + section jump select */}
+            <header className="pp-mobile-header">
+              <h1 className="pp-mobile-title">Privacy <span>Policy</span></h1>
+              <p className="pp-mobile-updated">Last updated: May 5, 2026</p>
+              <select
+                className="pp-mobile-select"
+                value={activeId}
+                onChange={(e) => goTo(e.target.value)}
+                aria-label="Jump to a section"
+              >
+                {sections.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.number}. {s.title}
+                  </option>
+                ))}
+              </select>
+            </header>
+
             {activeSection ? (
               <div key={animKey} className="pp-section-view">
                 <div className="pp-eyebrow">

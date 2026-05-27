@@ -296,6 +296,7 @@ export default function Navbar() {
           display: none;
           background: none; border: none; cursor: pointer; padding: 6px;
           color: rgba(255,255,255,0.6);
+          margin-left: auto;
         }
         .mobile-menu {
           position: fixed; top: 64px; left: 1rem; right: 1rem;
