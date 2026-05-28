@@ -5,7 +5,6 @@ const config = {
   reactStrictMode: true,
   async redirects() {
     return [
-      { source: '/pricing',  destination: '/#pricing',  permanent: false },
       { source: '/about',    destination: '/#features', permanent: false },
       { source: '/features', destination: '/#features', permanent: false },
     ];
