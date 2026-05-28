@@ -113,13 +113,23 @@ const plans: Plan[] = [
   },
 ];
 
+function parsePrice(s: string): number {
+  const m = s.match(/\d+/);
+  return m ? parseInt(m[0], 10) : 0;
+}
+
 export default function PricingSection() {
   const [, setHovered] = useState<number | null>(null);
   const [stopIndex, setStopIndex] = useState<number>(DEFAULT_STOP_INDEX);
+  const [addedAddons, setAddedAddons] = useState<Record<string, boolean>>({});
   const currentStop = CUSTOM_STOPS[stopIndex];
   const sessions = currentStop.sessions;
   const customPrice = currentStop.price;
   const sliderFillPct = (stopIndex / (CUSTOM_STOPS.length - 1)) * 100;
+
+  const isAddonAdded = (planName: string) => !!addedAddons[planName];
+  const toggleAddon = (planName: string) =>
+    setAddedAddons((prev) => ({ ...prev, [planName]: !prev[planName] }));
 
   return (
     <>
@@ -414,24 +424,82 @@ export default function PricingSection() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 8px 12px;
+          gap: 12px;
+          padding: 10px 12px;
           background: rgba(255,255,255,0.025);
           border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 8px;
+          border-radius: 10px;
           font-size: 0.82rem;
+          transition: background 0.18s ease, border-color 0.18s ease;
+        }
+        .pricing-addon.is-added {
+          background: rgba(110,176,255,0.06);
+          border-color: rgba(110,176,255,0.22);
         }
         .pricing-addon-left {
           display: flex;
           flex-direction: column;
+          gap: 1px;
+          flex: 1;
+          min-width: 0;
         }
         .pricing-addon-label {
-          color: rgba(255,255,255,0.7);
+          color: rgba(255,255,255,0.78);
           font-weight: 600;
           font-size: 0.85rem;
         }
         .pricing-addon-price {
-          color: rgba(255,255,255,0.4);
+          color: rgba(255,255,255,0.42);
           font-size: 0.72rem;
+        }
+        .pricing-addon-subtitle {
+          color: rgba(255,255,255,0.36);
+          font-size: 0.66rem;
+          margin-top: 2px;
+          line-height: 1.4;
+        }
+        .pricing-addon-toggle {
+          flex-shrink: 0;
+          padding: 5px 12px;
+          background: transparent;
+          border: 1px solid rgba(255,255,255,0.18);
+          border-radius: 7px;
+          color: rgba(255,255,255,0.78);
+          font-size: 0.72rem;
+          font-weight: 700;
+          font-family: 'Karla', sans-serif;
+          cursor: pointer;
+          letter-spacing: 0.02em;
+          transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+        }
+        .pricing-addon-toggle:hover {
+          background: rgba(255,255,255,0.05);
+          border-color: rgba(255,255,255,0.32);
+          color: #ffffff;
+        }
+        .pricing-addon-toggle.is-added {
+          background: #0a0a0a;
+          border-color: #0a0a0a;
+          color: #ffffff;
+          padding: 5px 14px;
+        }
+        .pricing-addon-toggle.is-added:hover {
+          background: #1a1a1a;
+          border-color: #1a1a1a;
+        }
+
+        /* AI Assistant — DynoAgent feature row (appears when addon is added) */
+        .pricing-feature.is-ai {
+          color: #4dd9c4;
+          font-weight: 600;
+        }
+        .pricing-feature.is-ai svg {
+          color: #4dd9c4;
+          width: 16px;
+          height: 16px;
+          margin-top: 1px;
+          flex-shrink: 0;
+          filter: drop-shadow(0 0 5px rgba(77,217,196,0.55));
         }
         .pricing-addon-btn {
           padding: 4px 12px;
@@ -667,6 +735,15 @@ export default function PricingSection() {
                       <span>{f}</span>
                     </div>
                   ))}
+                  {plan.addon && isAddonAdded(plan.name) && (
+                    <div className="pricing-feature is-ai">
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2 L13.6 9 L20.5 10.5 L13.6 12 L12 19 L10.4 12 L3.5 10.5 L10.4 9 Z" />
+                        <path d="M18.5 15 L19 17 L20.8 17.5 L19 18 L18.5 20 L18 18 L16.2 17.5 L18 17 Z" opacity="0.75" />
+                      </svg>
+                      <span>AI Assistant - DynoAgent</span>
+                    </div>
+                  )}
                 </div>
 
                 {plan.notIncluded && (
@@ -694,11 +771,24 @@ export default function PricingSection() {
                 )}
 
                 {plan.addon && (
-                  <div className="pricing-addon">
+                  <div className={`pricing-addon${isAddonAdded(plan.name) ? " is-added" : ""}`}>
                     <div className="pricing-addon-left">
                       <span className="pricing-addon-label">{plan.addon.label}</span>
                       <span className="pricing-addon-price">{plan.addon.price}</span>
+                      {isAddonAdded(plan.name) && (
+                        <span className="pricing-addon-subtitle">
+                          Prorated swap — see breakdown on confirm
+                        </span>
+                      )}
                     </div>
+                    <button
+                      type="button"
+                      className={`pricing-addon-toggle${isAddonAdded(plan.name) ? " is-added" : ""}`}
+                      onClick={() => toggleAddon(plan.name)}
+                      aria-pressed={isAddonAdded(plan.name)}
+                    >
+                      {isAddonAdded(plan.name) ? "Added" : "Add"}
+                    </button>
                   </div>
                 )}
 
@@ -707,6 +797,11 @@ export default function PricingSection() {
                     ? `/contact-us?plan=custom&sessions=${sessions}&price=${customPrice}`
                     : plan.cta.href;
                   const isExternal = ctaHref.startsWith("http");
+                  const addonOn = !!plan.addon && isAddonAdded(plan.name);
+                  const ctaLabel =
+                    addonOn && !plan.custom
+                      ? `Subscribe — $${parsePrice(plan.price) + parsePrice(plan.addon!.price)}/mo`
+                      : plan.cta.label;
                   return (
                     <a
                       href={ctaHref}
@@ -714,7 +809,7 @@ export default function PricingSection() {
                       rel={isExternal ? "noopener noreferrer" : undefined}
                       className={`pricing-cta${plan.custom ? " cta-outline" : ""}`}
                     >
-                      {plan.cta.label}
+                      {ctaLabel}
                     </a>
                   );
                 })()}
