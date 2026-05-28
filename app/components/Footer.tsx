@@ -6,6 +6,7 @@ export default function Footer() {
     { label: "Home", href: "/" },
     { label: "Features", href: "#features-section" },
     { label: "Use Cases", href: "/use-cases" },
+    { label: "Pricing", href: "/pricing" },
     { label: "Our Journey", href: "/our-journey" },
     { label: "Help", href: "/help" },
     { label: "Contact Us", href: "/contact-us" },
