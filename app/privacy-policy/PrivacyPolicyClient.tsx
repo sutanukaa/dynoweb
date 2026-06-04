@@ -179,7 +179,7 @@ const sections = [
         </ul>
         <p>DynoWeb does not store payment card numbers through its own billing flow. Merchant subscription charging is handled through Shopify billing.</p>
         <p className="pp-sub-label">Free trial terms</p>
-        <p>Each store is eligible for one free trial. Free trial days are granted once per store, on the store&apos;s first paid subscription. Upgrading, downgrading, adding or removing an add-on, cancelling, or re-subscribing does not restart the trial period — any unused trial days from the original trial window are carried over to the new subscription instead. Trial eligibility is determined from the store&apos;s Shopify subscription history. Where no trial days remain, plan changes take effect with Shopify&apos;s standard prorated charging.</p>
+        <p>Each store is eligible for one free trial within any 180-day period. Free trial days are granted once per store, on the store&apos;s first paid subscription. Upgrading, downgrading, adding or removing an add-on, cancelling, or re-subscribing does not restart the trial period — any unused trial days from the original trial window are carried over to the new subscription instead. Trial eligibility is determined from the store&apos;s Shopify subscription history. Where no trial days remain, plan changes take effect with Shopify&apos;s standard prorated charging.</p>
 
         <p className="pp-sub-label">F. DynoAgent, AI suggestions, screenshots, theme analysis, and generated images</p>
         <p>If a merchant uses DynoAgent or other AI features, DynoWeb may process:</p>
