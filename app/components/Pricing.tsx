@@ -265,6 +265,15 @@ export default function PricingSection() {
           letter-spacing: 0.01em;
         }
 
+        .pricing-footnote {
+          max-width: 640px;
+          margin: 1.75rem auto 0;
+          text-align: center;
+          font-size: 0.78rem;
+          line-height: 1.6;
+          color: rgba(255,255,255,0.45);
+        }
+
         .pricing-divider {
           width: 100%;
           height: 1px;
@@ -818,6 +827,19 @@ export default function PricingSection() {
               </div>
             ))}
           </div>
+
+          {/* Trial-terms disclosure — must stay adjacent to the trial claims
+              above. The free trial is granted ONCE per store (enforced from
+              Shopify's subscription history); without this qualifier the
+              "7-day free trial" pills could be read as repeating on every
+              plan change. */}
+          <p className="pricing-footnote">
+            7-day free trial applies once per store, on your first paid
+            subscription. Switching plans, adding or removing the AI
+            Assistant, or re-subscribing doesn&apos;t restart the trial — any
+            unused trial days carry over instead. Plan changes are prorated
+            automatically by Shopify billing.
+          </p>
         </div>
       </section>
     </>
