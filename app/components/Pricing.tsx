@@ -35,13 +35,12 @@ const plans: Plan[] = [
     price: "$0",
     period: "/ mo",
     features: [
-      "Up to 1,500 sessions / month",
+      "1,500 sessions / month",
       "Click + scroll heatmaps",
       "7-day replay retention",
-      "AI session summaries",
       "MCP access (500 calls / day)",
-      "2 SmartNudges",
       "1 CRO Report / mo (summary only)",
+      "2 SmartNudges",
     ],
     notIncluded: [
       "Publish nudges live",
