@@ -98,6 +98,7 @@ const plans: Plan[] = [
     price: "$79",
     period: "/ mo",
     priceSubtitle: "Up to 50,000 sessions",
+    trial: "7-day free trial",
     custom: true,
     features: [
       "Sessions sized to your traffic (slider)",
@@ -109,7 +110,7 @@ const plans: Plan[] = [
       "Unlimited CRO Reports",
       "Dedicated Slack support",
     ],
-    cta: { label: "Contact sales", href: "/contact-us" },
+    cta: { label: "Start 7-day free trial", href: "/contact-us" },
   },
 ];
 
@@ -807,7 +808,7 @@ export default function PricingSection() {
                       href={ctaHref}
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noopener noreferrer" : undefined}
-                      className={`pricing-cta${plan.custom ? " cta-outline" : ""}`}
+                      className="pricing-cta"
                     >
                       {ctaLabel}
                     </a>
