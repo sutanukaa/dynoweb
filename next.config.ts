@@ -7,6 +7,9 @@ const config = {
     return [
       { source: '/about',    destination: '/#features', permanent: false },
       { source: '/features', destination: '/#features', permanent: false },
+      // Comparison pages migrated from /compare/* to /vs/*
+      { source: '/compare', destination: '/vs', permanent: true },
+      { source: '/compare/:slug', destination: '/vs/:slug', permanent: true },
     ];
   },
   async headers() {
