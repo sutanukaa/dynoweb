@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MousePointerClick, MoveVertical, Eye, Smartphone, Filter, Gauge } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   Card,
   CheckList,
   FAQ,
@@ -31,10 +33,10 @@ export const metadata: Metadata = {
 };
 
 const types = [
-  { tag: "Click map", title: "Where shoppers tap", body: "See the elements that get the most interaction — and the ones shoppers expect to be clickable but aren't (a leading cause of frustration)." },
-  { tag: "Scroll map", title: "How far they read", body: "A color gradient shows exactly where visitors stop scrolling, so you know whether your strongest proof and CTA are even being seen." },
-  { tag: "Attention map", title: "What earns focus", body: "Combine dwell, hover, and interaction to understand which sections actually hold attention versus which get skimmed past." },
-  { tag: "Mobile map", title: "Thumb-zone reality", body: "Mobile heatmaps reveal fat-finger taps and mis-hits in the thumb zone that desktop testing never catches." },
+  { icon: MousePointerClick, tag: "Click map", title: "Where shoppers tap", body: "See the elements that get the most interaction — and the ones shoppers expect to be clickable but aren't (a leading cause of frustration)." },
+  { icon: MoveVertical, tag: "Scroll map", title: "How far they read", body: "A color gradient shows exactly where visitors stop scrolling, so you know whether your strongest proof and CTA are even being seen." },
+  { icon: Eye, tag: "Attention map", title: "What earns focus", body: "Combine dwell, hover, and interaction to understand which sections actually hold attention versus which get skimmed past." },
+  { icon: Smartphone, tag: "Mobile map", title: "Thumb-zone reality", body: "Mobile heatmaps reveal fat-finger taps and mis-hits in the thumb zone that desktop testing never catches." },
 ];
 
 const read = [
@@ -81,9 +83,13 @@ export default function ShopifyHeatmapsPage() {
         lead="Visual heatmaps built for Shopify. See exactly where visitors click, how far they scroll, and which elements they ignore. Lightweight, SEO-safe, and connected directly to AI fix suggestions."
         primaryCta={{ label: "Start free trial", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "See the heatmaps feature", href: "/features/heatmaps" }}
+        highlights={["Click, scroll & attention", "Mobile + desktop", "Sub-40 KB & SEO-safe", "Connected to AI fixes"]}
+        image="/Heatmaps.png"
+        imageAlt="DynoWeb heatmap view with click hotspots over a Shopify product page"
+        imageLabel="Heatmap preview"
       />
 
-      <Section className="pb-16">
+      <Section className="pb-12">
         <SectionHeading
           eyebrow="Three views, one picture"
           title="Click, scroll, and attention maps"
@@ -92,11 +98,64 @@ export default function ShopifyHeatmapsPage() {
         <FeatureGrid columns={2} items={types} />
       </Section>
 
+      <FeatureRow
+        eyebrow="Click maps"
+        title="See exactly where shoppers tap — and mis-tap"
+        body={
+          <p>
+            The click map overlays every interaction onto your real page. Hot zones show what earns engagement; clusters on
+            non-clickable elements reveal the false affordances quietly frustrating shoppers. It&rsquo;s the fastest way to
+            see whether your add-to-cart is actually getting the attention it needs.
+          </p>
+        }
+        bullets={[
+          "Every click and tap, aggregated onto the live page",
+          "Spot non-interactive elements shoppers expect to work",
+          "Confirm your key CTAs earn the engagement they should",
+        ]}
+        image="/clickHeatmap.png"
+        imageAlt="DynoWeb click heatmap overlay on a Shopify product page"
+        imageLabel="Click heatmap"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="Scroll maps"
+        title="Find the line where shoppers stop reading"
+        body={
+          <p>
+            The scroll map shows the exact depth where most visitors stop. The most common discovery: your strongest proof
+            and even your add-to-cart sit below where the majority drop off — invisible to most shoppers. Now you know exactly
+            what to move up.
+          </p>
+        }
+        bullets={[
+          "See the attention cliff on every template",
+          "Engagement, above-fold, and friction rates at a glance",
+          "Raise high-value content above where shoppers stop",
+        ]}
+        image="/scrollHeatmap.png"
+        imageAlt="DynoWeb scroll depth heatmap showing where visitors stop scrolling"
+        imageLabel="Scroll heatmap"
+      />
+
       <Section className="pb-16">
         <SectionHeading eyebrow="How to read them" title="What your heatmaps are telling you" />
         <Card>
           <CheckList items={read} />
         </Card>
+      </Section>
+
+      <Section className="pb-12">
+        <SectionHeading eyebrow="Built in" title="Lightweight, filterable, and tied to fixes" />
+        <FeatureGrid
+          columns={3}
+          items={[
+            { icon: Filter, title: "Filter every map", body: "Slice by page, device, country, and date range so you compare like with like." },
+            { icon: Gauge, title: "Sub-40 KB, SEO-safe", body: "The tracker loads asynchronously and never drags down page speed or Core Web Vitals." },
+            { icon: MousePointerClick, title: "From map to fix", body: "Patterns the maps reveal become prioritised, dev-ready suggestions automatically." },
+          ]}
+        />
       </Section>
 
       <FAQ title="Shopify heatmaps — frequently asked" items={faqs} />

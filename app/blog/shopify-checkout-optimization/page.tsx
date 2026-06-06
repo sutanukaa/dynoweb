@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BlogArticle } from "@/app/components/seo/BlogArticle";
+import { ChartCard, FunnelChart } from "@/app/components/seo/Charts";
+import { Callout } from "@/app/components/seo/Callout";
 
 export const metadata: Metadata = {
   title: "Shopify Checkout Optimization: 10 Fixes That Recover Revenue",
@@ -40,7 +42,16 @@ export default function Page() {
       category="Checkout"
       title="10 Shopify Checkout Fixes That Actually Recover Revenue"
       lead="Checkout is the highest-value page in your store — and the one shoppers abandon most. Here are 10 data-backed fixes to reduce abandonment and recover lost revenue, each with implementation notes."
-      readTime="8 min read"
+      readTime="5 min read"
+      heroImage="/ConversionFunnel.png"
+      heroAlt="DynoWeb conversion funnel showing the add-to-cart to checkout drop-off"
+      heroLabel="Conversion funnel"
+      takeaways={[
+        "Checkout is the most expensive place to lose a shopper — they've already chosen to buy.",
+        "Surprise costs and forced account creation are the top abandonment drivers.",
+        "Show shipping early, offer guest + express checkout, cut fields, add trust signals.",
+        "Diagnose your specific drop-off with cart analytics before applying fixes.",
+      ]}
       faqs={faqs}
       related={[
         { label: "Reduce Cart Abandonment", href: "/use-cases/reduce-cart-abandonment", description: "Find & fix what makes shoppers leave." },
@@ -60,6 +71,21 @@ export default function Page() {
         improvements compound directly into revenue. Use <Link href="/features/cart-overview">cart overview</Link> to find
         your specific drop-off point before applying these.
       </p>
+
+      <ChartCard
+        eyebrow="The expensive leak"
+        title="Where checkout revenue actually drops"
+        footnote="Illustrative funnel. The add-to-cart → checkout step is the most expensive leak on most stores, because every shopper there has already decided to buy."
+      >
+        <FunnelChart
+          steps={[
+            { label: "Add to cart", value: 1080 },
+            { label: "Reached checkout", value: 540 },
+            { label: "Payment info", value: 410 },
+            { label: "Purchase", value: 310 },
+          ]}
+        />
+      </ChartCard>
 
       <h2>The 10 fixes</h2>
       <ol>
@@ -82,6 +108,13 @@ export default function Page() {
         clicks</Link> on a stuck button or a validation error will point straight to the fix that matters most for your
         store.
       </p>
+
+      <Callout variant="product">
+        <p>
+          DynoWeb&rsquo;s cart overview pinpoints the exact step your shoppers abandon, and SmartNudge can fire an
+          exit-intent offer the moment they&rsquo;re about to leave — recovering revenue while they&rsquo;re still on the page.
+        </p>
+      </Callout>
 
       <h2>Measure the recovery</h2>
       <p>

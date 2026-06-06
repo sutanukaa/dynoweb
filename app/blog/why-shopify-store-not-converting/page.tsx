@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BlogArticle } from "@/app/components/seo/BlogArticle";
+import { Callout } from "@/app/components/seo/Callout";
 
 export const metadata: Metadata = {
   title: "Why Is My Shopify Store Not Converting? 12 Real Reasons",
@@ -40,7 +41,16 @@ export default function Page() {
       category="Diagnosis"
       title="12 Reasons Your Shopify Store Isn't Converting (+ Fixes)"
       lead="Low traffic isn't always the problem. Here are 12 behavioral reasons your Shopify store isn't converting — and exactly how to diagnose each one before you spend another dollar on ads."
-      readTime="9 min read"
+      readTime="6 min read"
+      heroImage="/topDroppages.png"
+      heroAlt="DynoWeb top abandonment pages showing where Shopify visitors drop off"
+      heroLabel="Top abandonment pages"
+      takeaways={[
+        "Traffic without sales is almost always on-site friction, not a traffic-quality issue.",
+        "Usual culprits: buried CTAs, surprise costs, confusing variants, weak proof, mobile UX.",
+        "Diagnose with heatmaps and session replays before spending more on ads.",
+        "Most fixes are a handful of changes on a couple of high-traffic pages.",
+      ]}
       faqs={faqs}
       related={[
         { label: "Conversion Rate Benchmarks", href: "/blog/shopify-conversion-rate-benchmark", description: "What good looks like by industry." },
@@ -84,6 +94,13 @@ export default function Page() {
         emerge fast. DynoWeb takes this further by ranking the friction points it finds by revenue impact and handing you
         a <Link href="/features/ai-suggestions">dev-ready fix</Link> for each.
       </p>
+
+      <Callout variant="product">
+        <p>
+          Install DynoWeb free and it surfaces which of these 12 reasons apply to <em>your</em> store — ranked by revenue
+          impact, each with the evidence and a dev-ready fix. It&rsquo;s a behavioral diagnosis instead of a guessing game.
+        </p>
+      </Callout>
 
       <h2>The fix is usually smaller than you think</h2>
       <p>

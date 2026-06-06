@@ -40,7 +40,16 @@ export default function Page() {
       category="Testing"
       title="Shopify A/B Testing: How to Test Changes Before You Ship"
       lead="Before you ship any CRO fix, test it. Here's how to run A/B tests on Shopify — what to test, how to measure significance, and how to read results without fooling yourself."
-      readTime="8 min read"
+      readTime="5 min read"
+      heroImage="/AB-testing.png"
+      heroAlt="DynoWeb A/B test results comparing two variants on a Shopify store"
+      heroLabel="A/B test results"
+      takeaways={[
+        "Test changes that address observed friction, not random ideas.",
+        "Change one variable, size the test honestly, and run full weeks.",
+        "Wait for statistical significance and watch revenue, not just clicks.",
+        "Low-traffic stores should lean on replays + before/after attribution.",
+      ]}
       faqs={faqs}
       related={[
         { label: "Shopify CRO Guide", href: "/shopify-cro", description: "The complete optimization loop." },

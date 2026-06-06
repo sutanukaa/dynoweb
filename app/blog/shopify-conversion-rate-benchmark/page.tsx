@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BlogArticle } from "@/app/components/seo/BlogArticle";
+import { ChartCard, BarChart, CompareBars } from "@/app/components/seo/Charts";
 
 export const metadata: Metadata = {
   title: "Shopify Conversion Rate Benchmarks 2026 [By Industry]",
@@ -40,7 +41,16 @@ export default function Page() {
       category="Benchmarks · 2026"
       title="What's a Good Shopify Conversion Rate in 2026?"
       lead="We analysed how Shopify stores convert across industries and devices. Here are the benchmarks — and, more importantly, how to close the gap between where you are and where you could be."
-      readTime="7 min read"
+      readTime="5 min read"
+      heroImage="/RevenueBreakdown.png"
+      heroAlt="DynoWeb industry benchmark comparison of a Shopify store vs industry averages"
+      heroLabel="Industry benchmarks"
+      takeaways={[
+        "A 'good' Shopify conversion rate is roughly 2–4%, but it varies widely by industry and price point.",
+        "Benchmark against your own trend first — and watch the gap between desktop and mobile.",
+        "Below-average rates are almost always on-site friction, not a traffic problem.",
+        "Behavioral data shows exactly where the gap is and what to fix.",
+      ]}
       faqs={faqs}
       related={[
         { label: "Why your store isn't converting", href: "/blog/why-shopify-store-not-converting", description: "12 real reasons (+ fixes)." },
@@ -73,6 +83,25 @@ export default function Page() {
         <li><strong>Electronics:</strong> lower, because shoppers comparison-shop heavily before buying.</li>
         <li><strong>Food &amp; beverage / consumables:</strong> often higher once a store has repeat customers.</li>
       </ul>
+
+      <ChartCard
+        eyebrow="Directional benchmarks"
+        title="Typical Shopify conversion rate by industry"
+        footnote="Representative industry averages for illustration. Your store's healthy range depends on AOV, traffic source, and seasonality — benchmark against your own trend first."
+      >
+        <BarChart
+          unit="%"
+          data={[
+            { label: "Food & beverage", value: 3.6, display: "3.6%", highlight: true },
+            { label: "Health & beauty", value: 3.3, display: "3.3%" },
+            { label: "Apparel", value: 2.7, display: "2.7%" },
+            { label: "Accessories", value: 2.5, display: "2.5%" },
+            { label: "Home & furniture", value: 1.4, display: "1.4%" },
+            { label: "Electronics", value: 1.2, display: "1.2%" },
+          ]}
+        />
+      </ChartCard>
+
       <p>
         If you&rsquo;re below the range for your category, the gap is almost never &ldquo;not enough traffic.&rdquo; It&rsquo;s
         friction on the pages that traffic already lands on.
@@ -87,6 +116,23 @@ export default function Page() {
         <Link href="/use-cases/shopify-mobile-optimization">guide to Shopify mobile optimization</Link> for how to
         diagnose this.
       </p>
+
+      <ChartCard
+        eyebrow="The mobile gap"
+        title="Desktop vs mobile conversion — where revenue leaks"
+        footnote="Illustrative split. On most Shopify stores mobile is the majority of traffic but converts roughly 2–3× lower than desktop — making it the single biggest fixable opportunity."
+      >
+        <CompareBars
+          unit="%"
+          seriesA="Desktop CVR"
+          seriesB="Mobile CVR"
+          data={[
+            { label: "Apparel store", a: 3.4, b: 1.3, aDisplay: "3.4%", bDisplay: "1.3%" },
+            { label: "Home & furniture", a: 2.1, b: 0.8, aDisplay: "2.1%", bDisplay: "0.8%" },
+            { label: "Health & beauty", a: 4.0, b: 1.9, aDisplay: "4.0%", bDisplay: "1.9%" },
+          ]}
+        />
+      </ChartCard>
 
       <h2>How to close the gap (without buying more traffic)</h2>
       <p>Improving conversion is a repeatable loop, not a one-time redesign:</p>

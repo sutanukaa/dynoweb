@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Radar, ListOrdered, Wrench, MousePointerClick, PlaySquare, ShoppingCart, Sparkles } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   CheckList,
   Card,
   StatRow,
@@ -15,6 +17,7 @@ import {
   faqJsonLd,
   breadcrumbJsonLd,
 } from "@/app/components/seo/Marketing";
+import { ChartCard, FunnelChart } from "@/app/components/seo/Charts";
 
 export const metadata: Metadata = {
   title: "Shopify CRO: Complete Guide to Conversion Optimization",
@@ -32,21 +35,9 @@ export const metadata: Metadata = {
 };
 
 const pillars = [
-  {
-    tag: "Diagnose",
-    title: "See where attention and intent break",
-    body: "Heatmaps, scroll depth, and session replays show you exactly where visitors hesitate, rage-click, or drop off — before they ever reach checkout.",
-  },
-  {
-    tag: "Prioritise",
-    title: "Rank fixes by revenue impact",
-    body: "DynoWeb's AI engine scores every gap by expected ROI, so you work on the change most likely to move conversion first — not the loudest opinion in the room.",
-  },
-  {
-    tag: "Implement",
-    title: "Ship the fix without guesswork",
-    body: "Each suggestion comes with a theme-editor walkthrough and a code-level diff — file path, before/after, and projected lift — so the change is ready to ship.",
-  },
+  { icon: Radar, tag: "Diagnose", title: "See where attention and intent break", body: "Heatmaps, scroll depth, and session replays show you exactly where visitors hesitate, rage-click, or drop off — before they ever reach checkout." },
+  { icon: ListOrdered, tag: "Prioritise", title: "Rank fixes by revenue impact", body: "Every gap is scored on five factors (PECTI: Proof, Ease, Cost, Time, Impact) and must clear a 2-run stability gate — so the top suggestion is the highest-ROI one, not the loudest opinion in the room." },
+  { icon: Wrench, tag: "Implement", title: "Ship the fix without guesswork", body: "Each suggestion comes with a theme-editor walkthrough and a code-level diff — file path, before/after, and projected lift — so the change is ready to ship." },
 ];
 
 const steps = [
@@ -102,6 +93,10 @@ export default function ShopifyCroPage() {
         lead="Everything you need to improve your Shopify store's conversion rate — heatmaps, session replays, AI fixes, and proven tactics. This guide covers what CRO actually is, how to diagnose friction with behavioral data, and the exact workflow DynoWeb uses to turn signals into revenue."
         primaryCta={{ label: "Download CRO checklist", href: "/blog/shopify-cro-checklist" }}
         secondaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb" }}
+        highlights={["11 behavioral signals", "Sub-40 KB tracker", "AI ranks fixes by ROI", "Native Shopify app"]}
+        image="/CROReport.png"
+        imageAlt="DynoWeb CRO report dashboard for a Shopify store"
+        imageLabel="CRO Report"
       />
 
       <Section className="pb-16">
@@ -117,12 +112,91 @@ export default function ShopifyCroPage() {
 
       <Section className="pb-16">
         <SectionHeading
+          eyebrow="Where the money leaks"
+          title="A typical Shopify conversion funnel"
+          subtitle="Most stores lose the majority of revenue at one step. Finding that step is the fastest path to a higher conversion rate."
+        />
+        <ChartCard footnote="Illustrative funnel for a store with 10,000 monthly sessions. The biggest single-step drop — here, product view to add-to-cart — is almost always the highest-ROI place to start.">
+          <FunnelChart
+            steps={[
+              { label: "Sessions", value: 10000 },
+              { label: "Product views", value: 6200 },
+              { label: "Add to cart", value: 1080 },
+              { label: "Checkout", value: 540 },
+              { label: "Purchase", value: 310 },
+            ]}
+          />
+        </ChartCard>
+      </Section>
+
+      <Section className="pb-12">
+        <SectionHeading
           eyebrow="The CRO loop"
           title="Diagnose → prioritise → implement"
           subtitle="Conversion optimization fails when it's a pile of disconnected tactics. It works when it's a repeatable loop. DynoWeb runs that loop for you."
         />
-        <FeatureGrid items={pillars} />
+        <FeatureGrid items={pillars} columns={3} />
       </Section>
+
+      <FeatureRow
+        eyebrow="Diagnose"
+        title="One dashboard for every behavioral signal"
+        body={
+          <p>
+            DynoWeb brings traffic, behavior, funnels, and revenue into a single view — so you can spot the page that&rsquo;s
+            leaking the most revenue without stitching together five tools. This is where the loop starts: see the truth of
+            how shoppers actually use your store.
+          </p>
+        }
+        bullets={[
+          "Clicks, rage clicks, scroll depth, and mobile gestures in one place",
+          "Per-template breakdowns for home, collection, product, and cart",
+          "Revenue tied to behavior, not just pageviews",
+        ]}
+        image="/Dashboard.png"
+        imageAlt="DynoWeb analytics dashboard for a Shopify store"
+        imageLabel="Dashboard"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="Prioritise & implement"
+        title="A ranked queue of fixes, each ready to ship"
+        body={
+          <p>
+            Once the friction is visible, DynoWeb&rsquo;s AI engine ranks every revenue-leaking gap by ROI and turns it into
+            a concrete fix — with a theme-editor walkthrough or a code diff. No more debating what to do next; the highest-impact
+            change is already at the top of the list.
+          </p>
+        }
+        bullets={[
+          "Sorted by projected revenue impact and difficulty",
+          "Theme-editor steps for non-technical merchants",
+          "File path + diff for developers, copy-ready",
+        ]}
+        image="/AISuggestions.png"
+        imageAlt="DynoWeb AI suggestions ranked by revenue impact for a Shopify store"
+        imageLabel="AI suggestions"
+      />
+
+      <FeatureRow
+        eyebrow="Follow the money"
+        title="See exactly where the funnel leaks"
+        body={
+          <p>
+            The conversion funnel shows the drop between each step — landing, product view, add-to-cart, checkout, purchase.
+            The biggest single-step drop is almost always your highest-ROI fix.
+          </p>
+        }
+        bullets={[
+          "Step-by-step drop-off across the purchase journey",
+          "Spot the single step losing the most revenue",
+          "Segment by device to expose the mobile gap",
+        ]}
+        image="/ConversionFunnel.png"
+        imageAlt="DynoWeb conversion funnel showing drop-off across the purchase journey"
+        imageLabel="Conversion funnel"
+      />
 
       <Section className="pb-16">
         <SectionHeading eyebrow="Step by step" title="How to run CRO on your Shopify store" />
@@ -154,10 +228,10 @@ export default function ShopifyCroPage() {
         <FeatureGrid
           columns={2}
           items={[
-            { title: "Heatmaps", body: "Click, scroll, and attention maps reveal what shoppers actually engage with — and what they ignore." },
-            { title: "Session replay", body: "Watch real sessions to see the exact moment friction turns a browser into a bounce." },
-            { title: "Cart & checkout analytics", body: "Find where add-to-cart intent leaks before the order completes." },
-            { title: "AI fix suggestions", body: "Turn raw behavioral data into prioritised, dev-ready changes with projected lift." },
+            { icon: MousePointerClick, title: "Heatmaps", body: "Click, scroll, and attention maps reveal what shoppers actually engage with — and what they ignore." },
+            { icon: PlaySquare, title: "Session replay", body: "Watch real sessions to see the exact moment friction turns a browser into a bounce." },
+            { icon: ShoppingCart, title: "Cart & checkout analytics", body: "Find where add-to-cart intent leaks before the order completes." },
+            { icon: Sparkles, title: "AI fix suggestions", body: "Turn raw behavioral data into prioritised, dev-ready changes with projected lift." },
           ]}
         />
       </Section>

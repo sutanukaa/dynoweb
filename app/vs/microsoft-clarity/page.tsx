@@ -6,6 +6,7 @@ import {
   Section,
   SectionHeading,
   Card,
+  Screenshot,
   ComparisonTable,
   FAQ,
   CTA,
@@ -83,6 +84,7 @@ export default function VsMicrosoftClarityPage() {
         lead="Microsoft Clarity is one of the best free behavior analytics tools available — unlimited recordings, solid heatmaps, and a polished dashboard. But it is built for the general web. DynoWeb is built specifically for Shopify: it tracks add-to-cart funnels with order-webhook attribution, generates AI-prioritised fix suggestions, and integrates natively with Shopify's privacy and theme infrastructure."
         primaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb", external: true }}
         secondaryCta={{ label: "See Shopify analytics guide", href: "/shopify-analytics" }}
+        highlights={["Shopify order attribution", "AI fix suggestions", "Native app, no script tag", "GDPR-ready"]}
       />
 
       <Section className="pb-16">
@@ -112,6 +114,40 @@ export default function VsMicrosoftClarityPage() {
       <Section className="pb-20">
         <SectionHeading eyebrow="Feature comparison" title="Side-by-side breakdown" />
         <ComparisonTable columns={["Feature", "DynoWeb", "Microsoft Clarity"]} rows={rows} />
+      </Section>
+
+      <Section className="pb-20">
+        <SectionHeading
+          eyebrow="The difference"
+          title="What free heatmaps don't give you"
+          subtitle="Clarity is great general-purpose behavior analytics. These are the Shopify-specific next steps DynoWeb adds on top."
+        />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Screenshot
+            src="/AISuggestions.png"
+            alt="DynoWeb AI fix suggestions ranked by revenue impact"
+            label="AI suggestions"
+            caption="Prioritised, evidence-backed fixes — not just a recording to watch."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+          <Screenshot
+            src="/RevenueAttribution.png"
+            alt="DynoWeb revenue attribution tied to real Shopify orders"
+            label="Revenue attribution"
+            caption="Behavior tied to real Shopify orders via order webhooks."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+          <Screenshot
+            src="/implementationguide-code.png"
+            alt="DynoWeb implementation guide with a before/after code diff"
+            label="Implementation guide"
+            caption="The exact file path and diff to ship each fix."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+        </div>
       </Section>
 
       <FAQ title="Clarity vs DynoWeb — frequently asked" items={faqs} />

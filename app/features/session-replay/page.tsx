@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Play, Filter, Route, Smartphone, ShieldCheck, Zap } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   FAQ,
   CTA,
   RelatedLinks,
@@ -29,10 +31,10 @@ export const metadata: Metadata = {
 };
 
 const filters = [
-  { tag: "Behavior", title: "Rage & dead clicks", body: "Jump straight to the sessions where a shopper repeatedly clicked a stuck element or tapped something that wasn't clickable." },
-  { tag: "Intent", title: "Cart abandonment", body: "Filter to sessions that added to cart but never checked out — the highest-value recordings to study." },
-  { tag: "Device", title: "Mobile vs desktop", body: "Isolate mobile sessions to find thumb-zone friction that desktop QA never reveals." },
-  { tag: "Source", title: "Traffic channel", body: "Watch how visitors from a specific campaign or referrer behave, so you can fix the experience that ad spend lands on." },
+  { icon: Zap, tag: "Behavior", title: "Rage & dead clicks", body: "Jump straight to the sessions where a shopper repeatedly clicked a stuck element or tapped something that wasn't clickable." },
+  { icon: Filter, tag: "Intent", title: "Cart abandonment", body: "Filter to sessions that added to cart but never checked out — the highest-value recordings to study." },
+  { icon: Smartphone, tag: "Device", title: "Mobile vs desktop", body: "Isolate mobile sessions to find thumb-zone friction that desktop QA never reveals." },
+  { icon: Route, tag: "Source", title: "Traffic channel", body: "Watch how visitors from a specific campaign or referrer behave, so you can fix the experience that ad spend lands on." },
 ];
 
 const faqs = [
@@ -72,14 +74,73 @@ export default function SessionReplayFeaturePage() {
         lead="Record and replay every visitor session on your Shopify store. Filter by rage clicks, cart abandonment, or device type. Privacy-first, GDPR-safe, and connected to DynoWeb's AI fix suggestions."
         primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "Read the replay guide", href: "/shopify-session-replay" }}
+        highlights={["Smart behavior filters", "Privacy-first & GDPR-safe", "Mobile + desktop", "Linked to AI fixes"]}
+        image="/Replays.png"
+        imageAlt="DynoWeb session replay dashboard for a Shopify store"
+        imageLabel="Session Replays"
       />
 
-      <Section className="pb-16">
-        <SectionHeading
-          eyebrow="Smart filters"
-          title="Find the sessions that matter in seconds"
-          subtitle="You won't watch thousands of recordings. DynoWeb's filters surface the handful that reveal real friction."
-        />
+      <FeatureRow
+        eyebrow="Watch the session"
+        title="Every movement, replayed like a video"
+        body={
+          <p>
+            See exactly how a real shopper navigates your store — cursor paths on desktop, thumb gestures on mobile,
+            scrolling, clicks, and page-to-page flow. A 30-second replay settles more design debates than a week of
+            opinions.
+          </p>
+        }
+        bullets={[
+          "Mouse and touch movement reconstructed faithfully",
+          "Cart and checkout steps highlighted in the timeline",
+          "Sensitive inputs masked by default for privacy",
+        ]}
+        image="/sessionReplay.png"
+        imageAlt="DynoWeb session replay player showing a recorded Shopify visit"
+        imageLabel="Replay player"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="Smart filters"
+        title="Find the sessions that matter in seconds"
+        body={
+          <p>
+            You won&rsquo;t watch thousands of recordings. Filter by rage clicks, cart abandonment, device, or traffic
+            source and jump straight to the handful of sessions that reveal real friction.
+          </p>
+        }
+        bullets={[
+          "Behavior filters: rage clicks, dead clicks, abandonment",
+          "Device and traffic-source segmentation",
+          "Sort by duration, pages, or friction signals",
+        ]}
+        image="/sessionexplorerTable.png"
+        imageAlt="DynoWeb session explorer table with filters for finding key sessions"
+        imageLabel="Session explorer"
+      />
+
+      <FeatureRow
+        eyebrow="Follow the path"
+        title="See the full journey, not just one page"
+        body={
+          <p>
+            Each replay sits inside the visitor&rsquo;s complete journey — landing page to exit. Spot where the flow breaks,
+            where shoppers loop back in confusion, and exactly which step precedes a drop-off.
+          </p>
+        }
+        bullets={[
+          "Page-to-page flow for every session",
+          "Identify the step before abandonment",
+          "Connect a replay to its heatmap and suggested fix",
+        ]}
+        image="/sessionFlow.png"
+        imageAlt="DynoWeb session flow showing the page-to-page journey of a visitor"
+        imageLabel="Session flow"
+      />
+
+      <Section className="pb-12">
+        <SectionHeading eyebrow="Smart filters" title="Watch the right sessions, not all of them" />
         <FeatureGrid columns={2} items={filters} />
       </Section>
 

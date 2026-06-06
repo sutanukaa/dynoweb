@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Play, Filter, Route, ShieldCheck } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   Card,
   CheckList,
   FAQ,
@@ -31,10 +33,10 @@ export const metadata: Metadata = {
 };
 
 const whatYouSee = [
-  { tag: "Mouse & touch", title: "Every movement", body: "Cursor paths on desktop and thumb gestures on mobile — see exactly how a real shopper navigates your store." },
-  { tag: "Friction", title: "Rage & dead clicks", body: "Sessions are tagged when a visitor rapidly clicks a stuck element or taps something that isn't actually clickable." },
-  { tag: "Journey", title: "Page-to-page flow", body: "Follow the full path from landing page to exit, with the cart and checkout steps highlighted." },
-  { tag: "Context", title: "Device & source", body: "Filter replays by device, traffic source, or behavior so you watch the sessions that matter, not random noise." },
+  { icon: Play, tag: "Mouse & touch", title: "Every movement", body: "Cursor paths on desktop and thumb gestures on mobile — see exactly how a real shopper navigates your store." },
+  { icon: ShieldCheck, tag: "Friction", title: "Rage & dead clicks", body: "Sessions are tagged when a visitor rapidly clicks a stuck element or taps something that isn't actually clickable." },
+  { icon: Route, tag: "Journey", title: "Page-to-page flow", body: "Follow the full path from landing page to exit, with the cart and checkout steps highlighted." },
+  { icon: Filter, tag: "Context", title: "Device & source", body: "Filter replays by device, traffic source, or behavior so you watch the sessions that matter, not random noise." },
 ];
 
 const useReplay = [
@@ -81,9 +83,13 @@ export default function ShopifySessionReplayPage() {
         lead="Replay every customer session on your Shopify store. Spot friction, dead clicks, and drop-off points in real time. Native Shopify app, no code needed — and every replay connects to a prioritised fix."
         primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "See the replay feature", href: "/features/session-replay" }}
+        highlights={["Privacy-first & GDPR-safe", "Smart behavior filters", "Mobile + desktop", "Sub-40 KB tracker"]}
+        image="/sessionReplay.png"
+        imageAlt="DynoWeb session replay player showing a recorded Shopify visit"
+        imageLabel="Session replay"
       />
 
-      <Section className="pb-16">
+      <Section className="pb-12">
         <SectionHeading
           eyebrow="What you'll see"
           title="Every interaction, replayed"
@@ -91,6 +97,46 @@ export default function ShopifySessionReplayPage() {
         />
         <FeatureGrid columns={2} items={whatYouSee} />
       </Section>
+
+      <FeatureRow
+        eyebrow="Find the session"
+        title="Scan and filter thousands of sessions fast"
+        body={
+          <p>
+            Every recorded session lands in a sortable table with its duration, device, signals, and status. Sort by
+            friction or filter by behavior so the recordings worth watching rise to the top — you never have to wade through
+            noise.
+          </p>
+        }
+        bullets={[
+          "Sort by friction score, duration, or recency",
+          "Status and device at a glance for every session",
+          "Open any recording in one click",
+        ]}
+        image="/replayTable.png"
+        imageAlt="DynoWeb session replay table listing recorded Shopify sessions"
+        imageLabel="Replay sessions"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="Follow the path"
+        title="See the full journey behind every drop-off"
+        body={
+          <p>
+            Each replay sits inside the visitor&rsquo;s complete page-to-page flow. Spot exactly where the journey breaks,
+            where shoppers loop back in confusion, and which step precedes the exit.
+          </p>
+        }
+        bullets={[
+          "Step-by-step flow from landing to exit",
+          "Pinpoint the action right before abandonment",
+          "Jump from the flow into the full replay",
+        ]}
+        image="/sessionFlow.png"
+        imageAlt="DynoWeb session flow showing the page-to-page journey of a visitor"
+        imageLabel="Session flow"
+      />
 
       <Section className="pb-16">
         <SectionHeading eyebrow="Put it to work" title="5 ways merchants use session replay" />

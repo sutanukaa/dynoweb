@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BlogArticle } from "@/app/components/seo/BlogArticle";
+import { ChartCard, LineChart } from "@/app/components/seo/Charts";
+import { Callout } from "@/app/components/seo/Callout";
 
 export const metadata: Metadata = {
   title: "Shopify Rage Clicks: What They Are & How to Fix Them",
@@ -40,7 +42,16 @@ export default function Page() {
       category="Behavior"
       title="Rage Clicks on Your Shopify Store? Here's What to Do"
       lead="Rage clicks signal user frustration — broken buttons, laggy elements, confusing layouts. Here's how to find them on your Shopify store and fix them fast, before they cost you another sale."
-      readTime="6 min read"
+      readTime="5 min read"
+      heroImage="/rageClick.png"
+      heroAlt="DynoWeb rage click analytics showing frustration hotspots on a Shopify store"
+      heroLabel="Rage click analytics"
+      takeaways={[
+        "Rage clicks — 3+ rapid clicks on one element — are a clear frustration signal.",
+        "Common causes: slow or stuck buttons, laggy elements, false affordances, mobile mis-hits.",
+        "Find them by filtering session replays and reading click heatmaps.",
+        "Fixing rage-click hotspots is among the highest-ROI CRO work.",
+      ]}
       faqs={faqs}
       related={[
         { label: "Dead Clicks", href: "/blog/shopify-dead-clicks", description: "The quieter cousin of rage clicks." },
@@ -60,6 +71,17 @@ export default function Page() {
         harder. It&rsquo;s one of the clearest frustration signals you can measure, and unlike a survey, it&rsquo;s
         captured in the exact moment of failure.
       </p>
+
+      <ChartCard
+        eyebrow="Fixing one hotspot"
+        title="Daily rage clicks before and after a fix"
+        footnote="Illustrative trend. After the flagged button was made responsive on day 4, rage clicks on that element collapsed — the fastest kind of CRO win to verify."
+      >
+        <LineChart
+          points={[1600, 1540, 1490, 760, 320, 240, 190]}
+          labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
+        />
+      </ChartCard>
 
       <h2>The usual causes on Shopify</h2>
       <ul>
@@ -86,6 +108,13 @@ export default function Page() {
         <li>For false affordances, either make the element work or change its styling so it doesn&rsquo;t look clickable.</li>
         <li>For mobile mis-hits, enlarge and space out tap targets. See <Link href="/use-cases/shopify-mobile-optimization">mobile optimization</Link>.</li>
       </ol>
+
+      <Callout variant="product">
+        <p>
+          DynoWeb tags every rage click automatically and links it to the matching session replay and a ranked,
+          dev-ready fix — so you go from &ldquo;something&rsquo;s wrong here&rdquo; to a shipped change in minutes.
+        </p>
+      </Callout>
 
       <h2>Why it&rsquo;s high-ROI work</h2>
       <p>

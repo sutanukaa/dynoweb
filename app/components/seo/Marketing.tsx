@@ -1,8 +1,12 @@
-import type { ReactNode } from "react";
+import type { ComponentType, CSSProperties, ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight, Check } from "lucide-react";
 
 import Footer from "@/app/components/Footer";
 import PillNav from "@/app/components/PillNav";
+
+export type IconType = ComponentType<{ className?: string; strokeWidth?: number }>;
 
 /* ------------------------------------------------------------------ */
 /*  Shared constants                                                   */
@@ -21,6 +25,79 @@ const ArrowIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
 );
 
 /* ------------------------------------------------------------------ */
+/*  Primary button — the signature white pill with blue under-glow +    */
+/*  letter/arrow glow hover (shared `uv-btn` styles from globals.css,    */
+/*  matching the homepage Installation-section button).                 */
+/* ------------------------------------------------------------------ */
+
+function uvLetters(label: string) {
+  return Array.from(label).map((c, i) =>
+    c === " " ? (
+      <span key={i} style={{ display: "inline-block", width: "0.4em" }} />
+    ) : (
+      <span key={i} className="uv-btn-letter" style={{ color: "#000" }}>
+        {c}
+      </span>
+    ),
+  );
+}
+
+export function PrimaryButton({
+  label,
+  href,
+  external = false,
+  fullWidth = false,
+}: {
+  label: string;
+  href: string;
+  external?: boolean;
+  fullWidth?: boolean;
+}) {
+  const btnStyle: CSSProperties = {
+    background: "#fff",
+    color: "#000",
+    border: "1px solid #000",
+    borderRadius: "999px",
+    padding: "0.72rem 1.6rem",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "8px",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+    fontSize: "0.875rem",
+    fontWeight: 800,
+    width: fullWidth ? "100%" : undefined,
+  };
+  const wrapStyle: CSSProperties = {
+    textDecoration: "none",
+    display: fullWidth ? "block" : "inline-block",
+    width: fullWidth ? "100%" : undefined,
+  };
+  const inner = (
+    <div className="uv-btn" style={btnStyle}>
+      <div className="uv-txt-wrapper">
+        <div className="uv-txt-1">{uvLetters(label)}</div>
+        <div className="uv-txt-2" aria-hidden="true">
+          {uvLetters(label)}
+        </div>
+      </div>
+      <svg className="uv-btn-svg" viewBox="0 0 24 24" style={{ stroke: "#000", width: 16, height: 16 }}>
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </div>
+  );
+  return external ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="uv-btn-wrapper" style={wrapStyle}>
+      {inner}
+    </a>
+  ) : (
+    <Link href={href} className="uv-btn-wrapper" style={wrapStyle}>
+      {inner}
+    </Link>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Page shell — nav + dark canvas + footer + JSON-LD                  */
 /* ------------------------------------------------------------------ */
 
@@ -36,7 +113,7 @@ export function MarketingShell({
     <>
       <PillNav />
       <main
-        className="relative overflow-hidden bg-[#050505] pt-24 text-white"
+        className="relative overflow-x-clip bg-[#050505] pt-24 text-white"
         style={{ fontFamily: "'Karla', sans-serif" }}
       >
         <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.08),_transparent_42%),linear-gradient(180deg,_rgba(255,255,255,0.035),_transparent)]" />
@@ -117,42 +194,33 @@ export function Hero({
   lead,
   primaryCta,
   secondaryCta,
+  highlights,
+  image,
+  imageAlt,
+  imageLabel,
 }: {
   eyebrow: string;
   title: ReactNode;
   lead: ReactNode;
   primaryCta?: { label: string; href: string; external?: boolean };
   secondaryCta?: { label: string; href: string };
+  highlights?: string[];
+  image?: string;
+  imageAlt?: string;
+  imageLabel?: string;
 }) {
   return (
     <Section className="pb-12 pt-10 2xl:pb-16 2xl:pt-12">
       <Eyebrow>{eyebrow}</Eyebrow>
-      <h1 className="mt-5 max-w-[24ch] font-[Montserrat] text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl xl:text-[4.5rem] 2xl:text-[4.75rem]">
+      <h1 className="mt-5 max-w-[24ch] font-[Montserrat] text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl xl:text-[4.25rem] 2xl:text-[4.5rem]">
         {title}
       </h1>
       <p className="mt-6 max-w-[66ch] text-base leading-8 text-zinc-300 sm:text-lg">{lead}</p>
       {(primaryCta || secondaryCta) && (
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          {primaryCta &&
-            (primaryCta.external ? (
-              <a
-                href={primaryCta.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-black bg-white px-7 py-3 text-sm font-extrabold text-black shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition hover:bg-zinc-100"
-              >
-                {primaryCta.label}
-                <ArrowIcon />
-              </a>
-            ) : (
-              <Link
-                href={primaryCta.href}
-                className="inline-flex items-center gap-2 rounded-full border border-black bg-white px-7 py-3 text-sm font-extrabold text-black shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition hover:bg-zinc-100"
-              >
-                {primaryCta.label}
-                <ArrowIcon />
-              </Link>
-            ))}
+          {primaryCta && (
+            <PrimaryButton label={primaryCta.label} href={primaryCta.href} external={primaryCta.external} />
+          )}
           {secondaryCta && (
             <Link
               href={secondaryCta.href}
@@ -163,6 +231,30 @@ export function Hero({
           )}
         </div>
       )}
+      {highlights?.length ? (
+        <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+          {highlights.map((h) => (
+            <li key={h} className="flex items-center gap-2 text-sm font-semibold text-zinc-400">
+              <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-[#6eb0ff]/25 bg-[#6eb0ff]/[0.1] text-[#6eb0ff]">
+                <Check className="h-2.5 w-2.5" strokeWidth={3.5} />
+              </span>
+              {h}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {image ? (
+        <div className="mt-12">
+          <Screenshot
+            src={image}
+            alt={imageAlt ?? ""}
+            label={imageLabel}
+            priority
+            sizes="(min-width: 768px) 90vw, 100vw"
+            minH="min-h-[280px] sm:min-h-[420px] lg:min-h-[560px]"
+          />
+        </div>
+      ) : null}
     </Section>
   );
 }
@@ -187,30 +279,166 @@ export function Card({
   );
 }
 
+export function IconBadge({ icon: Icon }: { icon: IconType }) {
+  return (
+    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#6eb0ff]/20 bg-[#6eb0ff]/[0.08] text-[#6eb0ff] shadow-[0_0_24px_rgba(110,176,255,0.08)]">
+      <Icon className="h-5 w-5" strokeWidth={2} />
+    </span>
+  );
+}
+
 export function FeatureGrid({
   items,
   columns = 3,
 }: {
-  items: { title: string; body: ReactNode; tag?: string }[];
-  columns?: 2 | 3;
+  items: { title: string; body: ReactNode; tag?: string; icon?: IconType }[];
+  columns?: 1 | 2 | 3;
 }) {
-  const cols = columns === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3";
+  const cols = columns === 1 ? "grid-cols-1" : columns === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3";
   return (
     <div className={`grid gap-4 ${cols}`}>
       {items.map((item) => (
-        <Card key={item.title}>
-          {item.tag ? (
+        <Card key={item.title} className="transition hover:border-white/20 hover:bg-white/[0.04]">
+          {item.icon ? (
+            <div className="mb-4 flex items-center gap-3">
+              <IconBadge icon={item.icon} />
+              {item.tag ? (
+                <p className="text-[0.66rem] font-extrabold uppercase tracking-[0.24em] text-zinc-500">
+                  {item.tag}
+                </p>
+              ) : null}
+            </div>
+          ) : item.tag ? (
             <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.24em] text-[#6eb0ff]">
               {item.tag}
             </p>
           ) : null}
-          <p className="mt-2 font-[Montserrat] text-lg font-extrabold tracking-tight text-white">
+          <p className={`font-[Montserrat] text-lg font-extrabold tracking-tight text-white ${item.icon ? "" : "mt-2"}`}>
             {item.title}
           </p>
           <div className="mt-3 text-[0.95rem] leading-7 text-zinc-300">{item.body}</div>
         </Card>
       ))}
     </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Pill / badge                                                       */
+/* ------------------------------------------------------------------ */
+
+export function Pill({ children }: { children: ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border border-[#6eb0ff]/20 bg-[#6eb0ff]/[0.07] px-3.5 py-1.5 text-[0.7rem] font-extrabold uppercase tracking-[0.2em] text-[#6eb0ff]">
+      {children}
+    </span>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Screenshot — framed product UI (light panel in dark chrome)        */
+/* ------------------------------------------------------------------ */
+
+export function Screenshot({
+  src,
+  alt,
+  label,
+  caption,
+  priority = false,
+  light = true,
+  sizes = "(min-width: 1024px) 50vw, 100vw",
+  minH = "min-h-[240px] sm:min-h-[320px] lg:min-h-[380px]",
+}: {
+  src: string;
+  alt: string;
+  label?: string;
+  caption?: string;
+  priority?: boolean;
+  light?: boolean;
+  sizes?: string;
+  minH?: string;
+}) {
+  return (
+    <figure className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0b0b0d] shadow-[0_28px_80px_rgba(0,0,0,0.5),0_0_0_1px_rgba(110,176,255,0.05),0_0_60px_rgba(110,176,255,0.04)]">
+      <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-3">
+        <div className="flex items-center gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+          {label ? (
+            <span className="ml-2 text-[0.7rem] font-extrabold uppercase tracking-[0.22em] text-zinc-500">
+              {label}
+            </span>
+          ) : null}
+        </div>
+        <span className="rounded-full border border-[#6eb0ff]/20 bg-[#6eb0ff]/[0.08] px-2.5 py-1 text-[0.6rem] font-extrabold uppercase tracking-[0.18em] text-[#6eb0ff]">
+          DynoWeb UI
+        </span>
+      </div>
+      <div className={`relative flex ${minH} items-center justify-center ${light ? "bg-[#f6f8fb]" : "bg-[#0b0b0d]"}`}>
+        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-contain p-3 sm:p-4" />
+      </div>
+      {caption ? (
+        <figcaption className="border-t border-white/10 bg-white/[0.02] px-4 py-3 text-center text-sm leading-6 text-zinc-400">
+          {caption}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  FeatureRow — alternating image + text split section                */
+/* ------------------------------------------------------------------ */
+
+export function FeatureRow({
+  eyebrow,
+  title,
+  body,
+  bullets,
+  image,
+  imageAlt,
+  imageLabel,
+  reverse = false,
+  priority = false,
+}: {
+  eyebrow?: string;
+  title: ReactNode;
+  body: ReactNode;
+  bullets?: ReactNode[];
+  image: string;
+  imageAlt: string;
+  imageLabel?: string;
+  reverse?: boolean;
+  priority?: boolean;
+}) {
+  return (
+    <Section className="pb-16 sm:pb-20">
+      <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
+        <div className={reverse ? "lg:order-2" : ""}>
+          {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+          <h2 className="mt-4 font-[Montserrat] text-3xl font-extrabold leading-[1.1] tracking-[-0.03em] text-white sm:text-4xl">
+            {title}
+          </h2>
+          <div className="mt-5 space-y-4 text-[1rem] leading-8 text-zinc-300">{body}</div>
+          {bullets?.length ? (
+            <ul className="mt-6 space-y-3">
+              {bullets.map((b, i) => (
+                <li key={i} className="flex gap-3 text-[0.97rem] leading-7 text-zinc-300">
+                  <span className="mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full border border-[#6eb0ff]/25 bg-[#6eb0ff]/[0.1] text-[#6eb0ff]">
+                    <Check className="h-3 w-3" strokeWidth={3} />
+                  </span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+        <div className={reverse ? "lg:order-1" : ""}>
+          <Screenshot src={image} alt={imageAlt} label={imageLabel} priority={priority} />
+        </div>
+      </div>
+    </Section>
   );
 }
 
@@ -370,30 +598,24 @@ export function CTA({
 }) {
   return (
     <Section className="pb-24">
-      <div className="rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_48%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] sm:p-8 lg:p-10">
-        <p className="text-[0.74rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">
-          {eyebrow}
-        </p>
-        <h2 className="mt-4 font-[Montserrat] text-3xl font-extrabold leading-[1.06] tracking-[-0.04em] text-white sm:text-4xl">
-          {title}
-        </h2>
-        <p className="mt-5 max-w-[58ch] text-base leading-8 text-zinc-300 sm:text-lg">{body}</p>
-        <div className="mt-8 flex flex-wrap items-center gap-4">
-          <a
-            href={APP_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-black bg-white px-7 py-3 text-sm font-extrabold text-black shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition hover:bg-zinc-100"
-          >
-            {primaryLabel}
-            <ArrowIcon />
-          </a>
-          <Link
-            href={secondary?.href ?? "/"}
-            className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-extrabold text-zinc-200 transition hover:border-white/15 hover:bg-white/[0.06] hover:text-white"
-          >
-            {secondary?.label ?? "Back to DynoWeb home"}
-          </Link>
+      <div className="cta-glow-card rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_48%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] sm:p-8 lg:p-10">
+        <div className="relative z-[1]">
+          <p className="text-[0.74rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">
+            {eyebrow}
+          </p>
+          <h2 className="mt-4 font-[Montserrat] text-3xl font-extrabold leading-[1.06] tracking-[-0.04em] text-white sm:text-4xl">
+            {title}
+          </h2>
+          <p className="mt-5 max-w-[58ch] text-base leading-8 text-zinc-300 sm:text-lg">{body}</p>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <PrimaryButton label={primaryLabel} href={APP_STORE_URL} external />
+            <Link
+              href={secondary?.href ?? "/"}
+              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-extrabold text-zinc-200 transition hover:border-white/15 hover:bg-white/[0.06] hover:text-white"
+            >
+              {secondary?.label ?? "Back to DynoWeb home"}
+            </Link>
+          </div>
         </div>
       </div>
     </Section>
@@ -419,7 +641,7 @@ export function RelatedLinks({
           <Link
             key={link.href}
             href={link.href}
-            className="group rounded-[1.5rem] border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/20 hover:bg-white/[0.05]"
+            className="group rounded-[1.5rem] border border-[#6eb0ff]/12 bg-white/[0.02] p-5 shadow-[0_0_0_1px_rgba(110,176,255,0.04),0_10px_36px_-14px_rgba(110,176,255,0.28)] transition duration-200 hover:-translate-y-0.5 hover:border-[#6eb0ff]/35 hover:bg-[#6eb0ff]/[0.04] hover:shadow-[0_0_0_1px_rgba(110,176,255,0.22),0_22px_60px_-16px_rgba(110,176,255,0.55)]"
           >
             <p className="flex items-center justify-between font-extrabold text-white">
               {link.label}
@@ -460,7 +682,9 @@ export function Prose({ children }: { children: ReactNode }) {
   return (
     <div className="seo-prose max-w-[72ch] text-[1.02rem] leading-8 text-zinc-300">
       <style>{`
+        html { scroll-behavior: smooth; }
         .seo-prose h2 {
+          position: relative;
           font-family: 'Montserrat', sans-serif;
           font-weight: 800;
           letter-spacing: -0.02em;
@@ -469,6 +693,7 @@ export function Prose({ children }: { children: ReactNode }) {
           line-height: 1.2;
           margin-top: 2.75rem;
           margin-bottom: 1rem;
+          scroll-margin-top: 6.5rem;
         }
         .seo-prose h3 {
           font-family: 'Montserrat', sans-serif;
@@ -477,7 +702,20 @@ export function Prose({ children }: { children: ReactNode }) {
           font-size: 1.25rem;
           margin-top: 2rem;
           margin-bottom: 0.75rem;
+          scroll-margin-top: 6.5rem;
         }
+        .seo-prose .heading-anchor {
+          margin-left: 0.4em;
+          color: #6eb0ff;
+          text-decoration: none;
+          font-weight: 700;
+          opacity: 0;
+          transition: opacity 0.15s ease;
+        }
+        .seo-prose h2:hover .heading-anchor { opacity: 0.55; }
+        .seo-prose .heading-anchor:hover { opacity: 1; }
+        .seo-prose .dw-callout p { margin: 0; }
+        .seo-prose .dw-callout p + p { margin-top: 0.75rem; }
         .seo-prose p { margin-bottom: 1.25rem; }
         .seo-prose ul, .seo-prose ol { margin: 0 0 1.5rem 0; padding-left: 1.4rem; }
         .seo-prose li { margin-bottom: 0.6rem; list-style: disc; }

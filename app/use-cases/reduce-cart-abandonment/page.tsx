@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Receipt, ListChecks, ShieldCheck, Smartphone } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   Card,
   CheckList,
   FAQ,
@@ -14,6 +16,7 @@ import {
   faqJsonLd,
   breadcrumbJsonLd,
 } from "@/app/components/seo/Marketing";
+import { ChartCard, BarChart } from "@/app/components/seo/Charts";
 
 export const metadata: Metadata = {
   title: "Reduce Shopify Cart Abandonment With Behavioral Analytics",
@@ -31,10 +34,10 @@ export const metadata: Metadata = {
 };
 
 const causes = [
-  { tag: "Cost", title: "Surprise shipping & fees", body: "Unexpected costs at checkout are the single biggest abandonment driver. DynoWeb shows where shoppers bail once costs appear." },
-  { tag: "UX", title: "Confusing or long checkout", body: "Too many steps, unclear fields, or forced account creation. Session replays reveal the exact step that loses people." },
-  { tag: "Trust", title: "Missing reassurance", body: "No trust badges, unclear returns, or weak security signals. Heatmaps show shoppers hunting for reassurance that isn't there." },
-  { tag: "Mobile", title: "Mobile friction", body: "Tiny tap targets and sticky bars that block the CTA. Mobile session data surfaces what desktop QA misses." },
+  { icon: Receipt, tag: "Cost", title: "Surprise shipping & fees", body: "Unexpected costs at checkout are the single biggest abandonment driver. DynoWeb shows where shoppers bail once costs appear." },
+  { icon: ListChecks, tag: "UX", title: "Confusing or long checkout", body: "Too many steps, unclear fields, or forced account creation. Session replays reveal the exact step that loses people." },
+  { icon: ShieldCheck, tag: "Trust", title: "Missing reassurance", body: "No trust badges, unclear returns, or weak security signals. Heatmaps show shoppers hunting for reassurance that isn't there." },
+  { icon: Smartphone, tag: "Mobile", title: "Mobile friction", body: "Tiny tap targets and sticky bars that block the CTA. Mobile session data surfaces what desktop QA misses." },
 ];
 
 const workflow = [
@@ -78,9 +81,13 @@ export default function ReduceCartAbandonmentPage() {
         lead="Discover exactly why shoppers abandon carts — rage clicks, confusing CTAs, slow checkout — and get dev-ready fixes that recover lost revenue fast. Stop guessing at the cause and fix the friction your shoppers actually hit."
         primaryCta={{ label: "Start free trial", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "See cart overview", href: "/features/cart-overview" }}
+        highlights={["Add-to-cart to checkout funnel", "Exact drop-off points", "Real-time SmartNudge", "Recovery fixes"]}
+        image="/CartOverview.png"
+        imageAlt="DynoWeb cart overview dashboard showing cart and checkout analytics for Shopify"
+        imageLabel="Cart Overview"
       />
 
-      <Section className="pb-16">
+      <Section className="pb-12">
         <SectionHeading
           eyebrow="The real causes"
           title="Why shoppers abandon — and how DynoWeb finds it"
@@ -88,6 +95,66 @@ export default function ReduceCartAbandonmentPage() {
         />
         <FeatureGrid columns={2} items={causes} />
       </Section>
+
+      <Section className="pb-16">
+        <ChartCard
+          eyebrow="Why shoppers abandon"
+          title="Top reasons for checkout abandonment"
+          footnote="Directional, based on widely-cited ecommerce checkout research. DynoWeb shows you which of these apply to your store specifically by revealing where shoppers actually drop off."
+        >
+          <BarChart
+            unit="%"
+            data={[
+              { label: "Extra costs too high", value: 48, display: "48%", highlight: true },
+              { label: "Account required", value: 24, display: "24%" },
+              { label: "Didn't trust site", value: 19, display: "19%" },
+              { label: "Long/complex checkout", value: 18, display: "18%" },
+              { label: "No total shown upfront", value: 17, display: "17%" },
+            ]}
+          />
+        </ChartCard>
+      </Section>
+
+      <FeatureRow
+        eyebrow="Down to the item"
+        title="See which products get abandoned — and why"
+        body={
+          <p>
+            DynoWeb breaks the cart down to the item level: which products are added then removed, where the view-to-cart and
+            cart-to-checkout ratios fall off, and which sessions stalled. Patterns surface fast, so you know exactly which
+            product or step to fix first.
+          </p>
+        }
+        bullets={[
+          "Per-item add, removal, and checkout behavior",
+          "View → cart → checkout ratios for each product",
+          "Connect every abandoned cart to its session replay",
+        ]}
+        image="/cartOverviewItems.png"
+        imageAlt="DynoWeb cart overview item-level breakdown of abandoned carts"
+        imageLabel="Cart items"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="Recover in real time"
+        title="Nudge hesitating shoppers before the cart is lost"
+        body={
+          <p>
+            SmartNudge watches for abandonment signals and fires a targeted, condition-driven message at the right moment —
+            an exit-intent offer, a cart reminder, or reassurance — so you recover shoppers while they&rsquo;re still on the
+            page, not with a delayed email after they&rsquo;ve gone.
+          </p>
+        }
+        bullets={[
+          "Behavioral triggers, not just timed popups",
+          "AI-generated copy matched to the visitor moment",
+          "Frequency-capped automatically, no developer needed",
+        ]}
+        image="/SmartNudge.png"
+        imageAlt="DynoWeb SmartNudge behavioral intervention dashboard"
+        imageLabel="SmartNudge"
+      />
 
       <Section className="pb-16">
         <SectionHeading eyebrow="The workflow" title="From abandoned cart to recovered revenue" />

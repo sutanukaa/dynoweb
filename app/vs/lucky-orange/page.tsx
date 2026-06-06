@@ -6,6 +6,7 @@ import {
   Section,
   SectionHeading,
   Card,
+  Screenshot,
   ComparisonTable,
   FAQ,
   CTA,
@@ -85,6 +86,7 @@ export default function VsLuckyOrangePage() {
         lead="Lucky Orange bundles heatmaps, session recordings, live chat, surveys, and announcement bars into a single platform. DynoWeb takes a different bet: instead of bundling more tools, it goes deeper on the one workflow that moves the conversion needle — turning behavioral signals into AI-prioritised fix recommendations with code-level implementation guides, native Shopify revenue attribution, and a sub-40 KB tracker."
         primaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb", external: true }}
         secondaryCta={{ label: "See Shopify CRO guide", href: "/shopify-cro" }}
+        highlights={["Session replay & heatmaps", "AI fix suggestions", "Behavioral SmartNudge", "Sub-40 KB tracker"]}
       />
 
       <Section className="pb-16">
@@ -114,6 +116,40 @@ export default function VsLuckyOrangePage() {
       <Section className="pb-20">
         <SectionHeading eyebrow="Feature comparison" title="Side-by-side breakdown" />
         <ComparisonTable columns={["Feature", "DynoWeb", "Lucky Orange"]} rows={rows} />
+      </Section>
+
+      <Section className="pb-20">
+        <SectionHeading
+          eyebrow="The difference"
+          title="What the bundle doesn't give you"
+          subtitle="Lucky Orange bundles more tools. DynoWeb goes deeper on the workflow that actually moves conversion."
+        />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Screenshot
+            src="/AISuggestions.png"
+            alt="DynoWeb AI fix suggestions ranked by revenue impact"
+            label="AI suggestions"
+            caption="A ranked fix pipeline, not just recordings and surveys."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+          <Screenshot
+            src="/SmartNudge.png"
+            alt="DynoWeb SmartNudge behavioral intervention builder"
+            label="SmartNudge"
+            caption="Exit-intent and cart nudges triggered by real frustration signals."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+          <Screenshot
+            src="/implementationguide-theme.png"
+            alt="DynoWeb implementation guide with theme-editor steps"
+            label="Implementation guide"
+            caption="Theme-editor steps or a code diff for every fix."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+        </div>
       </Section>
 
       <FAQ title="Lucky Orange vs DynoWeb — frequently asked" items={faqs} />

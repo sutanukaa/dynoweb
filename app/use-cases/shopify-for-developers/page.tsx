@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FileCode2, BadgeCheck, Plug, Eye } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   Card,
   CheckList,
   FAQ,
@@ -31,10 +33,10 @@ export const metadata: Metadata = {
 };
 
 const devFeatures = [
-  { tag: "Specs", title: "File path + diff", body: "Every suggestion includes the exact theme file to touch and a before/after diff — no ambiguous 'make the button bigger' tickets." },
-  { tag: "Evidence", title: "The data behind it", body: "Impressions, clicks, CTR, and matching replays ship with each fix, so you implement with context, not blind faith." },
-  { tag: "MCP", title: "Claude & Cursor integration", body: "Pull store insights into your editor over MCP. Have Cursor read the suggestion, open the file, and apply the change in context." },
-  { tag: "Safe", title: "Draft-theme preview", body: "Preview every change on a draft theme before it touches production — review the diff, then push with confidence." },
+  { icon: FileCode2, tag: "Specs", title: "File path + diff", body: "Every suggestion includes the exact theme file to touch and a before/after diff — no ambiguous 'make the button bigger' tickets." },
+  { icon: BadgeCheck, tag: "Evidence", title: "The data behind it", body: "Impressions, clicks, CTR, and matching replays ship with each fix, so you implement with context, not blind faith." },
+  { icon: Plug, tag: "MCP", title: "Claude & Cursor integration", body: "Pull store insights into your editor over MCP. Have Cursor read the suggestion, open the file, and apply the change in context." },
+  { icon: Eye, tag: "Safe", title: "Draft-theme preview", body: "Preview every change on a draft theme before it touches production — review the diff, then push with confidence." },
 ];
 
 const workflow = [
@@ -78,9 +80,13 @@ export default function ShopifyForDevelopersPage() {
         lead="Stop receiving vague briefs. DynoWeb gives developers the exact file path, before/after diff, and projected lift. Ship fixes faster with zero guesswork — and pull it all into Cursor or Claude via MCP."
         primaryCta={{ label: "Connect to Cursor", href: "/features/mcp-integration" }}
         secondaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb" }}
+        highlights={["File path + code diff", "Evidence per fix", "MCP for Claude & Cursor", "Draft-theme preview"]}
+        image="/implementationguide-code.png"
+        imageAlt="DynoWeb implementation guide showing a before/after code diff for a Shopify theme file"
+        imageLabel="Code diff"
       />
 
-      <Section className="pb-16">
+      <Section className="pb-12">
         <SectionHeading
           eyebrow="Built for devs"
           title="Specs, not vague tickets"
@@ -88,6 +94,45 @@ export default function ShopifyForDevelopersPage() {
         />
         <FeatureGrid columns={2} items={devFeatures} />
       </Section>
+
+      <FeatureRow
+        eyebrow="Two paths, one spec"
+        title="Theme-editor steps and a copy-ready diff"
+        body={
+          <p>
+            Each fix ships with both a numbered theme-editor walkthrough for non-technical teammates and the exact code for
+            you. Open the right file, apply the diff, verify against the included acceptance criteria — done.
+          </p>
+        }
+        bullets={[
+          "Numbered theme-editor steps a teammate can follow",
+          "Exact file path with before/after and a copy button",
+          "Built-in 'how to verify' acceptance criteria",
+        ]}
+        image="/implementationguide-theme.png"
+        imageAlt="DynoWeb implementation guide showing theme-editor steps for a fix"
+        imageLabel="Implementation guide"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="In your editor"
+        title="Pull store insights into Cursor and Claude via MCP"
+        body={
+          <p>
+            DynoWeb exposes its analytics and suggestions over MCP, so your AI assistant can query your real store data,
+            read a fix, locate the file, and draft the change — all without leaving your workflow. You review and ship.
+          </p>
+        }
+        bullets={[
+          "Standard MCP — works with Claude, Cursor, and ChatGPT",
+          "Scoped, token-based access you control",
+          "The assistant proposes; you approve what ships",
+        ]}
+        image="/MCP-connector.png"
+        imageAlt="DynoWeb connected as an MCP connector inside an AI assistant"
+        imageLabel="MCP connector"
+      />
 
       <Section className="pb-16">
         <SectionHeading eyebrow="The workflow" title="From suggestion to shipped diff" />

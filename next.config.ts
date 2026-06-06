@@ -10,6 +10,12 @@ const config = {
       // Comparison pages migrated from /compare/* to /vs/*
       { source: '/compare', destination: '/vs', permanent: true },
       { source: '/compare/:slug', destination: '/vs/:slug', permanent: true },
+      // Hyphen-less variant of the product-page-conversions use case → canonical slug
+      {
+        source: '/use-cases/increase-product-pageconversions',
+        destination: '/use-cases/increase-product-page-conversions',
+        permanent: true,
+      },
     ];
   },
   async headers() {

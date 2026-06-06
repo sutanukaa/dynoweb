@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Hand, ZoomIn, Zap, LayoutTemplate } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   Card,
   CheckList,
   FAQ,
@@ -31,10 +33,10 @@ export const metadata: Metadata = {
 };
 
 const signals = [
-  { tag: "Tap targets", title: "Fat-finger taps", body: "Repeated taps on buttons that are too small or too close together. Mobile heatmaps make the mis-hits obvious." },
-  { tag: "Legibility", title: "Pinch-zooming", body: "Shoppers zooming into product details means text and images aren't legible at mobile widths — a silent conversion killer." },
-  { tag: "Thumb zone", title: "Dead & rage clicks", body: "Friction clustered around filters, drawers, and sticky elements in the thumb zone, where mobile shoppers actually reach." },
-  { tag: "Viewport", title: "First-screen drop-off", body: "When a competing CTA or banner fills the first viewport, mobile visitors bounce before they ever see the product." },
+  { icon: Hand, tag: "Tap targets", title: "Fat-finger taps", body: "Repeated taps on buttons that are too small or too close together. Mobile heatmaps make the mis-hits obvious." },
+  { icon: ZoomIn, tag: "Legibility", title: "Pinch-zooming", body: "Shoppers zooming into product details means text and images aren't legible at mobile widths — a silent conversion killer." },
+  { icon: Zap, tag: "Thumb zone", title: "Dead & rage clicks", body: "Friction clustered around filters, drawers, and sticky elements in the thumb zone, where mobile shoppers actually reach." },
+  { icon: LayoutTemplate, tag: "Viewport", title: "First-screen drop-off", body: "When a competing CTA or banner fills the first viewport, mobile visitors bounce before they ever see the product." },
 ];
 
 const flow = [
@@ -78,9 +80,13 @@ export default function ShopifyMobileOptimizationPage() {
         lead="Track mobile gestures, fat finger taps, and scroll behavior on your Shopify store. Get AI-generated fixes optimized for mobile shoppers — and close the gap between your desktop and mobile conversion rates."
         primaryCta={{ label: "Try free", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "See session replay", href: "/shopify-session-replay" }}
+        highlights={["Mobile-only filtering", "Gesture & tap signals", "Thumb-zone heatmaps", "Mobile-specific fixes"]}
+        image="/Dashboard.png"
+        imageAlt="DynoWeb dashboard showing 90% mobile traffic for a Shopify store"
+        imageLabel="Device breakdown"
       />
 
-      <Section className="pb-16">
+      <Section className="pb-12">
         <SectionHeading
           eyebrow="Mobile-only signals"
           title="The friction desktop testing never reveals"
@@ -88,6 +94,46 @@ export default function ShopifyMobileOptimizationPage() {
         />
         <FeatureGrid columns={2} items={signals} />
       </Section>
+
+      <FeatureRow
+        eyebrow="Gesture signals"
+        title="See the taps, swipes, and shakes desktop misses"
+        body={
+          <p>
+            DynoWeb&rsquo;s event capture surfaces the mobile-specific signals that predict frustration — mouse/finger shake,
+            swipes, rage and dead clicks, double taps. When these spike around a button or drawer, you&rsquo;ve found a
+            thumb-zone problem to fix.
+          </p>
+        }
+        bullets={[
+          "Top event signals ranked, including swipe and shake",
+          "Rage and dead clicks flagged automatically",
+          "Spot the elements causing the most mobile friction",
+        ]}
+        image="/behavior.png"
+        imageAlt="DynoWeb capture mix and top event signals including mobile gestures"
+        imageLabel="Event signals"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="Mobile scroll"
+        title="Watch how far mobile shoppers actually scroll"
+        body={
+          <p>
+            Mobile scroll sessions show max depth and velocity per visit, filtered to mobile devices. Shallow depth on a long
+            product page means your strongest content sits below the (much shorter) mobile fold — a quick, high-impact fix.
+          </p>
+        }
+        bullets={[
+          "Per-session max depth and scroll velocity",
+          "Filter to mobile to isolate the real problem",
+          "Inspect any session to see exactly what happened",
+        ]}
+        image="/scrollSessions.png"
+        imageAlt="DynoWeb mobile scroll sessions table showing scroll depth and velocity"
+        imageLabel="Scroll sessions"
+      />
 
       <Section className="pb-16">
         <SectionHeading eyebrow="The workflow" title="Diagnose and fix mobile friction" />

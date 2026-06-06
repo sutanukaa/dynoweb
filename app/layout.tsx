@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import OaiqPageView from "./components/OaiqPageView";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -86,6 +87,10 @@ const ld = {
   ],
 };
 
+// OpenAI (ChatGPT) conversion-tracking pixel — loaded near the top of <head> on every page.
+// Set debug:false once you've verified events are firing in production.
+const oaiqPixel = `!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"3GRD9beqaP27pzNYva8ooL",debug:true});`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -94,6 +99,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("font-sans", geist.variable)} suppressHydrationWarning>
       <head>
+        {/* OpenAI / ChatGPT conversion pixel — kept first so it loads near the top of <head> */}
+        <script dangerouslySetInnerHTML={{ __html: oaiqPixel }} />
         <link rel="icon" href="/logo-short.png" type="image/png" />
         <script
           type="application/ld+json"
@@ -104,6 +111,7 @@ export default function RootLayout({
         className={`${inter.variable} antialiased font-inter`}
         suppressHydrationWarning
       >
+        <OaiqPageView />
         {children}
       </body>
     </html>

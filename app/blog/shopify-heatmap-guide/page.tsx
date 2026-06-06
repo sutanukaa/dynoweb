@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BlogArticle } from "@/app/components/seo/BlogArticle";
+import { Callout } from "@/app/components/seo/Callout";
 
 export const metadata: Metadata = {
   title: "Shopify Heatmaps: A Complete Guide for Merchants (2026)",
@@ -40,7 +41,16 @@ export default function Page() {
       category="Heatmaps"
       title="The Complete Shopify Heatmap Guide for 2026"
       lead="Everything you need to know about using heatmaps on your Shopify store — click maps, scroll maps, attention maps — and, most importantly, how to act on the data instead of just looking at it."
-      readTime="8 min read"
+      readTime="5 min read"
+      heroImage="/Heatmaps.png"
+      heroAlt="DynoWeb heatmap view with click hotspots over a Shopify page"
+      heroLabel="Heatmap preview"
+      takeaways={[
+        "Three maps answer three questions: click (where they tap), scroll (what's seen), attention (what holds focus).",
+        "Bright clicks on non-interactive elements signal frustration worth fixing.",
+        "Always read mobile and desktop maps separately.",
+        "Heatmaps diagnose — pair with replays and ship a focused fix.",
+      ]}
       faqs={faqs}
       related={[
         { label: "Heatmaps Pillar", href: "/shopify-heatmaps", description: "See where customers click & scroll." },
@@ -88,6 +98,13 @@ export default function Page() {
         Shoppers behave completely differently on a phone. Always view <Link href="/features/heatmaps">device-specific
         heatmaps</Link> — mobile maps surface fat-finger taps and thumb-zone mis-hits that desktop testing never catches.
       </p>
+
+      <Callout variant="tip">
+        <p>
+          Don&rsquo;t stop at one map. Cross-reference the click map (what they tap) with the scroll map (what they see) —
+          a hot click zone below the scroll cliff means an element is fighting for attention it can&rsquo;t get.
+        </p>
+      </Callout>
 
       <h2>From map to fix</h2>
       <p>

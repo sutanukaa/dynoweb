@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Download, ToggleRight, Activity, LineChart, Ban, Layers, UserX, Gauge } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   Card,
   FAQ,
   CTA,
@@ -30,17 +32,17 @@ export const metadata: Metadata = {
 };
 
 const steps = [
-  { tag: "Step 1", title: "Install the app", body: "Add DynoWeb from the Shopify App Store with one click. No script tags to paste, no tag manager to configure." },
-  { tag: "Step 2", title: "Enable the embed", body: "Toggle the DynoWeb app embed on in your theme — a single switch in the theme editor. That's the entire 'code' step." },
-  { tag: "Step 3", title: "Data starts flowing", body: "DynoWeb immediately begins collecting clicks, scrolls, rage clicks, and session data across your store." },
-  { tag: "Step 4", title: "Read the insights", body: "Within minutes you have heatmaps, replays, and your first prioritised fix suggestions — no analyst required." },
+  { icon: Download, tag: "Step 1", title: "Install the app", body: "Add DynoWeb from the Shopify App Store with one click. No script tags to paste, no tag manager to configure." },
+  { icon: ToggleRight, tag: "Step 2", title: "Enable the embed", body: "Toggle the DynoWeb app embed on in your theme — a single switch in the theme editor. That's the entire 'code' step." },
+  { icon: Activity, tag: "Step 3", title: "Data starts flowing", body: "DynoWeb immediately begins collecting clicks, scrolls, rage clicks, and session data across your store." },
+  { icon: LineChart, tag: "Step 4", title: "Read the insights", body: "Within minutes you have heatmaps, replays, and your first prioritised fix suggestions — no analyst required." },
 ];
 
 const noCode = [
-  { title: "No script tag management", body: "DynoWeb installs as a native Shopify app, so there's no manual tag to add, maintain, or accidentally break on theme updates." },
-  { title: "No tag manager", body: "Skip Google Tag Manager entirely. The app embed handles tracking the Shopify-native way." },
-  { title: "No developer needed", body: "Setup is a click and a toggle. Most fixes DynoWeb suggests are also no-code theme-editor changes." },
-  { title: "No performance hit", body: "The tracker is under 40 KB and loads asynchronously — SEO-safe and Core Web Vitals friendly out of the box." },
+  { icon: Ban, title: "No script tag management", body: "DynoWeb installs as a native Shopify app, so there's no manual tag to add, maintain, or accidentally break on theme updates." },
+  { icon: Layers, title: "No tag manager", body: "Skip Google Tag Manager entirely. The app embed handles tracking the Shopify-native way." },
+  { icon: UserX, title: "No developer needed", body: "Setup is a click and a toggle. Most fixes DynoWeb suggests are also no-code theme-editor changes." },
+  { icon: Gauge, title: "No performance hit", body: "The tracker is under 40 KB and loads asynchronously — SEO-safe and Core Web Vitals friendly out of the box." },
 ];
 
 const faqs = [
@@ -79,6 +81,10 @@ export default function AnalyticsNoCodePage() {
         lead="No developers. No tag managers. No complex setup. DynoWeb plugs directly into your Shopify theme and starts collecting behavioral data immediately — install the app, flip one toggle, done."
         primaryCta={{ label: "Install now", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "See the analytics guide", href: "/shopify-analytics" }}
+        highlights={["~5-minute setup", "No script tag", "No tag manager", "No developer"]}
+        image="/quickStoreCheck.png"
+        imageAlt="DynoWeb store checks that run even before you have traffic"
+        imageLabel="Store checks"
       />
 
       <Section className="pb-16">
@@ -89,6 +95,26 @@ export default function AnalyticsNoCodePage() {
         />
         <FeatureGrid columns={2} items={steps} />
       </Section>
+
+      <FeatureRow
+        eyebrow="Instant data"
+        title="Behavioral insights start the moment you flip the switch"
+        body={
+          <p>
+            As soon as the app embed is on, DynoWeb begins collecting — attributed revenue, tracked events, page views, and
+            form signals all populate automatically. No setup wizard, no data modelling, no waiting on a developer to wire
+            anything up.
+          </p>
+        }
+        bullets={[
+          "Attributed revenue, events, views, and form signals",
+          "Filter by device, date range, and country out of the box",
+          "Quick Store Check works even before you have traffic",
+        ]}
+        image="/overview.png"
+        imageAlt="DynoWeb analytics overview cards populated automatically after install"
+        imageLabel="Overview"
+      />
 
       <Section className="pb-16">
         <SectionHeading eyebrow="What 'no code' really means" title="Nothing technical between you and your data" />

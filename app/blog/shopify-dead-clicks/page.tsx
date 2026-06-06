@@ -40,7 +40,16 @@ export default function Page() {
       category="Behavior"
       title="Dead Clicks on Your Shopify Store: Causes & Fixes"
       lead="Dead clicks happen when visitors click elements that aren't interactive. Here's what causes them, how to spot them, and quick fixes that reduce friction and rebuild trust."
-      readTime="6 min read"
+      readTime="5 min read"
+      heroImage="/behavior.png"
+      heroAlt="DynoWeb event signals showing dead clicks among top behavioral signals"
+      heroLabel="Event signals"
+      takeaways={[
+        "Dead clicks are taps on elements that look interactive but do nothing.",
+        "They quietly erode trust and often escalate into rage clicks and exits.",
+        "Spot them on click heatmaps and confirm with session replays.",
+        "Fix by making the element work or removing the false affordance.",
+      ]}
       faqs={faqs}
       related={[
         { label: "Rage Clicks", href: "/blog/shopify-rage-clicks", description: "The frustrated escalation of a dead click." },

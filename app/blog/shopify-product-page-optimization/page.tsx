@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BlogArticle } from "@/app/components/seo/BlogArticle";
+import { Callout } from "@/app/components/seo/Callout";
 
 export const metadata: Metadata = {
   title: "Shopify Product Page Optimization: A Data-Driven Playbook",
@@ -40,7 +41,16 @@ export default function Page() {
       category="Product Pages"
       title="Data-Driven Shopify Product Page Optimization Playbook"
       lead="Your product page is where the buying decision gets made. Here's a behavioral-data-backed playbook for optimizing image order, CTAs, copy, and social proof — grounded in what shoppers actually do, not best-practice guesswork."
-      readTime="9 min read"
+      readTime="5 min read"
+      heroImage="/clickHeatmap.png"
+      heroAlt="DynoWeb click heatmap on a Shopify product page"
+      heroLabel="Product page heatmap"
+      takeaways={[
+        "Product pages convert on evidence, not opinion — read heatmaps, scroll maps, and replays.",
+        "Lead with the image shoppers want; raise the CTA and proof above the fold.",
+        "Mobile is where most product-page revenue leaks — check it separately.",
+        "Ship a focused change, then confirm the lift with revenue attribution.",
+      ]}
       faqs={faqs}
       related={[
         { label: "Increase PDP Conversions", href: "/use-cases/increase-product-page-conversions", description: "Turn browsers into buyers." },
@@ -100,6 +110,13 @@ export default function Page() {
         images, and a first viewport cluttered with banners instead of product. See{" "}
         <Link href="/use-cases/shopify-mobile-optimization">mobile optimization</Link> for the full workflow.
       </p>
+
+      <Callout variant="product">
+        <p>
+          DynoWeb turns each of these product-page findings into a specific suggestion — with the behavioral evidence, a
+          theme-editor walkthrough, and a code diff — so you can ship the change without guessing at the cause.
+        </p>
+      </Callout>
 
       <h2>Ship, measure, repeat</h2>
       <p>

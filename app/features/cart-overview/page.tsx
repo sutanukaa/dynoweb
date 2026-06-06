@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ShoppingCart, Timer, LogOut, Wrench, TrendingDown, Bell } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   FAQ,
   CTA,
   RelatedLinks,
@@ -29,10 +31,10 @@ export const metadata: Metadata = {
 };
 
 const tracks = [
-  { tag: "Entry", title: "Add-to-cart events", body: "Every add-to-cart is captured with the product, variant, and the session context around it — so you see what intent looks like before it leaks." },
-  { tag: "Hesitation", title: "Cart dwell & edits", body: "Spot the moments shoppers linger, change quantities, remove items, or open and re-open the cart — the tells of a wavering purchase." },
-  { tag: "Exit", title: "Drop-off points", body: "Pinpoint exactly where the cart-to-checkout funnel breaks: the cart drawer, the cart page, or the first checkout step." },
-  { tag: "Recovery", title: "Fix recommendations", body: "Each leak comes with a prioritised fix — clearer CTAs, trust signals, shipping transparency — ready to ship." },
+  { icon: ShoppingCart, tag: "Entry", title: "Add-to-cart events", body: "Every add-to-cart is captured with the product, variant, and the session context around it — so you see what intent looks like before it leaks." },
+  { icon: Timer, tag: "Hesitation", title: "Cart dwell & edits", body: "Spot the moments shoppers linger, change quantities, remove items, or open and re-open the cart — the tells of a wavering purchase." },
+  { icon: LogOut, tag: "Exit", title: "Drop-off points", body: "Pinpoint exactly where the cart-to-checkout funnel breaks: the cart drawer, the cart page, or the first checkout step." },
+  { icon: Wrench, tag: "Recovery", title: "Fix recommendations", body: "Each leak comes with a prioritised fix — clearer CTAs, trust signals, shipping transparency — ready to ship." },
 ];
 
 const faqs = [
@@ -70,17 +72,73 @@ export default function CartOverviewPage() {
         eyebrow="Feature — Shopify cart abandonment analytics"
         title="Stop Losing Sales at Checkout — Cart Analytics for Shopify"
         lead="DynoWeb's cart overview tracks every add-to-cart, hesitation, and exit — then tells you exactly what to fix to recover lost revenue. See the moment intent breaks, and close the gap."
-        primaryCta={{ label: "Start free trial", href: "https://apps.shopify.com/dynoweb" }}
+        primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "Reduce cart abandonment", href: "/use-cases/reduce-cart-abandonment" }}
+        highlights={["Add-to-cart to checkout funnel", "Exact drop-off points", "Hesitation signals", "Recovery fixes"]}
+        image="/CartOverview.png"
+        imageAlt="DynoWeb cart overview dashboard showing cart and checkout analytics for Shopify"
+        imageLabel="Cart Overview"
       />
 
-      <Section className="pb-16">
+      <Section className="pb-12">
         <SectionHeading
           eyebrow="What it tracks"
           title="The full add-to-cart-to-checkout funnel"
           subtitle="Cart overview captures the steps standard analytics summarises away — where exactly does intent turn into an exit?"
         />
         <FeatureGrid columns={2} items={tracks} />
+      </Section>
+
+      <FeatureRow
+        eyebrow="The overview"
+        title="Every cart, summarised at a glance"
+        body={
+          <p>
+            The cart overview header gives you the state of your funnel in seconds — carts created, value at stake, and how
+            many converted versus stalled. It&rsquo;s the dashboard that tells you whether your checkout is healthy or
+            quietly leaking.
+          </p>
+        }
+        bullets={[
+          "Carts created, recovered, and abandoned at a glance",
+          "Value at risk in the funnel right now",
+          "Trends that flag a checkout problem early",
+        ]}
+        image="/cartoverviewHeader.png"
+        imageAlt="DynoWeb cart overview header summarising cart funnel health"
+        imageLabel="Cart summary"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="Down to the item"
+        title="See which products get abandoned — and why"
+        body={
+          <p>
+            Drill into the items sitting in abandoned carts. Patterns emerge fast: a product that&rsquo;s frequently added
+            then removed, a variant that stalls the decision, or a price point that triggers second-guessing at checkout.
+          </p>
+        }
+        bullets={[
+          "Per-item add, edit, and removal behavior",
+          "Spot products that consistently stall conversion",
+          "Connect each abandoned cart to its session replay",
+        ]}
+        image="/cartOverviewItems.png"
+        imageAlt="DynoWeb cart overview item-level breakdown of abandoned carts"
+        imageLabel="Cart items"
+      />
+
+      <Section className="pb-12">
+        <SectionHeading eyebrow="Beyond the data" title="Diagnose, fix, and recover" />
+        <FeatureGrid
+          columns={3}
+          items={[
+            { icon: TrendingDown, title: "Find the leak", body: "Pinpoint the precise step — drawer, cart page, or checkout — where shoppers give up." },
+            { icon: Bell, title: "Nudge in real time", body: "Pair with SmartNudge to surface an exit-intent offer the moment a shopper is about to leave." },
+            { icon: Wrench, title: "Ship the fix", body: "Get a prioritised, dev-ready recommendation for each leak — theme-editor steps or code diff." },
+          ]}
+        />
       </Section>
 
       <FAQ title="Cart abandonment — frequently asked" items={faqs} />
@@ -99,7 +157,7 @@ export default function CartOverviewPage() {
       <CTA
         title="Recover the revenue leaking from your cart"
         body="DynoWeb shows you every add-to-cart, every hesitation, and every exit — then hands you the fix to recover what's being lost at checkout."
-        primaryLabel="Start free trial"
+        primaryLabel="Install free"
         secondary={{ label: "See pricing", href: "/pricing" }}
       />
     </MarketingShell>

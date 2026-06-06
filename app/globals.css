@@ -4,6 +4,67 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ── Animated signature glow that travels around a card's border ──
+   Used by the shared CTA card (app/components/seo/Marketing.tsx). */
+@property --dw-cta-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes dwCtaSpin {
+  to { --dw-cta-angle: 360deg; }
+}
+.cta-glow-card {
+  position: relative;
+  isolation: isolate;
+}
+/* The bright border ring (masked to a 1.5px edge) */
+.cta-glow-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--dw-cta-angle),
+    transparent 0deg,
+    rgba(110, 176, 255, 0.95) 45deg,
+    rgba(147, 197, 253, 1) 75deg,
+    transparent 140deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 0;
+  animation: dwCtaSpin 6s linear infinite;
+}
+/* Soft outer bloom following the same sweep */
+.cta-glow-card::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--dw-cta-angle),
+    transparent 0deg,
+    rgba(110, 176, 255, 0.55) 45deg,
+    rgba(147, 197, 253, 0.6) 75deg,
+    transparent 140deg,
+    transparent 360deg
+  );
+  filter: blur(13px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: -1;
+  animation: dwCtaSpin 6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-glow-card::before,
+  .cta-glow-card::after { animation: none; }
+}
+
 :root {
   --sea-green: #20b2aa;
   --sea-green-light: #7fffd4;

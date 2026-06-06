@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BarChart3, PlaySquare, MousePointerClick, Sparkles, DollarSign, Plug, Bell, Bot } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   Card,
   CheckList,
   FAQ,
@@ -31,12 +33,14 @@ export const metadata: Metadata = {
 };
 
 const bundle = [
-  { tag: "Analytics", title: "Behavioral analytics", body: "11 signals per session — clicks, rage clicks, dead clicks, scroll depth, mobile gestures — beyond what native Shopify analytics shows." },
-  { tag: "Replays", title: "Session replay", body: "Watch real customer sessions, filtered by rage clicks, cart abandonment, or device, to see friction as shoppers experience it." },
-  { tag: "Heatmaps", title: "Click, scroll & attention maps", body: "Visual maps for every page and device, so you see where attention goes and where it dies." },
-  { tag: "AI", title: "AI fix suggestions", body: "A 3-layer engine ranks revenue-leaking gaps by ROI and delivers a dev-ready fix — file path, diff, and projected lift." },
-  { tag: "Revenue", title: "Revenue attribution", body: "Tie every fix to real Shopify orders via order webhooks, so you know which changes actually moved revenue." },
-  { tag: "AI tools", title: "MCP integration", body: "Connect your store's data to Claude, Cursor, and ChatGPT to query insights and ship fixes from your AI workflow." },
+  { icon: BarChart3, tag: "Analytics", title: "Behavioral analytics", body: "11 signals per session — clicks, rage clicks, dead clicks, scroll depth, mobile gestures — beyond what native Shopify analytics shows." },
+  { icon: PlaySquare, tag: "Replays", title: "Session replay", body: "Watch real customer sessions, filtered by rage clicks, cart abandonment, or device, to see friction as shoppers experience it." },
+  { icon: MousePointerClick, tag: "Heatmaps", title: "Click, scroll & attention maps", body: "Visual maps for every page and device, so you see where attention goes and where it dies." },
+  { icon: Sparkles, tag: "AI", title: "AI fix suggestions", body: "A 3-layer engine ranks revenue-leaking gaps by ROI and delivers a dev-ready fix — file path, diff, and projected lift." },
+  { icon: Bell, tag: "SmartNudge", title: "Behavioral interventions", body: "Trigger exit-intent offers, cart nudges, and social-proof toasts from real frustration signals — the live way DynoWeb deploys a fix to your storefront." },
+  { icon: Bot, tag: "DynoAgent", title: "AI agent + actions", body: "Ask your store anything and let DynoAgent diagnose, generate on-brand imagery, and prepare changes for your one-click approval." },
+  { icon: DollarSign, tag: "Revenue", title: "Revenue attribution", body: "Tie every fix to real Shopify orders via order webhooks — with fingerprint recovery for custom checkouts that break the Web Pixel." },
+  { icon: Plug, tag: "AI tools", title: "MCP integration", body: "Connect your store's data to Claude, Cursor, and ChatGPT to query insights and ship fixes from your AI workflow." },
 ];
 
 const whyOne = [
@@ -83,16 +87,61 @@ export default function ShopifyAppStorePage() {
         lead="DynoWeb is the only native Shopify app that combines session replay, heatmaps, AI fix suggestions, and revenue attribution in one lightweight package — replacing a whole stack of single-purpose tools."
         primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "See pricing", href: "/pricing" }}
+        highlights={["6 tools in one app", "Sub-40 KB tracker", "Native install", "Free tier"]}
+        image="/Dashboard.png"
+        imageAlt="DynoWeb all-in-one CRO and analytics dashboard for Shopify"
+        imageLabel="DynoWeb dashboard"
       />
 
       <Section className="pb-16">
         <SectionHeading
           eyebrow="All in one app"
           title="Everything CRO, bundled natively"
-          subtitle="Six capabilities most stores buy separately — combined into a single Shopify app."
+          subtitle="Eight capabilities most stores buy separately — combined into a single Shopify app."
         />
         <FeatureGrid items={bundle} />
       </Section>
+
+      <FeatureRow
+        eyebrow="Inside the app"
+        title="Heatmaps, replays, and AI fixes in one place"
+        body={
+          <p>
+            Instead of paying for a heatmap tool, a session-replay tool, and an analytics tool separately — each adding
+            weight and another script — DynoWeb bundles them into one native app, with an AI engine that turns the data into
+            ranked, dev-ready fixes.
+          </p>
+        }
+        bullets={[
+          "Click, scroll & attention heatmaps for every page",
+          "Filterable session replays of real visits",
+          "A ranked queue of fixes with projected lift",
+        ]}
+        image="/Heatmaps.png"
+        imageAlt="DynoWeb heatmaps inside the all-in-one Shopify app"
+        imageLabel="Heatmaps"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="From data to action"
+        title="The AI engine that ships with it"
+        body={
+          <p>
+            Most analytics apps stop at charts. DynoWeb&rsquo;s 3-layer AI engine ranks every revenue-leaking gap by ROI and
+            hands you the exact fix — file path, diff, and projected lift — so the app doesn&rsquo;t just report problems, it
+            resolves them.
+          </p>
+        }
+        bullets={[
+          "Suggestions ranked by revenue impact",
+          "Theme-editor steps and code diffs",
+          "Revenue attribution to prove what worked",
+        ]}
+        image="/AISuggestions.png"
+        imageAlt="DynoWeb AI suggestions ranked by revenue impact"
+        imageLabel="AI suggestions"
+      />
 
       <Section className="pb-16">
         <SectionHeading eyebrow="Why one app beats a stack" title="Less weight, more insight" />

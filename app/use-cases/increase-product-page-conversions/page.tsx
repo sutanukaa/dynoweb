@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Image as ImageIcon, MousePointerClick, Star, Smartphone } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   Card,
   CheckList,
   FAQ,
@@ -31,10 +33,10 @@ export const metadata: Metadata = {
 };
 
 const leaks = [
-  { tag: "Imagery", title: "Wrong image order", body: "Heatmaps show shoppers swiping past your lead image looking for a detail that should have been first. Re-order to lead with what sells." },
-  { tag: "CTA", title: "Buried add-to-cart", body: "Scroll maps reveal the add-to-cart button sits below where most visitors stop. Move it up and make the treatment unmistakable." },
-  { tag: "Proof", title: "Reviews never seen", body: "Your strongest social proof is below the fold for most visitors. DynoWeb shows you exactly how far shoppers actually scroll." },
-  { tag: "Mobile", title: "Variant-picker friction", body: "Mobile session replays expose confusing size and color selectors that stall the purchase decision on the smallest screens." },
+  { icon: ImageIcon, tag: "Imagery", title: "Wrong image order", body: "Heatmaps show shoppers swiping past your lead image looking for a detail that should have been first. Re-order to lead with what sells." },
+  { icon: MousePointerClick, tag: "CTA", title: "Buried add-to-cart", body: "Scroll maps reveal the add-to-cart button sits below where most visitors stop. Move it up and make the treatment unmistakable." },
+  { icon: Star, tag: "Proof", title: "Reviews never seen", body: "Your strongest social proof is below the fold for most visitors. DynoWeb shows you exactly how far shoppers actually scroll." },
+  { icon: Smartphone, tag: "Mobile", title: "Variant-picker friction", body: "Mobile session replays expose confusing size and color selectors that stall the purchase decision on the smallest screens." },
 ];
 
 const playbook = [
@@ -76,11 +78,15 @@ export default function IncreaseProductPageConversionsPage() {
         eyebrow="Use case — increase Shopify product page conversions"
         title="Turn More Product Page Visitors Into Buyers"
         lead="Find out why visitors leave your product pages without buying — wrong image order, weak CTAs, poor mobile UX — and get exact fixes to boost conversions. Optimize your highest-intent pages with evidence, not guesswork."
-        primaryCta={{ label: "See how it works", href: "/use-cases" }}
-        secondaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb" }}
+        primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
+        secondaryCta={{ label: "See how it works", href: "/use-cases" }}
+        highlights={["Click & scroll heatmaps", "Hesitation replays", "PDP-specific AI fixes", "Draft-theme preview"]}
+        image="/clickHeatmap.png"
+        imageAlt="DynoWeb click heatmap on a Shopify product page"
+        imageLabel="Product page heatmap"
       />
 
-      <Section className="pb-16">
+      <Section className="pb-12">
         <SectionHeading
           eyebrow="Where PDPs leak"
           title="The 4 most common product page conversion killers"
@@ -88,6 +94,47 @@ export default function IncreaseProductPageConversionsPage() {
         />
         <FeatureGrid columns={2} items={leaks} />
       </Section>
+
+      <FeatureRow
+        eyebrow="What gets seen"
+        title="See whether your CTA and proof are even visible"
+        body={
+          <p>
+            The scroll map shows exactly how far shoppers read your product page. If most stop before the add-to-cart button
+            or the reviews, those decisive elements are invisible to the majority — and the fix is simply to raise them above
+            the cliff.
+          </p>
+        }
+        bullets={[
+          "Find the depth where most visitors stop",
+          "Move the variant picker, CTA, and proof above it",
+          "Check the shorter mobile fold separately",
+        ]}
+        image="/scrollHeatmap.png"
+        imageAlt="DynoWeb scroll heatmap on a Shopify product page"
+        imageLabel="Scroll heatmap"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="The exact fix"
+        title="Get a PDP-specific suggestion, ready to ship"
+        body={
+          <p>
+            DynoWeb turns each product-page friction point into a concrete suggestion — backed by the behavioral evidence,
+            with a theme-editor walkthrough and a code diff. For example: &ldquo;Add swipe navigation to the product gallery&rdquo;,
+            detected from hundreds of real swipe gestures.
+          </p>
+        }
+        bullets={[
+          "Evidence: the exact gestures and events behind it",
+          "Expected impact and difficulty, scored",
+          "Theme-editor steps and a copy-ready code diff",
+        ]}
+        image="/suggestionCard.png"
+        imageAlt="DynoWeb product page suggestion with evidence and an implementation guide"
+        imageLabel="PDP suggestion"
+      />
 
       <Section className="pb-16">
         <SectionHeading eyebrow="The playbook" title="A data-backed PDP optimization workflow" />
@@ -112,7 +159,7 @@ export default function IncreaseProductPageConversionsPage() {
       <CTA
         title="Turn product page traffic into orders"
         body="DynoWeb shows you exactly why shoppers leave your product pages — and hands you the fix. Install free and optimize your best-selling PDP this week."
-        primaryLabel="See how it works"
+        primaryLabel="Install free"
         secondary={{ label: "See pricing", href: "/pricing" }}
       />
     </MarketingShell>

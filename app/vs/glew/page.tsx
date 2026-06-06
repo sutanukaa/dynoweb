@@ -6,6 +6,7 @@ import {
   Section,
   SectionHeading,
   Card,
+  Screenshot,
   ComparisonTable,
   FAQ,
   CTA,
@@ -81,6 +82,7 @@ export default function VsGlewPage() {
         lead="Glew is a reporting and business-intelligence platform — it tells you what happened across sales, inventory, and customers. DynoWeb is a behavioral CRO tool — it shows you why your store converts the way it does and hands you the exact fix. Here's how reporting and optimization compare, and why most growing Shopify stores end up wanting both."
         primaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb", external: true }}
         secondaryCta={{ label: "See Shopify analytics guide", href: "/shopify-analytics" }}
+        highlights={["Behavioral analytics", "Dev-ready fixes, not reports", "On-page friction signals", "Revenue attribution"]}
       />
 
       <Section className="pb-16">
@@ -110,6 +112,40 @@ export default function VsGlewPage() {
       <Section className="pb-20">
         <SectionHeading eyebrow="Feature comparison" title="Reporting vs optimization, side by side" />
         <ComparisonTable columns={["Capability", "DynoWeb", "Glew"]} rows={rows} />
+      </Section>
+
+      <Section className="pb-20">
+        <SectionHeading
+          eyebrow="The difference"
+          title="What reports don't give you"
+          subtitle="Glew tells you what happened. These are the on-page tools DynoWeb adds to find why — and fix it."
+        />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Screenshot
+            src="/clickHeatmap.png"
+            alt="DynoWeb click heatmap on a Shopify product page"
+            label="Heatmaps"
+            caption="See where shoppers actually click, scroll, and stall."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+          <Screenshot
+            src="/sessionReplay.png"
+            alt="DynoWeb session replay player for a Shopify store"
+            label="Session replay"
+            caption="Watch the moment a sale slips away — not just the total."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+          <Screenshot
+            src="/AISuggestions.png"
+            alt="DynoWeb AI fix suggestions ranked by revenue impact"
+            label="AI suggestions"
+            caption="A ranked, dev-ready fix for each leak — not another dashboard."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+        </div>
       </Section>
 
       <FAQ title="Glew vs DynoWeb — frequently asked" items={faqs} />

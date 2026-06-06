@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MousePointerClick, Flame, MoveVertical, Smartphone, ShoppingCart, DollarSign } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   Card,
   CheckList,
   StatRow,
@@ -15,6 +17,7 @@ import {
   faqJsonLd,
   breadcrumbJsonLd,
 } from "@/app/components/seo/Marketing";
+import { ChartCard, DonutChart, BarChart } from "@/app/components/seo/Charts";
 
 export const metadata: Metadata = {
   title: "Shopify Analytics App — Behavioral Insights That Drive Revenue",
@@ -32,12 +35,12 @@ export const metadata: Metadata = {
 };
 
 const signals = [
-  { tag: "Engagement", title: "Clicks & dead clicks", body: "See which elements get tapped — including the ones that look clickable but aren't and quietly frustrate shoppers." },
-  { tag: "Frustration", title: "Rage clicks", body: "Repeated rapid clicks on the same element signal a broken or confusing experience. DynoWeb flags them automatically." },
-  { tag: "Attention", title: "Scroll depth", body: "Know exactly how far visitors read on each template — and whether your best proof ever gets seen." },
-  { tag: "Mobile", title: "Touch & gesture data", body: "Fat-finger taps, pinch-zooms, and thumb-zone misses that desktop analytics completely miss." },
-  { tag: "Intent", title: "Add-to-cart funnels", body: "Track the exact step where purchase intent leaks between product view and completed order." },
-  { tag: "Outcome", title: "Revenue attribution", body: "Connect behavioral fixes to real Shopify orders via order webhooks — not estimated, attributed." },
+  { icon: MousePointerClick, tag: "Engagement", title: "Clicks & dead clicks", body: "See which elements get tapped — including the ones that look clickable but aren't and quietly frustrate shoppers." },
+  { icon: Flame, tag: "Frustration", title: "Rage clicks", body: "Repeated rapid clicks on the same element signal a broken or confusing experience. DynoWeb flags them automatically." },
+  { icon: MoveVertical, tag: "Attention", title: "Scroll depth", body: "Know exactly how far visitors read on each template — and whether your best proof ever gets seen." },
+  { icon: Smartphone, tag: "Mobile", title: "Touch & gesture data", body: "Fat-finger taps, pinch-zooms, and thumb-zone misses that desktop analytics completely miss." },
+  { icon: ShoppingCart, tag: "Intent", title: "Add-to-cart funnels", body: "Track the exact step where purchase intent leaks between product view and completed order." },
+  { icon: DollarSign, tag: "Outcome", title: "Revenue attribution", body: "Connect behavioral fixes to real Shopify orders via order webhooks — not estimated, attributed." },
 ];
 
 const beyond = [
@@ -81,8 +84,12 @@ export default function ShopifyAnalyticsPage() {
         eyebrow="Pillar guide — Shopify analytics app"
         title="Shopify Analytics That Goes Beyond Pageviews"
         lead="Go beyond pageviews. DynoWeb tracks 11 behavioral signals — clicks, rage clicks, scroll depth, mobile gestures — to show exactly where revenue is leaking, then attributes every fix back to real Shopify orders."
-        primaryCta={{ label: "See live demo", href: "/use-cases" }}
-        secondaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb" }}
+        primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
+        secondaryCta={{ label: "See live demo", href: "/use-cases" }}
+        highlights={["11 behavioral signals", "Order-level attribution", "Sub-40 KB, SEO-safe", "GDPR-ready"]}
+        image="/Dashboard.png"
+        imageAlt="DynoWeb Shopify analytics dashboard showing behavioral signals"
+        imageLabel="Analytics dashboard"
       />
 
       <Section className="pb-16">
@@ -96,14 +103,109 @@ export default function ShopifyAnalyticsPage() {
         />
       </Section>
 
-      <Section className="pb-16">
+      <Section className="pb-12">
         <SectionHeading
           eyebrow="The signals"
           title="What behavioral analytics actually measures"
           subtitle="Pageviews tell you how many people arrived. These signals tell you what they did, where they struggled, and why they left."
         />
-        <FeatureGrid items={signals} />
+        <FeatureGrid items={signals} columns={3} />
       </Section>
+
+      <Section className="pb-16">
+        <div className="grid gap-4 lg:grid-cols-2">
+          <ChartCard
+            eyebrow="Capture mix"
+            title="What a typical event stream looks like"
+            footnote="Representative breakdown of tracked events on a behavioral analytics tracker. Clicks dominate, but the small slices — forms and frustration signals — are where the conversion insight hides."
+          >
+            <DonutChart
+              centerValue="14.7K"
+              centerLabel="events"
+              segments={[
+                { label: "Clicks", value: 86 },
+                { label: "Page views", value: 7 },
+                { label: "Scrolls", value: 6 },
+                { label: "Forms", value: 1 },
+              ]}
+            />
+          </ChartCard>
+          <ChartCard
+            eyebrow="Frustration signals"
+            title="The signals that predict lost revenue"
+            footnote="Illustrative share of frustration events. These are invisible to pageview analytics but are the strongest leading indicators of abandonment."
+          >
+            <BarChart
+              unit="%"
+              data={[
+                { label: "Mouse shake", value: 68, display: "68%", highlight: true },
+                { label: "Dead click", value: 12, display: "12%" },
+                { label: "Scroll >50%", value: 9, display: "9%" },
+                { label: "Rage click", value: 7, display: "7%" },
+                { label: "Swipe up", value: 4, display: "4%" },
+              ]}
+            />
+          </ChartCard>
+        </div>
+      </Section>
+
+      <FeatureRow
+        eyebrow="Behavior, not just traffic"
+        title="See how shoppers actually use each page"
+        body={
+          <p>
+            DynoWeb&rsquo;s behavior view goes past visits and bounce rate to show engagement, frustration, and attention on
+            every template. It&rsquo;s the difference between knowing a page underperforms and knowing exactly why.
+          </p>
+        }
+        bullets={[
+          "Engagement and frustration scored per page",
+          "Rage clicks and dead clicks surfaced automatically",
+          "Drill from a metric straight into matching replays",
+        ]}
+        image="/behavior.png"
+        imageAlt="DynoWeb behavior analytics for a Shopify store"
+        imageLabel="Behavior analytics"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="Page-level depth"
+        title="Per-page analytics that point to the fix"
+        body={
+          <p>
+            Break performance down by individual page and template. DynoWeb shows impressions, interaction, and drop-off for
+            each one — so you can tell your highest-traffic page from your highest-leverage one.
+          </p>
+        }
+        bullets={[
+          "Metrics for every key template",
+          "Spot high-traffic, low-conversion pages to fix first",
+          "Tied to suggestions so analysis becomes action",
+        ]}
+        image="/pageAnalytics.png"
+        imageAlt="DynoWeb per-page analytics breakdown for a Shopify store"
+        imageLabel="Page analytics"
+      />
+
+      <FeatureRow
+        eyebrow="The outcome"
+        title="Connect behavior to real revenue"
+        body={
+          <p>
+            Behavioral data only matters if it moves money. DynoWeb ties page journeys and fixes back to actual Shopify
+            orders via order webhooks, so every insight has a dollar value attached.
+          </p>
+        }
+        bullets={[
+          "Revenue attributed to pages and journeys",
+          "Server-side order data, resilient to ad blockers",
+          "Measure the real impact of every fix you ship",
+        ]}
+        image="/RevenueAttribution.png"
+        imageAlt="DynoWeb revenue attribution tying behavior to Shopify orders"
+        imageLabel="Revenue attribution"
+      />
 
       <Section className="pb-16">
         <SectionHeading eyebrow="Pageviews vs behavior" title="Why pageviews aren't enough" />
@@ -129,7 +231,7 @@ export default function ShopifyAnalyticsPage() {
       <CTA
         title="See exactly where your revenue is leaking"
         body="DynoWeb turns 11 behavioral signals into a ranked list of fixes — each tied to projected revenue. Install free and get your first insights in minutes."
-        primaryLabel="See AI in action"
+        primaryLabel="Install free"
         secondary={{ label: "See pricing", href: "/pricing" }}
       />
     </MarketingShell>

@@ -40,7 +40,16 @@ export default function Page() {
       category="Checklist"
       title="The Ultimate Shopify CRO Checklist (60 Actionable Items)"
       lead="A comprehensive checklist covering homepage, product pages, cart, checkout, and mobile UX — with the behavioral signals to look for at each step. Work through it once a quarter and your conversion rate will thank you."
-      readTime="11 min read"
+      readTime="7 min read"
+      heroImage="/CROReport.png"
+      heroAlt="DynoWeb CRO report dashboard for a Shopify store"
+      heroLabel="CRO Report"
+      takeaways={[
+        "Audit every template — homepage, collection, product, cart, checkout, and mobile.",
+        "Pair the checklist with behavioral data so you fix what's actually costing conversions.",
+        "Run a full audit quarterly and a lighter behavioral review monthly.",
+        "Prioritise by impact, not by list order.",
+      ]}
       faqs={faqs}
       related={[
         { label: "Why your store isn't converting", href: "/blog/why-shopify-store-not-converting", description: "12 real reasons (+ fixes)." },

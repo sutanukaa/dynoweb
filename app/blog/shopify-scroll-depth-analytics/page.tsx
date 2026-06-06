@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BlogArticle } from "@/app/components/seo/BlogArticle";
+import { ChartCard, BarChart } from "@/app/components/seo/Charts";
 
 export const metadata: Metadata = {
   title: "Shopify Scroll Depth: Why It Matters & What to Do With It",
@@ -40,7 +41,16 @@ export default function Page() {
       category="Analytics"
       title="Shopify Scroll Depth: Find Where Visitors Stop Reading"
       lead="Most visitors never see your CTA. Scroll depth analytics reveal exactly how far people read — and where you should place your highest-value content so it actually gets seen."
-      readTime="6 min read"
+      readTime="4 min read"
+      heroImage="/scrollHeatmap.png"
+      heroAlt="DynoWeb scroll depth heatmap showing where Shopify visitors stop scrolling"
+      heroLabel="Scroll depth"
+      takeaways={[
+        "Most visitors never reach the bottom — content below ~50% depth is unseen by the majority.",
+        "Find your page's 'attention cliff' and move key content above it.",
+        "Mobile folds are shorter — always check scroll depth per device.",
+        "Pair scroll depth with session replays to learn why attention drops.",
+      ]}
       faqs={faqs}
       related={[
         { label: "Heatmap Guide", href: "/blog/shopify-heatmap-guide", description: "Click, scroll, and attention maps." },
@@ -67,6 +77,23 @@ export default function Page() {
         everyone sees, fading to cold where only the most engaged shoppers reach. The point where the color drops off
         sharply is your &ldquo;attention cliff.&rdquo;
       </p>
+
+      <ChartCard
+        eyebrow="The attention cliff"
+        title="Share of visitors who reach each scroll depth"
+        footnote="Illustrative scroll-depth distribution for a typical product page. Notice how few visitors reach the bottom — anything below ~50% depth is invisible to most shoppers."
+      >
+        <BarChart
+          unit="%"
+          data={[
+            { label: "Top of page", value: 100, display: "100%" },
+            { label: "25% depth", value: 82, display: "82%" },
+            { label: "50% depth", value: 54, display: "54%", highlight: true },
+            { label: "75% depth", value: 31, display: "31%" },
+            { label: "100% depth", value: 14, display: "14%" },
+          ]}
+        />
+      </ChartCard>
 
       <h2>What to do with the data</h2>
       <ol>

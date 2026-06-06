@@ -6,6 +6,7 @@ import {
   Section,
   SectionHeading,
   Card,
+  Screenshot,
   ComparisonTable,
   FAQ,
   CTA,
@@ -78,6 +79,7 @@ export default function VsHotjarPage() {
         lead="Hotjar is an observation tool — it shows you heatmaps, session recordings, and survey responses. DynoWeb is an action tool built natively for Shopify: it captures the same behavioral signals and then converts them into AI-prioritised fix recommendations with step-by-step implementation guides. Here is how they compare."
         primaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb", external: true }}
         secondaryCta={{ label: "See Shopify CRO guide", href: "/shopify-cro" }}
+        highlights={["Same heatmaps & replays", "Plus AI fix suggestions", "Shopify-native", "Sub-40 KB tracker"]}
       />
 
       <Section className="pb-16">
@@ -107,6 +109,40 @@ export default function VsHotjarPage() {
       <Section className="pb-20">
         <SectionHeading eyebrow="Feature comparison" title="Side-by-side breakdown" />
         <ComparisonTable columns={["Feature", "DynoWeb", "Hotjar"]} rows={rows} />
+      </Section>
+
+      <Section className="pb-20">
+        <SectionHeading
+          eyebrow="The difference"
+          title="What Hotjar doesn't give you"
+          subtitle="Hotjar shows you the behavior. These are the next steps DynoWeb adds — the part that actually moves conversion."
+        />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Screenshot
+            src="/AISuggestions.png"
+            alt="DynoWeb AI fix suggestions ranked by revenue impact"
+            label="AI suggestions"
+            caption="A ranked queue of fixes, not a wall of recordings to interpret."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+          <Screenshot
+            src="/implementationguide-code.png"
+            alt="DynoWeb implementation guide with a before/after code diff"
+            label="Implementation guide"
+            caption="The exact file path and before/after diff — ship it in minutes."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+          <Screenshot
+            src="/RevenueAttribution.png"
+            alt="DynoWeb revenue attribution tied to real Shopify orders"
+            label="Revenue attribution"
+            caption="Every fix tied to real Shopify orders via order webhooks."
+            minH="min-h-[200px] sm:min-h-[230px]"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+          />
+        </div>
       </Section>
 
       <FAQ title="Switching from Hotjar?" items={faqs} />

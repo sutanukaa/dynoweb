@@ -39,6 +39,7 @@ export default function VsIndexPage() {
         lead="Most behavioral tools stop at showing you a heatmap or a recording. DynoWeb goes one step further — it turns those signals into AI-prioritised, dev-ready fixes built natively for Shopify. Pick a tool below to see the side-by-side breakdown."
         primaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb", external: true }}
         secondaryCta={{ label: "See pricing", href: "/pricing" }}
+        highlights={["Heatmaps & replays", "AI fix suggestions", "Revenue attribution", "Shopify-native"]}
       />
 
       <Section className="pb-4">

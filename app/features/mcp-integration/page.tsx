@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Plug, Bot, Code2, ShieldCheck, MessageSquare, KeyRound } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   Card,
   CheckList,
   FAQ,
@@ -31,9 +33,9 @@ export const metadata: Metadata = {
 };
 
 const clients = [
-  { tag: "Claude", title: "Claude Desktop & Code", body: "Ask Claude what's hurting conversions on your store and get answers grounded in your real DynoWeb behavioral data — then have it draft the fix." },
-  { tag: "Cursor", title: "Cursor", body: "Pull store insights straight into your editor. Cursor can read the suggestion, open the right theme file, and apply the diff in context." },
-  { tag: "ChatGPT", title: "ChatGPT & MCP clients", body: "Any MCP-compatible assistant can query DynoWeb's analytics, suggestions, and session data through a standard, secure connection." },
+  { icon: Bot, tag: "Claude", title: "Claude Desktop & Code", body: "Ask Claude what's hurting conversions and get answers grounded in your real DynoWeb data — then have it draft the fix." },
+  { icon: Code2, tag: "Cursor", title: "Cursor", body: "Pull store insights straight into your editor. Cursor can read the suggestion, open the right theme file, and apply the diff in context." },
+  { icon: MessageSquare, tag: "ChatGPT", title: "ChatGPT & MCP clients", body: "Any MCP-compatible assistant can query DynoWeb's analytics, suggestions, and session data through a standard, secure connection." },
 ];
 
 const can = [
@@ -55,7 +57,7 @@ const faqs = [
   },
   {
     q: "Is the MCP connection secure?",
-    a: "Yes. The integration uses MCP's standard, scoped, authenticated connection. Your AI assistant accesses only the data you authorise, and DynoWeb never pushes changes to your live store on its own — the assistant proposes, you decide what ships.",
+    a: "Yes. The integration uses MCP's standard, scoped, authenticated connection with a token you control. Your AI assistant accesses only the data you authorise, and DynoWeb never pushes changes to your live store on its own — the assistant proposes, you decide what ships.",
   },
   {
     q: "Do I need to be a developer to use it?",
@@ -81,22 +83,77 @@ export default function McpIntegrationPage() {
         lead="Plug DynoWeb's Shopify insights directly into Claude, Cursor, and ChatGPT via MCP. Let your AI assistant know exactly what to fix in your store — and help you ship it, in context."
         primaryCta={{ label: "Connect now", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "Shopify for developers", href: "/use-cases/shopify-for-developers" }}
+        highlights={["Works with Claude, Cursor, ChatGPT", "Scoped, token-based auth", "Query live store data", "Human stays in control"]}
+        image="/MCP-feature.png"
+        imageAlt="DynoWeb MCP integration connecting Shopify data to AI assistants"
+        imageLabel="MCP Integration"
       />
 
-      <Section className="pb-16">
+      <Section className="pb-12">
         <SectionHeading
           eyebrow="Works with"
           title="Your store data, inside your AI tools"
           subtitle="MCP turns DynoWeb into a data source your assistant can query directly — no exports, no copy-paste."
         />
-        <FeatureGrid items={clients} />
+        <FeatureGrid items={clients} columns={3} />
       </Section>
+
+      <FeatureRow
+        eyebrow="One-click connect"
+        title="Activate the connector and you're live"
+        body={
+          <p>
+            Turn on the MCP connector from inside DynoWeb and your store&rsquo;s behavioral data becomes available to your
+            AI assistant. No infrastructure to stand up — flip it on and your assistant can start asking your data
+            questions.
+          </p>
+        }
+        bullets={[
+          "Enable the connector in a couple of clicks",
+          "Standard MCP — works with any compatible client",
+          "Active status visible right in the dashboard",
+        ]}
+        image="/MCP-connector.png"
+        imageAlt="DynoWeb MCP connector configuration screen"
+        imageLabel="MCP connector"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="Secure by design"
+        title="Scoped access with a token you control"
+        body={
+          <p>
+            The connection is authenticated with a token you generate and can revoke at any time. Your assistant sees only
+            the data you authorise, and nothing is ever written back to your live store without your approval.
+          </p>
+        }
+        bullets={[
+          "Generate and revoke access tokens on demand",
+          "Scoped, read-oriented access to your analytics",
+          "No automatic changes to your storefront",
+        ]}
+        image="/MCP-token.png"
+        imageAlt="DynoWeb MCP access token management screen"
+        imageLabel="Access tokens"
+      />
 
       <Section className="pb-16">
         <SectionHeading eyebrow="What you can do" title="From question to shipped fix" />
         <Card>
           <CheckList items={can} />
         </Card>
+      </Section>
+
+      <Section className="pb-16">
+        <FeatureGrid
+          columns={3}
+          items={[
+            { icon: Plug, title: "Standard protocol", body: "Built on MCP, so it works with the AI tools your team already uses." },
+            { icon: ShieldCheck, title: "You stay in control", body: "The assistant proposes; you review and decide what ships. Nothing auto-applies." },
+            { icon: KeyRound, title: "Revocable access", body: "Tokens are scoped and can be revoked instantly if anything changes." },
+          ]}
+        />
       </Section>
 
       <FAQ title="MCP integration — frequently asked" items={faqs} />

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DollarSign, Zap, KeyRound, Maximize2 } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   ComparisonTable,
   FAQ,
   CTA,
@@ -36,16 +38,17 @@ const rows = [
   { feature: "Always-on monitoring", values: [true, "Per engagement"] },
   { feature: "Turnaround on a new fix", values: ["Minutes", "Days–weeks"] },
   { feature: "Revenue attribution built in", values: [true, "Varies"] },
-  { feature: "Monthly cost", values: ["Plan-based", "$3k–$10k+"] },
+  { feature: "Monthly cost", values: ["$0–$29/mo", "$3k–$10k+"] },
+  { feature: "Free tier to start", values: [true, false] },
   { feature: "Locked into a retainer", values: [false, true] },
   { feature: "Scales across your whole catalog", values: [true, "Limited by hours"] },
 ];
 
 const why = [
-  { tag: "Cost", title: "No five-figure retainer", body: "Agencies bill for hours. DynoWeb runs continuously for a predictable plan cost — and never sends an invoice for a discovery call." },
-  { tag: "Speed", title: "Fixes in minutes, not sprints", body: "Instead of waiting on an agency's roadmap, you get prioritised, dev-ready fixes as soon as the behavioral data surfaces them." },
-  { tag: "Ownership", title: "Keep the knowledge in-house", body: "When an agency leaves, the insight leaves with them. DynoWeb keeps the analysis, suggestions, and history inside your store." },
-  { tag: "Scale", title: "Covers your entire catalog", body: "An agency can only review so many pages per month. DynoWeb watches every page, every session, continuously." },
+  { icon: DollarSign, tag: "Cost", title: "No five-figure retainer", body: "Agencies bill for hours. DynoWeb runs continuously for a predictable plan cost — and never sends an invoice for a discovery call." },
+  { icon: Zap, tag: "Speed", title: "Fixes in minutes, not sprints", body: "Instead of waiting on an agency's roadmap, you get prioritised, dev-ready fixes as soon as the behavioral data surfaces them." },
+  { icon: KeyRound, tag: "Ownership", title: "Keep the knowledge in-house", body: "When an agency leaves, the insight leaves with them. DynoWeb keeps the analysis, suggestions, and history inside your store." },
+  { icon: Maximize2, tag: "Scale", title: "Covers your entire catalog", body: "An agency can only review so many pages per month. DynoWeb watches every page, every session, continuously." },
 ];
 
 const faqs = [
@@ -55,7 +58,7 @@ const faqs = [
   },
   {
     q: "How much does a Shopify CRO agency cost?",
-    a: "CRO agencies typically charge $3,000–$10,000+ per month on retainer, plus setup fees, and often work on a fixed number of tests or pages. DynoWeb runs on a predictable plan cost with no retainer lock-in and no per-test limits.",
+    a: "CRO agencies typically charge $3,000–$10,000+ per month on retainer, plus setup fees, and often work on a fixed number of tests or pages. DynoWeb starts free, with paid plans at $14/mo (Growth) and $29/mo (Pro), and a custom plan for high-volume stores — no retainer lock-in and no per-test limits.",
   },
   {
     q: "Do I still need a developer if I use DynoWeb instead of an agency?",
@@ -84,6 +87,10 @@ export default function CroAgencyAlternativePage() {
         lead="Why pay $5,000+/month for a CRO agency when DynoWeb gives you AI-powered fixes, session replays, and dev-ready diffs — automatically, continuously, and without a retainer?"
         primaryCta={{ label: "Compare pricing", href: "/pricing" }}
         secondaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb" }}
+        highlights={["No retainer", "Fixes in minutes", "Whole-catalog coverage", "In-house ownership"]}
+        image="/CROReport.png"
+        imageAlt="DynoWeb CRO report delivering agency-grade analysis automatically"
+        imageLabel="CRO Report"
       />
 
       <Section className="pb-16">
@@ -94,6 +101,26 @@ export default function CroAgencyAlternativePage() {
         />
         <FeatureGrid columns={2} items={why} />
       </Section>
+
+      <FeatureRow
+        eyebrow="What you get every day"
+        title="A ranked queue of fixes, delivered continuously"
+        body={
+          <p>
+            Where an agency hands you a deck once a month, DynoWeb maintains a live, prioritised queue of revenue-leaking
+            gaps — each with the evidence, an expected-impact score, and a dev-ready fix. It&rsquo;s the agency deliverable,
+            refreshed automatically as your store changes.
+          </p>
+        }
+        bullets={[
+          "Always-on, not a monthly engagement",
+          "Every fix backed by your real behavioral data",
+          "Theme-editor steps or code diff — your choice",
+        ]}
+        image="/AISuggestions.png"
+        imageAlt="DynoWeb AI suggestions queue ranked by revenue impact"
+        imageLabel="AI suggestions"
+      />
 
       <Section className="pb-20">
         <SectionHeading eyebrow="Side by side" title="DynoWeb vs a typical CRO agency" />

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MousePointerClick, MoveVertical, Eye, Smartphone, Gauge, Layers } from "lucide-react";
 
 import {
   MarketingShell,
@@ -6,6 +7,7 @@ import {
   Section,
   SectionHeading,
   FeatureGrid,
+  FeatureRow,
   FAQ,
   CTA,
   RelatedLinks,
@@ -29,10 +31,12 @@ export const metadata: Metadata = {
 };
 
 const maps = [
-  { tag: "Click", title: "Click & tap maps", body: "Aggregate every click and tap into a single overlay. Instantly see your most-engaged elements — and the non-clickable ones shoppers expect to work." },
-  { tag: "Scroll", title: "Scroll depth maps", body: "A color gradient marks where visitors stop scrolling on each page, so you know whether your CTA and proof are above the fold for most shoppers." },
-  { tag: "Attention", title: "Attention maps", body: "Combine dwell and interaction to reveal which sections truly hold focus versus which get skimmed and skipped." },
-  { tag: "Per page", title: "Every template covered", body: "Generate maps for home, collection, product, cart, and custom pages — desktop and mobile, side by side." },
+  { icon: MousePointerClick, tag: "Click", title: "Click & tap maps", body: "Aggregate every click and tap into a single overlay. Instantly see your most-engaged elements — and the non-clickable ones shoppers expect to work." },
+  { icon: MoveVertical, tag: "Scroll", title: "Scroll depth maps", body: "A color gradient marks where visitors stop scrolling on each page, so you know whether your CTA and proof are above the fold for most shoppers." },
+  { icon: Eye, tag: "Attention", title: "Attention maps", body: "Combine dwell and interaction to reveal which sections truly hold focus versus which get skimmed and skipped." },
+  { icon: Smartphone, tag: "Mobile", title: "Mobile-specific maps", body: "Mobile heatmaps surface fat-finger taps and thumb-zone mis-hits that desktop testing never catches." },
+  { icon: Layers, tag: "Per page", title: "Every template covered", body: "Generate maps for home, collection, product, cart, and custom pages — desktop and mobile, side by side." },
+  { icon: Gauge, tag: "Lightweight", title: "Sub-40 KB & SEO-safe", body: "The tracker loads asynchronously and stays under 40 KB, so heatmaps never hurt page speed or Core Web Vitals." },
 ];
 
 const faqs = [
@@ -70,18 +74,84 @@ export default function HeatmapsFeaturePage() {
         eyebrow="Feature — Shopify click heatmap tool"
         title="Visual Heatmaps for Every Page of Your Shopify Store"
         lead="See exactly where customers click, tap, and stop scrolling on every page of your Shopify store. Click heatmaps, scroll maps, and attention maps in one place — lightweight and SEO-safe."
-        primaryCta={{ label: "View demo", href: "/use-cases" }}
-        secondaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb" }}
+        primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
+        secondaryCta={{ label: "Read the heatmap guide", href: "/shopify-heatmaps" }}
+        highlights={["3 map types", "Mobile + desktop", "Sub-40 KB tracker", "Connected to AI fixes"]}
+        image="/Heatmaps.png"
+        imageAlt="DynoWeb heatmaps dashboard showing click and scroll data for a Shopify store"
+        imageLabel="Heatmaps"
       />
 
-      <Section className="pb-16">
+      <Section className="pb-12">
         <SectionHeading
           eyebrow="Three maps"
           title="Click, scroll, and attention — per page, per device"
-          subtitle="Each map answers a different question about how shoppers experience your store."
+          subtitle="Each map answers a different question about how shoppers experience your store. DynoWeb generates all three from the same lightweight tracker."
         />
-        <FeatureGrid columns={2} items={maps} />
+        <FeatureGrid items={maps} />
       </Section>
+
+      <FeatureRow
+        eyebrow="Click maps"
+        title="See exactly where shoppers tap"
+        body={
+          <>
+            <p>
+              Every click and tap is aggregated into a single visual overlay. Bright clusters show your most-engaged
+              elements; cold zones show what gets ignored. Most importantly, click maps expose the elements shoppers
+              <em> expect</em> to be interactive but aren&rsquo;t — a leading cause of silent frustration.
+            </p>
+          </>
+        }
+        bullets={[
+          "Spot false affordances — images and labels shoppers tap that do nothing",
+          "Confirm your add-to-cart and key CTAs actually get the clicks",
+          "Find distractions pulling attention away from the buy button",
+        ]}
+        image="/clickHeatmap.png"
+        imageAlt="DynoWeb click heatmap overlay on a Shopify product page"
+        imageLabel="Click heatmap"
+      />
+
+      <FeatureRow
+        reverse
+        eyebrow="Scroll maps"
+        title="Find the exact line where shoppers stop reading"
+        body={
+          <p>
+            A color gradient shows how far down each page visitors actually scroll. The single most common finding: your
+            add-to-cart button, reviews, or strongest proof sits below where most people stop — making it effectively
+            invisible. Scroll maps tell you precisely where to move it.
+          </p>
+        }
+        bullets={[
+          "See the attention cliff on every key template",
+          "Move high-value content above where the majority drop off",
+          "Compare the shorter mobile fold against desktop",
+        ]}
+        image="/scrollHeatmap.png"
+        imageAlt="DynoWeb scroll depth heatmap showing where visitors stop scrolling"
+        imageLabel="Scroll heatmap"
+      />
+
+      <FeatureRow
+        eyebrow="Filters & segments"
+        title="Slice the data down to what matters"
+        body={
+          <p>
+            Filter heatmaps by device, traffic source, or page so you compare like with like. A mobile click map next to
+            its desktop version usually reveals device-specific friction you&rsquo;d never spot in aggregate.
+          </p>
+        }
+        bullets={[
+          "Device, source, and page-level filtering",
+          "Isolate campaign traffic to fix the experience ad spend lands on",
+          "Pair any map with the matching session replays in one click",
+        ]}
+        image="/heatmapFilter.png"
+        imageAlt="DynoWeb heatmap filtering controls for device and traffic source"
+        imageLabel="Heatmap filters"
+      />
 
       <FAQ title="Heatmaps feature — frequently asked" items={faqs} />
 
@@ -99,7 +169,7 @@ export default function HeatmapsFeaturePage() {
       <CTA
         title="See where attention goes on every page"
         body="DynoWeb's heatmaps turn aggregated behavior into a clear visual picture — then hand you the fix for the friction they reveal."
-        primaryLabel="View demo"
+        primaryLabel="Install free"
         secondary={{ label: "See pricing", href: "/pricing" }}
       />
     </MarketingShell>
