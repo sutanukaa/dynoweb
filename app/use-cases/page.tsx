@@ -1,417 +1,482 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
+import type { ReactNode } from "react";
+import {
+  MousePointerClick,
+  PlaySquare,
+  AlertTriangle,
+  Sparkles,
+  DollarSign,
+  Search,
+  Code2,
+  Flame,
+} from "lucide-react";
 
-import Footer from "@/app/components/Footer";
-import PillNav from "@/app/components/PillNav";
-
-const useCases = [
-  {
-    number: "01",
-    title: "Find what's blocking conversions",
-    scenario:
-      "A paid campaign is sending qualified traffic to a product page, but shoppers keep viewing images, opening the size guide, and leaving without adding to cart.",
-    diagnosis:
-      "DynoWeb shows where attention goes and where intent breaks. Heatmaps reveal repeated taps around the gallery and shipping info, scroll depth shows most visitors never reach the strongest product proof, and replay confirms the CTA is easy to miss on smaller screens.",
-    fix:
-      "From there, the merchant can move the variant picker higher, make the add-to-cart treatment more obvious, tighten the image stack, and preview the change on a draft theme before pushing anything live.",
-    outcome: "Instead of debating opinions, the team can see the exact friction point and fix the page that is leaking sales.",
-    image: "/clickHeatmap.png",
-    imageAlt: "DynoWeb click heatmap screenshot",
-    imageLabel: "Frustration Heatmap",
-  },
-  {
-    number: "02",
-    title: "Convert hesitating visitors before they leave",
-    scenario:
-      "A store runs consistent paid traffic to its product pages. Visitors browse, interact with images, check reviews — then leave without purchasing. Standard analytics shows the drop-off but not the moment it happens or who to target. Retargeting ads recapture some visitors, but the majority are gone with no recovery attempt made while they were still on-site.",
-    diagnosis:
-      "DynoWeb identifies the exact behavioral signals that precede abandonment — rage clicks, extended time on page with no add-to-cart action, cursor movement toward the browser chrome. It surfaces which visitor segments trigger these patterns most frequently: frustrated browsers, price hesitators, cart abandoners. SmartNudge maps those signals to intervention opportunities, showing how many eligible sessions occurred in the last 14 days and what conversion lift is possible.",
-    fix:
-      "From there, the merchant activates a targeted nudge — an exit-intent popup for hesitating visitors, a discount offer for price hesitators, or a cart reminder for abandoners. Copy is generated in one click using AI, pre-filled with a headline, body, and CTA matched to the visitor moment. The nudge fires automatically when behavioral conditions are met, at the right frequency, on the right pages. No developer needed, no live theme changes — just a rule set and a message that shows up when it matters.",
-    outcome: "The visitor who was about to leave sees exactly the right message at exactly the right moment.",
-    image: "/SmartNudge-usecases.png",
-    imageAlt: "DynoWeb SmartNudge use case screenshot",
-    imageLabel: "SmartNudge",
-  },
-  {
-    number: "03",
-    title: "Fix mobile friction before it costs revenue",
-    scenario:
-      "A store converts well on desktop, but mobile sessions tell a different story. Bounce rates are higher, product pages collect plenty of taps, and yet very few of those taps turn into add-to-cart events. The merchant can see the gap in their analytics, but they can't see why.",
-    diagnosis: (
-      <>
-        <p>DynoWeb picks up the touch-heavy behaviors that standard analytics miss — the signals that only show up when you actually watch how a thumb moves on a phone:</p>
-        <ul className="list-disc space-y-2 pl-5">
-          <li>Repeated taps on buttons that are too small or sit too close together.</li>
-          <li>Pinch-zooming on product details because text and images aren&apos;t legible at mobile widths.</li>
-          <li>Rage-clicks and dead-clicks clustered around filters, drawers, and sticky elements in the thumb zone.</li>
-          <li>Drop-offs that happen the moment a competing CTA shows up in the first viewport.</li>
-        </ul>
-        <p>Each of these signals is summarized into a suggestion on the Suggestions page, complete with the evidence behind it (impressions, clicks, CTR, matching session replays), the page it applies to, an expected-impact rating, and a difficulty badge.</p>
-      </>
-    ),
-    fix: (
-      <>
-        <p>DynoWeb doesn&apos;t push changes into the live theme. Instead, every suggestion opens into an Implementation Guide that explains the fix two ways:</p>
-        <ul className="list-disc space-y-2 pl-5">
-          <li><strong>Theme Editor Steps</strong> — a numbered, click-by-click walkthrough for non-technical users. Find the section, change the setting, save.</li>
-          <li><strong>Code Changes</strong> — for merchants with a developer, the exact file path and the code snippet to add or modify, with a one-click Copy button.</li>
-        </ul>
-        <p>Every guide includes a short summary of why the change matters, a How to Verify section so the merchant can confirm the fix landed, and an Expected Outcome describing what should improve.</p>
-        <p>For the mobile scenario, that translates into a concrete fix list the merchant can actually act on: enlarge tap targets to recommended thumb-zone sizes, simplify the first viewport, reduce competing actions, and reposition the primary CTA where the data shows shoppers are reaching. Each item has its own guide.</p>
-      </>
-    ),
-    outcome: (
-      <>
-        <p>The merchant ships the changes themselves — confidently, because every step is spelled out — and the store&apos;s mobile experience starts matching how shoppers actually use their phones, not how the theme looked in design review.</p>
-        <p>DynoWeb does the diagnosis and writes the playbook. The merchant stays in control of what ships.</p>
-      </>
-    ),
-    image: "/Suggestion-usecase.png",
-    imageAlt: "DynoWeb suggestion card showing recommendation, evidence, and the View Implementation Guide action",
-    imageLabel: "Suggested Improvements",
-  },
-  {
-    number: "04",
-    title: "See which journeys and pages drive purchases",
-    scenario:
-      "Merchants often know which pages get traffic, but not which paths actually lead to checkout. A collection page may look busy, while a quieter landing page or product sequence is doing more revenue work than expected.",
-    diagnosis:
-      "DynoWeb connects journey flow, cart actions, and attributed revenue so you can follow the routes that convert and spot the steps where shoppers peel away. Instead of just seeing pageviews, you can see which journeys create buying momentum.",
-    fix:
-      "That makes it easier to improve the right path: strengthen internal links from high-intent pages, surface the right products earlier, reduce dead-end pages, and prioritize the entry pages and collections that are already closest to revenue.",
-    outcome: "You stop optimizing for attention alone and start optimizing the journeys that actually produce orders.",
-    image: "/pageFlow.png",
-    imageAlt: "DynoWeb page flow screenshot",
-    imageLabel: "Journey Flow",
-  },
-  {
-    number: "05",
-    title: "Make better storefront changes with less risk",
-    scenario:
-      "A merchant knows something needs to change before a promotion or product launch, but does not want to edit the live theme blindly and hope nothing breaks.",
-    diagnosis:
-      "DynoWeb turns that moment into a safer workflow. It ranks CSS suggestions (available now) by likely impact, shows the proposed change in context, and lets the merchant compare live and draft versions before approving anything. Additional suggestion types are coming soon.",
-    fix:
-      "Instead of making manual live edits under pressure, the team can apply the update to a draft theme, review the before-and-after state, and track whether the change actually improved engagement or conversion after launch.",
-    outcome: "That means faster iteration with less risk, fewer last-minute theme mistakes, and a cleaner path from insight to action.",
-    image: "/approval.png",
-    imageAlt: "DynoWeb approval and draft preview screenshot",
-    imageLabel: "Draft Approval",
-  },
-];
-
-const signalChips = [
-  "Clicks",
-  "Hesitation",
-  "Scroll depth",
-  "Drop-off",
-  "Revenue attribution",
-  "Draft previews",
-];
-
-const workflowSteps = [
-  {
-    label: "Observe",
-    description: "See how shoppers click, scroll, hesitate, and abandon across your storefront.",
-  },
-  {
-    label: "Prioritize",
-    description: "Surface the pages, journeys, and friction points with the biggest conversion upside.",
-  },
-  {
-    label: "Improve",
-    description: "Review AI suggestions (CSS suggestions available now, more coming soon), preview draft changes, and move faster with less risk.",
-  },
-];
-
-const pageShell = "relative w-full";
-const pageShellStyle = {
-  paddingInline: "clamp(1.25rem, 5vw, 7rem)",
-};
+import {
+  MarketingShell,
+  Hero,
+  Section,
+  Card,
+  CTA,
+  type IconType,
+  breadcrumbJsonLd,
+} from "@/app/components/seo/Marketing";
 
 export const metadata: Metadata = {
-  title: "Use Cases | DynoWeb",
+  title: "Case Studies — Real Shopify Stores, Real DynoWeb Data",
   description:
-    "See how DynoWeb helps Shopify merchants find friction, improve mobile UX, understand journeys, and make safer storefront changes.",
-  alternates: { canonical: "/use-cases" },
+    "See what DynoWeb finds in real Shopify stores: rage clicks, broken product pages, revenue attributed to exact sessions, and dozens of AI-ranked fixes. Real numbers from real merchants.",
+  alternates: { canonical: "https://www.dynoweb.app/use-cases" },
   openGraph: {
-    title: "Use Cases | DynoWeb",
+    title: "Case Studies — Real Shopify Stores, Real DynoWeb Data",
     description:
-      "See how DynoWeb helps Shopify merchants find friction, improve mobile UX, understand journeys, and make safer storefront changes.",
+      "How four Shopify stores used DynoWeb to surface frustration, fix broken pages, and attribute revenue to the exact sessions that drove it.",
     url: "https://www.dynoweb.app/use-cases",
+    siteName: "DynoWeb",
+    type: "website",
   },
 };
 
-const useCasesBreadcrumb = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.dynoweb.app/" },
-    { "@type": "ListItem", position: 2, name: "Use Cases", item: "https://www.dynoweb.app/use-cases" },
-  ],
+/* ------------------------------------------------------------------ */
+/*  Accents                                                            */
+/* ------------------------------------------------------------------ */
+
+type Accent = { bg: string; fg: string; br: string };
+const ACCENTS: Record<string, Accent> = {
+  amber: { bg: "rgba(245,158,11,0.12)", fg: "#fbbf24", br: "rgba(245,158,11,0.30)" },
+  blue: { bg: "rgba(110,176,255,0.12)", fg: "#6eb0ff", br: "rgba(110,176,255,0.30)" },
+  red: { bg: "rgba(248,113,113,0.12)", fg: "#f87171", br: "rgba(248,113,113,0.30)" },
+  teal: { bg: "rgba(45,212,191,0.12)", fg: "#2dd4bf", br: "rgba(45,212,191,0.30)" },
 };
 
-export default function UseCasesPage() {
+/* ------------------------------------------------------------------ */
+/*  Case-study primitives                                              */
+/* ------------------------------------------------------------------ */
+
+type Stat = { value: string; label: string };
+type Feature = { icon: IconType; name: string; detail: string };
+type Scenario = { point: string; detail: string };
+
+function StatBand({ stats }: { stats: Stat[] }) {
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(useCasesBreadcrumb) }}
-      />
-      <PillNav />
+    <div className="mt-8 grid gap-4 sm:grid-cols-3">
+      {stats.map((s) => (
+        <div key={s.label} className="rounded-[1.5rem] border border-white/10 bg-white/[0.02] p-6">
+          <p className="font-[Montserrat] text-3xl font-extrabold leading-none tracking-tight text-white sm:text-[2.4rem]">
+            {s.value}
+          </p>
+          <p className="mt-3 text-sm leading-6 text-zinc-400">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
 
-      <main
-        className="relative overflow-hidden bg-[#050505] pt-24 text-white"
-        style={{ fontFamily: "'Karla', sans-serif" }}
+function ResultBand({ stats }: { stats: Stat[] }) {
+  const cols = stats.length === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3";
+  return (
+    <div className={`grid gap-4 ${cols}`}>
+      {stats.map((s) => (
+        <div key={s.label} className="rounded-[1.25rem] border border-[#6eb0ff]/15 bg-[#6eb0ff]/[0.04] p-5">
+          <p className="font-[Montserrat] text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{s.value}</p>
+          <p className="mt-2 text-sm leading-6 text-zinc-400">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CaseStudy({
+  id,
+  accent,
+  logo,
+  logoLight,
+  name,
+  type,
+  domain,
+  headline,
+  about,
+  heroStats,
+  challenge,
+  features,
+  scenarios,
+  results,
+  quote,
+}: {
+  id: string;
+  accent: Accent;
+  logo: string;
+  logoLight?: boolean;
+  name: string;
+  type: string;
+  domain?: string;
+  headline: string;
+  about: string;
+  heroStats: Stat[];
+  challenge: ReactNode;
+  features: Feature[];
+  scenarios: Scenario[];
+  results: Stat[];
+  quote?: string;
+}) {
+  return (
+    <Section className="pb-12">
+      <div
+        id={id}
+        className="scroll-mt-28 rounded-[2.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.025),rgba(255,255,255,0.008))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] sm:p-8 lg:p-10"
       >
-        <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.08),_transparent_42%),linear-gradient(180deg,_rgba(255,255,255,0.035),_transparent)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:44px_44px] opacity-25" />
-
-        <section
-          className={`${pageShell} pb-12 pt-10 2xl:pb-16 2xl:pt-12`}
-          style={pageShellStyle}
-        >
-          <div className="grid items-start gap-8 xl:grid-cols-[minmax(0,1.2fr)_minmax(360px,0.8fr)] xl:gap-14 2xl:grid-cols-[minmax(0,1.35fr)_minmax(430px,0.85fr)] 2xl:gap-16">
-            <div className="max-w-[940px] 2xl:max-w-[1040px]">
-              <p className="text-[0.78rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">
-                Why Merchants Use DynoWeb
-              </p>
-              <h1 className="mt-5 font-[Montserrat] text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-white sm:text-5xl xl:text-[4.5rem] 2xl:text-[4.75rem]">
-                Turn shopper behavior into clearer fixes and more sales
-              </h1>
-              <p className="mt-6 max-w-[70ch] text-base leading-8 text-zinc-300 sm:text-lg 2xl:text-[1.18rem] 2xl:leading-9">
-                DynoWeb shows where shoppers click, hesitate, scroll, drop off, and buy, then helps you act on those insights with AI suggestions (CSS suggestions available now, more coming soon), draft-theme previews, and safer optimization workflows.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                {signalChips.map((chip) => (
-                  <span
-                    key={chip}
-                    className="rounded-full border border-[#6eb0ff]/15 bg-[#6eb0ff]/[0.07] px-4 py-2 text-sm font-medium text-[#6eb0ff]"
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="w-full rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur sm:p-6 xl:justify-self-end 2xl:max-w-[520px]">
-              <div className="rounded-[1.5rem] border border-white/10 bg-black/35 p-5">
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <div>
-                    <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-zinc-500">
-                      Optimization Flow
-                    </p>
-                    <p className="mt-2 text-lg font-extrabold tracking-tight text-white">
-                      From behavior signal to safer change
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-5 space-y-4">
-                  {workflowSteps.map((step, index) => (
-                    <div
-                      key={step.label}
-                      className="rounded-[1.35rem] border border-white/10 bg-white/[0.02] p-4"
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-[#6eb0ff]/20 bg-[#6eb0ff]/[0.08] text-sm font-extrabold text-[#6eb0ff]">
-                          0{index + 1}
-                        </div>
-                        <div>
-                          <p className="text-base font-extrabold tracking-tight text-white">
-                            {step.label}
-                          </p>
-                          <p className="mt-2 text-sm leading-7 text-zinc-400">
-                            {step.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+        {/* Store header */}
+        <div className="flex items-center gap-4">
+          <span
+            className={`inline-flex h-14 flex-none items-center justify-center rounded-xl px-3 ${
+              logoLight ? "border border-white/10 bg-white/[0.04]" : "bg-white"
+            }`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={logo} alt={`${name} logo`} className="max-h-9 w-auto max-w-[120px] object-contain" />
+          </span>
+          <div>
+            <p className="font-[Montserrat] text-xl font-extrabold tracking-tight text-white">{name}</p>
+            <p className="text-sm text-zinc-400">{type}</p>
           </div>
-        </section>
+          {domain ? (
+            <span className="ml-auto hidden rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-semibold text-zinc-400 sm:inline">
+              {domain}
+            </span>
+          ) : null}
+        </div>
 
-        <section className={`${pageShell} pb-20 pt-10`} style={pageShellStyle}>
-          <div className="mb-8 flex items-end justify-between gap-6 border-b border-white/10 pb-6">
-            <div>
-              <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">
-                Core Use Cases
-              </p>
-              <h2 className="mt-3 font-[Montserrat] text-3xl font-extrabold tracking-[-0.03em] text-white sm:text-4xl">
-                Where DynoWeb fits into everyday optimization work
-              </h2>
-            </div>
-          </div>
+        {/* Headline */}
+        <h2 className="mt-7 max-w-[26ch] font-[Montserrat] text-2xl font-extrabold leading-[1.12] tracking-[-0.03em] text-white sm:text-[2rem]">
+          {headline}
+        </h2>
+        <p className="mt-4 max-w-[70ch] text-[0.97rem] leading-7 text-zinc-300">{about}</p>
 
-          <div className="grid gap-6">
-            {useCases.map((item) => (
-              <article
-                key={item.number}
-                className="group rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.2)] transition duration-200 hover:border-[#6eb0ff]/20 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] sm:p-6 lg:p-7"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <span className="rounded-full border border-[#6eb0ff]/18 bg-[#6eb0ff]/[0.08] px-3 py-1 text-xs font-extrabold uppercase tracking-[0.24em] text-[#6eb0ff]">
-                    Use Case {item.number}
-                  </span>
-                  <span className="text-sm font-medium text-zinc-600 transition group-hover:text-zinc-500">
-                    DynoWeb
-                  </span>
-                </div>
+        {/* Hero stat band */}
+        <StatBand stats={heroStats} />
 
-                <div className="mt-5 xl:grid xl:grid-cols-[minmax(360px,0.82fr)_minmax(0,1.18fr)] xl:items-start xl:gap-8 2xl:grid-cols-[minmax(460px,0.78fr)_minmax(0,1.22fr)] 2xl:gap-10">
-                  <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0b0b0d] shadow-[0_20px_40px_rgba(0,0,0,0.24)]">
-                    <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-3">
-                      <span className="text-[0.72rem] font-extrabold uppercase tracking-[0.22em] text-zinc-500">
-                        {item.imageLabel}
-                      </span>
-                      <span className="rounded-full border border-[#6eb0ff]/18 bg-[#6eb0ff]/[0.08] px-2.5 py-1 text-[0.66rem] font-extrabold uppercase tracking-[0.18em] text-[#6eb0ff]">
-                        DynoWeb UI
-                      </span>
-                    </div>
-                    <div className="relative flex min-h-[220px] items-center justify-center bg-[#f6f8fb] p-4 sm:min-h-[240px] sm:p-5 lg:min-h-[300px] 2xl:min-h-[360px]">
-                      <Image
-                        src={item.image}
-                        alt={item.imageAlt}
-                        fill
-                        sizes="(min-width: 1536px) 34vw, (min-width: 1280px) 36vw, 100vw"
-                        className="object-contain p-4 sm:p-5"
-                      />
-                    </div>
-                  </div>
+        {/* Challenge + Solution */}
+        <div className="mt-4 grid gap-4 lg:grid-cols-2">
+          <Card>
+            <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.24em] text-zinc-500">The challenge</p>
+            <div className="mt-3 space-y-3 text-[0.95rem] leading-7 text-zinc-300">{challenge}</div>
+          </Card>
+          <Card>
+            <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.24em] text-[#6eb0ff]">How DynoWeb helped</p>
+            <ul className="mt-4 space-y-4">
+              {features.map((f) => {
+                const Icon = f.icon;
+                return (
+                  <li key={f.name} className="flex gap-3">
+                    <span className="mt-0.5 inline-flex h-9 w-9 flex-none items-center justify-center rounded-xl border border-[#6eb0ff]/20 bg-[#6eb0ff]/[0.08] text-[#6eb0ff]">
+                      <Icon className="h-4 w-4" strokeWidth={2} />
+                    </span>
+                    <span className="text-[0.95rem] leading-7 text-zinc-300">
+                      <strong className="font-extrabold text-white">{f.name}</strong> — {f.detail}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </Card>
+        </div>
 
-                  <div className="mt-6 xl:mt-0 xl:flex xl:min-h-full xl:flex-col xl:justify-center">
-                    <h3 className="max-w-[34ch] font-[Montserrat] text-[1.8rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-white sm:text-[2rem] 2xl:max-w-[26ch] 2xl:text-[2.35rem]">
-                      {item.title}
-                    </h3>
-
-                    <div className="mt-5 rounded-[1.35rem] border border-white/10 bg-black/25 px-4 py-4">
-                      <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-zinc-500">
-                        Real scenario
-                      </p>
-                      <div className="mt-2 space-y-3 text-[1rem] leading-8 text-zinc-300">
-                        {item.scenario}
-                      </div>
-                    </div>
-
-                    <div className="mt-4 rounded-[1.35rem] border border-white/10 bg-white/[0.02] px-4 py-4">
-                      <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-zinc-500">
-                        What DynoWeb shows
-                      </p>
-                      <div className="mt-2 space-y-3 text-[1rem] leading-8 text-zinc-300">
-                        {item.diagnosis}
-                      </div>
-                    </div>
-
-                    <div className="mt-4 rounded-[1.35rem] border border-[#6eb0ff]/14 bg-[#6eb0ff]/[0.05] px-4 py-4">
-                      <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-[#6eb0ff]/80">
-                        How it gets fixed
-                      </p>
-                      <div className="mt-2 space-y-3 text-[1rem] leading-8 text-zinc-200">
-                        {item.fix}
-                      </div>
-                    </div>
-
-                    <div className="mt-5 space-y-3 text-base font-medium leading-8 text-[#6eb0ff]">
-                      {item.outcome}
-                    </div>
-                  </div>
-                </div>
-              </article>
+        {/* Inside the data — scenario points */}
+        <div className="mt-6">
+          <p className="mb-4 text-[0.7rem] font-extrabold uppercase tracking-[0.24em] text-zinc-500">
+            Inside the data — what DynoWeb actually caught
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {scenarios.map((s) => (
+              <div key={s.point} className="rounded-[1.25rem] border border-white/10 bg-white/[0.015] p-5">
+                <p className="flex gap-2.5 font-[Montserrat] text-[0.98rem] font-extrabold leading-snug tracking-tight text-white">
+                  <span className="mt-1 inline-block h-1.5 w-1.5 flex-none rounded-full" style={{ background: accent.fg }} />
+                  {s.point}
+                </p>
+                <p className="mt-2 pl-[1.05rem] text-[0.9rem] leading-7 text-zinc-400">{s.detail}</p>
+              </div>
             ))}
           </div>
-        </section>
+        </div>
 
-        <section className={`${pageShell} pb-24`} style={pageShellStyle}>
-          <div className="rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_48%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] sm:p-8 lg:p-10">
-            <div className="max-w-[960px] 2xl:max-w-[1080px]">
-              <p className="text-[0.74rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">
-                Closing CTA
-              </p>
-              <h2 className="mt-4 font-[Montserrat] text-3xl font-extrabold leading-[1.06] tracking-[-0.04em] text-white sm:text-4xl lg:text-[3.2rem]">
-                See what shoppers do. Know what to fix. Apply changes with confidence.
-              </h2>
-              <p className="mt-5 max-w-[62ch] text-base leading-8 text-zinc-300 sm:text-lg">
-                DynoWeb gives Shopify merchants a faster path from behavior data to conversion wins.
-              </p>
-            </div>
+        {/* Results */}
+        <div className="mt-6">
+          <p className="mb-4 text-[0.7rem] font-extrabold uppercase tracking-[0.24em] text-zinc-500">The impact</p>
+          <ResultBand stats={results} />
+        </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href="https://apps.shopify.com/dynoweb"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="uv-btn-wrapper"
-                style={{ textDecoration: "none" }}
-              >
-                <div
-                  className="uv-btn"
-                  style={{
-                    background: "#fff",
-                    color: "#000",
-                    border: "1px solid #000",
-                    borderRadius: "999px",
-                    padding: "12px 32px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                  }}
-                >
-                  <div className="uv-txt-wrapper">
-                    <div className="uv-txt-1">
-                      {Array.from("Get DynoWeb on Shopify").map((c, i) =>
-                        c === " " ? (
-                          <span key={i} style={{ display: "inline-block", width: "0.4em" }} />
-                        ) : (
-                          <span
-                            key={i}
-                            className="uv-btn-letter"
-                            style={{ animationDelay: `${i * 0.045}s`, color: "#000" }}
-                          >
-                            {c}
-                          </span>
-                        )
-                      )}
-                    </div>
-                    <div className="uv-txt-2" aria-hidden="true">
-                      {Array.from("Get DynoWeb on Shopify").map((c, i) =>
-                        c === " " ? (
-                          <span key={i} style={{ display: "inline-block", width: "0.4em" }} />
-                        ) : (
-                          <span
-                            key={i}
-                            className="uv-btn-letter"
-                            style={{ animationDelay: `${i * 0.045}s`, color: "#000" }}
-                          >
-                            {c}
-                          </span>
-                        )
-                      )}
-                    </div>
-                  </div>
-                  <svg className="uv-btn-svg" viewBox="0 0 24 24" style={{ stroke: "#000" }}>
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </a>
-              <Link
-                href="/help"
-                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-extrabold text-zinc-200 transition hover:border-white/15 hover:bg-white/[0.06] hover:text-white"
-              >
-                Explore the Help Center
-              </Link>
-            </div>
-          </div>
-        </section>
-      </main>
+        {quote ? (
+          <blockquote className="mt-6 rounded-[1.5rem] border-l-2 border-[#6eb0ff]/50 bg-white/[0.02] px-6 py-5">
+            <p className="text-[1.02rem] italic leading-8 text-zinc-200">&ldquo;{quote}&rdquo;</p>
+            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+              Illustrative — framed from the data DynoWeb surfaced
+            </p>
+          </blockquote>
+        ) : null}
+      </div>
+    </Section>
+  );
+}
 
-      <Footer />
-    </>
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
+
+const jumpLinks = [
+  { label: "The Punarvasu", href: "#punarvasu" },
+  { label: "Sahasika", href: "#sahasika" },
+  { label: "Skyline Decor", href: "#skyline" },
+  { label: "Yetibeds", href: "#yetibeds" },
+];
+
+export default function CaseStudiesPage() {
+  return (
+    <MarketingShell
+      jsonLd={breadcrumbJsonLd([
+        { name: "Home", path: "" },
+        { name: "Case Studies", path: "/use-cases" },
+      ])}
+    >
+      <Hero
+        eyebrow="Case studies — real stores, real numbers"
+        title="See what DynoWeb finds in real Shopify stores"
+        lead="Every figure below is pulled straight from production — no rounding up, no invented lift. From 52,370 rage clicks on a high-volume wellness brand to live JavaScript errors silently breaking a furniture store, here's what DynoWeb surfaced and what each merchant did about it."
+        primaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb", external: true }}
+        secondaryCta={{ label: "See pricing", href: "/pricing" }}
+        highlights={["Real production data", "Attributed to exact sessions", "AI-ranked fixes", "Updated June 2026"]}
+      />
+
+      <Section className="pb-10">
+        <div className="flex flex-wrap gap-3">
+          {jumpLinks.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-semibold text-zinc-300 transition hover:border-[#6eb0ff]/30 hover:text-white"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+      </Section>
+
+      {/* ── Punarvasu ── */}
+      <CaseStudy
+        id="punarvasu"
+        accent={ACCENTS.amber}
+        logo="/Punarvasu.png"
+        name="The Punarvasu"
+        type="Ayurvedic wellness brand · India"
+        domain="thepunarvasu.com"
+        headline="How The Punarvasu caught 52,370 rage clicks across 3,132 orders with DynoWeb"
+        about="The Punarvasu sells Ayurvedic formulations like Gandharva Haritaki and Madhumehari Churna to a high-volume, mobile-first Indian audience — over 34,000 page views and 837,250 tracked interactions all-time."
+        heroStats={[
+          { value: "3,132", label: "orders · ₹10.85L tracked sales" },
+          { value: "837K", label: "interactions captured all-time" },
+          { value: "52,370", label: "rage clicks caught" },
+        ]}
+        challenge={
+          <>
+            <p>
+              Sales volume looked healthy — but underneath it, shoppers were fighting the storefront. DynoWeb counted{" "}
+              <strong>52,370 rage clicks</strong> and <strong>15,288 error clicks</strong> across 837,250 interactions:
+              classic high-effort, low-reward frustration.
+            </p>
+            <p>
+              The AI engine didn&rsquo;t just total it up — it localized the pain, flagging &ldquo;frustration cluster
+              detected&rdquo; and &ldquo;users seem confused&rdquo; on specific pages like the Gandharva Haritaki Tablet PDP,
+              the Madhumehari Churna PDP, the homepage, and the cart.
+            </p>
+          </>
+        }
+        features={[
+          { icon: Flame, name: "Frustration signals", detail: "surfaced 52,370 rage clicks + 15,288 error clicks and grouped them into named clusters." },
+          { icon: Sparkles, name: "AI CRO suggestions", detail: "52 ranked fixes (44 Quick Wins) — from a mobile sticky add-to-cart bug to missing Product JSON-LD." },
+          { icon: DollarSign, name: "Revenue attribution", detail: "matched 1,154 orders worth ₹4.28L back to the exact tracked sessions that drove them." },
+        ]}
+        scenarios={[
+          { point: "The Gandharva Haritaki Tablet page was the epicentre", detail: "DynoWeb stacked three separate flags on that one PDP — a frustration cluster (score 89), a 'users seem confused' alert (83), and a mobile sticky add-to-cart bug (79)." },
+          { point: "It was a mobile problem first", detail: "88% of page views came from mobile (29,881 of 34,078). The rage clicks and the broken sticky add-to-cart hit the phone experience hardest." },
+          { point: "Even the homepage and cart had clusters", detail: "Frustration clusters weren't only on product pages — DynoWeb flagged them on the homepage, the /cart page, and a Hindi blog post too." },
+          { point: "At a ₹346 AOV, every drop-off compounds", detail: "With 3,132 orders at a ₹346.46 average, friction spread across 52,370 rage clicks quietly scales into real lost revenue." },
+          { point: "The catalog was invisible to AI search", detail: "The top-scored fix (95) was missing Product structured data (JSON-LD) across all product pages — leaving the range unreadable to AI shopping assistants." },
+          { point: "It also found what to amplify", detail: "Not just problems: DynoWeb flagged a high-performing element (#checkout2) on the Gandharva Haritaki page to lean into, backed by 14 CRO reports across 200 analysed pages." },
+        ]}
+        results={[
+          { value: "1,154", label: "orders attributed to a tracked session" },
+          { value: "₹4.28L", label: "sales tied to exact sessions" },
+          { value: "44", label: "Quick-Win fixes ready to ship" },
+        ]}
+        quote="We thought our volume meant the store was fine. DynoWeb showed us tens of thousands of rage clicks — and exactly which product pages were causing them."
+      />
+
+      {/* ── Sahasika ── */}
+      <CaseStudy
+        id="sahasika"
+        accent={ACCENTS.blue}
+        logo="/Sahasika.png"
+        name="Sahasika"
+        type="Men's ethnic wear · India · Facebook-driven D2C"
+        domain="sahasika.in"
+        headline="How Sahasika turned 598 session replays into ₹97,767 of converting sessions with DynoWeb"
+        about="Sahasika is a mobile-first men's ethnic-wear label (kurta sets and more) pouring paid social into acquisition — ₹9.8L of referral revenue, with Facebook alone driving 11,372 visits."
+        heroStats={[
+          { value: "598", label: "session replays captured" },
+          { value: "₹97,767", label: "revenue in converting replayed sessions" },
+          { value: "₹3.97L", label: "sales attributed to exact sessions" },
+        ]}
+        challenge={
+          <>
+            <p>
+              Sahasika was spending hard on Facebook — <strong>₹9.8L in referral revenue</strong> across 20,666 visits —
+              but couldn&rsquo;t see where that expensive traffic was getting stuck.
+            </p>
+            <p>
+              DynoWeb found the friction: <strong>40,324 rage clicks</strong>, plus <strong>1,067 JavaScript-error hits</strong>{" "}
+              across 63 distinct issues — including &ldquo;the string did not match the expected pattern&rdquo; firing 285
+              times on the Mens Kurta Sets collection and repeated load failures on key product pages.
+            </p>
+          </>
+        }
+        features={[
+          { icon: PlaySquare, name: "Session replays", detail: "598 recordings captured; 35 of them converted, worth ₹97,767 — the exact journeys that ended in a sale." },
+          { icon: AlertTriangle, name: "Error tracking", detail: "caught 1,067 JS-error hits across 63 issues, pinned to the precise URLs they broke on." },
+          { icon: Code2, name: "AI CRO suggestions", detail: "64 fixes (5 already implemented) led by missing Product structured data and title tags." },
+          { icon: DollarSign, name: "Revenue attribution", detail: "tied 162 orders worth ₹3.97L back to the sessions that produced them." },
+        ]}
+        scenarios={[
+          { point: "The Mens Kurta Sets collection was a bug magnet", detail: "The same 'string did not match the expected pattern' error fired 285 times on that collection — while AI separately flagged poor visibility of its search, sort, and 'open sidebar' controls." },
+          { point: "Autofill and load failures on paid product pages", detail: "The Mens Off-White PDP alone logged Fetch-aborted (105), an autofill ReferenceError (84), and Load-failed (75) — friction on the exact pages Facebook ads pointed at." },
+          { point: "Sessions were long and effortful", detail: "Replays averaged 311 seconds with an average frustration score of 32.7 — these were shoppers working hard, not browsing happily." },
+          { point: "Returning shoppers were the most valuable", detail: "Returning customers posted the highest AOV (₹2,834 vs ₹2,778 for new) — a small, high-value segment worth protecting from the friction." },
+          { point: "A custom checkout was hiding revenue", detail: "With Shopflo handling checkout, script-only tools miss orders — yet DynoWeb still tied 162 orders / ₹3.97L back to their originating sessions." },
+          { point: "A structured-data and barcode backlog", detail: "Missing Product JSON-LD, missing title tags, and 50 products without barcodes all topped the fix list at score 95." },
+        ]}
+        results={[
+          { value: "35", label: "replayed sessions that converted" },
+          { value: "₹97,767", label: "revenue in those sessions" },
+          { value: "1,067", label: "JS-error hits caught" },
+          { value: "162", label: "orders attributed (₹3.97L)" },
+        ]}
+        quote="DynoWeb let us watch the sessions that actually converted — and caught over a thousand JavaScript errors we never knew were firing on our paid traffic."
+      />
+
+      {/* ── Skyline Decor ── */}
+      <CaseStudy
+        id="skyline"
+        accent={ACCENTS.red}
+        logo="/SkyLine.png"
+        logoLight
+        name="Skyline Decor"
+        type="Home & furniture retailer · USA"
+        domain="skylinedecor.com"
+        headline="How DynoWeb caught 33 live errors breaking Skyline Decor's product pages"
+        about="Skyline Decor sells dining tables, patio sets, and vanities to a US audience. The store looked fine on the surface — until DynoWeb started listening to the storefront itself."
+        heroStats={[
+          { value: "297", label: "error hits caught on the storefront" },
+          { value: "33", label: "live errors (32 JS + 1 broken link)" },
+          { value: "14", label: "visits already arriving from ChatGPT" },
+        ]}
+        challenge={
+          <>
+            <p>
+              Skyline&rsquo;s product pages were throwing <strong>real JavaScript errors</strong> — and nobody knew. DynoWeb
+              logged <strong>32 distinct JS errors over 297 hits</strong>, including{" "}
+              <em>&ldquo;Uncaught SyntaxError: Unexpected token &lsquo;=&rsquo;&rdquo;</em> 42 times on a product page and{" "}
+              <em>&ldquo;Importing a module script failed&rdquo;</em> 39 times on another.
+            </p>
+            <p>
+              At the same time, AI search engines were starting to send traffic — <strong>14 visits from ChatGPT</strong>,
+              plus Bing, DuckDuckGo and Brave — making it critical that product data be readable and error-free for the
+              crawlers and assistants now shopping on customers&rsquo; behalf.
+            </p>
+          </>
+        }
+        features={[
+          { icon: AlertTriangle, name: "Storefront error tracking", detail: "surfaced 32 JS errors across 297 hits with the exact message and the exact product URL each one broke on." },
+          { icon: Search, name: "AI-search (GEO) readiness", detail: "flagged the store as already drawing ChatGPT traffic — and what to fix so AI assistants can read and cite its products." },
+          { icon: PlaySquare, name: "Session replays", detail: "19 recordings captured so the team could watch the broken experiences first-hand." },
+        ]}
+        scenarios={[
+          { point: "The Baxton Studio PDP was failing two ways at once", detail: "The same product page threw both 'Importing a module script failed' (39 hits) and 'undefined is not an object' (29 hits) — a broken script cascading into a broken page." },
+          { point: "These were hard parse failures, not glitches", detail: "'Uncaught SyntaxError: Unexpected token =' (42 hits) and 'Unexpected end of input' (12) mean the JavaScript literally won't run — on live product pages." },
+          { point: "Browsing broke before the product even loaded", detail: "Collection pages weren't spared — dining-tables and patio collections logged network and module-script failures of their own." },
+          { point: "ChatGPT is already sending shoppers", detail: "14 visits came from chatgpt.com — more than Bing, DuckDuckGo and Brave combined — making error-free, readable product data a present-tense priority." },
+          { point: "The breakage hit desktop and mobile alike", detail: "Page views split 293 desktop to 269 mobile, so the errors degraded the experience for both audiences equally." },
+          { point: "Caught early, before launch-scale traffic", detail: "DynoWeb surfaced all of this at just 118 sessions this month — the cheapest possible moment to fix a broken storefront." },
+        ]}
+        results={[
+          { value: "32", label: "JS errors surfaced with exact pages" },
+          { value: "297", label: "error hits logged" },
+          { value: "ChatGPT", label: "now a tracked traffic source (14 visits)" },
+        ]}
+        quote="We had no idea our product pages were throwing syntax errors. DynoWeb handed us the exact message and the exact page — before it cost us the sale."
+      />
+
+      {/* ── Yetibeds ── */}
+      <CaseStudy
+        id="yetibeds"
+        accent={ACCENTS.teal}
+        logo="/yetibeds-logo.png"
+        logoLight
+        name="Yetibeds"
+        type="Online furniture retailer · beds, bunk beds & more"
+        domain="yetibeds.com"
+        headline="How one heatmap showed Yetibeds shoppers were clicking the wrong thing"
+        about="Yetibeds sells beds, bunk beds, chairs and dining sets to a desktop-heavy audience. Traffic was climbing fast — page views ▲95.1% and sessions ▲81.4% month over month — but something on the homepage was quietly costing conversions."
+        heroStats={[
+          { value: "Mouse Shake", label: "the #1 behavioral signal store-wide" },
+          { value: "14%", label: "scroll depth on the homepage" },
+          { value: "100%", label: "of tracked sales attributed to the exact session" },
+        ]}
+        challenge={
+          <>
+            <p>
+              The store&rsquo;s most common signal wasn&rsquo;t a click — it was <strong>Mouse Shake</strong>, the
+              cursor-thrashing that means confusion, with Dead Clicks close behind. Pages were logging interaction rates
+              over 1,000% (shoppers clicking many times per view) yet converting poorly.
+            </p>
+            <p>
+              The killer detail came from the homepage heatmap: clicks and mouse-shake were clustering on the{" "}
+              <strong>decorative hero image</strong>, not the SHOP NOW button — and only <strong>14% scroll depth</strong>{" "}
+              meant most visitors never got past the hero. Meanwhile <strong>74 returning visitors came back and didn&rsquo;t buy</strong>.
+            </p>
+          </>
+        }
+        features={[
+          { icon: MousePointerClick, name: "Heatmaps", detail: "the homepage click map exposed shoppers tapping the hero artwork instead of the CTA — a single screenshot that explained the drop-off." },
+          { icon: Flame, name: "Behavioral signals", detail: "ranked Mouse Shake as the store's #1 signal and tied >1,000% interaction rates to real frustration clusters." },
+          { icon: Sparkles, name: "AI CRO suggestions", detail: "matched 42 concrete fixes (40 Quick Wins) — from Product structured data and alt text to the confused-hero flags." },
+          { icon: DollarSign, name: "Revenue attribution", detail: "attributed 100% of tracked sales to the exact session that drove them, on a fast-growing month." },
+        ]}
+        scenarios={[
+          { point: "The homepage hero is a trap", detail: "141 mouse-shakes and 26 dead clicks landed on the Home hero, where scroll depth was just 14% (13% above the fold) — visitors poked the decorative image and left before reaching the products." },
+          { point: "1,457% interaction on /products_preview", detail: "The most-viewed page logged 1,501 clicks across 103 views — frantic, repeated clicking that's a textbook rage pattern, not engagement." },
+          { point: "Search was carrying the load", detail: "/search saw 687 clicks across just 27 views (2,544% interaction) — shoppers couldn't find products by browsing, so they hammered the search bar." },
+          { point: "One PDP proves the catalog can convert", detail: "The Barnstorm upholstered-bed page turned 1 of 2 buy-intent clicks into a $559 order — a 50% page conversion rate when the path was clear." },
+          { point: "An unusual desktop-and-India profile", detail: "91% of sessions were desktop and 76.6% of visits came from India — a profile DynoWeb surfaces so the team optimises for the audience it actually has." },
+          { point: "42 fixes on a store the owner thought was 'done'", detail: "Beyond the hero: missing Schema.org data, 50 products without barcodes, and missing alt text — invisible-to-AI-search gaps, 28 already surfaced as ready to review." },
+        ]}
+        results={[
+          { value: "42", label: "AI fixes found (40 Quick Wins)" },
+          { value: "▲95.1%", label: "page views month over month" },
+          { value: "▲81.4%", label: "unique sessions month over month" },
+          { value: "100%", label: "tracked sales attributed" },
+        ]}
+        quote="One heatmap told us everything: our shoppers were clicking the pretty hero image, not the Shop Now button — and most never scrolled past it."
+      />
+
+      <Section className="pb-6">
+        <p className="text-center text-xs text-zinc-500">
+          All figures are real, pulled from DynoWeb production data on 6 June 2026. Story framing is ours; the numbers are not.
+        </p>
+      </Section>
+
+      <CTA
+        title="See what DynoWeb finds in your store"
+        body="Install free and DynoWeb starts surfacing your store's rage clicks, broken pages, and revenue-leaking moments — each with a ranked, dev-ready fix."
+        primaryLabel="Install DynoWeb free"
+        secondary={{ label: "Read the Shopify CRO guide", href: "/shopify-cro" }}
+      />
+    </MarketingShell>
   );
 }
