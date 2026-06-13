@@ -8,6 +8,7 @@ import {
   SectionHeading,
   FeatureGrid,
   FeatureRow,
+  Card,
   FAQ,
   CTA,
   RelatedLinks,
@@ -55,6 +56,10 @@ const faqs = [
     q: "What does 'projected lift' mean?",
     a: "Projected lift is DynoWeb's estimate of how much a given fix is likely to improve conversion or revenue, based on the behavioral evidence and the page's traffic. It helps you decide which fixes are worth prioritising, and after you ship, revenue attribution shows the actual result.",
   },
+  {
+    q: "How does AI help improve Shopify sales?",
+    a: "AI is capable of automatically identifying obstacles to conversion, analyzing visitor behavior patterns, ranking opportunities, and suggesting solutions that enhance store performance.",
+  },
 ];
 
 export default function AiSuggestionsPage() {
@@ -80,6 +85,27 @@ export default function AiSuggestionsPage() {
         imageAlt="DynoWeb AI suggestions screen showing prioritised fixes for a Shopify store"
         imageLabel="AI Suggestions"
       />
+
+      <Section className="pb-12">
+        <SectionHeading
+          eyebrow="Why merchants use AI"
+          title="Using AI for Shopify CRO"
+          subtitle="Traditional CRO leans on manual analysis, technical know-how, and a heavy time commitment. AI-driven platforms change the economics — and the speed — of optimization."
+        />
+        <Card>
+          <div className="space-y-4 text-[0.95rem] leading-relaxed text-white/75">
+            <p>
+              Manual analysis, technical know-how, and a large time commitment are necessary for traditional CRO. CRO platforms driven by AI alter that.
+            </p>
+            <p>
+              Modern AI systems can detect conversion issues automatically, surface hidden customer behavior patterns, prioritize optimization opportunities, recommend fixes and estimate potential conversion impact.
+            </p>
+            <p>
+              Instead of requiring merchants to manually review thousands of sessions, behavior analytics platforms are increasingly using AI to summarize visitor data, identify friction points, and suggest actionable improvements.
+            </p>
+          </div>
+        </Card>
+      </Section>
 
       <Section className="pb-12">
         <SectionHeading

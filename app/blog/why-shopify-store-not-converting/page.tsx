@@ -70,6 +70,43 @@ export default function Page() {
         confirm in minutes — so you fix the cause instead of papering over it.
       </p>
 
+      <h2>Why Shopify stores lose conversions</h2>
+      <p>Many retailers believe that the issue is with their merchandise or prices.</p>
+      <p>
+        In actuality, slow-loading pages, unclear navigation, hidden shipping fees, subpar mobile experiences, inadequate
+        product descriptions, low trust signals, convoluted checkout procedures, or poorly placed calls-to-action are all
+        common reasons why customers give up on purchases.
+      </p>
+      <p>
+        Understanding how customers engage with your store is crucial because behavior analytics tools consistently show
+        that customers frequently experience friction before making a purchase. Heatmaps and session replays aid in
+        locating these covert conversion barriers.
+      </p>
+
+      <h3>Where conversions leak (the four most common areas)</h3>
+      <ul>
+        <li>
+          <strong>Product Pages.</strong> Product pages are often the first place where decisions about purchases are
+          made. Customers may be deterred from adding items to their carts by inadequate product photos, vague product
+          descriptions, a lack of customer reviews, or hidden shipping information.
+        </li>
+        <li>
+          <strong>Cart Pages.</strong> Many consumers give up on their purchases when they run into unforeseen expenses
+          or have concerns about the checkout procedure. Friction brought on by unclear pricing, a lack of payment
+          options, and missing trust badges can increase cart abandonment rates.
+        </li>
+        <li>
+          <strong>Checkout.</strong> A challenging checkout process can significantly impact conversions. Because there
+          are too many form fields, pages load slowly, and there are no guest checkout options, customers often leave
+          before completing their purchases.
+        </li>
+        <li>
+          <strong>Mobile Experience.</strong> Mobile devices account for the majority of Shopify traffic, but cramped
+          layouts, slow-loading pages, small tap targets, and a lack of guest checkout options cause shoppers to depart
+          before completing their purchase.
+        </li>
+      </ul>
+
       <h2>The 12 reasons (and how to spot each)</h2>
       <ol>
         <li><strong>Your CTA is below the fold.</strong> Scroll maps show most visitors never reach the add-to-cart button. Raise it.</li>

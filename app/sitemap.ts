@@ -63,12 +63,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Blog
   const blog: MetadataRoute.Sitemap = [
     { url: `${base}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    ...blogPosts.map((post) => ({
-      url: `${base}/blog/${post.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
+    ...blogPosts
+      .filter((post) => !post.href)
+      .map((post) => ({
+        url: `${base}/blog/${post.slug}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      })),
   ];
 
   return [...core, ...pillars, ...features, ...comparisons, ...useCases, ...landing, ...blog];

@@ -25,7 +25,19 @@ export const metadata: Metadata = {
   },
 };
 
-export const posts = [
+type Post = {
+  slug: string;
+  category: string;
+  title: string;
+  excerpt: string;
+  href?: string;
+};
+
+export const posts: Post[] = [
+  { slug: "shopify-cro", href: "/shopify-cro", category: "Pillar Guide", title: "Shopify CRO: The Complete Conversion Rate Optimization Guide", excerpt: "Turn more Shopify visitors into customers — the framework, best practices, and the toolkit that finds the friction." },
+  { slug: "shopify-heatmaps", href: "/shopify-heatmaps", category: "Heatmaps", title: "Shopify Heatmaps Built for Merchants, Not Analysts", excerpt: "How heatmaps improve Shopify conversion rates — click, scroll, and attention maps that surface ignored CTAs and dead-click areas." },
+  { slug: "shopify-session-replay", href: "/shopify-session-replay", category: "Session Replay", title: "Watch Real Customer Sessions on Your Shopify Store", excerpt: "Why session replays matter — observe real customer journeys, rage clicks, and the exact moment shoppers abandon." },
+  { slug: "ai-suggestions", href: "/features/ai-suggestions", category: "AI", title: "Using AI for Shopify CRO", excerpt: "Modern AI detects conversion issues, prioritises optimization opportunities, and recommends fixes with projected impact." },
   { slug: "shopify-conversion-rate-benchmark", category: "Benchmarks", title: "What's a Good Shopify Conversion Rate in 2026?", excerpt: "We break down Shopify conversion rate benchmarks by industry — and how to close the gap fast." },
   { slug: "why-shopify-store-not-converting", category: "Diagnosis", title: "12 Reasons Your Shopify Store Isn't Converting (+ Fixes)", excerpt: "Low traffic isn't always the problem. Here are 12 behavioral reasons — and how to diagnose each." },
   { slug: "shopify-cro-checklist", category: "Checklist", title: "The Ultimate Shopify CRO Checklist (60 Actionable Items)", excerpt: "A comprehensive checklist covering homepage, product pages, cart, checkout, and mobile UX." },
@@ -63,7 +75,7 @@ export default function BlogIndexPage() {
           {posts.map((post) => (
             <Link
               key={post.slug}
-              href={`/blog/${post.slug}`}
+              href={post.href ?? `/blog/${post.slug}`}
               className="group flex flex-col rounded-[1.5rem] border border-white/10 bg-white/[0.02] p-6 transition hover:border-white/20 hover:bg-white/[0.05]"
             >
               <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.24em] text-[#6eb0ff]">

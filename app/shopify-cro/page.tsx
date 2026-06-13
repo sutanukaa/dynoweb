@@ -12,7 +12,6 @@ import {
   Target,
   Eye,
   LineChart,
-  CheckCircle2,
 } from "lucide-react";
 
 import {
@@ -22,7 +21,6 @@ import {
   SectionHeading,
   FeatureGrid,
   FeatureRow,
-  CheckList,
   Card,
   StatRow,
   FAQ,
@@ -36,7 +34,7 @@ import { ChartCard, FunnelChart } from "@/app/components/seo/Charts";
 export const metadata: Metadata = {
   title: "Shopify CRO: The Complete Conversion Rate Optimization Guide",
   description:
-    "Turn more Shopify visitors into customers. The complete guide to Shopify conversion rate optimization — heatmaps, session replays, AI-powered insights, checklist, and best practices. Updated 2026.",
+    "Turn more Shopify visitors into customers. The pillar guide to Shopify conversion rate optimization — framework, best practices, and the toolkit (heatmaps, session replays, AI insights). Updated 2026.",
   keywords: [
     "Shopify conversion rate optimization",
     "increase shopify conversion rate",
@@ -49,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Shopify CRO: The Complete Conversion Rate Optimization Guide",
     description:
-      "Turn more Shopify visitors into customers with heatmaps, session replays, AI-powered insights, and a proven CRO checklist.",
+      "Turn more Shopify visitors into customers — the framework, best practices, and the toolkit.",
     url: "https://www.dynoweb.app/shopify-cro",
     siteName: "DynoWeb",
     type: "article",
@@ -110,33 +108,6 @@ const bestPractices = [
   },
 ];
 
-const checklist = [
-  {
-    title: "Analytics & behavior tracking",
-    body: "Heatmaps, session recordings, and funnel tracking let you determine where users interact, where they struggle, and where they give up on the purchasing process.",
-  },
-  {
-    title: "Product pages",
-    body: "Reviews, trust signals, clear descriptions, and high-quality images reduce hesitation and increase conversion rates.",
-  },
-  {
-    title: "Cart & checkout",
-    body: "Transparent pricing, guest checkout options, and streamlined steps significantly decrease cart abandonment.",
-  },
-  {
-    title: "Mobile optimization",
-    body: "Responsive layouts, quick page loads, and easy navigation handle the majority of Shopify traffic without friction.",
-  },
-  {
-    title: "Trust & credibility",
-    body: "Customer reviews, return policies, security badges, and accessible contact information reassure visitors and encourage purchases.",
-  },
-  {
-    title: "AI optimization",
-    body: "AI surfaces friction points and analyses customer behavior automatically — enabling smarter, data-driven changes that improve sales.",
-  },
-];
-
 const faqs = [
   {
     q: "What is a good Shopify conversion rate?",
@@ -171,7 +142,6 @@ export default function ShopifyCroPage() {
         ]),
       ]}
     >
-      {/* HERO — intro from the brief */}
       <Hero
         eyebrow="Pillar guide — Shopify conversion rate optimization"
         title="Shopify CRO: The Complete Conversion Rate Optimization Guide"
@@ -198,7 +168,7 @@ export default function ShopifyCroPage() {
         />
       </Section>
 
-      {/* 1. WHAT IS SHOPIFY CRO */}
+      {/* WHAT IS SHOPIFY CRO */}
       <FeatureRow
         eyebrow="The basics"
         title="What is Shopify conversion rate optimization?"
@@ -225,12 +195,12 @@ export default function ShopifyCroPage() {
         imageLabel="Score breakdown"
       />
 
-      {/* 2. WHY SHOPIFY STORES LOSE CONVERSIONS */}
+      {/* WHY SHOPIFY STORES LOSE CONVERSIONS — brief, full version on dedicated blog */}
       <Section className="pb-16">
         <SectionHeading
           eyebrow="Where the money leaks"
           title="Why Shopify stores lose conversions"
-          subtitle="Many retailers believe the issue is with their merchandise or prices. In actuality, the causes are far more mundane — and far more fixable."
+          subtitle="Many retailers believe the issue is with their merchandise or prices. In reality, the causes are far more mundane — and far more fixable."
         />
         <Card>
           <div className="space-y-4 text-[0.97rem] leading-7 text-zinc-300">
@@ -240,15 +210,17 @@ export default function ShopifyCroPage() {
               reasons customers give up on purchases.
             </p>
             <p>
-              Understanding how customers engage with your store is crucial — behavior analytics tools consistently show that
-              customers frequently experience friction before making a purchase. Heatmaps and session replays help locate these
-              covert conversion barriers.
+              Behavior analytics tools consistently show that customers frequently experience friction before making a purchase
+              — heatmaps and session replays help locate these covert conversion barriers.{" "}
+              <a href="/blog/why-shopify-store-not-converting" className="text-[#6eb0ff] underline-offset-2 hover:underline">
+                Read the full breakdown →
+              </a>
             </p>
           </div>
         </Card>
       </Section>
 
-      {/* 3. THE SHOPIFY CRO FRAMEWORK */}
+      {/* THE SHOPIFY CRO FRAMEWORK */}
       <Section className="pb-12">
         <SectionHeading
           eyebrow="The Shopify CRO framework"
@@ -258,6 +230,7 @@ export default function ShopifyCroPage() {
         <FeatureGrid items={framework} columns={3} />
       </Section>
 
+      {/* FUNNEL */}
       <Section className="pb-16">
         <SectionHeading
           eyebrow="Visualise the leak"
@@ -277,61 +250,16 @@ export default function ShopifyCroPage() {
         </ChartCard>
       </Section>
 
-      {/* 4. HOW HEATMAPS IMPROVE SHOPIFY CONVERSION RATES */}
-      <FeatureRow
-        eyebrow="Heatmaps"
-        title="How heatmaps improve Shopify conversion rates"
-        body={
-          <p>
-            Heatmaps provide a visual representation of where users click, hover, scroll, and interact. They highlight
-            underperforming content sections, distracting page elements, dead-click areas, and ignored call-to-action buttons.
-            Instead of speculating about what customers notice, you get direct behavioral evidence to optimise page layouts and
-            increase conversions.
-          </p>
-        }
-        bullets={[
-          "Click, scroll, and attention maps in one view",
-          "Spot dead-clicks and ignored CTAs immediately",
-          "Compare desktop vs mobile attention patterns",
-        ]}
-        image="/Dashboard.png"
-        imageAlt="DynoWeb behavioural dashboard for a Shopify store"
-        imageLabel="Dashboard"
-      />
-
-      {/* 5. WHY SESSION REPLAYS MATTER */}
+      {/* AI ANALYSIS FEATURE ROW */}
       <FeatureRow
         reverse
-        eyebrow="Session replays"
-        title="Why session replays matter"
+        eyebrow="AI-powered analysis"
+        title="From thousands of sessions to a ranked queue of fixes"
         body={
           <p>
-            Session replays let you observe actual customer journeys — mouse movements, scrolling behavior, cart interactions,
-            checkout attempts, rage clicks, and exit behavior. By observing real customer struggles instead of relying on
-            conjecture, you precisely identify conversion barriers — one of the best CRO tools for surfacing user dissatisfaction
-            and abandonment.
-          </p>
-        }
-        bullets={[
-          "Watch the exact moment a shopper hesitates",
-          "Surface rage clicks, dead clicks, and form failures",
-          "Identify the real reason behind cart abandonment",
-        ]}
-        image="/ConversionFunnel.png"
-        imageAlt="DynoWeb conversion funnel and session insight for a Shopify store"
-        imageLabel="Session insight"
-      />
-
-      {/* 6. USING AI FOR SHOPIFY CRO */}
-      <FeatureRow
-        eyebrow="AI-powered CRO"
-        title="Using AI for Shopify CRO"
-        body={
-          <p>
-            Traditional CRO requires manual analysis, technical know-how, and a large time commitment. AI-powered CRO platforms
-            change that — automatically detecting conversion issues, surfacing hidden customer behavior patterns, prioritising
-            optimization opportunities, recommending fixes, and estimating potential conversion impact. Instead of manually
-            reviewing thousands of sessions, you get a prioritised queue of actionable improvements.
+            Traditional CRO requires manual review of hundreds of sessions. AI-powered analysis changes that — detecting
+            conversion issues automatically, surfacing hidden behavior patterns, prioritising opportunities, and recommending
+            fixes with projected impact. You get a ready-to-action queue instead of a pile of dashboards.
           </p>
         }
         bullets={[
@@ -344,7 +272,47 @@ export default function ShopifyCroPage() {
         imageLabel="AI analysis"
       />
 
-      {/* 7. SHOPIFY CRO BEST PRACTICES */}
+      {/* THE TOOLKIT — links to dedicated deep-dive pages */}
+      <Section className="pb-16">
+        <SectionHeading
+          eyebrow="The CRO toolkit"
+          title="Three signals that surface the friction"
+          subtitle="Each one has its own dedicated guide — start with whichever matches the question you're trying to answer."
+        />
+        <FeatureGrid
+          columns={3}
+          items={[
+            {
+              icon: Eye,
+              title: "Heatmaps",
+              body: "Visual representation of where users click, hover, scroll, and interact — direct behavioral evidence to optimize page layouts.",
+            },
+            {
+              icon: PlaySquare,
+              title: "Session replays",
+              body: "Observe actual customer journeys — mouse movement, cart interactions, rage clicks, and exit behavior — to identify conversion barriers.",
+            },
+            {
+              icon: Sparkles,
+              title: "AI-powered insights",
+              body: "Detect conversion issues automatically, surface hidden patterns, prioritise opportunities, and recommend fixes with projected impact.",
+            },
+          ]}
+        />
+        <div className="mt-6 flex flex-wrap gap-3 text-sm">
+          <a href="/shopify-heatmaps" className="rounded-full border border-white/15 px-4 py-2 text-zinc-300 hover:border-[#6eb0ff] hover:text-white">
+            How heatmaps improve Shopify CRO →
+          </a>
+          <a href="/shopify-session-replay" className="rounded-full border border-white/15 px-4 py-2 text-zinc-300 hover:border-[#6eb0ff] hover:text-white">
+            Why session replays matter →
+          </a>
+          <a href="/features/ai-suggestions" className="rounded-full border border-white/15 px-4 py-2 text-zinc-300 hover:border-[#6eb0ff] hover:text-white">
+            Using AI for Shopify CRO →
+          </a>
+        </div>
+      </Section>
+
+      {/* SHOPIFY CRO BEST PRACTICES */}
       <Section className="pb-16">
         <SectionHeading
           eyebrow="Best practices"
@@ -354,29 +322,7 @@ export default function ShopifyCroPage() {
         <FeatureGrid items={bestPractices} columns={3} />
       </Section>
 
-      {/* 8. SHOPIFY CRO CHECKLIST */}
-      <Section className="pb-16">
-        <SectionHeading
-          eyebrow="The Shopify CRO checklist"
-          title="Use this checklist to identify optimization opportunities"
-          subtitle="Six categories that cover every high-impact lever in a Shopify store."
-        />
-        <div className="grid gap-4 md:grid-cols-2">
-          {checklist.map((item, i) => (
-            <Card key={i}>
-              <div className="flex items-start gap-4">
-                <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-[#6eb0ff]" />
-                <div>
-                  <h3 className="mb-2 font-[Montserrat] text-lg font-extrabold text-white">{item.title}</h3>
-                  <p className="text-[0.95rem] leading-7 text-zinc-300">{item.body}</p>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      {/* 9. HOW DYNOWEB HELPS */}
+      {/* HOW DYNOWEB HELPS */}
       <Section className="pb-16">
         <SectionHeading
           eyebrow="How DynoWeb helps"
@@ -420,7 +366,7 @@ export default function ShopifyCroPage() {
         />
       </Section>
 
-      {/* 10. CTA — single button, in the middle, before FAQs */}
+      {/* CTA — single button, mid-page, before FAQs */}
       <Section className="pb-20">
         <div className="cta-glow-card rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_48%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] sm:p-8 lg:p-10">
           <p className="text-[0.74rem] font-extrabold uppercase tracking-[0.28em] text-zinc-500">
@@ -439,7 +385,7 @@ export default function ShopifyCroPage() {
         </div>
       </Section>
 
-      {/* 11. FAQs */}
+      {/* FAQs */}
       <FAQ title="FAQs" items={faqs} />
 
       <RelatedLinks
@@ -447,10 +393,10 @@ export default function ShopifyCroPage() {
         links={[
           { label: "Shopify Heatmaps", href: "/shopify-heatmaps", description: "See where customers click and scroll." },
           { label: "Shopify Session Replay", href: "/shopify-session-replay", description: "Watch every customer visit." },
-          { label: "Shopify Analytics", href: "/shopify-analytics", description: "Behavioral insights that drive revenue." },
+          { label: "AI Suggestions", href: "/features/ai-suggestions", description: "Using AI for Shopify CRO." },
+          { label: "Why your store isn't converting", href: "/blog/why-shopify-store-not-converting", description: "The full breakdown of leak points." },
+          { label: "The Shopify CRO Checklist", href: "/blog/shopify-cro-checklist", description: "6 categories, ready to action." },
           { label: "Conversion Rate Benchmarks 2026", href: "/blog/shopify-conversion-rate-benchmark", description: "What a good Shopify conversion rate looks like." },
-          { label: "Why your store isn't converting", href: "/blog/why-shopify-store-not-converting", description: "12 real reasons (+ fixes)." },
-          { label: "The 60-point CRO checklist", href: "/blog/shopify-cro-checklist", description: "Actionable items across every template." },
         ]}
       />
     </MarketingShell>

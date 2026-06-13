@@ -18,14 +18,14 @@ import {
 } from "@/app/components/seo/Marketing";
 
 export const metadata: Metadata = {
-  title: "Shopify Heatmaps — See Where Customers Click & Scroll",
+  title: "Shopify Heatmaps — See Where Customers Click, Scroll & Convert",
   description:
-    "Visual heatmaps built for Shopify. See exactly where visitors click, how far they scroll, and which elements they ignore. Lightweight, SEO-safe.",
+    "Visual heatmaps built for Shopify. See where visitors click, how far they scroll, and which elements they ignore — then turn that behavior into conversion gains. Lightweight, SEO-safe.",
   alternates: { canonical: "https://www.dynoweb.app/shopify-heatmaps" },
   openGraph: {
-    title: "Shopify Heatmaps — See Where Customers Click & Scroll",
+    title: "Shopify Heatmaps — See Where Customers Click, Scroll & Convert",
     description:
-      "DynoWeb heatmaps for Shopify: click maps, scroll maps, and attention maps that reveal what shoppers engage with and what they ignore.",
+      "DynoWeb heatmaps for Shopify: click maps, scroll maps, and attention maps that reveal what shoppers engage with, what they ignore, and how to lift conversion.",
     url: "https://www.dynoweb.app/shopify-heatmaps",
     siteName: "DynoWeb",
     type: "article",
@@ -64,6 +64,10 @@ const faqs = [
     q: "How much traffic do I need before heatmaps are useful?",
     a: "Heatmaps become reliable once you have enough sessions for patterns to emerge — often a few hundred visits per page. Lower-traffic pages still benefit, but you'll lean more on session replays for those. DynoWeb aggregates across sessions automatically so the maps sharpen as traffic accumulates.",
   },
+  {
+    q: "Are heatmaps useful for Shopify CRO?",
+    a: "Yes. Heatmaps show how users interact with pages and can be used to find optimization opportunities, distractions, and overlooked elements.",
+  },
 ];
 
 export default function ShopifyHeatmapsPage() {
@@ -96,6 +100,30 @@ export default function ShopifyHeatmapsPage() {
           subtitle="Each map answers a different question. Together they tell you where attention goes, what gets seen, and where shoppers get stuck."
         />
         <FeatureGrid columns={2} items={types} />
+      </Section>
+
+      <Section className="pb-12">
+        <SectionHeading
+          eyebrow="Why it matters for CRO"
+          title="How heatmaps improve Shopify conversion rates"
+          subtitle="Heatmaps give merchants direct behavioral evidence to optimize page layouts and lift conversions — instead of speculating about what customers notice."
+        />
+        <Card>
+          <p className="text-zinc-300">
+            Heatmaps provide a visual representation of where users click, hover, scroll, and interact. Instead of guessing
+            why a page underperforms, you see the exact friction points and the elements being ignored — and you can act on
+            them with evidence.
+          </p>
+          <div className="mt-6">
+            <CheckList
+              items={[
+                "Surface underperforming content sections that fail to earn attention or engagement.",
+                "Expose distracting page elements and dead-click areas that confuse shoppers and waste intent.",
+                "Reveal ignored call-to-action buttons so you can reposition, restyle, or rewrite them for more conversions.",
+              ]}
+            />
+          </div>
+        </Card>
       </Section>
 
       <FeatureRow

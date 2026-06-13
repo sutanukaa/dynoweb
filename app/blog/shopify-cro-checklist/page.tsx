@@ -69,6 +69,50 @@ export default function Page() {
         to see which items are actually costing you conversions, then fix those first. Work template by template.
       </p>
 
+      <h2>Shopify CRO Checklist</h2>
+      <p>Use this checklist to identify optimization opportunities.</p>
+
+      <h3>Analytics &amp; Behavior Tracking</h3>
+      <p>
+        Shopify CRO is based on an understanding of visitor behavior. You can determine where users interact, where
+        they struggle, and where they give up on the purchasing process using heatmaps, session recordings, and funnel
+        tracking.
+      </p>
+
+      <h3>Product Pages</h3>
+      <p>
+        All the information customers need to make a confident purchase should be included on your product pages.
+        Reviews, trust signals, clear descriptions, and high-quality images all contribute to lower hesitancy and
+        higher conversion rates.
+      </p>
+
+      <h3>Cart &amp; Checkout</h3>
+      <p>
+        Cart abandonment can be considerably decreased with a seamless checkout process. Customers can finish their
+        purchases more easily thanks to transparent pricing, guest checkout options, and streamlined checkout
+        procedures.
+      </p>
+
+      <h3>Mobile Optimization</h3>
+      <p>
+        Your store needs to provide a flawless mobile experience because mobile devices account for the majority of
+        Shopify traffic. Easy navigation, responsive layouts, and quick page loads all contribute to increased
+        conversions and customer engagement.
+      </p>
+
+      <h3>Trust &amp; Credibility</h3>
+      <p>
+        When making purchases online, trust plays a significant role. Visitors are reassured and encouraged to
+        purchase by customer reviews, return policies, security badges, and easily accessible contact information.
+      </p>
+
+      <h3>AI Optimization</h3>
+      <p>
+        By automatically identifying friction points and analyzing customer behavior, AI helps merchants find
+        conversion opportunities more quickly. This makes it possible to make more intelligent, data-driven changes
+        that can improve customer satisfaction and sales.
+      </p>
+
       <h2>Homepage (1-10)</h2>
       <ol>
         <li>Value proposition is clear within 5 seconds of landing.</li>
