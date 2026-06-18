@@ -1,5 +1,22 @@
 import type { Metadata } from "next";
-import { MousePointerClick, MoveVertical, Eye, Smartphone, Filter, Gauge } from "lucide-react";
+import {
+  MousePointerClick,
+  MoveVertical,
+  Eye,
+  Smartphone,
+  Sparkles,
+  Brain,
+  LineChart,
+  BarChart3,
+  Wrench,
+  Target,
+  Filter,
+  Layers,
+  TrendingUp,
+  AlertTriangle,
+  EyeOff,
+  Compass,
+} from "lucide-react";
 
 import {
   MarketingShell,
@@ -18,55 +35,210 @@ import {
 } from "@/app/components/seo/Marketing";
 
 export const metadata: Metadata = {
-  title: "Shopify Heatmaps — See Where Customers Click, Scroll & Convert",
+  title: "Shopify Heatmaps Built for Merchants, Not Analysts",
   description:
-    "Visual heatmaps built for Shopify. See where visitors click, how far they scroll, and which elements they ignore — then turn that behavior into conversion gains. Lightweight, SEO-safe.",
+    "Understand exactly how customers interact with your Shopify store. DynoWeb's heatmap app shows where visitors click, how far they scroll, and what grabs their attention — so you can fix hidden UX problems and lift conversions.",
   alternates: { canonical: "https://www.dynoweb.app/shopify-heatmaps" },
   openGraph: {
-    title: "Shopify Heatmaps — See Where Customers Click, Scroll & Convert",
+    title: "Shopify Heatmaps Built for Merchants, Not Analysts",
     description:
-      "DynoWeb heatmaps for Shopify: click maps, scroll maps, and attention maps that reveal what shoppers engage with, what they ignore, and how to lift conversion.",
+      "See where customers click, how far they scroll, and what holds their attention on your Shopify store. Click, scroll, and attention heatmaps plus AI-powered insights from DynoWeb.",
     url: "https://www.dynoweb.app/shopify-heatmaps",
     siteName: "DynoWeb",
     type: "article",
   },
 };
 
-const types = [
-  { icon: MousePointerClick, tag: "Click map", title: "Where shoppers tap", body: "See the elements that get the most interaction — and the ones shoppers expect to be clickable but aren't (a leading cause of frustration)." },
-  { icon: MoveVertical, tag: "Scroll map", title: "How far they read", body: "A color gradient shows exactly where visitors stop scrolling, so you know whether your strongest proof and CTA are even being seen." },
-  { icon: Eye, tag: "Attention map", title: "What earns focus", body: "Combine dwell, hover, and interaction to understand which sections actually hold attention versus which get skimmed past." },
-  { icon: Smartphone, tag: "Mobile map", title: "Thumb-zone reality", body: "Mobile heatmaps reveal fat-finger taps and mis-hits in the thumb zone that desktop testing never catches." },
+const heatmapTypes = [
+  {
+    icon: MousePointerClick,
+    tag: "Click heatmap",
+    title: "Shopify Click Heatmap",
+    body: (
+      <>
+        <p>
+          The precise locations where customers click on your store pages are displayed by a click heatmap. This helps
+          retailers determine which navigation elements, buttons, links, and images get the most interaction — and
+          identify distracting components that divert attention from crucial conversion actions.
+        </p>
+        <ul className="mt-4 space-y-2">
+          <li>— Optimise CTA placement</li>
+          <li>— Improve navigation structure</li>
+          <li>— Identify dead clicks</li>
+          <li>— Understand user intent</li>
+          <li>— Increase engagement on important elements</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    icon: MoveVertical,
+    tag: "Scroll heatmap",
+    title: "Shopify Scroll Heatmap",
+    body: (
+      <>
+        <p>
+          The distance a visitor travels down a page before departing is displayed on a scroll heatmap. Understanding
+          scroll behaviour tells you whether users are reaching key content — product benefits, reviews, FAQs, shipping
+          details, and purchase buttons.
+        </p>
+        <ul className="mt-4 space-y-2">
+          <li>— Improve content positioning</li>
+          <li>— Identify content fatigue</li>
+          <li>— Increase visibility of key offers</li>
+          <li>— Optimise page length</li>
+          <li>— Improve mobile experiences</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    icon: Eye,
+    tag: "Attention heatmap",
+    title: "Shopify Attention Heatmap",
+    body: (
+      <>
+        <p>
+          An attention heatmap highlights areas that attract the highest levels of user engagement. These insights help
+          merchants understand where visitors focus their attention — and which sections are being overlooked.
+        </p>
+        <ul className="mt-4 space-y-2">
+          <li>— Improve page layouts</li>
+          <li>— Optimise content hierarchy</li>
+          <li>— Increase engagement</li>
+          <li>— Highlight important products</li>
+          <li>— Reduce distractions</li>
+        </ul>
+      </>
+    ),
+  },
 ];
 
-const read = [
-  "Bright clusters on non-interactive elements = shoppers expect them to do something. Make them clickable, or remove the false affordance.",
-  "A hard scroll cut-off well above your add-to-cart or key proof means your most important content is below the fold for most visitors.",
-  "Heavy clicks on a filter or variant picker followed by exits often signals confusion — pair the heatmap with a session replay to confirm.",
-  "Cold zones over content you spent time on tell you it isn't earning attention — tighten it, move it, or cut it.",
-  "Different click patterns on mobile vs desktop almost always mean you need device-specific layout fixes, not one-size-fits-all.",
+const reveals = [
+  {
+    icon: AlertTriangle,
+    title: "Hidden Conversion Barriers",
+    body: "Visitors frequently cause friction without merchants being aware. Heatmaps show interaction patterns that point to usability problems, hesitation, or confusion that affect conversions.",
+  },
+  {
+    icon: Target,
+    title: "Underperforming Calls-to-Action",
+    body: "If customers aren't clicking your Add-to-Cart button or promotional offers, heatmaps promptly reveal the issue and direct optimisation efforts.",
+  },
+  {
+    icon: EyeOff,
+    title: "Content That Gets Ignored",
+    body: "Many stores spend a lot on product descriptions, promotional sections, and banners that customers never see. Heatmaps make it clear what is and isn't generating engagement.",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile User Behavior",
+    body: "Desktop and mobile visitors engage in different ways. Heatmaps help retailers understand device engagement, tap patterns, and scrolling habits.",
+  },
+];
+
+const conversionLifts = [
+  {
+    icon: Layers,
+    title: "Better Product Pages",
+    body: "Heatmaps help retailers see whether consumers are looking at product photos, reading descriptions, interacting with reviews, and noting purchasing details. Position important information where it's most likely to influence buying decisions.",
+  },
+  {
+    icon: Compass,
+    title: "Improved User Experience",
+    body: "Streamline navigation, lower friction, and create a more intuitive shopping experience. Minor UX enhancements often lift conversion rates significantly.",
+  },
+  {
+    icon: Brain,
+    title: "Smarter Design Decisions",
+    body: "Use real behavioural data from actual visitors to inform design decisions instead of depending on conjecture or opinions.",
+  },
+  {
+    icon: TrendingUp,
+    title: "More Effective Marketing Campaigns",
+    body: "Assess how visitors interact with landing pages, promotional banners, and special offers to enhance campaign performance.",
+  },
+];
+
+const dynowebFeatures = [
+  {
+    icon: LineChart,
+    title: "Real-Time Behavioral Tracking",
+    body: "Observe how customers engage with your heatmap for Shopify store as behavioural data is gathered. No waiting for long reports.",
+  },
+  {
+    icon: MousePointerClick,
+    title: "Click Heatmaps",
+    body: "Visualise user interaction with buttons, menus, banners, images, and calls to action to find areas for optimisation.",
+  },
+  {
+    icon: MoveVertical,
+    title: "Scroll Tracking",
+    body: "Determine whether important conversion elements are being viewed and gauge engagement with your content.",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile & Desktop Analysis",
+    body: "Analyse consumer behaviour across devices and pinpoint mobile UX issues.",
+  },
+  {
+    icon: Sparkles,
+    title: "AI-Powered Insights",
+    body: "Go beyond simple heatmap data with intelligent recommendations that enhance store performance and conversions.",
+  },
+];
+
+const decisionHelpers = [
+  {
+    icon: Target,
+    title: "Identify Conversion Opportunities",
+    body: "Heatmaps reveal where visitors are most engaged so merchants can optimise layouts and enhance conversion paths.",
+  },
+  {
+    icon: Wrench,
+    title: "Reduce User Frustration",
+    body: "Surface ignored elements, dead clicks, and confusing sections to enhance the overall shopping experience.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Increase Revenue",
+    body: "Minor adjustments based on behavioural insights can significantly lift engagement, conversions, and total revenue.",
+  },
+  {
+    icon: Layers,
+    title: "Optimise Every Page",
+    body: "From product pages to checkout processes, continuous improvement informed by heatmap data.",
+  },
+];
+
+const comparisonRows: { traditional: string; heatmaps: string }[] = [
+  { traditional: "Shows traffic numbers", heatmaps: "Shows user behavior" },
+  { traditional: "Measures pageviews", heatmaps: "Visualises engagement" },
+  { traditional: "Tracks conversions", heatmaps: "Explains conversion issues" },
+  { traditional: "Reports bounce rates", heatmaps: "Reveals friction points" },
+  { traditional: "Provides metrics", heatmaps: "Provides context" },
 ];
 
 const faqs = [
   {
-    q: "What is a Shopify heatmap?",
-    a: "A Shopify heatmap is a visual overlay of your store pages that shows aggregated visitor behavior — where they click (click map), how far they scroll (scroll map), and which areas hold attention (attention map). Instead of reading rows of numbers, you see a color-coded picture of how shoppers actually engage with each page.",
+    q: "What is a Shopify heatmap app?",
+    a: "A Shopify heatmap app visually tracks customer interactions like clicks, scrolling, and engagement patterns — helping merchants maximise UX and boost conversions.",
   },
   {
-    q: "What's the best heatmap app for Shopify?",
-    a: "The best heatmap app for Shopify is one that's lightweight, Shopify-native, and connects the heatmap to action. DynoWeb provides click, scroll, and attention maps with a sub-40 KB tracker, and — unlike most heatmap tools — it turns the patterns it finds into prioritised, dev-ready fix suggestions rather than leaving you to interpret the data alone.",
+    q: "How do click heatmaps help increase sales?",
+    a: "Click heatmaps highlight elements that draw attention and those that are ignored, helping merchants enhance CTAs and optimise page layouts.",
   },
   {
-    q: "Do heatmaps hurt my Shopify store's SEO or speed?",
-    a: "Not with DynoWeb. The tracker is under 40 KB and loads asynchronously so it doesn't block rendering or degrade Core Web Vitals. It's designed to be SEO-safe and installs as a native Shopify app.",
+    q: "What is a scroll heatmap?",
+    a: "A scroll heatmap displays the distance visitors travel down a page, so merchants can ascertain whether important content is being viewed.",
   },
   {
-    q: "How much traffic do I need before heatmaps are useful?",
-    a: "Heatmaps become reliable once you have enough sessions for patterns to emerge — often a few hundred visits per page. Lower-traffic pages still benefit, but you'll lean more on session replays for those. DynoWeb aggregates across sessions automatically so the maps sharpen as traffic accumulates.",
+    q: "Can heatmaps improve Shopify conversion rates?",
+    a: "Yes. Based on actual visitor behaviour, heatmaps help identify usability problems, optimise customer journeys, and enhance page performance.",
   },
   {
-    q: "Are heatmaps useful for Shopify CRO?",
-    a: "Yes. Heatmaps show how users interact with pages and can be used to find optimization opportunities, distractions, and overlooked elements.",
+    q: "Are Shopify heatmaps useful for mobile optimisation?",
+    a: "Absolutely. Merchants can enhance navigation, engagement, and mobile conversions by seeing how mobile users interact with your store.",
   },
 ];
 
@@ -83,11 +255,11 @@ export default function ShopifyHeatmapsPage() {
     >
       <Hero
         eyebrow="Pillar guide — Shopify heatmap app"
-        title="Shopify Heatmaps Built for Merchants, Not Analysts"
-        lead="Visual heatmaps built for Shopify. See exactly where visitors click, how far they scroll, and which elements they ignore. Lightweight, SEO-safe, and connected directly to AI fix suggestions."
-        primaryCta={{ label: "Start free trial", href: "https://apps.shopify.com/dynoweb" }}
+        title="Understand Exactly How Customers Interact With Your Shopify Store"
+        lead="Do customers notice your Add-to-Cart button? Are they scrolling far enough to see your product benefits? Which sections are getting ignored completely? Most Shopify merchants know how many visitors their store receives — far fewer know what those visitors actually do once they arrive. Traditional analytics tools don't visualise behaviour; they offer numbers and charts. A Shopify heatmap app fills the gap by showing precisely where visitors click, how far they scroll, and what grabs their attention. DynoWeb's Shopify heatmaps help merchants identify hidden UX problems, optimise conversion paths, and enhance customer experiences — see exactly what's happening on each page instead of speculating about why visitors aren't converting."
+        primaryCta={{ label: "Start free trial", href: "https://apps.shopify.com/dynoweb", external: true }}
         secondaryCta={{ label: "See the heatmaps feature", href: "/features/heatmaps" }}
-        highlights={["Click, scroll & attention", "Mobile + desktop", "Sub-40 KB & SEO-safe", "Connected to AI fixes"]}
+        highlights={["Click, scroll & attention", "Mobile + desktop", "Real-time", "AI-powered insights"]}
         image="/Heatmaps.png"
         imageAlt="DynoWeb heatmap view with click hotspots over a Shopify product page"
         imageLabel="Heatmap preview"
@@ -95,35 +267,66 @@ export default function ShopifyHeatmapsPage() {
 
       <Section className="pb-12">
         <SectionHeading
+          eyebrow="The basics"
+          title="What Is a Shopify Heatmap App?"
+          subtitle="The way customers engage with your store is shown graphically by a Shopify heatmap app. Heatmaps gather behavioural data from actual users and display which elements garner attention and which are disregarded."
+        />
+        <Card>
+          <p className="text-zinc-300">
+            They help merchants make more informed decisions about layout, content placement, and conversion
+            optimisation — converting complex user behaviour into clear visual reports. Instead of depending only on
+            pageviews and bounce rates, heatmaps offer context for visitor actions.
+          </p>
+        </Card>
+      </Section>
+
+      <Section className="pb-12">
+        <SectionHeading
+          eyebrow="Why it matters"
+          title="Why Shopify Merchants Need Heatmaps"
+          subtitle="Traditional analytics dashboards still conceal a lot of conversion problems."
+        />
+        <Card>
+          <CheckList
+            items={[
+              "Visitors may never notice your Add-to-Cart button.",
+              "Product details might be positioned too low on the page.",
+              "Important trust signals could be getting ignored.",
+              "Mobile users may struggle to interact with key elements.",
+            ]}
+          />
+          <p className="mt-6 text-zinc-300">
+            Heatmaps instantly highlight these problems, enabling merchants to optimise pages based on real user
+            behaviour rather than conjecture.
+          </p>
+        </Card>
+      </Section>
+
+      <Section className="pb-12">
+        <SectionHeading
           eyebrow="Three views, one picture"
-          title="Click, scroll, and attention maps"
+          title="Types of Shopify Heatmaps"
           subtitle="Each map answers a different question. Together they tell you where attention goes, what gets seen, and where shoppers get stuck."
         />
-        <FeatureGrid columns={2} items={types} />
+        <FeatureGrid columns={3} items={heatmapTypes} />
+      </Section>
+
+      <Section className="pb-12">
+        <SectionHeading
+          eyebrow="What heatmaps surface"
+          title="What Shopify Heatmaps Reveal"
+          subtitle="Heatmaps turn invisible behavior into evidence you can act on — across desktop and mobile."
+        />
+        <FeatureGrid columns={2} items={reveals} />
       </Section>
 
       <Section className="pb-12">
         <SectionHeading
           eyebrow="Why it matters for CRO"
-          title="How heatmaps improve Shopify conversion rates"
-          subtitle="Heatmaps give merchants direct behavioral evidence to optimize page layouts and lift conversions — instead of speculating about what customers notice."
+          title="How Heatmaps Improve Shopify Conversion Rates"
+          subtitle="Behavioural evidence beats opinion. Use real visitor data to inform every layout, copy, and design decision."
         />
-        <Card>
-          <p className="text-zinc-300">
-            Heatmaps provide a visual representation of where users click, hover, scroll, and interact. Instead of guessing
-            why a page underperforms, you see the exact friction points and the elements being ignored — and you can act on
-            them with evidence.
-          </p>
-          <div className="mt-6">
-            <CheckList
-              items={[
-                "Surface underperforming content sections that fail to earn attention or engagement.",
-                "Expose distracting page elements and dead-click areas that confuse shoppers and waste intent.",
-                "Reveal ignored call-to-action buttons so you can reposition, restyle, or rewrite them for more conversions.",
-              ]}
-            />
-          </div>
-        </Card>
+        <FeatureGrid columns={2} items={conversionLifts} />
       </Section>
 
       <FeatureRow
@@ -131,9 +334,9 @@ export default function ShopifyHeatmapsPage() {
         title="See exactly where shoppers tap — and mis-tap"
         body={
           <p>
-            The click map overlays every interaction onto your real page. Hot zones show what earns engagement; clusters on
-            non-clickable elements reveal the false affordances quietly frustrating shoppers. It&rsquo;s the fastest way to
-            see whether your add-to-cart is actually getting the attention it needs.
+            The click heatmap overlays every interaction onto your real page. Hot zones show what earns engagement;
+            clusters on non-clickable elements reveal the false affordances quietly frustrating shoppers. It&rsquo;s the
+            fastest way to see whether your Add-to-Cart is actually getting the attention it needs.
           </p>
         }
         bullets={[
@@ -152,9 +355,9 @@ export default function ShopifyHeatmapsPage() {
         title="Find the line where shoppers stop reading"
         body={
           <p>
-            The scroll map shows the exact depth where most visitors stop. The most common discovery: your strongest proof
-            and even your add-to-cart sit below where the majority drop off — invisible to most shoppers. Now you know exactly
-            what to move up.
+            The scroll heatmap shows the exact depth where most visitors stop. The most common discovery: your strongest
+            proof and even your Add-to-Cart sit below where the majority drop off — invisible to most shoppers. Now you
+            know exactly what to move up.
           </p>
         }
         bullets={[
@@ -167,23 +370,117 @@ export default function ShopifyHeatmapsPage() {
         imageLabel="Scroll heatmap"
       />
 
-      <Section className="pb-16">
-        <SectionHeading eyebrow="How to read them" title="What your heatmaps are telling you" />
-        <Card>
-          <CheckList items={read} />
-        </Card>
+      <FeatureRow
+        eyebrow="Beyond heatmaps"
+        title="Shopify UX Analytics Beyond Heatmaps"
+        body={
+          <p>
+            Heatmaps offer useful visual insights, but they work best when paired with deeper behavioural analytics. A
+            detailed picture of consumer behaviour is produced by combining behavioural and visual analytics — DynoWeb
+            helps merchants understand where visitors click, how far they scroll, what captures attention, where users
+            abandon pages, and which paths lead to conversions.
+          </p>
+        }
+        bullets={[
+          "Where visitors click",
+          "How far they scroll",
+          "What captures attention",
+          "Where users abandon pages",
+          "Which paths lead to conversions",
+        ]}
+        image="/CRO-img2.png"
+        imageAlt="DynoWeb behavioural breakdown panel for a Shopify store"
+        imageLabel="Behavior breakdown"
+      />
+
+      <Section className="pb-12">
+        <SectionHeading
+          eyebrow="Built in"
+          title="Key Features of DynoWeb Heatmaps"
+          subtitle="Everything you need to read behaviour clearly and act on it — without an analyst on staff."
+        />
+        <FeatureGrid columns={3} items={dynowebFeatures} />
       </Section>
 
       <Section className="pb-12">
-        <SectionHeading eyebrow="Built in" title="Lightweight, filterable, and tied to fixes" />
-        <FeatureGrid
-          columns={3}
-          items={[
-            { icon: Filter, title: "Filter every map", body: "Slice by page, device, country, and date range so you compare like with like." },
-            { icon: Gauge, title: "Sub-40 KB, SEO-safe", body: "The tracker loads asynchronously and never drags down page speed or Core Web Vitals." },
-            { icon: MousePointerClick, title: "From map to fix", body: "Patterns the maps reveal become prioritised, dev-ready suggestions automatically." },
-          ]}
+        <SectionHeading
+          eyebrow="Side-by-side"
+          title="Heatmaps vs Traditional Shopify Analytics"
+          subtitle="Numbers tell you what happened. Heatmaps tell you why."
         />
+        <Card className="overflow-hidden p-0">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[520px] text-left text-sm text-zinc-300">
+              <thead>
+                <tr className="border-b border-white/10 bg-white/[0.03]">
+                  <th
+                    className="px-5 py-4 text-left font-extrabold uppercase tracking-[0.18em] text-zinc-500"
+                    style={{ fontSize: "0.7rem" }}
+                  >
+                    Traditional Analytics
+                  </th>
+                  <th
+                    className="px-5 py-4 text-left font-extrabold uppercase tracking-[0.18em] text-[#6eb0ff]"
+                    style={{ fontSize: "0.7rem" }}
+                  >
+                    Shopify Heatmaps
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonRows.map((row, i) => (
+                  <tr
+                    key={row.traditional}
+                    className={`border-b border-white/[0.06] ${i % 2 === 0 ? "bg-white/[0.01]" : ""}`}
+                  >
+                    <td className="px-5 py-3 text-zinc-400">{row.traditional}</td>
+                    <td className="px-5 py-3 text-zinc-200">{row.heatmaps}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+        <p className="mt-5 text-[0.95rem] leading-7 text-zinc-400">
+          Traditional analytics reveal what transpired. Heatmaps explain why.
+        </p>
+      </Section>
+
+      <Section className="pb-12">
+        <SectionHeading
+          eyebrow="From insight to action"
+          title="How DynoWeb Helps Merchants Make Better Decisions"
+          subtitle="Stop guessing. Use behavioural evidence to prioritise the changes that actually move revenue."
+        />
+        <FeatureGrid columns={2} items={decisionHelpers} />
+      </Section>
+
+      <Section className="pb-12">
+        <SectionHeading
+          eyebrow="Built for merchants"
+          title="Why Shopify Merchants Choose DynoWeb"
+        />
+        <Card>
+          <p className="text-zinc-300">
+            DynoWeb was created especially for Shopify merchants who don&rsquo;t want overwhelming analytics dashboards
+            but rather actionable insights. With heatmaps, behavior tracking, AI-powered suggestions, and
+            conversion-focused reporting, merchants quickly determine what&rsquo;s working, what isn&rsquo;t, and what
+            to optimise next.
+          </p>
+          <p className="mt-4 text-zinc-300">
+            Focus on the adjustments that have the biggest revenue impact instead of devoting hours to report analysis.
+          </p>
+          <div className="mt-6">
+            <CheckList
+              items={[
+                "Click, scroll, and attention heatmaps in one place",
+                "AI-powered suggestions tied to the patterns the maps reveal",
+                "Mobile and desktop behaviour, side by side",
+                "Real-time data — no waiting for long reports",
+              ]}
+            />
+          </div>
+        </Card>
       </Section>
 
       <FAQ title="Shopify heatmaps — frequently asked" items={faqs} />
@@ -201,8 +498,8 @@ export default function ShopifyHeatmapsPage() {
       />
 
       <CTA
-        title="See where customers click, scroll, and stop"
-        body="DynoWeb's heatmaps show you exactly where attention goes on every page — then hand you the fix for the friction they reveal. Lightweight and SEO-safe."
+        title="Turn Customer Behavior Into Better Conversions"
+        body="Every click, scroll, and interaction tells you something about your customers' experience. DynoWeb's Shopify heatmap app helps retailers find untapped opportunities, remove obstacles, and optimise their store using actual consumer behaviour."
         primaryLabel="Start free trial"
         secondary={{ label: "See pricing", href: "/pricing" }}
       />
