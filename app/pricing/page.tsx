@@ -4,12 +4,12 @@ import Footer from "@/app/components/Footer";
 import PricingSection from "@/app/components/Pricing";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "DynoWeb Pricing — Shopify CRO App Plans & Features",
   description:
     "Simple, transparent DynoWeb pricing. Start free with 1,500 sessions/month. Scale to Growth ($14/mo), Pro ($29/mo), or Custom (from $79/mo). MCP access included on every plan.",
   alternates: { canonical: "/pricing" },
   openGraph: {
-    title: "Pricing | DynoWeb",
+    title: "DynoWeb Pricing — Shopify CRO App Plans & Features",
     description:
       "Simple, transparent DynoWeb pricing. Start free. Scale when you need more sessions, AI credits, and CRO firepower.",
     url: "https://www.dynoweb.app/pricing",

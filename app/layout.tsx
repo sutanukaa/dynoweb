@@ -18,7 +18,7 @@ const _desc =
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.dynoweb.app"),
   title: {
-    default: "DynoWeb — See exactly what to fix in your Shopify store",
+    default: "DynoWeb — Shopify CRO App | Fix What's Losing Sales",
     template: "%s | DynoWeb",
   },
   description: _desc,
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.dynoweb.app",
     siteName: "DynoWeb",
-    title: "DynoWeb — See exactly what to fix in your Shopify store",
+    title: "DynoWeb — Shopify CRO App | Fix What's Losing Sales",
     description: _desc,
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "DynoWeb — Shopify CRO app" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DynoWeb — See exactly what to fix in your Shopify store",
+    title: "DynoWeb — Shopify CRO App | Fix What's Losing Sales",
     description: _desc,
     images: ["/logo.png"],
   },

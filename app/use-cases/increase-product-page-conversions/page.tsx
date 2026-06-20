@@ -78,8 +78,8 @@ export default function IncreaseProductPageConversionsPage() {
         eyebrow="Use case — increase Shopify product page conversions"
         title="Turn More Product Page Visitors Into Buyers"
         lead="Find out why visitors leave your product pages without buying — wrong image order, weak CTAs, poor mobile UX — and get exact fixes to boost conversions. Optimize your highest-intent pages with evidence, not guesswork."
-        primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
-        secondaryCta={{ label: "See how it works", href: "/use-cases" }}
+        primaryCta={{ label: "See How It Works", href: "/use-cases" }}
+        secondaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
         highlights={["Click & scroll heatmaps", "Hesitation replays", "PDP-specific AI fixes", "Draft-theme preview"]}
         image="/clickHeatmap.png"
         imageAlt="DynoWeb click heatmap on a Shopify product page"

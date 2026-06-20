@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "DynoWeb vs Hotjar — Better Shopify CRO at a Lower Cost",
   description:
-    "Hotjar shows a heatmap. DynoWeb gives you the fix. See why Shopify merchants switching from Hotjar get faster optimization cycles and dev-ready fixes.",
+    "Hotjar shows a heatmap. DynoWeb gives you the fix. See why Shopify merchants switching from Hotjar get 3x faster optimization cycles and dev-ready fixes.",
   alternates: { canonical: "https://www.dynoweb.app/vs/hotjar" },
   openGraph: {
     title: "DynoWeb vs Hotjar — Better Shopify CRO at a Lower Cost",
@@ -75,9 +75,9 @@ export default function VsHotjarPage() {
     >
       <Hero
         eyebrow="Tool comparison — 2026"
-        title="DynoWeb vs Hotjar for Shopify"
+        title="Why Shopify Merchants Switch from Hotjar to DynoWeb"
         lead="Hotjar is an observation tool — it shows you heatmaps, session recordings, and survey responses. DynoWeb is an action tool built natively for Shopify: it captures the same behavioral signals and then converts them into AI-prioritised fix recommendations with step-by-step implementation guides. Here is how they compare."
-        primaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb", external: true }}
+        primaryCta={{ label: "Switch Today", href: "https://apps.shopify.com/dynoweb", external: true }}
         secondaryCta={{ label: "See Shopify CRO guide", href: "/shopify-cro" }}
         highlights={["Same heatmaps & replays", "Plus AI fix suggestions", "Shopify-native", "Sub-40 KB tracker"]}
       />

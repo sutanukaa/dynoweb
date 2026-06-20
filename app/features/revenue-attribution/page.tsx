@@ -77,8 +77,8 @@ export default function RevenueAttributionPage() {
         eyebrow="Feature — Shopify revenue attribution"
         title="See Which Fixes Actually Increased Your Shopify Revenue"
         lead="Tie every fix to actual revenue. DynoWeb's revenue attribution connects behavioral insights to sales via Shopify's order webhooks, so you know exactly which changes moved the needle — not which ones you hoped would."
-        primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
-        secondaryCta={{ label: "Book a demo", href: "/contact-us" }}
+        primaryCta={{ label: "Book Demo", href: "/contact-us" }}
+        secondaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
         highlights={["Native order webhooks", "Revenue per page & journey", "Fix-level ROI", "Server-side accuracy"]}
         image="/RevenueAttribution.png"
         imageAlt="DynoWeb revenue attribution dashboard for a Shopify store"

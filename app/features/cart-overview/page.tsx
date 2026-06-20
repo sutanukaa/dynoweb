@@ -72,7 +72,7 @@ export default function CartOverviewPage() {
         eyebrow="Feature — Shopify cart abandonment analytics"
         title="Stop Losing Sales at Checkout — Cart Analytics for Shopify"
         lead="DynoWeb's cart overview tracks every add-to-cart, hesitation, and exit — then tells you exactly what to fix to recover lost revenue. See the moment intent breaks, and close the gap."
-        primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
+        primaryCta={{ label: "Start Free Trial", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "Reduce cart abandonment", href: "/use-cases/reduce-cart-abandonment" }}
         highlights={["Add-to-cart to checkout funnel", "Exact drop-off points", "Hesitation signals", "Recovery fixes"]}
         image="/CartOverview.png"

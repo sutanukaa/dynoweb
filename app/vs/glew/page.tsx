@@ -78,9 +78,9 @@ export default function VsGlewPage() {
     >
       <Hero
         eyebrow="Tool comparison — 2026"
-        title="DynoWeb vs Glew for Shopify"
+        title="DynoWeb vs Glew: Actionable Fixes vs Reports"
         lead="Glew is a reporting and business-intelligence platform — it tells you what happened across sales, inventory, and customers. DynoWeb is a behavioral CRO tool — it shows you why your store converts the way it does and hands you the exact fix. Here's how reporting and optimization compare, and why most growing Shopify stores end up wanting both."
-        primaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb", external: true }}
+        primaryCta={{ label: "Book Demo", href: "/contact-us" }}
         secondaryCta={{ label: "See Shopify analytics guide", href: "/shopify-analytics" }}
         highlights={["Behavioral analytics", "Dev-ready fixes, not reports", "On-page friction signals", "Revenue attribution"]}
       />

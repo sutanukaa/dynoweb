@@ -80,9 +80,9 @@ export default function VsMicrosoftClarityPage() {
     >
       <Hero
         eyebrow="Tool comparison — 2026"
-        title="DynoWeb vs Microsoft Clarity for Shopify"
+        title="Why Free Isn't Enough: DynoWeb vs Microsoft Clarity for Shopify"
         lead="Microsoft Clarity is one of the best free behavior analytics tools available — unlimited recordings, solid heatmaps, and a polished dashboard. But it is built for the general web. DynoWeb is built specifically for Shopify: it tracks add-to-cart funnels with order-webhook attribution, generates AI-prioritised fix suggestions, and integrates natively with Shopify's privacy and theme infrastructure."
-        primaryCta={{ label: "Install DynoWeb free", href: "https://apps.shopify.com/dynoweb", external: true }}
+        primaryCta={{ label: "See Pricing", href: "/pricing" }}
         secondaryCta={{ label: "See Shopify analytics guide", href: "/shopify-analytics" }}
         highlights={["Shopify order attribution", "AI fix suggestions", "Native app, no script tag", "GDPR-ready"]}
       />

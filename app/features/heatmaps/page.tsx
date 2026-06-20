@@ -74,7 +74,7 @@ export default function HeatmapsFeaturePage() {
         eyebrow="Feature — Shopify click heatmap tool"
         title="Visual Heatmaps for Every Page of Your Shopify Store"
         lead="See exactly where customers click, tap, and stop scrolling on every page of your Shopify store. Click heatmaps, scroll maps, and attention maps in one place — lightweight and SEO-safe."
-        primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
+        primaryCta={{ label: "View Demo", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "Read the heatmap guide", href: "/shopify-heatmaps" }}
         highlights={["3 map types", "Mobile + desktop", "Sub-40 KB tracker", "Connected to AI fixes"]}
         image="/Heatmaps.png"
