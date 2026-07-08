@@ -3,16 +3,16 @@ import React from "react";
 
 const bullets = [
   {
-    title: "Step 1: Watch (Invisibly)",
-    desc: "Our lightweight ~34 KB tracker captures 11 behavioral signals without slowing your store by a single millisecond.",
+    title: "Step 1: Find the Leak",
+    desc: "Our lightweight ~34 KB tracker captures 11 behavioral signals — no slowdown — and the 3-layer AI engine spots revenue-leaking gaps and scores them by ROI.",
   },
   {
-    title: "Step 2: Think (Like a CRO Expert)",
-    desc: "The 3-layer AI engine processes data, spots revenue-leaking gaps, and scores them by ROI.",
+    title: "Step 2: Deploy the Fix",
+    desc: "DynoWeb acts on your approval: the agent ships Shopify changes, SmartNudge deploys interventions live, SEO Autopilot applies fixes one-click. Or take the exact file and diff and let your dev ship it.",
   },
   {
-    title: "Step 3: Show You How to Fix",
-    desc: "Get an implementation guide with the exact file, before/after diff, and projected lift — ready for your dev to ship.",
+    title: "Step 3: Show the Money",
+    desc: "Impact measures every fix before→after and keeps a running scoreboard of the dollars earned and saved — proof, not a projection.",
   },
 ];
 
@@ -698,16 +698,16 @@ export default function AIShowcaseSection() {
             <div className="ais-headline">
               <h2 className="ais-h2">
                 Your store is leaking revenue.<br />
-                <em>DynoWeb finds exactly where.</em>
+                <em>DynoWeb finds it, fixes it, proves it.</em>
               </h2>
 
               <div className="ais-rule" />
 
               <p className="ais-body">
-                Regular analytics show you <strong>what happened</strong>. DynoWeb shows you <strong>exactly what to fix</strong> — with the file, the diff, and the projected lift. Our AI watches every tap, scroll, and rage-click, then surfaces the highest-ROI fixes ranked by impact.
+                Regular analytics show you <strong>what happened</strong>. DynoWeb <strong>finds the leak, deploys the fix, and shows the money</strong> — each fix measured before&rarr;after. It watches every tap, scroll, and rage-click, then ships the highest-ROI fixes and scores them by real impact.
               </p>
               <p className="ais-body">
-                No dashboards to configure. No analysts to hire. Just plug in your store and the insights — with implementation guides — surface automatically.
+                No dashboards to configure. No analysts to hire. Approve a change and the agent ships it, launch a nudge live, or hand your dev the exact diff — Impact keeps a running tally of every dollar earned and saved.
               </p>
             </div>
 
@@ -729,9 +729,9 @@ export default function AIShowcaseSection() {
 
               <div className="ais-stats" style={{ marginTop: "1.5rem" }}>
                 {[
-                  { v: "Dev-Ready", l: "Every fix ships with the file path, before/after diff, and impact estimate." },
-                  { v: "You're In Control", l: "Nothing touches your store until your team decides to ship it." },
-                  { v: "Action, Not Data", l: "Hotjar shows a heatmap. We give you the fix." },
+                  { v: "It Ships the Fix", l: "The agent applies Shopify changes, nudges deploy live, SEO fixes go one-click — or take the diff to your dev." },
+                  { v: "You Approve First", l: "Nothing touches your store until you say go. One-click revert." },
+                  { v: "Measured, Not Guessed", l: "Impact scores every fix before→after and tallies dollars earned and saved." },
                 ].map((s, i) => (
                   <React.Fragment key={s.v}>
                     {i > 0 && <div className="ais-stat-div" />}

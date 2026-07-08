@@ -33,6 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/features/cart-overview",
     "/features/mcp-integration",
     "/features/dynoagent",
+    "/features/impact",
+    "/features/seo-autopilot",
+    "/features/smartnudge",
+    "/features/storefront-speed",
+    "/features/brand-dna",
   ].map((path) => ({ url: `${base}${path}`, lastModified: now, changeFrequency: "monthly", priority: 0.8 }));
 
   // Comparison pages

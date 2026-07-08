@@ -1,69 +1,92 @@
 ---
 title: DynoAgent
-description: Understand how DynoAgent helps users investigate performance, generate visual assets, and prepare next actions from one chat interface.
+description: DynoAgent is your AI CRO expert inside DynoWeb — analyze your store, find the fixes that matter, and apply them in Shopify with your approval.
 ---
 
-DynoAgent is your AI assistant inside DynoWeb.
+DynoAgent is your AI CRO expert, built into DynoWeb. Ask it about your store in plain English and it reads your live analytics, finds what's costing you sales, and — once you approve — makes the fix in your Shopify store for you.
 
-It helps users understand store performance, investigate problems, spot growth opportunities, generate on-brand product imagery, and on supported plans, prepare store changes for approval from one chat screen.
+It's powered by **Google Gemini 2.5 Flash**, and it stays focused on one job: growing your store's revenue.
 
 <img src="/DynoAgent.png" alt="DynoAgent main interface" />
 
-## What It Does
+## What DynoAgent can do
 
-DynoAgent brings together store analytics, behavior signals, and store context so users do not have to jump between pages to figure out what is happening.
+**Analyze your store.** Ask about traffic, conversion funnels, revenue, and product performance — or the friction that's leaking sales: rage clicks, dead clicks, error clicks, low scroll depth, and form drop-off. It can compare time periods, break results down by device, page, or traffic source, score your overall store health, flag churn risk, and compare customer cohorts.
 
-Instead of only showing raw numbers, it explains what the data means, what matters most, and what to do next.
+**Find and rank the fixes that matter.** Instead of handing you a wall of charts, DynoAgent surfaces the biggest opportunities and ranks them by the money at risk, so you know what to do first.
 
-Users can ask DynoAgent to analyze traffic, clicks, scroll behavior, frustration, form drop-off, funnels, revenue, product performance, and content opportunities.
+**Make changes in Shopify — with your approval.** DynoAgent can prepare real store edits: update product titles and descriptions, adjust variant prices, create and edit pages and blog posts, create discount codes, update collections, and make bulk product edits. Nothing goes live until you approve it (see *How changes work* below).
 
-On paid plans, it can also research trends, generate content, create new product photos and store visuals on demand, prepare product or page updates, create discounts, and suggest actions that the merchant can approve.
+**Build and launch SmartNudge campaigns.** Ask it to create a popup or nudge, write the copy, set up an A/B test, publish it live, and report back on what it earned.
 
-## What Users Can Do With It
+**Generate visuals.** DynoAgent can create brand-matched product photos and store images, and you can choose the aspect ratio and resolution.
 
-- Ask questions about store performance in plain English.
-- Get summaries, reports, and action plans based on live store data.
-- Investigate specific issues like drop-offs, rage clicks, weak pages, or mobile UX problems.
-- Find top-performing products, pages, and revenue opportunities.
-- Use ready-made quick actions to start common analyses faster.
-- Upload files or screenshots for extra context.
-- Generate new product images and store visuals — banners, lifestyle shots, alternate angles, seasonal variants — directly inside the chat.
-- Save conversation history and return to past chats.
-- Export conversations when needed.
-- On supported plans, approve store changes prepared by DynoAgent.
+**Research the web.** It can pull in current trends and outside context when that helps answer your question.
 
-## How To Use It Best
+**Remember your store.** DynoAgent saves useful insights about your store and recalls them at the start of future chats — so it gets more useful over time instead of starting from scratch each session.
 
-Users get the best results when they ask clear, goal-based questions.
+**Watch for errors.** It can find storefront JavaScript errors and broken (404) pages, and help resolve them.
 
-Good prompts usually mention the problem, the time range, or the page or product they care about.
+## What you can ask
 
-For example, "Why is mobile converting worse than desktop in the last 30 days?" is much better than "How is my store doing?"
+A few examples to get started:
 
-Quick action buttons are the easiest starting point for new users because they already frame useful tasks like store health, revenue growth, funnel leaks, mobile UX, and SEO improvements.
+- "Where am I losing the most sales right now?"
+- "Why are people dropping off at checkout?"
+- "Compare this week's conversion rate to last week and tell me what changed."
+- "Which products get the most views but the fewest sales?"
+- "Write and launch an exit-intent popup with a 10% code for first-time visitors."
+- "Fix the SEO title and meta description on my three best-selling products."
+- "Create a brand-matched hero image for my summer collection."
+- "Set up an A/B test for my free-shipping bar and tell me which version wins."
 
-<img src="/quickActions.png" alt="DynoAgent quick actions" />
+You can also use the **quick-action buttons** for common analyses, and **attach screenshots or files** to give DynoAgent extra context.
 
-If the user wants a deeper answer, they can write a custom prompt or turn on Thinking for more detailed analysis.
+## How changes work (approvals & undo)
 
-<img src="/working.png" alt="DynoAgent working on a deeper analysis" />
+DynoAgent never changes your store silently. When you ask for an edit, it prepares an **approval card** that shows exactly what will change — the current value and the proposed value, side by side.
 
-When the user asks for a new image, DynoAgent generates it directly in the chat. For product imagery, it pulls the product's existing photos and uses them as a visual reference — the new image keeps the same shape, color, branding, and design, while the background, angle, or lifestyle context changes. Users can pick aspect ratio (square, banner, mobile/Stories, etc.) and resolution, and the generated asset can be downloaded right away or queued as a store update for approval.
+1. **Review the card carefully.** Check the before-and-after.
+2. **Approve or decline.** Only approved changes are made.
+3. **It's applied through Shopify's official Admin API** — no theme-file hacks — and recorded in your **Action History**.
+4. **Undo when you need to.** Many changes can be reverted from Action History, and every action stores a snapshot so you have a record of what was done.
 
-<img src="/ImageGeneration.png" alt="DynoAgent generating a new product image" />
+This is the core promise: DynoAgent does the work, but you stay in control.
 
-When DynoAgent prepares a real store change — including pushing a generated image onto a product — the user should review the approval card carefully before executing it.
+<img src="/actionHistory.png" alt="Agent Action History panel listing agent actions with status badges, timestamps, and View details links" />
 
-<img src="/approval.png" alt="DynoAgent approval card for a store change" />
+## Plans and limits
 
-This keeps the merchant in control while still making the workflow much faster.
+DynoAgent is available on paid plans and with the **AI Assistant** add-on. Reads and analysis are lightweight; changes to your store count for more and have a **daily limit that scales with your plan** (higher plans allow more changes per day). A monthly AI usage budget also applies.
 
-After any approved action, users can check Action History to review what happened and, where supported, revert it.
+On the Free plan, DynoAgent's access is limited to core store context — store details, page views, click data, and scroll analysis.
 
-<img src="/actionHistory.png" alt="DynoAgent action history" />
+See the [Plan page](https://dynoweb.app/pricing) for exact limits by tier.
 
-## Plan Note
+## Use DynoWeb from Claude, Cursor, or ChatGPT
 
-On the Free plan, DynoAgent is limited to store context, page views, click data, and scroll analysis.
+Prefer to work from your own AI tools? You can connect DynoWeb as an **MCP server** to Claude.ai, Cursor, or ChatGPT and query your store's analytics from there. See the [MCP guide](https://dynoweb.app/help/mcp) to set it up.
 
-On Pro and above, it expands into deeper analysis, web research, content generation, AI image generation for products and store assets, and approval-based store actions.
+## Privacy and scope
+
+DynoAgent only reads **your own store's** data, scoped to your shop. It's built specifically for e-commerce growth on your storefront — it won't act as a general-purpose chatbot or run arbitrary tasks outside that scope.
+
+## FAQ
+
+**Which AI model powers DynoAgent?**
+Google Gemini 2.5 Flash.
+
+**Will it change my store without asking?**
+No. Every change requires your explicit approval on the approval card before it's applied.
+
+**Can I undo a change?**
+Yes — many changes can be reverted from Action History, where every action is logged with a snapshot.
+
+**Can it write copy and create images?**
+Yes — it can write nudge and page copy and generate brand-matched product and store images.
+
+**Does it remember previous conversations?**
+Yes. Conversation history is saved, and DynoAgent recalls saved insights about your store in future chats.
+
+**Need help?**
+Email us at help@dynoweb.app.

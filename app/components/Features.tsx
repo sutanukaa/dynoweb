@@ -16,6 +16,9 @@ const mockupImgPaths = [
   "/SmartNudge.png",
   "/DynoAgent.png",
   "/MCP-feature.png",
+  "/Impact.png",
+  "/SEOAutopilot.png",
+  "/storefrontSpeed.png",
 ];
 
 interface Bullet { title: string; desc: string; }
@@ -54,6 +57,20 @@ const features: Feature[] = [
     icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17v-6"/><path d="M12 17v-2"/><path d="M17 17v-8"/></svg>),
   },
   {
+    id: "storefront-speed", tab: "Storefront Speed",
+    headline: "Know If Slow Speed Is\nQuietly Costing You Sales",
+    subline: "Verdict first. Real shoppers. Real revenue at stake.",
+    bullets: [
+      { title: "Plain-Language Verdict", desc: "A headline like “A few pages are dragging” before any number — so you know whether to care in a single glance." },
+      { title: "Real-User Core Web Vitals", desc: "Loading (LCP), Responsiveness (INP), Visual stability (CLS), and Server response (TTFB) graded Good / Needs work / Poor — measured from your actual visitors, the way Google grades you." },
+      { title: "Slow Pages by Revenue", desc: "The pages dragging your store, ranked by the real sales flowing through them — so you fix the ones that cost you money first." },
+      { title: "Speed Over Time", desc: "A daily loading-speed trend charted against the “Good” line, so you can watch the store getting faster." },
+    ],
+    caption: "Speed, weighed in revenue.",
+    videoSrc: "/videos/mobile-performance.mp4",
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>),
+  },
+  {
     id: "heatmaps", tab: "Heatmaps",
     headline: "See Where They Click,\nRage, and Scroll",
     subline: "Three views. Every device. Every frustration.",
@@ -88,8 +105,9 @@ const features: Feature[] = [
     bullets: [
       { title: "17+ Built-In Rules", desc: "Button sizing, heading structure, contrast, CTA placement, form visibility, and more." },
       { title: "Pattern Detection", desc: "Frustration clusters, scroll cliffs, engagement drops, mobile gaps, form abandonment." },
-      { title: "AI Reasoning", desc: "Powered by advanced LLMs with configurable monthly cost budgets." },
+      { title: "AI Reasoning", desc: "Powered by Google Gemini 2.5 Flash with configurable monthly cost budgets." },
       { title: "PECTI Scoring", desc: "Proof, Ease, Cost, Time, Impact — broken down per suggestion. Tier badges: Quick Win, Strategic, or Ambitious." },
+      { title: "Error & Broken-Page Detection", desc: "Storefront JavaScript errors and 404s surfaced and ranked by the revenue flowing through them — and DynoAgent can resolve them for you." },
     ],
     caption: "17+ rules · 3 intelligence layers · PECTI scored",
     videoSrc: "/videos/mobile-performance.mp4",
@@ -110,6 +128,20 @@ const features: Feature[] = [
     icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>),
   },
   {
+    id: "seo-autopilot", tab: "SEO Autopilot",
+    headline: "Fix Your Store's SEO\nin One Click",
+    subline: "AI writes it. You apply it. Fully reversible.",
+    bullets: [
+      { title: "Full-Store SEO Scan", desc: "Finds weak titles, thin meta descriptions, missing image alt text, and missing barcodes across products, collections, pages, and articles." },
+      { title: "AI-Written Fixes", desc: "Every fix drafted for you — apply with one click through Shopify's official Admin API. No theme edits, and every change is fully reversible." },
+      { title: "AI-Search (GEO) Readiness", desc: "Adds the product identifiers and structured signals that help ChatGPT, Perplexity, and Google AI cite your store." },
+      { title: "A Moat That Compounds", desc: "A growing count of SEO fixes shipped over time — the history that turns into your store's SEO advantage." },
+    ],
+    caption: "SEO that fixes itself — reversibly.",
+    videoSrc: "/videos/ai-builder.mp4",
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>),
+  },
+  {
     id: "revenue", tab: "Revenue Attribution",
     headline: "Know Exactly Which Fix\nMade You Money",
     subline: "Dollar-level tracking from click to purchase.",
@@ -122,6 +154,20 @@ const features: Feature[] = [
     caption: "Tie every action to real revenue.",
     videoSrc: "/videos/safe-publishing.mp4",
     icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>),
+  },
+  {
+    id: "impact", tab: "Impact",
+    headline: "See Exactly What DynoWeb\nMade You — In Dollars",
+    subline: "Every fix and every nudge, measured before → after.",
+    bullets: [
+      { title: "Running Money Scoreboard", desc: "One headline total combining verified fixes and net SmartNudge revenue — the number that answers “what has this app made me?”" },
+      { title: "Measured the Right Way", desc: "Each fix judged on the metric that fits it — CTA fixes on click-through, frustration fixes on rage clicks, SEO fixes on organic visitors, GEO fixes on verified-live." },
+      { title: "Before → After, vs Your Own Trend", desc: "Difference-in-differences compares each change against your store's overall trend over the same window — so background noise never gets miscredited." },
+      { title: "Honest by Design", desc: "Net of refunds and the control group, labelled estimates never guarantees, and still-measuring fixes show the real data gathered so far." },
+    ],
+    caption: "The money, measured — not guessed.",
+    videoSrc: "/videos/safe-publishing.mp4",
+    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>),
   },
   {
     id: "cart", tab: "Cart Overview",
@@ -170,12 +216,12 @@ const features: Feature[] = [
     headline: "Convert Frustrated Visitors\nWith Behavior-Triggered Nudges",
     subline: "Behavior-triggered. Not timer-triggered.",
     bullets: [
-      { title: "13 Component Types", desc: "Exit-intent rescue, social proof toast, countdown timer, sticky bar, cart nudge, combo/bundle offer, product badges, and more." },
-      { title: "5 Behavioral Triggers", desc: "Frustrated browsing, price hesitation, cart abandonment, high-intent browsing, scroll passers." },
-      { title: "AI-Powered", desc: "AI suggests which intervention to deploy. A/B test nudge variants against each other." },
-      { title: "Revenue Attribution", desc: "See exactly how much each nudge earns. Auto-creates discount codes in Shopify when needed. Monthly impact report." },
+      { title: "16 Nudge Types", desc: "Exit-intent rescue, spin-to-win, scratch card, multi-step quiz, email capture, video popup, social proof toast, countdown timer, cart nudge, bundle offer, and more — plus a 30+ template gallery to launch from." },
+      { title: "Brand DNA Auto-Styling", desc: "Crawls your store and auto-styles every nudge to your palette, fonts, and voice. Festival and seasonal design library included." },
+      { title: "On-Site AND Email Delivery", desc: "Fire nudges live on your storefront or send design-matched coupon emails — behavior-triggered, not timer-triggered." },
+      { title: "Holdout Attribution", desc: "Control-group testing reports true lift and NET incremental revenue after refunds — not just impressions and clicks. Auto-creates discount codes in Shopify when needed." },
     ],
-    caption: "13 components · 5 triggers · A/B tested",
+    caption: "16 nudge types · Brand DNA · holdout-measured",
     videoSrc: "/videos/ai-builder.mp4",
     icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>),
   },
@@ -276,6 +322,9 @@ export default function FeaturesVideoSection() {
     smartnudge: "/SmartNudge.png",
     dynoagent: "/DynoAgent.png",
     mcp: "/MCP-feature.png",
+    "storefront-speed": "/storefrontSpeed.png",
+    "seo-autopilot": "/SEOAutopilot.png",
+    impact: "/Impact.png",
   };
   const mockupImg = mockupImgMap[feat.id] ?? `/feature${active + 1}.png`;
 
@@ -631,7 +680,7 @@ export default function FeaturesVideoSection() {
             <div className="divider-line"/>
             <h2 className="sec-heading">See DynoWeb in action.</h2>
             <p style={{fontSize:"clamp(.875rem, 1.05vw, 1.5rem)",color:"rgba(255,255,255,0.3)",lineHeight:1.7,maxWidth:"28rem"}}>
-              Twelve capabilities working as one continuous loop — from raw signal to the exact fix.
+              Sixteen capabilities working as one continuous loop — from raw signal to the fix, and the money it made.
             </p>
           </div>
 
@@ -666,7 +715,7 @@ export default function FeaturesVideoSection() {
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
                   <span className="feat-browser-url">
-                    dynoweb.app/{feat.id === "dynoagent" ? "agent" : feat.id === "ai" ? "suggestions" : feat.id === "cro-report" ? "report" : feat.id}
+                    dynoweb.app/{({ dynoagent: "agent", ai: "fix", "cro-report": "fix/cro-report", "seo-autopilot": "fix/seo-autopilot", impact: "impact", "storefront-speed": "", smartnudge: "nudges", heatmaps: "explore/heatmaps" } as Record<string, string>)[feat.id] ?? feat.id}
                   </span>
                 </div>
               </div>

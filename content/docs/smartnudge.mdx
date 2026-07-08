@@ -1,162 +1,132 @@
 ---
 title: SmartNudge
-description: Understand how SmartNudge turns visitor behavior into targeted on-site interventions you can ship in minutes.
+description: SmartNudge turns visitor behavior into on-site nudges — popups, bars, wheels, and more — styled to your brand, delivered on-site and by email, and measured against a control group.
 ---
 
-SmartNudge is where DynoWeb moves from observing visitor behavior to acting on it. You build behavior-triggered messages that appear on your storefront when a visitor matches a specific pattern — without touching the live theme and without writing code. DynoWeb watches the signals and proposes the message; you decide what gets created, what it says, what it looks like, and when it goes live.
+SmartNudge is where DynoWeb crosses the last mile: instead of just telling you a fix, it **deploys** it. You build behavior-triggered on-site messages — popups, bars, wheels, quizzes, and more — that recover abandoning shoppers, grow your email list, and lift average order value. Every nudge is styled to your brand automatically, and every nudge is measured against a control group so you know the real revenue it earned.
 
-<img src="/SmartNudge.png" alt="SmartNudge dashboard overview showing the list of interventions with status badges, performance stats, and action buttons" />
+<img src="/SmartNudge.png" alt="SmartNudge dashboard listing interventions with status badges, performance stats, and a Create button" />
 
-## What It Does
+## What it does
 
 SmartNudge has two connected parts.
 
-The **intervention list** shows every nudge you've created, its current status (active, paused, or draft), and performance data: how many times it was shown, clicked, and dismissed. AI-suggested nudges also appear here for you to review before activating — nothing fires on your storefront until you flip it to active.
+The **intervention list** shows every nudge you've created, its status (active, paused, or draft), and its performance — impressions, clicks, and the net revenue it produced. AI-suggested nudges also appear here for you to review; nothing fires on your storefront until you activate it.
 
-The **editor** is a five-tab workspace that walks you through the brand fit, the layout, the copy, the visual design, and the behavioral trigger before you push the nudge live.
+The **builder** is a live-preview workspace. As you move through **Template → Content → Trigger → Delivery → Launch**, a preview of your nudge updates in real time beside you, so you always see exactly what shoppers will see.
 
-Once you activate an intervention, it fires on the storefront whenever a visitor matches the trigger conditions you set. You can pause, edit, or delete it from the dashboard at any time.
+## Nudge types
 
-## Components
+SmartNudge ships **16 nudge types**, so you can match the format to the goal:
 
-Eleven component types are available, each suited to a different moment in the visitor journey:
+| Type | Best for |
+|---|---|
+| **Promotional popup** | Offers, discounts, announcements |
+| **Exit-intent rescue** | Winning back visitors about to leave |
+| **Sticky announcement bar** | Always-visible promos or shipping thresholds |
+| **Free-shipping progress bar** | Nudging carts over the free-shipping line |
+| **Floating cart nudge** | Reminding shoppers what's in their cart |
+| **Fullscreen takeover** | High-impact welcome or campaign moments |
+| **Side message** | Subtle, non-blocking prompts |
+| **Social proof toast** | "Someone just bought…" style trust prompts |
+| **Countdown timer** | Urgency for sales and drops |
+| **Product badge** | Bestseller / low-stock style callouts |
+| **Combo / bundle suggestion** | Upsells and "frequently bought together" |
+| **Spin-to-win** | Gamified email capture with a prize wheel |
+| **Scratch card** | Gamified reveal offers |
+| **Multi-step form / quiz** | Guided lead capture and product finders |
+| **Email capture** | Simple list-building popups |
+| **Video popup** | Product or brand video moments |
 
-- **Promotional Popup** — a centered modal with a headline, body copy, and CTA button. Best for discount offers and rescue moments.
-- **Sticky Announcement Bar** — a persistent bar at the top of the page. Best for store-wide messages and free-shipping reminders.
-- **Exit-Intent Rescue** — a popup triggered when a visitor's cursor moves toward the browser chrome. Best for last-chance retention.
-- **Floating Cart Nudge** — a widget showing progress toward a free-shipping threshold on the cart page.
-- **Social Proof Toast** — a compact notification showing recent buyer activity on product pages.
-- **Combo Bundle Suggestion** — a frequently-bought-together recommendation shown on product pages.
-- **Countdown Timer** — a sticky bar with a live countdown. Best for limited-time campaigns.
-- **Product Badge** — a label injected directly onto product cards.
-- **Free Shipping Progress Bar** — a bottom bar showing distance to the free-shipping threshold throughout the store.
-- **Fullscreen Takeover** — an immersive landing-style overlay. Best for major launches or seasonal campaigns.
-- **Side Message** — a slide-in panel anchored to the page edge. Best for context-sensitive offers without blocking the page.
+To start fast, the **template gallery** offers **30+ ready-made starters** across list-building, cart recovery, upsell, exit-intent, seasonal, social proof, announcements, welcome, gamification, and celebration — pick one and customize.
 
-<img src="/SmartNudge-step1.png" alt="The component selection grid showing all component types as cards with Select buttons" />
+<img src="/SmartNudge-templates.png" alt="SmartNudge template gallery showing ready-made starter templates grouped by goal category" />
 
-## The Five-Tab Editor
+## Brand DNA — nudges that look like your store
 
-When you open or create a nudge, you land in a five-tab editor. The tabs are sequential but you can jump between them: Brand → Templates → Content → Design → Trigger. A live preview panel runs alongside every tab so you see the result in real time.
+Before you design anything, SmartNudge can learn your brand. **Brand DNA** crawls representative pages of your storefront and extracts:
 
-### 1. Brand
+- Your **color palette** (background, text, headline, CTA, accent, and more)
+- Your **fonts** (headline and body, matched to fonts that actually load on your store)
+- Your **brand personality and voice** (tone, adjectives, words to use and avoid)
+- Your **imagery style** and logo
 
-The Brand tab is where your nudges learn what your store looks and sounds like. You give SmartNudge a URL — your own store, a sister site, or a competitor whose look you want to match — and DynoWeb crawls a handful of representative pages (homepage, about, a collection, a product page, contact) and extracts a complete brand profile.
+Extraction takes around 30 seconds. From then on, every nudge you build inherits these design tokens, so it looks native to your store out of the box — no manual styling required. You can save multiple brand profiles per store and edit any field after extraction.
 
-What gets captured:
+<img src="/SmartNudge-brand.png" alt="Brand DNA panel showing the extracted color palette, fonts, personality traits, and voice guidance for a store" />
 
-- **Visual identity** — logo, favicon, full color palette (primary, secondary, accent, background, text, CTA), and detected theme (light or dark)
-- **Typography** — headline and body fonts, matched to a list of 1,500+ Google Fonts so anything we propose actually loads on your storefront
-- **Personality** — three or four brand traits (e.g. modern, playful, premium) and tone guidance
-- **Voice guide** — sample phrases that match how your store talks, plus do/don't word lists
-- **Imagery style** — visual keywords, mood, photography style
-- **Design tokens** — colors, type scale, spacing, CTA shape, animation, layout — pre-resolved into the format the popup engine actually consumes
+## Festival & seasonal designs
 
-Extraction takes around 30 seconds. You'll see a six-step progress indicator: Fetching homepage → Discovering internal pages → Crawling pages → Extracting colors and fonts → Analyzing personality and voice → Generating tokens.
+SmartNudge also includes ready-made **festival and seasonal designs** covering both global and regional moments — Diwali, Holi, Onam, Dhanteras, Raksha Bandhan, Eid, Christmas, Halloween, New Year, Valentine's, Black Friday / Cyber Monday, Mother's and Father's Day, Back to School, and more.
 
-After extraction, every field is editable. Open a color in the palette editor and pick a different shade. Swap a personality trait. Edit the voice guide. Nothing is locked in.
+You pick one from the design library while building a nudge — open **Browse designs** and choose the festive look you want. Each festival comes in a few style levels, from a clean festive card to a richer, ornamented layout with hero artwork, up to a premium editorial look — so you can dial the styling up or down for the occasion.
 
-You can save up to 20 brand profiles per store, so you can keep separate identities for different campaigns or sub-brands.
+Festival designs blend with your Brand DNA intelligently: the festival sets the colors and ornament, while your brand keeps its fonts and button style — so it feels seasonal *and* on-brand.
 
-When you're happy, click **Apply Design & Generate Image** to push the brand into the current nudge. A six-variant rotation system ensures that two nudges built from the same brand profile won't look visually identical — colors, image placement, content alignment, and decorative styling rotate to keep things fresh.
+## Building a nudge
 
-<img src="/SmartNudge-brand.png" alt="The Brand tab showing the extraction progress indicator and the brand profile card" />
+Open the builder and you'll move through five steps, with a live preview updating beside you the whole time:
 
-### 2. Templates
+1. **Template** — start from a ready-made template or a blank component type.
+2. **Content** — write your headline, body, and CTA (or generate them with AI), pick or generate an image, and apply your Brand DNA and design.
+3. **Trigger** — choose who sees the nudge and when: a visitor segment (exit intent, cart abandoner, price hesitator, high-intent browser, and more), plus frequency and target pages.
+4. **Delivery** — choose how it reaches shoppers: on-site, and — when the nudge captures an email — a follow-up coupon email (see below).
+5. **Launch** — review and activate.
 
-The Templates tab opens a gallery of 30+ curated, ready-to-customize popup templates organized by goal: list building, cart recovery, upsell, seasonal campaigns, gamification, and more. One click drops a template into your nudge with copy, layout, and design tokens already filled in. Use it as a starting point and tune from there — or keep it as-is.
+<img src="/SmartNudge-editor.png" alt="SmartNudge builder with the content step open on the left and a live popup preview on the right" />
 
-### 3. Content
+### AI copy and images
 
-The Content tab is where you write the message your visitors actually see.
+- **Write with AI** — draft headline, body, and CTA copy matched to the nudge type, your brand voice, and the trigger context. It's a starting draft you can edit freely.
+- **Generate images with AI** — create brand-matched product and background images, with a built-in **background remover** so product shots drop cleanly onto any design.
 
-- **Intervention name** — internal label only, never shown to visitors.
-- **Headline** — the shopper-facing heading.
-- **Body text** — one or two sentences with the core message or offer.
-- **CTA button text** — the action label on the button.
-- **Promo code** — optional. Pre-create the code in Shopify Discounts, then reference it here so visitors copy it with one click.
-- **Image** — see below.
+AI generation is quota-based and scales with your plan.
 
-The **Make with AI** button at the top of the tab generates all the text fields for you in one pass, matched to the component, brand profile, and trigger you've selected. A frustrated browser gets a different message than a cart abandoner; a luxury brand gets a different tone than a streetwear brand. The output is a starting draft — you read it, edit anything that doesn't sound right, and decide what stays.
+## Delivery: on-site and email
 
-#### Image Picker (new)
+SmartNudge reaches shoppers two ways:
 
-Most components support an image (the two exceptions are Product Badge and Free Shipping Progress Bar, which are text-only by design). The image picker offers four sources:
+- **On-site** — the nudge renders on your storefront through DynoWeb's lightweight widget, triggered by real behavior (exit intent, scroll, time on page, cart value, and more).
+- **Email** — when a shopper enters their email in a nudge, DynoWeb can send them a **coupon email that inherits the same design** as the popup, so the follow-up feels like a natural continuation of the offer.
 
-- **Upload** — drag-and-drop or file picker. JPEG, PNG, WebP, or GIF up to 5MB. The file is stored in your Shopify Files library, so you own the asset on your own CDN.
-- **Shopify product catalog** — browse your products by title, collection, or type and pick a variant image directly. The nudge references the product image already on your store, no copying needed.
-- **AI generation** — give a prompt, pick a style preset (Product Showcase, Lifestyle, Abstract Pattern, Seasonal Festive, Minimalist, or Brand-Matching), and DynoWeb generates an image and saves it to your Shopify Files. Daily cap of 10 generated images per store.
-- **URL** — paste any external image URL.
+## Attribution — proof, not guesswork
 
-When you click **Apply Design & Generate Image** on the Brand tab, an AI image is generated in the background using your brand colors, imagery style, personality, and detected theme — and dropped into the picker for you. You can swap it out, tweak the placement, or generate again.
+This is what sets SmartNudge apart. Every nudge runs against a **control group** (a default 10% holdout who don't see it). SmartNudge then compares the two groups and reports:
 
-Placement options on the picker include Hero (full-width above the headline), Side-Left / Side-Right (50/50 split), Background (behind content with adjustable overlay opacity), Thumbnail (inline), or None. You can adjust fit (cover, contain, fill), opacity, border radius, and alt text.
+- **Lift** — the difference in conversion rate between shoppers who saw the nudge and the holdout.
+- **Incremental revenue** — the *net* extra revenue the nudge produced, after normalizing the holdout to the same size and subtracting it out.
 
-<img src="/SmartNudge-step2.png" alt="The Content tab with all fields filled in, the Make with AI button at the top right, and the Image Picker at the bottom showing the four source tabs" />
+To keep things honest, SmartNudge waits until there's enough data before showing a precise percentage — below that threshold it tells you the result is still forming rather than quoting a number it can't stand behind. You'll find this under **Nudges → Attribution**.
 
-### 4. Design
+<img src="/SmartNudge-attribution.png" alt="SmartNudge attribution view showing shown-vs-holdout conversion, lift, and net incremental revenue per nudge" />
 
-The Design tab gives you fine-grained control over how the nudge looks. If you applied a brand profile, every field here is pre-filled — you only touch what you want to override.
+## A/B testing
 
-- **Colors** — 11 named tokens (background, text, headline, body, accent, CTA background, CTA text, border, etc.), each with its own color picker.
-- **Typography** — font family dropdown drawn from the supported Google Fonts list, with size and weight sliders for headline and body separately.
-- **Spacing** — padding, border radius, popup width, gap between elements.
-- **CTA button** — shape selector (square, rounded, pill), padding, shadow, full-width toggle.
-- **Animation** — entry animation dropdown with live preview and duration slider.
-- **Close button** — X / text / icon, top-right or top-left.
-- **Layout** — popup position on screen, content alignment.
+Run two variants head-to-head — different copy, component, or trigger timing. You set the traffic split, DynoWeb assigns visitors, and a statistical test recommends the winner once results are significant. Use A/B tests to validate a clear hypothesis, not to go fishing.
 
-A **Preset themes** menu offers 25 one-click looks (five core, ten color-based, ten seasonal) you can apply and then continue customizing.
+<img src="/AB-testing.png" alt="SmartNudge A/B test view comparing two variants with traffic split, conversion metrics, and a recommended winner" />
 
-<img src="/SmartNudge-step3.png" alt="The Design tab showing color tokens, typography controls, spacing options, and the preset themes menu" />
+## The Suggestion → Nudge loop
 
-### 5. Trigger
+DynoWeb connects the problem to the fix. When a revenue leak surfaces in your Suggestions or CRO Report, you can answer it directly with a nudge. Once that nudge starts winning against its holdout, the original leak is marked **"acted on — working,"** and DynoWeb shows you the money it earned.
 
-The Trigger tab decides who sees the nudge and when. Pick a visitor segment — a behavioral pattern that has to match before the nudge fires — from options including:
+## Plans and limits
 
-- **Frustrated Browsers** — rage-clicks with no conversion intent
-- **Price Hesitators** — 30+ seconds on a product page without adding to cart
-- **Cart Abandoners** — added to cart, abandoned at checkout
-- **High-Intent Browsers** — 3+ page views with deep scroll
-- **Exit Intent** — cursor moving toward the browser chrome
-- **Scroll Passers** — scrolled past 80% but never clicked
+The number of **live nudges**, AI **copy** and **image** generations, and Brand DNA **extractions** you can run each month scale with your plan. See the [Plan page](https://dynoweb.app/pricing) for the limits on each tier.
 
-Frequency controls (once per session, once per day, once ever, or always) and target pages (all pages, product, collection, or cart only) finalize the targeting.
+## FAQ
 
-<img src="/SmartNudge-step4.png" alt="The Trigger tab showing the segment dropdown, live condition preview panel, and frequency and page selectors" />
+**Do I need to be a designer?**
+No. Brand DNA styles nudges to your store automatically, and every template is ready to publish.
 
-## Live Preview
+**Will nudges slow down my store?**
+No — nudges render through DynoWeb's lightweight, async storefront widget.
 
-The preview panel runs alongside every tab. It shows your nudge rendered as it would appear on the storefront, updating in under 50ms after any field change.
+**How do I know a nudge is actually working?**
+Every nudge is measured against a holdout control group, and Attribution shows the net revenue it earned — not just clicks.
 
-- **Viewport** — toggle between desktop (1280px), tablet (768px), and mobile (375px) to confirm the layout holds at every size.
-- **Background** — switch between light and dark to spot color contrast issues.
-- **Zoom** — 50–200% slider for fine inspection.
-- **Animation replay** — re-trigger the entry animation without rebuilding the nudge.
-- **Preview on my store** — open a one-time preview link on your live storefront so you can see the nudge in its real context (without firing it for real visitors).
+**Can DynoAgent build a nudge for me?**
+Yes. Ask DynoAgent to create, write, and launch a nudge — you approve before it goes live.
 
-## How To Use It Best
-
-The best starting point is to pick one visitor segment that represents a known problem. If mobile bounce rates are high, start with Frustrated Browsers or Price Hesitators. If checkout abandonment is the issue, Cart Abandoners with an Exit-Intent Rescue or a Promotional Popup is the natural pair.
-
-If this is your first nudge, start on the Brand tab — even if you're using a template — so the design and AI-generated copy actually match your store's look and voice. A 30-second extraction up front saves an hour of manual color tweaking later.
-
-On Content, use **Make with AI** for the first draft, then read it carefully. The AI gives you a starting point; you decide whether the headline lands, whether the body is too pushy, whether the CTA matches your brand voice. Edit freely.
-
-On Design, you usually don't need to touch most fields if you applied a brand profile. Spend your time on the close button (visitors who can't dismiss easily get frustrated) and the entry animation (a slow fade reads as premium, a sharp slide reads as urgent — pick what fits the moment).
-
-On Review, confirm component, copy, trigger, and frequency match the scenario you intended. Save as a draft if you want to think about it; activate when you're sure.
-
-After a nudge has been running for a few days, check the performance column. A high shown count with a low click count usually means the copy or CTA needs adjusting. A high dismiss count can mean the nudge is firing too early or too frequently — try tightening the trigger.
-
-## A/B Testing Nudges
-
-Active interventions can be placed into an A/B test to compare two variants — different copy, different components, or different trigger timing — against each other. You set the traffic split, DynoWeb randomly assigns visitors to each variant, and conversion metrics are tracked separately per variant in the SmartNudge dashboard.
-
-Use A/B tests to validate hypotheses, not to discover them: form a clear theory ("the discount needs to be visible in the headline, not the body"), build the two variants that test it, and let the data tell you which one wins.
-
-<img src="/AB-testing.png" alt="A/B test results dashboard showing variant comparison with traffic split, conversion metrics, and performance charts" />
-
-## Summary
-
-SmartNudge turns the behavioral signals DynoWeb collects into real-time messages on your storefront. DynoWeb finds the moment, drafts the message, matches it to your brand, and renders the preview — you choose what gets built, what it says, and when it goes live. Every nudge stays under your control: pause, edit, A/B test, or delete from the dashboard at any time.
+**Need help?**
+Email us at help@dynoweb.app.

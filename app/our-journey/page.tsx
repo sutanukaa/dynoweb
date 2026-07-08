@@ -378,6 +378,9 @@ export default function OurJourneyPage() {
             <p>
               Dynoweb is the tool we wished we&apos;d had when we were running our agency — built for the merchant directly, priced for the merchant directly, and focused on the one thing every store actually needs.
             </p>
+            <p>
+              And it no longer stops at the diagnosis. Dynoweb deploys the fix — DynoAgent prepares the change, SmartNudge intervenes on the storefront, SEO Autopilot ships reversible SEO wins — and then <em>Impact measures the money each fix actually earned</em>. Find it, fix it, and prove what it was worth.
+            </p>
           </section>
 
           <div className="oj-closing">

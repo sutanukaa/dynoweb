@@ -50,11 +50,11 @@ const faqs = [
   },
   {
     q: "Do I have to apply the fixes automatically?",
-    a: "No. DynoWeb never pushes changes to your live theme on its own. Each suggestion opens into an implementation guide you control — make the change in the theme editor yourself, or hand the code diff to your developer. You stay in charge of what ships.",
+    a: "No. DynoWeb never pushes changes to your live theme on its own. Each suggestion opens into an implementation guide you control — make the change in the theme editor yourself, hand the code diff to your developer, or have DynoAgent, SmartNudge, or SEO Autopilot apply it for you on your approval. You stay in charge of what ships.",
   },
   {
     q: "What does 'projected lift' mean?",
-    a: "Projected lift is DynoWeb's estimate of how much a given fix is likely to improve conversion or revenue, based on the behavioral evidence and the page's traffic. It helps you decide which fixes are worth prioritising, and after you ship, revenue attribution shows the actual result.",
+    a: "Projected lift is DynoWeb's estimate of how much a given fix is likely to improve conversion or revenue, based on the behavioral evidence and the page's traffic. It helps you decide which fixes are worth prioritising, and after you ship, the Impact scoreboard measures the actual before-and-after result via revenue attribution.",
   },
   {
     q: "How does AI help improve Shopify sales?",
@@ -257,7 +257,7 @@ export default function AiSuggestionsPage() {
 
       <CTA
         title="From behavioral data to dev-ready fix"
-        body="DynoWeb's AI doesn't just tell you something is wrong — it tells you exactly what to change, how, and what it's worth. Install free and watch it work on your store."
+        body="DynoWeb's AI doesn't just tell you something is wrong — it tells you exactly what to change, hands it to DynoAgent, SmartNudge, or SEO Autopilot to apply on your approval, and measures the before-and-after lift. Install free and watch it work on your store."
         primaryLabel="Install free"
         secondary={{ label: "See pricing", href: "/pricing" }}
       />

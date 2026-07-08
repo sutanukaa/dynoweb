@@ -41,7 +41,7 @@ export default function HeroSectionOne() {
   }, []);
 
   const line1 = ["Stop"];
-  const line2 = ["See", "exactly", "what", "to", "fix."];
+  const line2 = ["Fix", "it", "and", "see", "the", "money."];
 
   const trustBadges = [
     "Sub-40 KB tracker",
@@ -713,7 +713,7 @@ export default function HeroSectionOne() {
 
             {/* Sub */}
             <p className="hero-sub anim-in delay-200">
-              Find the friction. Ship the exact fix — file, diff, projected lift.
+              DynoWeb finds the leak, deploys the fix, and shows the money — each one measured before&rarr;after. Let the AI agent ship it on your approval, launch nudges live, or hand your dev the exact diff.
             </p>
 
             {/* CTA */}

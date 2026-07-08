@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BarChart3, PlaySquare, MousePointerClick, Sparkles, DollarSign, Plug, Bell, Bot } from "lucide-react";
+import { BarChart3, PlaySquare, MousePointerClick, Sparkles, DollarSign, Plug, Bell, Bot, Search, Gauge, TrendingUp } from "lucide-react";
 
 import {
   MarketingShell,
@@ -38,7 +38,10 @@ const bundle = [
   { icon: MousePointerClick, tag: "Heatmaps", title: "Click, scroll & attention maps", body: "Visual maps for every page and device, so you see where attention goes and where it dies." },
   { icon: Sparkles, tag: "AI", title: "AI fix suggestions", body: "A 3-layer engine ranks revenue-leaking gaps by ROI and delivers a dev-ready fix — file path, diff, and projected lift." },
   { icon: Bell, tag: "SmartNudge", title: "Behavioral interventions", body: "Trigger exit-intent offers, cart nudges, and social-proof toasts from real frustration signals — the live way DynoWeb deploys a fix to your storefront." },
-  { icon: Bot, tag: "DynoAgent", title: "AI agent + actions", body: "Ask your store anything and let DynoAgent diagnose, generate on-brand imagery, and prepare changes for your one-click approval." },
+  { icon: Bot, tag: "DynoAgent", title: "AI agent + actions", body: "Ask your store anything. DynoAgent runs on Google Gemini 2.5 Flash with 60+ tools spanning analytics, Shopify writes, SmartNudge, image generation, web search, and memory — it diagnoses and prepares changes for your one-click approval." },
+  { icon: Search, tag: "SEO", title: "SEO Autopilot", body: "One-click, reversible SEO fixes — titles, meta, alt text, and structured data applied to your store, and undoable any time." },
+  { icon: Gauge, tag: "Speed", title: "Storefront Speed", body: "Real-user Core Web Vitals, graded the way Google grades them — so you see the speed shoppers actually feel, not a lab score." },
+  { icon: TrendingUp, tag: "Impact", title: "Impact scoreboard", body: "The money scoreboard — measures every fix before and after, so you know the dollars each change actually earned." },
   { icon: DollarSign, tag: "Revenue", title: "Revenue attribution", body: "Tie every fix to real Shopify orders via order webhooks — with fingerprint recovery for custom checkouts that break the Web Pixel." },
   { icon: Plug, tag: "AI tools", title: "MCP integration", body: "Connect your store's data to Claude, Cursor, and ChatGPT to query insights and ship fixes from your AI workflow." },
 ];
@@ -87,7 +90,7 @@ export default function ShopifyAppStorePage() {
         lead="DynoWeb is the only native Shopify app that combines session replay, heatmaps, AI fix suggestions, and revenue attribution in one lightweight package — replacing a whole stack of single-purpose tools."
         primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "See pricing", href: "/pricing" }}
-        highlights={["6 tools in one app", "Sub-40 KB tracker", "Native install", "Free tier"]}
+        highlights={["One app, not a stack", "Sub-40 KB tracker", "Native install", "Free tier"]}
         image="/Dashboard.png"
         imageAlt="DynoWeb all-in-one CRO and analytics dashboard for Shopify"
         imageLabel="DynoWeb dashboard"
@@ -97,7 +100,7 @@ export default function ShopifyAppStorePage() {
         <SectionHeading
           eyebrow="All in one app"
           title="Everything CRO, bundled natively"
-          subtitle="Eight capabilities most stores buy separately — combined into a single Shopify app."
+          subtitle="Eleven capabilities most stores buy separately — combined into a single Shopify app."
         />
         <FeatureGrid items={bundle} />
       </Section>

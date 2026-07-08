@@ -112,7 +112,7 @@ export default function SessionReplayFeaturePage() {
         }
         bullets={[
           "Behavior filters: rage clicks, dead clicks, abandonment",
-          "Device and traffic-source segmentation",
+          "Filter by shopper action and order value to surface high-value sessions",
           "Sort by duration, pages, or friction signals",
         ]}
         image="/sessionexplorerTable.png"
@@ -132,7 +132,7 @@ export default function SessionReplayFeaturePage() {
         bullets={[
           "Page-to-page flow for every session",
           "Identify the step before abandonment",
-          "Connect a replay to its heatmap and suggested fix",
+          "Ask the agent about any session you're watching, and jump to its heatmap and suggested fix",
         ]}
         image="/sessionFlow.png"
         imageAlt="DynoWeb session flow showing the page-to-page journey of a visitor"

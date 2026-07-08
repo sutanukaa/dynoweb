@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bot, Search, ListChecks, ImagePlus, MessageSquare, ShieldCheck } from "lucide-react";
+import { Bot, Search, ListChecks, Wrench, Database, ShieldCheck } from "lucide-react";
 
 import {
   MarketingShell,
@@ -16,14 +16,14 @@ import {
 } from "@/app/components/seo/Marketing";
 
 export const metadata: Metadata = {
-  title: "DynoAgent — AI Agent That Diagnoses Your Shopify Store",
+  title: "DynoAgent — Conversational AI Agent for Your Shopify Store",
   description:
-    "DynoAgent continuously monitors your store, detects revenue-leaking patterns, and queues up prioritized fixes — so your team always knows what to ship next.",
+    "Ask DynoAgent anything in plain English. It reads your live analytics, finds what's leaking revenue, and applies the fix to your Shopify store on your approval — every action reversible.",
   alternates: { canonical: "https://www.dynoweb.app/features/dynoagent" },
   openGraph: {
-    title: "DynoAgent — AI Agent That Diagnoses Your Shopify Store",
+    title: "DynoAgent — Conversational AI Agent for Your Shopify Store",
     description:
-      "A Shopify AI agent for store optimization. DynoAgent analyses behavior, explains what matters, and prepares prioritized fixes from one chat screen.",
+      "A Shopify AI agent for store optimization. Ask it anything; it reads your live data, finds the leaks, and applies fixes on approval — from one chat screen.",
     url: "https://www.dynoweb.app/features/dynoagent",
     siteName: "DynoWeb",
     type: "article",
@@ -33,14 +33,14 @@ export const metadata: Metadata = {
 const does = [
   { icon: Search, tag: "Investigate", title: "Ask anything about your store", body: "Query traffic, clicks, scroll behavior, frustration, form drop-off, funnels, revenue, and product performance in plain language — and get an explanation, not just numbers." },
   { icon: ListChecks, tag: "Diagnose", title: "Find revenue-leaking patterns", body: "DynoAgent connects behavioral signals across pages to surface what's actually hurting conversion and what matters most right now." },
-  { icon: ImagePlus, tag: "Create", title: "Generate content & imagery", body: "On supported plans it can research trends, generate on-brand product photos and store visuals, and prepare page or product updates." },
-  { icon: ShieldCheck, tag: "Approve", title: "You stay in control", body: "DynoAgent prepares and stages changes, but a human approves what actually ships. It does the heavy lifting; you keep the keys." },
+  { icon: Wrench, tag: "Act", title: "Apply the fix on approval", body: "It doesn't just point at the problem — it edits products, prices, pages, blogs, discounts, and collections, and can build and launch SmartNudge campaigns. You approve each write before it ships." },
+  { icon: ShieldCheck, tag: "Reverse", title: "You stay in control", body: "Every action lands in a reversible Action History, so you get the speed of automation without ever losing control of your storefront." },
 ];
 
 const faqs = [
   {
     q: "What is DynoAgent?",
-    a: "DynoAgent is the AI agent built into DynoWeb. It brings your store's analytics, behavioral signals, and context into one chat interface, then explains what the data means, what matters most, and what to do next. On paid plans it can also research trends, generate product imagery, and prepare store changes for your approval.",
+    a: "DynoAgent is the conversational AI agent built into DynoWeb, powered by Google Gemini 2.5 Flash. Ask it anything in plain English and it reads your store's live analytics, explains what matters, and — with 60+ tools spanning Shopify reads and writes, SmartNudge, image generation, and web search — applies the fix on your approval. It remembers your store across chats, and every change it ships is logged in a reversible Action History.",
   },
   {
     q: "How is DynoAgent different from the AI fix suggestions?",
@@ -48,7 +48,7 @@ const faqs = [
   },
   {
     q: "Does DynoAgent change my store automatically?",
-    a: "No. DynoAgent prepares and stages changes, but a human approves what actually ships. It's designed to do the analysis and the heavy lifting while keeping you in control of your live store.",
+    a: "No. DynoAgent proposes every Shopify write and a human approves what actually ships. Once applied, each change is logged in a reversible Action History, so you can undo it — it does the heavy lifting while keeping you in control of your live store.",
   },
   {
     q: "What can DynoAgent help me do on a paid plan?",
@@ -70,11 +70,11 @@ export default function DynoAgentPage() {
     >
       <Hero
         eyebrow="Feature — Shopify AI agent for store optimization"
-        title="The AI Agent That Never Stops Optimizing Your Shopify Store"
-        lead="DynoAgent continuously monitors your store, detects revenue-leaking patterns, and queues up prioritized fixes — so your team always knows what to ship next. Ask it anything about your store and get an answer grounded in your real data."
+        title="The Conversational AI Agent That Fixes Your Shopify Store"
+        lead="Ask DynoAgent anything about your store in plain English. It reads your live analytics, finds what's leaking revenue, and applies the fix on your approval — with every action logged in a reversible Action History."
         primaryCta={{ label: "Install free", href: "https://apps.shopify.com/dynoweb" }}
         secondaryCta={{ label: "Talk to the team", href: "/contact-us" }}
-        highlights={["One chat for everything", "Grounded in your real data", "Generates assets & changes", "Human approves every ship"]}
+        highlights={["One chat for everything", "Grounded in your real data", "Applies fixes on approval", "Reversible Action History"]}
         image="/DynoAgent.png"
         imageAlt="DynoAgent chat interface analysing a Shopify store"
         imageLabel="DynoAgent"
@@ -130,17 +130,18 @@ export default function DynoAgentPage() {
 
       <FeatureRow
         eyebrow="Stay in control"
-        title="Changes are staged for your approval"
+        title="Every write is staged for your approval — and reversible"
         body={
           <p>
-            DynoAgent does the heavy lifting, but you decide what goes live. Proposed changes are staged for review, so you
-            get the speed of automation without ever handing over control of your storefront.
+            DynoAgent does the heavy lifting, but you decide what goes live. Every Shopify write it proposes waits for your
+            approval, and once shipped it lands in a reversible Action History — so you get the speed of automation without
+            ever handing over control of your storefront.
           </p>
         }
         bullets={[
-          "Every change waits for a human approval",
-          "Review before anything touches the live theme",
-          "A full action history of what was proposed and shipped",
+          "Every write waits for a human approval",
+          "Review before anything touches your live store",
+          "A reversible Action History of everything proposed and shipped",
         ]}
         image="/approval.png"
         imageAlt="DynoAgent approval screen for staged store changes"
@@ -148,13 +149,17 @@ export default function DynoAgentPage() {
       />
 
       <Section className="pb-12">
-        <SectionHeading eyebrow="Always on" title="An optimization partner, not just a chatbot" />
+        <SectionHeading
+          eyebrow="Under the hood"
+          title="An optimization partner, not just a chatbot"
+          subtitle="Powered by Google Gemini 2.5 Flash, with 60+ tools spanning analytics reads, Shopify reads and writes, SmartNudge, image generation, and web search."
+        />
         <FeatureGrid
           columns={3}
           items={[
-            { icon: Bot, title: "Continuous monitoring", body: "DynoAgent keeps watching your store and surfacing what changed — you don't have to go looking." },
-            { icon: ListChecks, title: "Prioritised queue", body: "It lines up the next highest-impact fixes so your team always knows what to ship." },
-            { icon: MessageSquare, title: "One interface", body: "Analytics, research, asset generation, and change prep — all from a single chat screen." },
+            { icon: Wrench, title: "60+ tools on tap", body: "Analytics reads, Shopify edits (products, prices, pages, blogs, discounts, collections), SmartNudge build-and-launch, image generation, and web search — all from one chat." },
+            { icon: Database, title: "Persistent memory", body: "It remembers your store, your brand, and past decisions across chats, so you're never re-explaining context from scratch." },
+            { icon: Bot, title: "Sub-agents", body: "For bigger jobs it dispatches focused sub-agents, then brings the work back into one conversation — with every change staged for your approval." },
           ]}
         />
       </Section>
@@ -173,8 +178,8 @@ export default function DynoAgentPage() {
       />
 
       <CTA
-        title="An optimization partner that never sleeps"
-        body="DynoAgent watches your store, finds what's leaking revenue, and prepares the fix — so you spend time approving improvements instead of hunting for problems."
+        title="Ask it anything. It finds the leak and fixes it."
+        body="DynoAgent reads your store's live data, finds what's leaking revenue, and applies the fix on your approval — so you spend time approving improvements instead of hunting for problems."
         primaryLabel="Install free"
         secondary={{ label: "See pricing", href: "/pricing" }}
       />

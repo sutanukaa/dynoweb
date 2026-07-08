@@ -96,7 +96,7 @@ const plans: Plan[] = [
     name: "Custom",
     price: "$79",
     period: "/ mo",
-    priceSubtitle: "Up to 50,000 sessions",
+    priceSubtitle: "Up to 100,000 sessions",
     trial: "7-day free trial",
     custom: true,
     features: [

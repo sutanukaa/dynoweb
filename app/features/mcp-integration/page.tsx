@@ -41,6 +41,7 @@ const clients = [
 const can = [
   "Ask 'which product page is leaking the most revenue?' and get an answer backed by your store's behavioral data.",
   "Have your AI assistant read a DynoWeb suggestion, locate the exact theme file, and propose the code change.",
+  "Apply the fix from your assistant — edit a product or page, publish a blog post, create a discount, or launch a SmartNudge — each gated by approval.",
   "Pull heatmap, scroll, funnel, and revenue metrics into a prompt without copy-pasting dashboards.",
   "Turn 'what should I fix this week?' into a prioritised, evidence-backed plan inside the tool you already work in.",
   "Keep humans in control — the assistant proposes; you review and ship.",
@@ -93,7 +94,7 @@ export default function McpIntegrationPage() {
         <SectionHeading
           eyebrow="Works with"
           title="Your store data, inside your AI tools"
-          subtitle="MCP turns DynoWeb into a data source your assistant can query directly — no exports, no copy-paste."
+          subtitle="MCP turns DynoWeb into a tool surface your assistant can query and act on directly — no exports, no copy-paste."
         />
         <FeatureGrid items={clients} columns={3} />
       </Section>
@@ -121,17 +122,18 @@ export default function McpIntegrationPage() {
       <FeatureRow
         reverse
         eyebrow="Secure by design"
-        title="Scoped access with a token you control"
+        title="The full tool surface, gated by a token you control"
         body={
           <p>
-            The connection is authenticated with a token you generate and can revoke at any time. Your assistant sees only
-            the data you authorise, and nothing is ever written back to your live store without your approval.
+            MCP exposes DynoWeb&rsquo;s complete tool surface — not just analytics reads, but product and page writes, blog
+            publishing, discounts, SmartNudge, and image generation. Every write runs through the same approval flow as
+            DynoAgent, and the connection is authenticated with a token you generate and can revoke at any time.
           </p>
         }
         bullets={[
           "Generate and revoke access tokens on demand",
-          "Scoped, read-oriented access to your analytics",
-          "No automatic changes to your storefront",
+          "Reads and writes — the same tools DynoAgent uses",
+          "No change ships to your storefront without your approval",
         ]}
         image="/MCP-token.png"
         imageAlt="DynoWeb MCP access token management screen"

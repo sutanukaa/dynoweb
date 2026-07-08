@@ -1,5 +1,30 @@
 {
   "title": "DynoWeb Help",
-  "description": "Internal product documentation, content authoring notes, and API reference.",
-  "pages": ["overview", "getting-started", "dashboard", "dynoagent", "mcp", "heatmaps", "suggestions", "smartnudge", "cro-report", "referrers", "journeys", "conversions", "cart-overview", "replays"]
+  "description": "Product documentation for DynoWeb — setup, features, and how each surface works.",
+  "pages": [
+    "---Getting Started---",
+    "overview",
+    "getting-started",
+    "---Home---",
+    "dashboard",
+    "impact",
+    "---Fix---",
+    "suggestions",
+    "cro-report",
+    "seo-autopilot",
+    "errors",
+    "---Nudges---",
+    "smartnudge",
+    "---Agent---",
+    "dynoagent",
+    "---Explore---",
+    "heatmaps",
+    "replays",
+    "journeys",
+    "referrers",
+    "conversions",
+    "cart-overview",
+    "---Connect---",
+    "mcp"
+  ]
 }
