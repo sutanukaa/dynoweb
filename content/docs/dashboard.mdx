@@ -3,72 +3,90 @@ title: Dashboard
 description: Learn what each area of the Dashboard shows and how merchants should use it.
 ---
 
-## Top Of Page
+Home answers three questions, in order: **what did DynoWeb earn me, how healthy is my store, and what should I do next.** It opens on **This month** so the numbers here line up with the session count on your plan.
 
-This is the main dashboard entry area.
+## Greeting Bar
 
-It tells users they are on the store performance overview, shows whether tracking is active, and surfaces quick wins if the app has already found suggestions.
+The top of Home tells you the app is working and gives you the controls for everything below it.
 
-<img src="/topOfPage.png" alt="Dashboard top of page" />
+Alongside the greeting you'll see a **Tracker live** badge — if it reads **Tracker paused**, DynoWeb isn't collecting anything and nothing below will update. Next to it sits the date-range picker (Today, Yesterday, This month, Last 7 / 30 / 90 days), a **DynoAgent** button that opens your AI CRO expert, and the notification bell.
 
-## Key Metrics Row
+<img src="/home-greeting.png" alt="Home greeting bar with the tracker status badge, date range picker, DynoAgent button, and notification bell" />
 
-This row gives the fastest high-level summary of store activity.
+## Notifications
 
-It includes attributed revenue, total tracked events, page views, and form signals, so users can quickly understand traffic volume and engagement quality.
+The bell collects the changes worth your attention — a spike in errors, a drop worth investigating, a nudge worth reviewing — so you don't have to go hunting for them.
 
-<img src="/overview.png" alt="Dashboard key metrics row" />
+Each alert carries a severity (Critical, Warning, or Update), a plain-English detail, and a link straight to the surface that can fix it. Mark them done individually or clear them all at once. When there's nothing to report, it says so rather than inventing noise.
 
-## Activity Overview Row
+<img src="/notifications.png" alt="Notification panel showing alerts with severity badges, plain-English detail, and a direct action link on each" />
 
-This row helps users understand how traffic is behaving over time, how it is distributed across devices, and where it is coming from geographically.
+## Banner
 
-The left chart shows the daily activity trend, the middle chart shows the device breakdown across desktop, tablet, and mobile, and the map component on the right shows visitor locations by country with drill-down details for states, regions, and city-level traffic where available.
+Directly under the greeting, Home shows **one** banner — never a stack. It's whichever thing matters most right now, in this order: storefront errors that could be blocking checkout, then your session limit (at the cap, then approaching it), then new high-impact suggestions waiting for review.
 
-<img src="/activity.png" alt="Dashboard activity overview row" />
+Banners aren't dismissible, because each one clears itself the moment the underlying problem does.
 
-<img src="/map.png" alt="Dashboard visitor locations map" />
+## Money Earned
 
-## Behavior Signals Row
+This is the headline: **what DynoWeb made you this month**, in your currency, above everything else on the page.
 
-This row is the signal hub for DynoWeb. It gives a quick read on what the app is capturing right now and points users to the dedicated pages for each behavior signal.
+The caption splits the total into SmartNudge revenue and verified fixes, and **View breakdown** opens the full [Impact](/help/impact) scoreboard. Every figure here is an estimate measured against your own trend — never a guarantee. If the total is still zero, the card says so plainly and tells you to deploy a nudge or apply a fix to start attributing value.
 
-The left chart shows the broader mix of clicks, scrolls, forms, and page views. The right chart highlights the signals that need attention first, like scroll depth, rage clicks, dead clicks, and other friction patterns. Each signal has its own detail page with deeper examples, page-level breakdowns, and recommended next steps.
+<img src="/home-money-hero.png" alt="Home money hero showing what DynoWeb earned this month, split between SmartNudge and verified fixes" />
 
-<img src="/behavior.png" alt="Dashboard behavior signals row" />
+## Store Pulse
 
-<img src="/rageClick.png" alt="Dashboard rage click signals" />
+Four tiles give the fastest read on the store, each with a sparkline of its real daily trend and an up/down badge against the previous period.
 
-## Storefront Speed
+**Attributed sales**, **Sessions**, **Conversion rate**, and **revenue at risk** (the value sitting in abandoned carts). Each tile is clickable and drops you into the matching Explore surface — sales and conversion rate into [Conversions](/help/conversions), sessions into [Replays](/help/replays), and revenue at risk into [Cart Overview](/help/cart-overview). Before there's data, each tile says what it's waiting for instead of showing a zero.
 
-This card shows how fast your store actually feels to real shoppers — and whether speed is costing you sales. A slow storefront makes visitors leave before they buy, so DynoWeb measures it for you and tells you plainly whether it's worth your attention.
+<img src="/home-store-pulse.png" alt="Store pulse tiles: attributed sales, sessions, conversion rate, and revenue at risk, each with a sparkline and trend badge" />
 
-It leads with a verdict, not a number: a plain-language headline like "Your store is fast," "A few pages are dragging," or "Speed is costing you sales," so you know whether to care before you look at anything else.
+## Store Health
 
-Below the verdict are your four **Core Web Vitals** — Loading (LCP), Responsiveness (INP), Visual stability (CLS), and Server response (TTFB) — each graded Good, Needs work, or Poor, with a plain-language explanation on every metric. These are measured from your real visitors, the same way Google grades your store. Alongside them, the **page-load experience** shows the share of page loads that felt fast, so-so, or slow, and **loading speed over time** charts your daily loading speed against the "Good" line so you can see whether the store is getting faster.
+A single score out of 100 built from the signals DynoWeb already has on your store, graded **Healthy**, **Good**, **Needs review**, or **At risk**.
 
-Finally, **slow pages worth your attention** lists the specific pages that are dragging, ranked by the real revenue flowing through them — so you fix the slow pages that actually cost you money first. From here you can jump straight to the matching performance fixes. If your store is new or low-traffic, the card says so rather than inventing numbers.
+It's made of four factors, each one clickable so you can go straight to the problem: **Performance** (how fast the store feels), **Errors** (JavaScript errors firing on your storefront), **SEO** (issues waiting to be fixed), and **Experience** (how much frustration your sessions show). Factors only appear once there's signal behind them — a store with no replays yet won't show Experience.
 
-<img src="/storefrontSpeed.png" alt="Dashboard Storefront Speed card showing the speed verdict, Core Web Vitals tiles, page-load experience donut, loading-speed trend, and slowest pages by revenue" />
+This is a quick live read, deliberately simpler than the full audit. For the graded, benchmarked version, open the [CRO Report](/help/cro-report) from the card.
 
-## Most Problematic Pages
+<img src="/home-store-health.png" alt="Store Health card with the score donut and the Performance, Errors, SEO, and Experience factors" />
 
-This table highlights pages that may need attention first.
+## What DynoWeb Is Doing For You
 
-It surfaces pages with stronger frustration or error signals, and pages where users are not scrolling deeply enough.
+Below the health score, one card per capability — each showing what it's done lately and the single next action worth taking.
 
-<img src="/problematic.png" alt="Dashboard most problematic pages table" />
+**SmartNudge** shows live nudges with what they've been shown, converted, and earned; with no nudges running, it shows how many visitors came back without buying and offers to win them back. **Suggestions** shows what's open and how many are high-impact. **SEO**, **Storefront health**, and **Replays** appear once there's something to report — SEO issues to fix, errors caught this week, or sessions worth watching.
 
-## Most Interacted Pages
+Cards you don't need stay hidden. That's intentional: the grid only surfaces work that actually exists.
 
-This table highlights the pages receiving the most engagement, mainly based on clicks and views.
+<img src="/home-capability-cards.png" alt="Capability cards for SmartNudge, Suggestions, SEO, storefront health, and replays, each with its metrics and next action" />
 
-It helps users quickly jump into the pages that matter most.
+## Explore Your Store
 
-<img src="/interacted.png" alt="Dashboard most interacted pages table" />
+Two cards close out the page: where your visitors are, and how fast the store feels to them.
 
-## Page Explorer
+**Visitor Locations** maps sessions by country with attributed revenue alongside, and expands to a fullscreen view with state, region, and city-level drill-down where available.
 
-Page Explorer is the detailed view for every page on your store. It pulls together traffic, engagement, scroll depth, revenue, orders, conversion rate, replay activity, health score, and related suggestions so you can understand the full performance picture in one place. Use it to sort by traffic, revenue, or problem severity, compare pages side by side, and identify which pages need attention first.
+**Storefront speed** leads with a verdict, not a number — *Your store is fast*, *A few pages are dragging*, or *Speed is costing you sales* — so you know whether to care before reading anything. Below it are your four **Core Web Vitals** measured from real visitors, the same way Google grades you: Loading (LCP), Responsiveness (INP), Visual stability (CLS), and Server response (TTFB). **Loading speed over time** charts your daily trend, and **Slow pages worth your attention** ranks the pages that are dragging by the real revenue flowing through them — so you fix the slow pages that cost you money first. From there, **View performance fixes** takes you to the matching suggestions. On a new or low-traffic store, the card says there isn't enough data yet rather than inventing numbers.
 
-<img src="/PageExplorer.png" alt="Dashboard page explorer" />
+<img src="/home-explore.png" alt="Explore your store row: the Visitor Locations map beside the Storefront speed card" />
+
+<img src="/storefrontSpeed.png" alt="Storefront speed card showing the verdict badge, Core Web Vitals chips, loading-speed trend, and slowest pages ranked by revenue" />
+
+## Plan & Usage
+
+The strip at the bottom shows sessions used against your monthly cap, with a progress bar.
+
+Only real shopper sessions count toward the limit — bots and your own admin traffic don't. This is the same number the [pricing page](/help/overview) uses, so the two never disagree.
+
+<img src="/home-plan-strip.png" alt="Plan and usage strip showing sessions used against the monthly cap" />
+
+## Going Deeper Into Pages
+
+Home deliberately doesn't carry page-by-page tables any more. For the full per-page picture — traffic, engagement, scroll depth, revenue, orders, conversion rate, replay activity, health score, and related suggestions — open **Page Explorer** under Explore.
+
+Sort it by **Most Problematic** to see the pages needing attention first, or **Most Traffic** to see where engagement is going.
+
+<img src="/PageExplorer.png" alt="Page Explorer listing every page with traffic, revenue, and problem signals" />

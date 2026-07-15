@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import LightRays from "@/components/LightRays";
 
 const mockupImgPaths = [
-  "/VisitorTracking.png",
   "/Dashboard.png",
   "/Heatmaps.png",
   "/Replays.png",
@@ -29,30 +28,17 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    id: "tracking", tab: "Visitor Tracking",
-    headline: "Automatic Visitor Tracking\n— Invisible & Lightweight",
-    subline: "Invisible tracker, powerful insights.",
-    bullets: [
-      { title: "11 Behavioral Signals", desc: "Clicks, rage clicks, dead clicks, error clicks, mouse shaking, scroll depth, form interactions, mobile gestures, fat finger taps, element visibility, page views." },
-      { title: "Session Intelligence", desc: "Bot filtering, session-level tracking across pages, device and country detection." },
-      { title: "Privacy-First", desc: "All data anonymized — no personal information collected, ever." },
-      { title: "Full Control", desc: "Toggle individual signals on or off from Settings. Native Shopify app extension — no code pasted into your theme." },
-    ],
-    caption: "~34 KB · gzipped · 11 signals",
-    videoSrc: "/videos/ai-builder.mp4",
-    icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>),
-  },
-  {
     id: "dashboard", tab: "Dashboard",
-    headline: "Everything Happening in\nYour Store — Right Now",
-    subline: "Live metrics, zero delay.",
+    headline: "What DynoWeb Earned You —\nAnd What to Fix Next",
+    subline: "The money first. Then the next move.",
     bullets: [
-      { title: "Live Event Counter", desc: "Trend arrows show direction vs. previous period — up or down at a glance." },
-      { title: "Top Pages", desc: "Pages ranked by visitor engagement so you know where attention goes." },
-      { title: "Charts & Breakdowns", desc: "Event frequency chart, device breakdown, and signal type distribution." },
-      { title: "Smart Filters", desc: "Date range, device type, country, region. Plan usage indicator so you always know where you stand." },
+      { title: "Money Earned, Up Front", desc: "One headline total for the month — SmartNudge revenue and verified fixes, split out. Estimated against your own trend, never guaranteed." },
+      { title: "Store Pulse", desc: "Attributed sales, sessions, conversion rate, and the revenue sitting in abandoned carts — each with its real daily sparkline and trend." },
+      { title: "Store Health Score", desc: "One live score out of 100 from Performance, Errors, SEO, and Experience — every factor clickable straight through to the fix." },
+      { title: "The Next Move, Not Just Numbers", desc: "A card per capability showing what it has done lately and the one action worth taking. Cards with nothing to report stay hidden." },
+      { title: "Speed, Locations & Plan", desc: "A plain-language speed verdict with real-user Core Web Vitals, visitor locations by revenue, and sessions used against your cap." },
     ],
-    caption: "Real-time visibility into every session.",
+    caption: "The money, the health, the next move.",
     videoSrc: "/videos/template-system.mp4",
     icon: (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17v-6"/><path d="M12 17v-2"/><path d="M17 17v-8"/></svg>),
   },
@@ -309,7 +295,6 @@ export default function FeaturesVideoSection() {
 
   const feat = features[active];
   const mockupImgMap: Record<string, string> = {
-    tracking: "/VisitorTracking.png",
     dashboard: "/Dashboard.png",
     heatmaps: "/Heatmaps.png",
     replays: "/Replays.png",
@@ -680,7 +665,7 @@ export default function FeaturesVideoSection() {
             <div className="divider-line"/>
             <h2 className="sec-heading">See DynoWeb in action.</h2>
             <p style={{fontSize:"clamp(.875rem, 1.05vw, 1.5rem)",color:"rgba(255,255,255,0.3)",lineHeight:1.7,maxWidth:"28rem"}}>
-              Sixteen capabilities working as one continuous loop — from raw signal to the fix, and the money it made.
+              Fifteen capabilities working as one continuous loop — from raw signal to the fix, and the money it made.
             </p>
           </div>
 
