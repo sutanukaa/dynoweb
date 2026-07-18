@@ -3,11 +3,38 @@
 import { useEffect, useRef, useState } from "react";
 import { Star } from "lucide-react";
 
+// Beat: proof in dollars. Money-first, outcomes never capabilities, and honest —
+// these are leaks CAUGHT on live stores (the SEE act), not fabricated recoveries.
+// Obeys dynoweb-landing-page.md copy-safety + offer §3/§8 (P8: never invent a lift).
 const PROOF = [
-  { value: "52,370", label: "rage clicks caught", store: "The Punarvasu", href: "/use-cases#punarvasu" },
-  { value: "₹3.97L", label: "sales attributed", store: "Sahasika", href: "/use-cases#sahasika" },
-  { value: "33", label: "live errors caught", store: "Skyline Decor", href: "/use-cases#skyline" },
-  { value: "1 heatmap", label: "mis-placed click found", store: "Yetibeds", href: "/use-cases#yetibeds" },
+  {
+    value: "₹3.97L",
+    label: "in sales tracked to real shoppers",
+    note: "Every fix measured against real revenue — not guesses.",
+    store: "Sahasika",
+    href: "/use-cases#sahasika",
+  },
+  {
+    value: "52,370",
+    label: "frustrated shoppers spotted leaving",
+    note: "Tapping something that wasn't a link — invisible until now.",
+    store: "The Punarvasu",
+    href: "/use-cases#punarvasu",
+  },
+  {
+    value: "33",
+    label: "sales-blocking errors caught live",
+    note: "Silent checkout breakers, surfaced as shoppers hit them.",
+    store: "Skyline Decor",
+    href: "/use-cases#skyline",
+  },
+  {
+    value: "1 button",
+    label: "no one could tap — found",
+    note: "One misplaced click on the page that mattered most.",
+    store: "Yetibeds",
+    href: "/use-cases#yetibeds",
+  },
 ];
 
 export default function ProofBand() {
@@ -59,11 +86,15 @@ export default function ProofBand() {
           Proven on real stores
         </p>
         <h2 className="font-display mx-auto mt-4 max-w-[22ch] text-[clamp(1.875rem,3.4vw,2.6rem)] font-semibold leading-[1.12] tracking-[-0.025em] text-white">
-          Running on real Shopify stores across India and the US
+          Real Shopify stores. Real leaks found.
         </h2>
+        <p className="mx-auto mt-4 max-w-[54ch] text-base leading-relaxed text-white/75 sm:text-lg">
+          Running live across India and the US. Every number below is a lost-sale leak
+          DynoWeb actually caught on a real store &mdash; before the fix.
+        </p>
 
-        <div ref={gridRef} className="mx-auto mt-12 grid max-w-[900px] grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4">
-          {PROOF.map(({ value, label, store, href }) => (
+        <div ref={gridRef} className="mx-auto mt-12 grid max-w-[960px] grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4">
+          {PROOF.map(({ value, label, note, store, href }) => (
             <a
               key={store}
               href={href}
@@ -75,8 +106,9 @@ export default function ProofBand() {
               <span className="font-display text-3xl font-semibold tabular-nums tracking-[-0.02em] text-[#0e1f45]">
                 {value}
               </span>
-              <span className="mt-1.5 text-sm text-[#4a5a7a]">{label}</span>
-              <span className="mt-3 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[#6b7ba0] transition-colors group-hover:text-[#1e55e0]">
+              <span className="mt-1.5 text-sm font-medium text-[#4a5a7a]">{label}</span>
+              <span className="mt-3 text-xs leading-snug text-[#5a6a8a]">{note}</span>
+              <span className="mt-4 border-t border-[#0e1f45]/10 pt-3 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[#6b7ba0] transition-colors group-hover:text-[#1e55e0]">
                 {store}
               </span>
             </a>

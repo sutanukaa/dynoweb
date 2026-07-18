@@ -60,10 +60,6 @@
   z-index: -1;
   animation: dwCtaSpin 6s linear infinite;
 }
-@media (prefers-reduced-motion: reduce) {
-  .cta-glow-card::before,
-  .cta-glow-card::after { animation: none; }
-}
 
 :root {
   --sea-green: #20b2aa;
@@ -189,9 +185,52 @@
   100% { background-position: 200% center; }
 }
 .dw-text-gradient { animation: dw-text-gradient 4s linear infinite; }
-@media (prefers-reduced-motion: reduce) {
-  .dw-text-gradient { animation: none; }
+
+/* Blue highlighter marker sweep behind a headline line (v1 hero effect) */
+@keyframes dw-highlight-sweep {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0% 0 0); }
 }
+.dw-highlight-svg {
+  /* Soft feathered ends — CSS mask is reliable under preserveAspectRatio="none" */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  /* Hidden until scrolled into view; HighlightReveal adds .dw-lit to sweep it in */
+  clip-path: inset(0 100% 0 0);
+}
+.dw-highlight-svg.dw-lit {
+  animation: dw-highlight-sweep 0.65s cubic-bezier(0.25, 0.1, 0.25, 1) 0.1s both;
+}
+
+/* Slide-in on scroll — ScrollReveal adds .dw-lit when the element enters view */
+.dw-reveal {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.dw-reveal-left { transform: translateX(-48px); }
+.dw-reveal-right { transform: translateX(48px); }
+.dw-reveal.dw-lit { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dw-reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Gentle float for overlapping glass chips / cards over a screenshot */
+@keyframes dw-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.dw-float { animation: dw-float 5s ease-in-out infinite; }
+.dw-float-2 { animation: dw-float 6.5s ease-in-out infinite; }
+
+/* Concentric rings that expand outward and fade — a rippling corner accent */
+@keyframes dw-ripple {
+  0% { transform: scale(0.3); opacity: 0.5; }
+  80% { opacity: 0.06; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+.dw-ripple { animation: dw-ripple 5s ease-out infinite; }
 
 /* Ripple/lift button (Uiverse cssbuttons-io) — the "See a live store" secondary */
 .dw-ripple-btn {

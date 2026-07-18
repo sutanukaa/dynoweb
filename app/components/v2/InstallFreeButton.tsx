@@ -36,7 +36,7 @@ export default function InstallFreeButton({
       {/* Expanding blob — hidden at rest, grows in from the centre on hover */}
       <span
         aria-hidden="true"
-        className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 scale-0 rounded-lg bg-[#1e55e0] opacity-0 transition-all duration-300 group-hover:left-0 group-hover:top-0 group-hover:h-full group-hover:w-full group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-[1.8] group-hover:opacity-100"
+        className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 scale-0 rounded-lg bg-[rgba(30,85,224,0.55)] opacity-0 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 group-hover:left-0 group-hover:top-0 group-hover:h-full group-hover:w-full group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-[1.8] group-hover:opacity-100"
       />
     </a>
   );
