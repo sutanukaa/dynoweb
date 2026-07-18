@@ -47,7 +47,10 @@ export const metadata: Metadata = {
     "Shopify heatmaps",
   ],
   verification: {
-    google: "Ps587Wbp6dD6eiRop85qP60iw1yAxvwp1FPuhjdG3-I",
+    google: [
+      "Ps587Wbp6dD6eiRop85qP60iw1yAxvwp1FPuhjdG3-I",
+      "YR6CZWAniqrFEGKRdT3xDqKS25mJsvp7Lr8C1gDdpD0",
+    ],
   },
 };
 
