@@ -1,64 +1,17 @@
-import FUIHeroSectionWithLogoClouds from "./components/Hero";
-import PillNav from "./components/PillNav";
-import VideoShowcase from "./components/VideoShowcase";
-import AIShowcaseSection from "./components/AIShowcase";
-import FeaturesSection from "./components/Features";
-// ...existing code...
-import InstallationSection from "./components/Installation";
-import Footer from "./components/Footer";
-import FAQs from "./components/Faqs";
-import ScrollReveal from "./components/ScrollReveal";
+import Navbar from "./components/v2/Navbar";
+import Hero from "./components/v2/Hero";
+import ProofBand from "./components/v2/ProofBand";
+import Gap from "./components/v2/Gap";
+import Features from "./components/v2/Features";
 
 export default function Home() {
   return (
-    <div
-      className="font-poppins min-h-screen w-full"
-      style={{ overflowX: "clip", background: "#0a0a0a" }}
-    >
-      <PillNav />
-
-      {/* Hero — no reveal, it's above the fold */}
-      <FUIHeroSectionWithLogoClouds />
-
-      <ScrollReveal
-        offset={70}
-        duration={0.8}
-        delay={0.05}
-        blur={8}
-        margin="-120px"
-      >
-        <VideoShowcase />
-      </ScrollReveal>
-
-      <ScrollReveal
-        offset={70}
-        duration={0.8}
-        delay={0.05}
-        blur={8}
-        margin="-120px"
-      >
-        <AIShowcaseSection />
-      </ScrollReveal>
-
-      <ScrollReveal offset={80} duration={0.85} delay={0.05} blur={8}>
-        <FeaturesSection />
-      </ScrollReveal>
-
-      <ScrollReveal offset={70} duration={0.8} delay={0.05} blur={8} children={undefined}>
-        {/* Testimonials removed */}
-      </ScrollReveal>
-
-      <ScrollReveal offset={80} duration={0.85} delay={0.05} blur={8}>
-        <InstallationSection />
-      </ScrollReveal>
-
-      <ScrollReveal offset={80} duration={0.85} delay={0.05} blur={8}>
-        <FAQs />
-      </ScrollReveal>
-
-      <ScrollReveal offset={50} duration={0.7} blur={4}>
-        <Footer />
-      </ScrollReveal>
-    </div>
+    <main className="min-h-screen w-full" style={{ background: "#fff", overflowX: "clip" }}>
+      <Navbar />
+      <Hero />
+      <ProofBand />
+      <Gap />
+      <Features />
+    </main>
   );
 }
