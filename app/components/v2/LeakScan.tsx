@@ -49,11 +49,12 @@ export default function LeakScan() {
   const done = phase === "done";
 
   return (
-    <div ref={ref} className="relative mx-auto h-44 max-w-[640px]">
+    <div ref={ref} className="relative mx-auto max-w-[640px]">
       {/* Scanning */}
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center gap-5 px-8 transition-opacity duration-500"
-        style={{ opacity: done ? 0 : 1 }}
+        className="flex h-44 flex-col items-center justify-center gap-5 px-8 transition-opacity duration-500"
+        style={{ opacity: done ? 0 : 1, position: done ? "absolute" : "relative", inset: 0 }}
+        aria-hidden={done}
       >
         <div className="flex items-center gap-2.5 text-[var(--ink)]">
           <Search className="h-5 w-5 animate-pulse text-[var(--blue-600)]" strokeWidth={2.2} />
@@ -67,12 +68,18 @@ export default function LeakScan() {
         </p>
       </div>
 
-      {/* Result — a leak-alert banner */}
+      {/* Result — the leak-alert banner backed by a real screenshot, not just a claim */}
       <div
-        className="absolute inset-0 flex items-center justify-center px-5 transition-all duration-700 ease-out sm:px-6"
-        style={{ opacity: done ? 1 : 0, transform: done ? "none" : "translateY(10px)" }}
+        className="flex flex-col gap-4 px-5 py-5 text-left transition-all duration-700 ease-out sm:px-6"
+        style={{
+          opacity: done ? 1 : 0,
+          transform: done ? "none" : "translateY(10px)",
+          position: done ? "relative" : "absolute",
+          inset: 0,
+        }}
+        aria-hidden={!done}
       >
-        <div className="flex w-full items-center gap-4 rounded-2xl border border-[#fecaca] border-l-[5px] border-l-[#dc2626] bg-gradient-to-r from-[#fef2f2] to-[#fff7f7] px-5 py-5 text-left shadow-[0_8px_24px_-12px_rgba(220,38,38,0.35)] sm:px-6">
+        <div className="flex w-full items-center gap-4 rounded-2xl border border-[#fecaca] border-l-[5px] border-l-[#dc2626] bg-gradient-to-r from-[#fef2f2] to-[#fff7f7] px-5 py-5 shadow-[0_8px_24px_-12px_rgba(220,38,38,0.35)] sm:px-6">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#dc2626]/10 text-[#dc2626]">
             <TriangleAlert className="h-5 w-5" strokeWidth={2.2} />
           </span>
@@ -82,10 +89,24 @@ export default function LeakScan() {
             </p>
             <p className="mt-1 font-display text-base font-semibold leading-snug text-[var(--ink)] sm:text-xl">
               You&rsquo;re losing{" "}
-              <span className="text-[#dc2626]">~$3,200&ndash;$5,800/mo</span> at your shipping step.
+              <span className="tabular-nums text-[#dc2626]">~$3,200&ndash;$5,800/mo</span> at your
+              shipping step.
             </p>
             <p className="mt-1 text-sm text-[var(--ink-muted)]">Here&rsquo;s why &mdash; and the fix.</p>
           </div>
+        </div>
+
+        {/* The evidence a report like this is actually built from — real session data,
+            not just a number. Punarvasu's own scroll/friction data (design.md §8). */}
+        <div className="dw-shot">
+          <img
+            src="/scrollHeatmap.png"
+            alt="Real scroll and friction data from a live Shopify store — the evidence behind a leak report"
+            width={1234}
+            height={584}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </div>

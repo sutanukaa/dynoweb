@@ -57,7 +57,7 @@ const whyOne = [
 const faqs = [
   {
     q: "What's the best Shopify app for CRO and analytics?",
-    a: "The best CRO and analytics app is one that's native to Shopify, lightweight, and turns data into action. DynoWeb combines session replay, heatmaps, AI fix suggestions, and revenue attribution in a single sub-40 KB app — so instead of stitching together multiple tools, you get the full find-and-fix workflow in one place.",
+    a: "The best CRO and analytics app is one that's native to Shopify, lightweight, and turns data into action. DynoWeb combines session replay, heatmaps, AI fix suggestions, and revenue attribution in a single 5.9 KB gzipped app — so instead of stitching together multiple tools, you get the full find-and-fix workflow in one place.",
   },
   {
     q: "Is DynoWeb a native Shopify app?",

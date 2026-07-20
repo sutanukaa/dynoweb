@@ -1,4 +1,5 @@
 import { Check, Pencil, TrendingUp } from "lucide-react";
+import Image from "next/image";
 
 import HighlightMarker from "./HighlightMarker";
 import InstallFreeButton from "./InstallFreeButton";
@@ -62,12 +63,14 @@ function GridPanel({ img, size, className }: { img: string; size: string; classN
   return (
     <div className={`relative overflow-hidden ${className}`}>
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(46,107,255,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(46,107,255,0.12)_1px,transparent_1px)] bg-[size:1.6rem_1.6rem] [mask-image:radial-gradient(ellipse_at_center,#000_60%,transparent_100%)]" />
-      <img
+      <Image
         src={img}
         alt=""
+        width={700}
+        height={700}
+        sizes="160px"
         className={`pointer-events-none absolute left-1/2 top-1/2 max-w-[85%] -translate-x-1/2 -translate-y-1/2 w-auto object-contain drop-shadow-[0_14px_22px_rgba(10,22,51,0.22)] transition-transform duration-300 group-hover:scale-105 ${size}`}
         loading="lazy"
-        decoding="async"
       />
     </div>
   );
@@ -192,15 +195,6 @@ export default function Story() {
         className="font-inter flex min-h-screen w-full flex-col justify-center overflow-hidden"
         style={{ background: "linear-gradient(160deg,#4257d6 0%,#2f43c4 52%,#1e2a8f 100%)" }}
       >
-        {/* Faint grid texture */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.16)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.16)_1px,transparent_1px)] bg-[size:3.25rem_3.25rem]"
-          style={{
-            WebkitMaskImage: "radial-gradient(ellipse 70% 70% at center, #000 55%, transparent 92%)",
-            maskImage: "radial-gradient(ellipse 70% 70% at center, #000 55%, transparent 92%)",
-          }}
-        />
         {/* Soft depth glows */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div className="absolute -left-[8%] top-[8%] h-72 w-72 rounded-full bg-[#4b5ee0] opacity-40 blur-[80px]" />
@@ -247,7 +241,7 @@ export default function Story() {
           </p>
 
           <div className="mt-8 flex justify-center">
-            <SpinBorder>
+            <SpinBorder radius="md">
               <InstallFreeButton
                 label="Run my free leak report"
                 className="!flex !h-12 !w-auto items-center justify-center px-9 !border-transparent !bg-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl backdrop-saturate-150"
@@ -355,7 +349,7 @@ export default function Story() {
                 <TrendingUp className="h-4 w-4" strokeWidth={2.5} />
                 <span className="text-[0.65rem] font-semibold uppercase tracking-[0.12em]">Recovered</span>
               </div>
-              <p className="mt-1 font-display text-2xl font-semibold text-[var(--ink)]">+$1,400</p>
+              <p className="mt-1 font-display text-2xl font-semibold tabular-nums text-[var(--ink)]">+$1,400</p>
               <p className="text-xs text-[var(--ink-muted)]">last month &middot; net of refunds</p>
             </div>
           </div>

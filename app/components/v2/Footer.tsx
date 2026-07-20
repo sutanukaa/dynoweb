@@ -21,8 +21,19 @@ const LINK_COLUMNS = [
     links: [
       { label: "Pricing", href: "/pricing" },
       { label: "Use cases", href: "/use-cases" },
-      { label: "Compare", href: "/vs" },
+      { label: "DynoAgent", href: "/features/dynoagent" },
+      { label: "MCP integration", href: "/features/mcp-integration" },
       { label: "Get on Shopify", href: APP_URL },
+    ],
+  },
+  {
+    title: "Compare",
+    links: [
+      { label: "All comparisons", href: "/vs" },
+      { label: "vs Hotjar", href: "/vs/hotjar" },
+      { label: "vs Microsoft Clarity", href: "/vs/microsoft-clarity" },
+      { label: "vs Lucky Orange", href: "/vs/lucky-orange" },
+      { label: "vs Glew", href: "/vs/glew" },
     ],
   },
   {
@@ -133,7 +144,7 @@ export default function Footer() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[var(--ink)] shadow-[0_10px_24px_-8px_rgba(0,0,0,0.5)] transition-colors hover:bg-white/90 disabled:opacity-70"
+                  className="inline-flex items-center justify-center gap-2 rounded-[10px] bg-white px-6 py-3 text-sm font-semibold text-[var(--ink)] shadow-[0_10px_24px_-8px_rgba(0,0,0,0.5)] transition-colors hover:bg-white/90 disabled:opacity-70"
                 >
                   {status === "loading" ? "Sending…" : "Send message"}
                   <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
@@ -164,7 +175,7 @@ export default function Footer() {
             <span className="text-xl font-semibold tracking-[-0.02em] text-white">DynoWeb</span>
           </a>
 
-          <div className="grid grid-cols-2 gap-x-12 gap-y-8 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
             {LINK_COLUMNS.map((col) => (
               <div key={col.title}>
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white/40">
@@ -194,7 +205,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center gap-4 border-t border-white/10 pt-6 sm:flex-row sm:justify-between">
           <p className="text-sm text-white/40">
-            © {"2025"} DynoWeb. All rights reserved.
+            © {"2026"} DynoWeb. All rights reserved.
           </p>
           <div className="flex items-center gap-3">
             <a

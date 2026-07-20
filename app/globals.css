@@ -140,6 +140,12 @@
   font-family: var(--font-bricolage), var(--font-inter), system-ui, sans-serif;
 }
 
+/* LetterCascade echo face — letter comes from CSS content, not a text node, so
+   the animation doesn't duplicate every character in the raw DOM text. */
+.cascade-echo::before {
+  content: attr(data-letter);
+}
+
 /* Glass = chrome only: screenshot bezel, nav, overlapping chip. Never a generic card. */
 .dw-glass {
   background: var(--dw-glass-fill);
@@ -241,7 +247,7 @@
   padding: 0.8em 1.75em;
   display: inline-block;
   cursor: pointer;
-  border-radius: 6em;
+  border-radius: var(--r-md);
   transition: all 0.2s;
   border: 1px solid var(--line);
   font-family: inherit;
@@ -256,7 +262,7 @@
   display: inline-block;
   height: 100%;
   width: 100%;
-  border-radius: 100px;
+  border-radius: var(--r-md);
   position: absolute;
   top: 0;
   left: 0;

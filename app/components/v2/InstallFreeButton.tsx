@@ -19,7 +19,7 @@ export default function InstallFreeButton({
       href={href}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       aria-label={label}
-      className={`group relative block w-44 overflow-hidden rounded-full border border-[var(--line)] bg-white p-2.5 text-center text-sm font-semibold text-black ${className}`}
+      className={`group relative block w-44 overflow-hidden rounded-[10px] border border-[var(--line)] bg-white p-2.5 text-center text-sm font-semibold text-black ${className}`}
     >
       {/* Resting label — slides out to the right on hover */}
       <span className="inline-block transition-all duration-300 group-hover:translate-x-[130%] group-hover:opacity-0">

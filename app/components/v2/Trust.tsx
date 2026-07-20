@@ -86,7 +86,7 @@ export default function Trust() {
                 href={APP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-[var(--ink)] shadow-[0_10px_24px_-8px_rgba(10,22,51,0.5)] transition-colors hover:bg-white/90"
+                className="inline-flex items-center justify-center rounded-[10px] bg-white px-6 py-3 text-sm font-semibold text-[var(--ink)] shadow-[0_10px_24px_-8px_rgba(10,22,51,0.5)] transition-colors hover:bg-white/90"
               >
                 Find my leak free &mdash; start now
               </a>

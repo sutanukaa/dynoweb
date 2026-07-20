@@ -83,10 +83,10 @@ export default function VsLuckyOrangePage() {
       <Hero
         eyebrow="Tool comparison — 2026"
         title="DynoWeb vs Lucky Orange: Which Shopify CRO Tool Wins?"
-        lead="Lucky Orange bundles heatmaps, session recordings, live chat, surveys, and announcement bars into a single platform. DynoWeb takes a different bet: instead of bundling more tools, it goes deeper on the one workflow that moves the conversion needle — turning behavioral signals into AI-prioritised fix recommendations with code-level implementation guides, native Shopify revenue attribution, and a sub-40 KB tracker."
+        lead="Lucky Orange bundles heatmaps, session recordings, live chat, surveys, and announcement bars into a single platform. DynoWeb takes a different bet: instead of bundling more tools, it goes deeper on the one workflow that moves the conversion needle — turning behavioral signals into AI-prioritised fix recommendations with code-level implementation guides, native Shopify revenue attribution, and a 5.9 KB gzipped tracker."
         primaryCta={{ label: "Start Free Trial", href: "https://apps.shopify.com/dynoweb", external: true }}
         secondaryCta={{ label: "See Shopify CRO guide", href: "/shopify-cro" }}
-        highlights={["Session replay & heatmaps", "AI fix suggestions", "Behavioral SmartNudge", "Sub-40 KB tracker"]}
+        highlights={["Session replay & heatmaps", "AI fix suggestions", "Behavioral SmartNudge", "5.9 KB gzipped tracker"]}
       />
 
       <Section className="pb-16">

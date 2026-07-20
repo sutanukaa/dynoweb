@@ -12,6 +12,7 @@ const PROOF = [
     label: "in sales tracked to real shoppers",
     note: "Every fix measured against real revenue — not guesses.",
     store: "Sahasika",
+    logo: "/Sahasika.png",
     href: "/use-cases#sahasika",
   },
   {
@@ -19,6 +20,7 @@ const PROOF = [
     label: "frustrated shoppers spotted leaving",
     note: "Tapping something that wasn't a link — invisible until now.",
     store: "The Punarvasu",
+    logo: "/Punarvasu.png",
     href: "/use-cases#punarvasu",
   },
   {
@@ -26,6 +28,7 @@ const PROOF = [
     label: "sales-blocking errors caught live",
     note: "Silent checkout breakers, surfaced as shoppers hit them.",
     store: "Skyline Decor",
+    logo: "/SkyLine.png",
     href: "/use-cases#skyline",
   },
   {
@@ -33,6 +36,7 @@ const PROOF = [
     label: "no one could tap — found",
     note: "One misplaced click on the page that mattered most.",
     store: "Yetibeds",
+    logo: "/yetibeds-logo.png",
     href: "/use-cases#yetibeds",
   },
 ];
@@ -94,7 +98,7 @@ export default function ProofBand() {
         </p>
 
         <div ref={gridRef} className="mx-auto mt-12 grid max-w-[960px] grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4">
-          {PROOF.map(({ value, label, note, store, href }) => (
+          {PROOF.map(({ value, label, note, store, logo, href }) => (
             <a
               key={store}
               href={href}
@@ -108,8 +112,16 @@ export default function ProofBand() {
               </span>
               <span className="mt-1.5 text-sm font-medium text-[#4a5a7a]">{label}</span>
               <span className="mt-3 text-xs leading-snug text-[#5a6a8a]">{note}</span>
-              <span className="mt-4 border-t border-[#0e1f45]/10 pt-3 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[#6b7ba0] transition-colors group-hover:text-[#1e55e0]">
-                {store}
+              <span className="mt-4 flex items-center gap-2 border-t border-[#0e1f45]/10 pt-3">
+                <img
+                  src={logo}
+                  alt=""
+                  className="h-4 w-auto object-contain grayscale opacity-70 transition-opacity group-hover:opacity-100"
+                  loading="lazy"
+                />
+                <span className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[#6b7ba0] transition-colors group-hover:text-[#1e55e0]">
+                  {store}
+                </span>
               </span>
             </a>
           ))}

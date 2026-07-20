@@ -1,6 +1,5 @@
 import { Check } from "lucide-react";
 
-import { Particles } from "@/components/particles";
 import { LetterCascade } from "@/components/ui/letter-cascade";
 import InstallFreeButton from "./InstallFreeButton";
 import SpinBorder from "./SpinBorder";
@@ -13,18 +12,12 @@ const TICKS = [
 
 export default function Hero() {
   return (
-    <section className="font-inter relative isolate flex min-h-[88vh] w-full flex-col items-center justify-center overflow-hidden">
-      {/* Background — grid + radial recolored to our signature blue, + Particles */}
-      <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,rgba(46,107,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(46,107,255,0.07)_1px,transparent_1px)] bg-[size:6rem_4rem]">
-        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,rgba(46,107,255,0.22),transparent)]" />
+    <section className="font-inter relative isolate flex w-full flex-col items-center overflow-hidden pb-16 pt-8">
+      {/* Background — one soft light source behind the shot below, per design.md §5.
+          No grid, no particles: the screenshot is the artwork, nothing competes with it. */}
+      <div className="absolute inset-0 -z-10 bg-white">
+        <div className="absolute inset-0 bg-[radial-gradient(900px_480px_at_50%_10%,rgba(46,107,255,0.10),transparent_62%)]" />
       </div>
-      <Particles
-        className="absolute inset-0 -z-10"
-        quantity={50}
-        color="#2e6bff"
-        ease={10}
-        refresh
-      />
 
       <div className="mx-auto flex w-full max-w-4xl flex-col items-center px-6 py-16">
         {/* Announcement badge — animated spinning-border pill */}
@@ -76,16 +69,16 @@ export default function Hero() {
 
         {/* Buttons */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <SpinBorder>
+          <SpinBorder radius="md">
             <InstallFreeButton
               label="Show me the leak — free"
               className="!flex !h-12 !w-auto items-center justify-center px-9 !border-transparent !bg-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl backdrop-saturate-150"
             />
           </SpinBorder>
-          <SpinBorder>
+          <SpinBorder radius="md">
             <a
               href="/use-cases#punarvasu"
-              className="flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-white/40 px-7 text-sm font-medium text-slate-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl backdrop-saturate-150 transition-colors duration-200 hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2"
+              className="flex h-12 items-center justify-center whitespace-nowrap rounded-[10px] bg-white/40 px-7 text-sm font-medium text-slate-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl backdrop-saturate-150 transition-colors duration-200 hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2"
             >
               See a demo store
             </a>
@@ -101,6 +94,28 @@ export default function Hero() {
             </li>
           ))}
         </ul>
+      </div>
+
+      {/* The shot — design.md §1/§12.1: "the highest-value pixel on any page is a
+          real screenshot." Real Punarvasu click data, bleeding wider than the text
+          column above. One glass chip straddles the edge — the only other allowed
+          glass use besides the nav. */}
+      <div className="relative mx-auto mt-4 w-full max-w-[1180px] px-6">
+        <div className="dw-shot">
+          <img
+            src="/clickHeatmap.png"
+            alt="Click heatmap showing where shoppers are tapping on a real product page, with 376 clicks recorded on one element"
+            width={1228}
+            height={634}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </div>
+        <span className="dw-glass absolute -bottom-5 left-6 z-10 inline-flex items-center gap-2 rounded-[10px] px-4 py-2.5 text-sm font-semibold text-[var(--ink)] sm:left-10">
+          <span className="tabular-nums text-[var(--blue-600)]">52,370</span> rage clicks — caught on
+          one store
+        </span>
       </div>
     </section>
   );

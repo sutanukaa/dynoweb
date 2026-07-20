@@ -21,12 +21,12 @@ const bricolage = Bricolage_Grotesque({
 });
 
 const _desc =
-  "DynoWeb watches every tap, scroll, and rage-click in your Shopify store, then hands your dev the exact file, before/after diff, and projected lift. Sub-40 KB tracker, SEO-safe, native Shopify app.";
+  "DynoWeb watches every tap, scroll, and rage-click in your Shopify store, then hands your dev the exact file, before/after diff, and projected lift. 5.9 KB gzipped tracker, SEO-safe, native Shopify app.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.dynoweb.app"),
   title: {
-    default: "DynoWeb — Shopify CRO App | Fix What's Losing Sales",
+    default: "DynoWeb — Fix What's Losing Sales | Shopify Heatmaps & AI Fixes",
     template: "%s | DynoWeb",
   },
   description: _desc,
@@ -35,20 +35,20 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://www.dynoweb.app",
     siteName: "DynoWeb",
-    title: "DynoWeb — Shopify CRO App | Fix What's Losing Sales",
+    title: "DynoWeb — Fix What's Losing Sales | Shopify Heatmaps & AI Fixes",
     description: _desc,
-    images: [{ url: "/logo.png", width: 1200, height: 630, alt: "DynoWeb — Shopify CRO app" }],
+    images: [{ url: "/logo.png", width: 1200, height: 630, alt: "DynoWeb — Shopify heatmaps, session replay & AI fixes" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DynoWeb — Shopify CRO App | Fix What's Losing Sales",
+    title: "DynoWeb — Fix What's Losing Sales | Shopify Heatmaps & AI Fixes",
     description: _desc,
     images: ["/logo.png"],
   },
   icons: { icon: "/logo-short.png", apple: "/icon1.png" },
   manifest: "/site.webmanifest",
   keywords: [
-    "Shopify CRO",
+    "Shopify lost sales",
     "Shopify analytics",
     "Shopify session replay",
     "conversion rate optimization",
@@ -77,7 +77,7 @@ const ld = {
       sameAs: ["https://apps.shopify.com/dynoweb"],
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       description:
-        "AI-powered CRO tool that pinpoints revenue-leaking pages in your Shopify store and hands your dev the exact fix.",
+        "Shopify app that finds and fixes the sales your store is losing — heatmaps, session replay, and AI-ranked fixes, with revenue attribution back to real orders.",
       image: "https://www.dynoweb.app/logo.png",
     },
     {

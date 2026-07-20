@@ -87,7 +87,7 @@ export default function Close() {
 
                     <div className="mt-6 flex items-baseline gap-1">
                       <span
-                        className={`font-display text-4xl font-semibold tracking-[-0.03em] ${
+                        className={`font-display text-4xl font-semibold tabular-nums tracking-[-0.03em] ${
                           t.featured ? "text-white" : "text-[var(--ink)]"
                         }`}
                       >
@@ -152,9 +152,8 @@ export default function Close() {
 
       {/* 11 · Final CTA */}
       <section className="font-inter relative w-full overflow-hidden bg-white">
-        {/* Ambient interest — faint grid + soft aurora glows behind the closer */}
+        {/* Ambient interest — soft aurora glows behind the closer */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(46,107,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(46,107,255,0.07)_1px,transparent_1px)] bg-[size:2.75rem_2.75rem] [mask-image:radial-gradient(ellipse_at_center,#000_38%,transparent_78%)]" />
           <div className="absolute left-1/2 top-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#dbe6ff] opacity-60 blur-[110px]" />
           <div className="absolute -left-12 top-8 h-64 w-64 rounded-full bg-[#c7d6ff] opacity-45 blur-[80px]" style={{ animation: "dw-float 9s ease-in-out infinite" }} />
           <div className="absolute -right-12 bottom-4 h-64 w-64 rounded-full bg-[#d9c9ff] opacity-35 blur-[80px]" style={{ animation: "dw-float 11s ease-in-out infinite reverse" }} />
@@ -178,7 +177,7 @@ export default function Close() {
             come back. Pay only when they do.
           </p>
           <div className="mt-10 flex justify-center">
-            <SpinBorder>
+            <SpinBorder radius="md">
               <InstallFreeButton
                 label="Show me what's costing me sales — free"
                 className="!flex !h-12 !w-auto items-center justify-center px-9 !border-transparent !bg-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl backdrop-saturate-150"

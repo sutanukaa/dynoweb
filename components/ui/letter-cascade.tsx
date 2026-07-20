@@ -144,8 +144,14 @@ export function LetterCascade({
                         {letter}
                     </motion.span>
 
-                    {/* Echo face — hidden below, flips up into view on trigger */}
+                    {/* Echo face — hidden below, flips up into view on trigger.
+                        The letter is rendered via CSS content (data-letter + ::before in
+                        globals.css), not as a text node — otherwise it duplicates every
+                        character in the DOM's accessible text (copy/paste, Ctrl+F, crawlers
+                        all read raw textContent, not the aria-label). */}
                     <motion.span
+                        aria-hidden="true"
+                        data-letter={letter}
                         className={cn(
                             "cascade-echo absolute inset-0 inline-block",
                             letterClassName
@@ -159,9 +165,7 @@ export function LetterCascade({
                             transformOrigin: "top center",
                             backfaceVisibility: "hidden",
                         }}
-                    >
-                        {letter}
-                    </motion.span>
+                    />
                 </span>
             ))}
         </span>
