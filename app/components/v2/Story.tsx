@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import HighlightMarker from "./HighlightMarker";
 import InstallFreeButton from "./InstallFreeButton";
-import LeakScan from "./LeakScan";
+import ShaderBg from "./ShaderBg";
 import LoopViz from "./LoopViz";
 import SpinBorder from "./SpinBorder";
 import WaveBg from "./WaveBg";
@@ -130,13 +130,11 @@ export default function Story() {
     // it, then release once the story is scrolled past.
     <div className="relative">
       {/* 2 · The feeling */}
-      <section
-        className="font-inter flex min-h-screen w-full flex-col justify-center overflow-hidden"
-        style={{
-          background:
-            "radial-gradient(58% 55% at 84% 12%, #eef3ff 0%, transparent 60%), radial-gradient(48% 52% at 4% 94%, rgba(46,107,255,0.08) 0%, transparent 62%), #fff",
-        }}
-      >
+      <section className="font-inter relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-white">
+        {/* Navy/white light-arc field. CSS rather than the hero's image asset —
+            it stays crisp at any resolution and costs no bytes, which matters more
+            for a full-height section than for the one above-the-fold shot. */}
+        <ShaderBg intensity={0.85} />
         <WaveBg />
         <div className="relative z-10 mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-12 px-[clamp(1.25rem,5vw,4rem)] py-24 md:grid-cols-2 md:gap-16">
           {/* Text */}
@@ -190,68 +188,7 @@ export default function Story() {
         </div>
       </section>
 
-      {/* 3 · The tools you already tried — the loop no competitor closes */}
-      <section
-        className="font-inter flex min-h-screen w-full flex-col justify-center overflow-hidden"
-        style={{ background: "linear-gradient(160deg,#4257d6 0%,#2f43c4 52%,#1e2a8f 100%)" }}
-      >
-        {/* Soft depth glows */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-[8%] top-[8%] h-72 w-72 rounded-full bg-[#4b5ee0] opacity-40 blur-[80px]" />
-          <div className="absolute -right-[6%] bottom-[6%] h-80 w-80 rounded-full bg-[#7c88ee] opacity-30 blur-[90px]" />
-          <div className="absolute left-1/2 top-[38%] h-96 w-[36rem] -translate-x-1/2 rounded-full bg-[#5b6ef5] opacity-20 blur-[110px]" />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-[900px] px-[clamp(1.25rem,5vw,4rem)] py-16 text-center">
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white/60">
-            The tools you already tried
-          </p>
-          <h2 className="font-display mx-auto mt-4 max-w-[18ch] text-[clamp(1.75rem,2.8vw,2.35rem)] font-semibold leading-[1.12] tracking-[-0.025em] text-white">
-            Every other tool quits halfway.
-          </h2>
-          <p className="mx-auto mt-4 max-w-[54ch] text-base leading-relaxed text-white/70 sm:text-lg">
-            Free tools stop at <span className="font-semibold text-white">see</span>. Paid popups stop
-            at <span className="font-semibold text-white">fix</span>. DynoWeb is the only one that
-            closes the loop &mdash; before you pay a cent.
-          </p>
-
-          <LoopViz />
-        </div>
-      </section>
-
-      {/* 4 · See the leak — free */}
-      <section id="leak" className="font-inter flex min-h-screen w-full flex-col justify-center overflow-hidden bg-white">
-        <WaveBg />
-        <div className="relative z-10 mx-auto max-w-[820px] px-[clamp(1.25rem,5vw,4rem)] py-24 text-center">
-          <Eyebrow>See the leak &mdash; free</Eyebrow>
-          <h2 className="font-display mx-auto mt-5 max-w-[20ch] text-[clamp(1.875rem,3vw,2.5rem)] font-semibold leading-[1.12] tracking-[-0.025em] text-[var(--ink)]">
-            One plain answer, with a number.
-          </h2>
-
-          <div className="mt-10">
-            <LeakScan />
-          </div>
-          <p className="mx-auto mt-4 text-sm text-[var(--ink-muted)]">
-            Example of what your leak report shows &mdash; run on your own store.
-          </p>
-
-          <p className="mx-auto mt-10 max-w-[52ch] text-lg leading-relaxed text-[var(--ink-muted)]">
-            No jargon. No 40-metric dashboard. No six-week agency report. Just the biggest reason
-            shoppers leave, in dollars, on your store.
-          </p>
-
-          <div className="mt-8 flex justify-center">
-            <SpinBorder radius="md">
-              <InstallFreeButton
-                label="Run my free leak report"
-                className="!flex !h-12 !w-auto items-center justify-center px-9 !border-transparent !bg-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl backdrop-saturate-150"
-              />
-            </SpinBorder>
-          </div>
-        </div>
-      </section>
-
-      {/* 5 · We fix it — you don't lift a finger */}
+      {/* 3 · We fix it — you don't lift a finger */}
       <section
         className="font-inter sticky top-0 flex min-h-screen w-full flex-col justify-center overflow-hidden rounded-t-[2.5rem] shadow-[0_-18px_50px_-28px_rgba(10,22,51,0.35)]"
         style={{
@@ -313,7 +250,7 @@ export default function Story() {
         </div>
       </section>
 
-      {/* 6 · Watch it make you money */}
+      {/* 5 · Watch it make you money */}
       <section
         className="font-inter sticky top-0 flex min-h-screen w-full flex-col justify-center overflow-hidden rounded-t-[2.5rem] shadow-[0_-18px_50px_-28px_rgba(10,22,51,0.35)]"
         style={{
@@ -375,7 +312,7 @@ export default function Story() {
         </div>
       </section>
 
-      {/* 7 · You stay in control */}
+      {/* 6 · You stay in control */}
       <section
         className="font-inter sticky top-0 flex min-h-screen w-full flex-col justify-center overflow-hidden rounded-t-[2.5rem] shadow-[0_-18px_50px_-28px_rgba(10,22,51,0.35)]"
         style={{
@@ -435,6 +372,38 @@ export default function Story() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 7 · How it works — the recap. Comes after the feature walkthrough
+          (SEE/FIX/PROVE/Agent above), not before it: now that each stage has
+          been shown as its own real screenshot, this closes the loop in one
+          glance and is the natural hand-off into proof + pricing below. */}
+      <section
+        className="font-inter sticky top-0 flex min-h-screen w-full flex-col justify-center overflow-hidden rounded-t-[2.5rem] shadow-[0_-18px_50px_-28px_rgba(10,22,51,0.35)]"
+        style={{ background: "linear-gradient(160deg,#4257d6 0%,#2f43c4 52%,#1e2a8f 100%)" }}
+      >
+        {/* Soft depth glows */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -left-[8%] top-[8%] h-72 w-72 rounded-full bg-[#4b5ee0] opacity-40 blur-[80px]" />
+          <div className="absolute -right-[6%] bottom-[6%] h-80 w-80 rounded-full bg-[#7c88ee] opacity-30 blur-[90px]" />
+          <div className="absolute left-1/2 top-[38%] h-96 w-[36rem] -translate-x-1/2 rounded-full bg-[#5b6ef5] opacity-20 blur-[110px]" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-[900px] px-[clamp(1.25rem,5vw,4rem)] py-16 text-center">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white/60">
+            How it works
+          </p>
+          <h2 className="font-display mx-auto mt-4 max-w-[18ch] text-[clamp(1.75rem,2.8vw,2.35rem)] font-semibold leading-[1.12] tracking-[-0.025em] text-white">
+            Every other tool quits halfway.
+          </h2>
+          <p className="mx-auto mt-4 max-w-[54ch] text-base leading-relaxed text-white/70 sm:text-lg">
+            Free tools stop at <span className="font-semibold text-white">see</span>. Paid popups stop
+            at <span className="font-semibold text-white">fix</span>. DynoWeb is the only one that
+            closes the loop &mdash; before you pay a cent.
+          </p>
+
+          <LoopViz />
         </div>
       </section>
     </div>

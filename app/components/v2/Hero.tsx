@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 
 import { LetterCascade } from "@/components/ui/letter-cascade";
 import InstallFreeButton from "./InstallFreeButton";
+import LeakSpotlight from "./LeakSpotlight";
 import SpinBorder from "./SpinBorder";
 
 const TICKS = [
@@ -12,29 +13,60 @@ const TICKS = [
 
 export default function Hero() {
   return (
-    <section className="font-inter relative isolate flex w-full flex-col items-center overflow-hidden pb-16 pt-8">
-      {/* Background — one soft light source behind the shot below, per design.md §5.
-          No grid, no particles: the screenshot is the artwork, nothing competes with it. */}
-      <div className="absolute inset-0 -z-10 bg-white">
-        <div className="absolute inset-0 bg-[radial-gradient(900px_480px_at_50%_10%,rgba(46,107,255,0.10),transparent_62%)]" />
+    <section className="font-inter relative isolate w-full overflow-hidden pb-4 pt-8">
+      {/* Background — navy/white light-arc field. 17 KB WebP (was a 5 MB 4K JPEG;
+          it's pure soft gradient, so downscaling is invisible). Held at low opacity
+          and faded out toward the centre-left so the headline keeps full contrast —
+          design.md §5: light exists to lift the product shot, not to decorate. */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-white">
+        <picture>
+          <source srcSet="/hero-shader.webp" type="image/webp" />
+          <img
+            src="/hero-shader.jpg"
+            alt=""
+            className="h-full w-full object-cover opacity-[0.55]"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
+        {/* Scrim: keeps the left text column on near-white so contrast stays AA. */}
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,#fff_18%,rgba(255,255,255,0.72)_46%,rgba(255,255,255,0.25)_78%)]" />
+        {/* Soften the seam into the section below. */}
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(to_bottom,transparent,#fff)]" />
       </div>
 
-      <div className="mx-auto flex w-full max-w-4xl flex-col items-center px-6 py-16">
-        {/* Announcement badge — animated spinning-border pill */}
-        <a href="#leak" className="mb-8">
-          <SpinBorder>
-            <span className="inline-flex cursor-pointer items-center justify-center rounded-full bg-white/70 px-3 py-1 text-xs font-medium leading-5 text-slate-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] backdrop-blur-xl backdrop-saturate-150">
-              Free leak report ⚡️
-              <span className="inline-flex items-center pl-2 text-slate-900">See yours</span>
-            </span>
-          </SpinBorder>
-        </a>
+      {/* Editorial split: the copy holds the left, the storefront runs off the right
+          edge. Asymmetry and a partial reveal — a shot that sits politely inside the
+          grid reads as a thumbnail (design.md §8). */}
+      <div className="mx-auto grid w-full max-w-[1320px] grid-cols-1 items-center gap-16 px-[clamp(1.25rem,5vw,4rem)] py-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-24 lg:py-20">
+        {/* ---------- Left: the words ---------- */}
+        <div className="max-w-[34rem]">
+          {/* Announcement badge */}
+          {/* The old #leak section was removed, so this points at the install flow
+              — the badge promises a free leak report, which is what installing gives. */}
+          <a
+            href="https://apps.shopify.com/dynoweb"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-7 inline-block"
+          >
+            <SpinBorder>
+              <span className="inline-flex cursor-pointer items-center justify-center rounded-full bg-white/70 px-3 py-1 text-xs font-medium leading-5 text-slate-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] backdrop-blur-xl backdrop-saturate-150">
+                Free leak report
+                <span className="inline-flex items-center pl-2 text-slate-900">See yours</span>
+              </span>
+            </SpinBorder>
+          </a>
 
-        {/* Headline — the merchant's own words */}
-        <h1 className="font-display text-center text-3xl font-semibold text-gray-900 sm:text-6xl">
-          <span className="block">Traffic but no sales &mdash;</span>
-          <span className="mt-2 block">
-            <span className="relative inline-block">
+          {/* Headline — the merchant's own words.
+              Size is clamped rather than stepped: LetterCascade lays each character
+              out in an inline-flex row, which CANNOT wrap, so the second line has to
+              be guaranteed to fit its container at every width or it gets clipped. */}
+          <h1 className="font-display text-[clamp(1.65rem,6vw,3.4rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-gray-900">
+            <span className="block whitespace-nowrap">Traffic but no sales &mdash;</span>
+            <span className="mt-2 block">
+              <span className="relative inline-block">
               {/* Blue highlighter marker — sweeps in behind the black text on load */}
               <svg
                 className="dw-highlight-svg absolute left-[1%] top-0 z-0 h-full w-[98%]"
@@ -50,72 +82,57 @@ export default function Hero() {
                   <path d="M4 74 C24 71,50 70,70 71 C84 72,93 73,98 72" stroke="#3a7adc" strokeWidth="2" strokeLinecap="butt" opacity="0.4" fill="none" />
                 </g>
               </svg>
-              <LetterCascade
-                text="and you don't know why?"
-                staggerDuration={0.05}
-                className="relative z-[1] align-baseline"
-                letterClassName="text-gray-900"
-              />
+                <LetterCascade
+                  text="and you don't know why?"
+                  staggerDuration={0.05}
+                  className="relative z-[1] align-baseline"
+                  letterClassName="text-gray-900"
+                />
+              </span>
             </span>
-          </span>
-        </h1>
+          </h1>
 
-        {/* Sub-paragraph — it's not you, we find it, put a number on it, fix it free */}
-        <p className="mt-6 max-w-xl text-center text-lg leading-7 text-gray-600">
-          It&rsquo;s not you. One fixable thing is quietly costing you sales. We&rsquo;ll find it,
-          put a dollar figure on it, and fix it &mdash; free. You only pay once it&rsquo;s made you
-          money.
-        </p>
+          {/* Sub-paragraph — it's not you, we find it, put a number on it, fix it free */}
+          <p className="mt-6 max-w-[46ch] text-lg leading-7 text-gray-600">
+            It&rsquo;s not you. One fixable thing is quietly costing you sales. We&rsquo;ll find it,
+            put a dollar figure on it, and fix it &mdash; free. You only pay once it&rsquo;s made you
+            money.
+          </p>
 
-        {/* Buttons */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <SpinBorder radius="md">
+          {/* Buttons */}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            {/* Exactly one primary CTA: solid --blue-600, per design.md §10. The
+                secondary stays white/hairline so the hierarchy is unmistakable —
+                two identically-weighted buttons means no primary action at all. */}
             <InstallFreeButton
               label="Show me the leak — free"
-              className="!flex !h-12 !w-auto items-center justify-center px-9 !border-transparent !bg-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl backdrop-saturate-150"
+              className="!flex !h-12 !w-auto items-center justify-center !border-transparent !bg-[var(--blue-600)] px-9 !text-white shadow-[var(--shadow-xs),inset_0_1px_0_rgba(255,255,255,0.16)] transition-colors hover:!bg-[var(--blue-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--blue-600)] focus-visible:ring-offset-2"
             />
-          </SpinBorder>
-          <SpinBorder radius="md">
             <a
               href="/use-cases#punarvasu"
-              className="flex h-12 items-center justify-center whitespace-nowrap rounded-[10px] bg-white/40 px-7 text-sm font-medium text-slate-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl backdrop-saturate-150 transition-colors duration-200 hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2"
+              className="flex h-12 items-center justify-center whitespace-nowrap rounded-[10px] border border-[var(--line)] bg-white px-7 text-sm font-semibold text-[var(--navy-800)] shadow-[var(--shadow-xs)] transition-colors duration-200 hover:border-[var(--navy-300)] hover:bg-[var(--paper)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--blue-600)] focus-visible:ring-offset-2"
             >
               See a demo store
             </a>
-          </SpinBorder>
+          </div>
+
+          {/* Trust ticks */}
+          <ul className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-500">
+            {TICKS.map((t) => (
+              <li key={t} className="inline-flex items-center gap-1.5">
+                <Check className="h-4 w-4 text-[#10805c]" strokeWidth={2.5} />
+                {t}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Trust ticks */}
-        <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-500">
-          {TICKS.map((t) => (
-            <li key={t} className="inline-flex items-center gap-1.5">
-              <Check className="h-4 w-4 text-[#10805c]" strokeWidth={2.5} />
-              {t}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* The shot — design.md §1/§12.1: "the highest-value pixel on any page is a
-          real screenshot." Real Punarvasu click data, bleeding wider than the text
-          column above. One glass chip straddles the edge — the only other allowed
-          glass use besides the nav. */}
-      <div className="relative mx-auto mt-4 w-full max-w-[1180px] px-6">
-        <div className="dw-shot">
-          <img
-            src="/clickHeatmap.png"
-            alt="Click heatmap showing where shoppers are tapping on a real product page, with 376 clicks recorded on one element"
-            width={1228}
-            height={634}
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
+        {/* ---------- Right: the storefront, one element lit ----------
+            Runs past the container's right edge on desktop so it reads as a
+            partial reveal rather than a framed thumbnail. */}
+        <div className="relative lg:-mr-[clamp(1.25rem,5vw,4rem)] lg:pl-[190px]">
+          <LeakSpotlight />
         </div>
-        <span className="dw-glass absolute -bottom-5 left-6 z-10 inline-flex items-center gap-2 rounded-[10px] px-4 py-2.5 text-sm font-semibold text-[var(--ink)] sm:left-10">
-          <span className="tabular-nums text-[var(--blue-600)]">52,370</span> rage clicks — caught on
-          one store
-        </span>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Geist, Bricolage_Grotesque } from "next/font/google";
+import { Inter, Geist, Bricolage_Grotesque, Caveat } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import OaiqPageView from "./components/OaiqPageView";
@@ -18,6 +18,15 @@ const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700", "800"],
+});
+
+// Hand-annotation face — used only for the marginalia on the hero flow diagram,
+// where a handwritten aside reads as a designer's note rather than more UI chrome.
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["500", "600"],
 });
 
 const _desc =
@@ -116,7 +125,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${bricolage.variable} antialiased font-inter`}
+        className={`${inter.variable} ${bricolage.variable} ${caveat.variable} antialiased font-inter`}
         suppressHydrationWarning
       >
         <OaiqPageView />

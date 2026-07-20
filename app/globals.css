@@ -115,9 +115,16 @@
   --dw-glass-fill: rgba(255, 255, 255, 0.72);
   --dw-glass-stroke: rgba(255, 255, 255, 0.9);
 
-  --r-md: 10px; --r-lg: 16px; --r-xl: 24px;
+  /* Semantic / data colours — design.md §4. These were specified but never
+     implemented, so any component referencing them rendered them as an invalid
+     value (white text, invisible accent bars). Do not remove. */
+  --success: #10805c; --warning: #b45309; --danger: #c0334c;
+  --heat-cold: #2e6bff; --heat-warm: #f5a524; --heat-hot: #e5484d;
+
+  --r-xs: 6px; --r-sm: 8px; --r-md: 10px; --r-lg: 16px; --r-xl: 24px;
   --shadow-xs: 0 1px 2px rgba(10, 22, 51, 0.05);
   --shadow-sm: 0 1px 2px rgba(10, 22, 51, 0.04), 0 2px 6px -2px rgba(10, 22, 51, 0.08);
+  --shadow-md: 0 1px 2px rgba(10, 22, 51, 0.04), 0 10px 24px -6px rgba(10, 22, 51, 0.12);
   --shadow-lg: 0 2px 4px rgba(10, 22, 51, 0.04), 0 24px 64px -16px rgba(10, 22, 51, 0.22);
 }
 
@@ -140,10 +147,33 @@
   font-family: var(--font-bricolage), var(--font-inter), system-ui, sans-serif;
 }
 
+/* Hand-annotation face — marginalia on the hero flow diagram only. */
+.font-caveat {
+  font-family: var(--font-caveat), ui-rounded, cursive;
+}
+
 /* LetterCascade echo face — letter comes from CSS content, not a text node, so
    the animation doesn't duplicate every character in the raw DOM text. */
 .cascade-echo::before {
   content: attr(data-letter);
+}
+
+/* ── Leak spotlight (hero) ──
+   The storefront is drained of colour; the one element we found stays lit.
+   `dw-quiet` desaturates the whole subtree, `dw-lit-el` opts a child back out —
+   filter doesn't inherit through a reset, so the child re-saturates cleanly. */
+.dw-quiet { filter: grayscale(1) opacity(0.62); }
+.dw-quiet .dw-lit-el { filter: grayscale(0) opacity(1); }
+
+/* Slow breathing ring on the found element — the only motion in the hero. */
+@keyframes dw-found-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(30, 85, 224, 0.34); }
+  50%      { box-shadow: 0 0 0 7px rgba(30, 85, 224, 0); }
+}
+.dw-pulse { animation: dw-found-pulse 2.6s cubic-bezier(0.32, 0.72, 0, 1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dw-pulse { animation: none; }
 }
 
 /* Glass = chrome only: screenshot bezel, nav, overlapping chip. Never a generic card. */

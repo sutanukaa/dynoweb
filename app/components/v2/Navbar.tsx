@@ -25,9 +25,13 @@ const LINKS = [
 const UNDERLINE =
   "relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-gray-900 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100";
 
-export default function Navbar() {
+export default function Navbar({ onDark = false }: { onDark?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  // `onDark` = the hero behind this nav is dark, so at scroll 0 the nav must render
+  // light-on-dark. Once the glass fill fades in past 40px it flips back to ink.
+  const light = onDark && !scrolled && !open;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -48,7 +52,11 @@ export default function Navbar() {
         {/* Logo */}
         <a href="/" className="flex items-center gap-2" aria-label="DynoWeb home">
           <img src="/logo-short.png" alt="" width={28} height={28} className="h-7 w-7" />
-          <span className="text-[1.05rem] font-semibold tracking-[-0.02em] text-gray-900">
+          <span
+            className={`text-[1.05rem] font-semibold tracking-[-0.02em] transition-colors ${
+              light ? "text-white" : "text-gray-900"
+            }`}
+          >
             DynoWeb
           </span>
         </a>
@@ -57,7 +65,13 @@ export default function Navbar() {
         <div className="hidden items-center gap-7 md:flex">
           {/* Features dropdown — opens on hover + keyboard focus */}
           <div className="group relative">
-            <button className={`inline-flex items-center gap-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 group-focus-within:text-gray-900 ${UNDERLINE}`}>
+            <button
+              className={`inline-flex items-center gap-1 text-sm font-medium transition-colors ${
+                light
+                  ? "text-white/80 hover:text-white group-focus-within:text-white"
+                  : "text-gray-600 hover:text-gray-900 group-focus-within:text-gray-900"
+              } ${UNDERLINE}`}
+            >
               Features
               <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" strokeWidth={2} />
             </button>
@@ -81,7 +95,9 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className={`text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 ${UNDERLINE}`}
+              className={`text-sm font-medium transition-colors ${
+                light ? "text-white/80 hover:text-white" : "text-gray-600 hover:text-gray-900"
+              } ${UNDERLINE}`}
             >
               {l.label}
             </a>
@@ -95,7 +111,9 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="inline-flex h-9 w-9 items-center justify-center rounded-md text-gray-700 hover:bg-[var(--paper)] md:hidden"
+          className={`inline-flex h-9 w-9 items-center justify-center rounded-md transition-colors md:hidden ${
+            light ? "text-white hover:bg-white/10" : "text-gray-700 hover:bg-[var(--paper)]"
+          }`}
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
