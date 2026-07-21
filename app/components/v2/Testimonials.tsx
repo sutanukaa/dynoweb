@@ -1,4 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
+import Bracket from "./Bracket";
+
+import HighlightMarker from "./HighlightMarker";
 
 // Bento-grid testimonial block. Layout matches a reference design (big stat
 // card + 3 supporting cards + a bottom proof bar) — but every number, quote,
@@ -30,38 +33,22 @@ const CARDS = {
     href: "/use-cases#sahasika",
   },
   skyline: {
-    quote: "33 sales-blocking errors caught live — silent checkout breakers, surfaced as shoppers hit them.",
+    quote:
+      "33 sales-blocking errors caught live — silent checkout breakers, surfaced as shoppers hit them.",
     store: "Skyline Decor",
     sub: "Case study",
     logo: "/SkyLine.png",
     href: "/use-cases#skyline",
   },
   yetibeds: {
-    quote: "One heatmap showed shoppers clicking the wrong thing — the button no one could tap, found.",
+    quote:
+      "One heatmap showed shoppers clicking the wrong thing — the button no one could tap, found.",
     store: "Yetibeds",
     sub: "Case study",
     logo: "/yetibeds-logo.png",
     href: "/use-cases#yetibeds",
   },
 };
-
-function Bracket({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="relative inline-flex items-center px-3 py-1">
-      <span
-        aria-hidden="true"
-        className="absolute left-0 top-0 h-2.5 w-2.5 border-l-[1.5px] border-t-[1.5px] border-[var(--blue-600)]"
-      />
-      <span
-        aria-hidden="true"
-        className="absolute bottom-0 right-0 h-2.5 w-2.5 border-b-[1.5px] border-r-[1.5px] border-[var(--blue-600)]"
-      />
-      <span className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--ink-muted)]">
-        {children}
-      </span>
-    </span>
-  );
-}
 
 function QuoteMark({ dark = false }: { dark?: boolean }) {
   return (
@@ -90,24 +77,37 @@ function Attribution({
 }) {
   return (
     <div
-      className={`mt-6 flex items-center justify-between gap-3 border-t pt-4 ${
+      className={`mt-4 flex items-center justify-between gap-3 border-t pt-3 ${
         dark ? "border-white/15" : "border-[var(--line)]"
       }`}
     >
       <div className="flex items-center gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-[var(--line)] bg-white p-1.5">
-          <img src={logo} alt="" className="h-full w-full object-contain" loading="lazy" />
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] border border-[var(--line)] bg-white p-1.5">
+          <img
+            src={logo}
+            alt=""
+            className="h-full w-full object-contain"
+            loading="lazy"
+          />
         </span>
         <span>
-          <span className={`block text-sm font-semibold ${dark ? "text-white" : "text-[var(--ink)]"}`}>
+          <span
+            className={`block text-sm font-semibold ${dark ? "text-white" : "text-[var(--ink)]"}`}
+          >
             {store}
           </span>
-          <span className={`block text-xs ${dark ? "text-white/55" : "text-[var(--ink-muted)]"}`}>{sub}</span>
+          <span
+            className={`block text-xs ${dark ? "text-white/55" : "text-[var(--ink-muted)]"}`}
+          >
+            {sub}
+          </span>
         </span>
       </div>
       <ArrowUpRight
         className={`h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
-          dark ? "text-white/40 group-hover:text-white" : "text-[var(--ink-muted)] group-hover:text-[var(--blue-600)]"
+          dark
+            ? "text-white/40 group-hover:text-white"
+            : "text-[var(--ink-muted)] group-hover:text-[var(--blue-600)]"
         }`}
         strokeWidth={2.2}
       />
@@ -120,78 +120,117 @@ export default function Testimonials() {
 
   return (
     <section className="font-inter w-full bg-[var(--paper)]">
-      <div className="mx-auto max-w-[1200px] px-[clamp(1.25rem,5vw,4rem)] py-24">
-        {/* Header */}
-        <div className="dw-reveal mx-auto max-w-[52ch] text-center">
-          <Bracket>Testimonials</Bracket>
-          <h2 className="font-display mt-4 text-[clamp(1.875rem,3.2vw,2.5rem)] font-semibold leading-[1.12] tracking-[-0.025em]">
-            <span className="block text-[var(--ink)]">Real leaks. Real dollars.</span>
-            <span className="block text-[var(--ink-muted)]">Read what actually happened.</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-[46ch] text-base leading-relaxed text-[var(--ink-muted)]">
-            Four real Shopify stores. Every number below is what DynoWeb found or recovered —
-            not a projection.
-          </p>
-        </div>
+      <div className="mx-auto max-w-[1200px] px-[clamp(1.25rem,5vw,4rem)] py-16">
+        {/* Bento left, heading right. The header stays FIRST in the DOM and is
+            moved with lg:order-2 — on one column it should still be read before
+            the cards it introduces, and source order is what screen readers and
+            keyboard tabbing follow. */}
+        <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-12">
+          {/* Header */}
+          <div className="dw-reveal dw-reveal-right lg:order-2 lg:sticky lg:top-28 lg:self-start">
+            <Bracket>Testimonials</Bracket>
+            <h2 className="font-display mt-4 text-[clamp(1.875rem,3.2vw,2.5rem)] font-semibold leading-[1.12] tracking-[-0.025em]">
+              <span className="block text-[var(--ink)]">
+                Real leaks. <HighlightMarker>Real dollars.</HighlightMarker>
+              </span>
+              <span className="block text-[var(--ink-muted)]">
+                Read what actually happened.
+              </span>
+            </h2>
+            <p className="mt-4 max-w-[38ch] text-base leading-relaxed text-[var(--ink-muted)]">
+              Four real Shopify stores. Every number beside this is what DynoWeb
+              found or recovered — not a projection.
+            </p>
+          </div>
 
-        {/* Bento grid */}
-        <div className="dw-reveal mt-14 grid gap-5 md:grid-cols-[1fr_1.3fr]">
-          {/* Big card — Punarvasu */}
-          <a
-            href={punarvasu.href}
-            className="group flex flex-col rounded-2xl border border-[var(--line)] bg-white p-8 shadow-[var(--shadow-sm)] transition-colors hover:border-[var(--navy-300)]"
-          >
-            <span className="font-display text-5xl font-semibold tabular-nums tracking-[-0.03em] text-[var(--ink)]">
-              {punarvasu.value}
-            </span>
-            <span className="mt-2 text-base font-medium text-[var(--ink-muted)]">{punarvasu.label}</span>
-            <div className="mt-6">
-              <QuoteMark />
-              <p className="mt-2 text-lg leading-relaxed text-[var(--ink)]">&ldquo;{punarvasu.quote}&rdquo;</p>
-            </div>
-            <div className="mt-auto">
-              <Attribution logo={punarvasu.logo} store={punarvasu.store} sub={punarvasu.sub} />
-            </div>
-          </a>
-
-          {/* Right column */}
-          <div className="grid gap-5">
-            {/* Top card — Sahasika, inline stat */}
+          {/* Bento grid */}
+          <div className="dw-reveal grid gap-4 lg:order-1 md:grid-cols-[1fr_1.3fr]">
+            {/* Big card — Punarvasu */}
             <a
-              href={sahasika.href}
-              className="group flex flex-col rounded-2xl border border-[var(--line)] bg-white p-7 shadow-[var(--shadow-sm)] transition-colors hover:border-[var(--navy-300)]"
+              href={punarvasu.href}
+              className="group flex flex-col rounded-2xl border border-[var(--line)] bg-white p-5 shadow-[var(--shadow-sm)] transition-colors hover:border-[var(--navy-300)]"
             >
-              <div className="flex items-baseline gap-3">
-                <span className="font-display text-3xl font-semibold tabular-nums tracking-[-0.03em] text-[var(--ink)]">
-                  {sahasika.value}
-                </span>
-                <span className="text-base font-medium text-[var(--ink-muted)]">{sahasika.label}</span>
-              </div>
+              <span className="font-display text-4xl font-semibold tabular-nums tracking-[-0.03em] text-[var(--ink)]">
+                {punarvasu.value}
+              </span>
+              <span className="mt-1.5 text-sm font-medium text-[var(--ink-muted)]">
+                {punarvasu.label}
+              </span>
               <div className="mt-4">
                 <QuoteMark />
-                <p className="mt-1 text-base leading-relaxed text-[var(--ink)]">&ldquo;{sahasika.quote}&rdquo;</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-[var(--ink)]">
+                  &ldquo;{punarvasu.quote}&rdquo;
+                </p>
               </div>
-              <Attribution logo={sahasika.logo} store={sahasika.store} sub={sahasika.sub} />
+              <div className="mt-auto">
+                <Attribution
+                  logo={punarvasu.logo}
+                  store={punarvasu.store}
+                  sub={punarvasu.sub}
+                />
+              </div>
             </a>
 
-            {/* Bottom two — Skyline (light) + Yetibeds (dark) */}
-            <div className="grid gap-5 sm:grid-cols-2">
+            {/* Right column */}
+            <div className="grid gap-4">
+              {/* Top card — Sahasika, inline stat */}
               <a
-                href={skyline.href}
-                className="group flex flex-col rounded-2xl border border-[var(--line)] bg-white p-6 shadow-[var(--shadow-sm)] transition-colors hover:border-[var(--navy-300)]"
+                href={sahasika.href}
+                className="group flex flex-col rounded-2xl border border-[var(--line)] bg-white p-5 shadow-[var(--shadow-sm)] transition-colors hover:border-[var(--navy-300)]"
               >
-                <QuoteMark />
-                <p className="mt-1 flex-1 text-sm leading-relaxed text-[var(--ink)]">&ldquo;{skyline.quote}&rdquo;</p>
-                <Attribution logo={skyline.logo} store={skyline.store} sub={skyline.sub} />
+                <div className="flex items-baseline gap-3">
+                  <span className="font-display text-2xl font-semibold tabular-nums tracking-[-0.03em] text-[var(--ink)]">
+                    {sahasika.value}
+                  </span>
+                  <span className="text-sm font-medium text-[var(--ink-muted)]">
+                    {sahasika.label}
+                  </span>
+                </div>
+                <div className="mt-4">
+                  <QuoteMark />
+                  <p className="mt-1 text-[13px] leading-relaxed text-[var(--ink)]">
+                    &ldquo;{sahasika.quote}&rdquo;
+                  </p>
+                </div>
+                <Attribution
+                  logo={sahasika.logo}
+                  store={sahasika.store}
+                  sub={sahasika.sub}
+                />
               </a>
-              <a
-                href={yetibeds.href}
-                className="group flex flex-col rounded-2xl bg-[var(--navy-900)] p-6 shadow-[var(--shadow-sm)]"
-              >
-                <QuoteMark dark />
-                <p className="mt-1 flex-1 text-sm leading-relaxed text-white/85">&ldquo;{yetibeds.quote}&rdquo;</p>
-                <Attribution logo={yetibeds.logo} store={yetibeds.store} sub={yetibeds.sub} dark />
-              </a>
+
+              {/* Bottom two — Skyline (light) + Yetibeds (dark) */}
+              <div className="grid gap-4 sm:grid-cols-2">
+                <a
+                  href={skyline.href}
+                  className="group flex flex-col rounded-2xl border border-[var(--line)] bg-white p-6 shadow-[var(--shadow-sm)] transition-colors hover:border-[var(--navy-300)]"
+                >
+                  <QuoteMark />
+                  <p className="mt-1 flex-1 text-[13px] leading-relaxed text-[var(--ink)]">
+                    &ldquo;{skyline.quote}&rdquo;
+                  </p>
+                  <Attribution
+                    logo={skyline.logo}
+                    store={skyline.store}
+                    sub={skyline.sub}
+                  />
+                </a>
+                <a
+                  href={yetibeds.href}
+                  className="group flex flex-col rounded-2xl bg-[var(--navy-900)] p-5 shadow-[var(--shadow-sm)]"
+                >
+                  <QuoteMark dark />
+                  <p className="mt-1 flex-1 text-[13px] leading-relaxed text-white/85">
+                    &ldquo;{yetibeds.quote}&rdquo;
+                  </p>
+                  <Attribution
+                    logo={yetibeds.logo}
+                    store={yetibeds.store}
+                    sub={yetibeds.sub}
+                    dark
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -199,9 +238,10 @@ export default function Testimonials() {
         {/* Bottom bar — honest, not a fabricated rating (we have 0 paying
             customers today; a star-rating line here would be exactly the
             fabrication the product's own honesty pitch forbids). */}
-        <div className="dw-reveal mt-8 flex flex-col items-center justify-between gap-4 border-t border-[var(--line)] pt-6 sm:flex-row">
+        <div className="dw-reveal mt-6 flex flex-col items-center justify-between gap-4 border-t border-[var(--line)] pt-5 sm:flex-row">
           <p className="text-sm text-[var(--ink-muted)]">
-            Running live across India and the US — every number above is real, on a real store.
+            Running live across India and the US — every number above is real,
+            on a real store.
           </p>
           <a
             href="/use-cases"

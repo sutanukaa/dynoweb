@@ -110,7 +110,8 @@
   --blue-700: #1a46bb; --blue-600: #1e55e0; --blue-500: #2e6bff; --blue-100: #e8efff;
 
   --paper: #f8fafc; --line: #e4e8ef; --line-soft: #eff2f6;
-  --ink: #0a1633; --ink-muted: #56637b;
+  --ink: #0a1633; --ink-muted: #56637b; --ink-dim: #8b97ab;
+  --brand-accent: #2e6bff;
 
   --dw-glass-fill: rgba(255, 255, 255, 0.72);
   --dw-glass-stroke: rgba(255, 255, 255, 0.9);
@@ -140,6 +141,42 @@
     0 30px 60px -24px rgba(46, 107, 255, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+/* Accent frost — same panel, blue edge and a payoff glow. Its own class rather
+   than Tailwind border/shadow utilities on top of .dw-glass-frost: those set the
+   same two properties, so which one won would depend on stylesheet order. */
+.dw-glass-frost--accent {
+  border-color: var(--blue-600);
+  box-shadow:
+    0 18px 44px -16px rgba(30, 85, 224, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+/* ── Grid beam ──
+   A thin light streak travelling diagonally across a grid field. Pure CSS: it
+   never reacts to input, so a JS animation would cost a render loop for nothing.
+   The parent supplies the grid and the mask; this is only the moving streak. */
+@keyframes dw-beam {
+  0%        { transform: translate(-10%, 110%) rotate(-32deg); opacity: 0; }
+  12%, 78%  { opacity: 1; }
+  100%      { transform: translate(120%, -30%) rotate(-32deg); opacity: 0; }
+}
+.dw-beam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 42vh;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, transparent, var(--blue-500), transparent);
+  box-shadow: 0 0 22px 3px rgba(46, 107, 255, 0.45);
+  animation: dw-beam 7s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dw-beam { animation: none; opacity: 0; }
 }
 
 /* Signature display face for headlines — Bricolage Grotesque, Inter as fallback */
@@ -231,7 +268,13 @@
   /* Soft feathered ends — CSS mask is reliable under preserveAspectRatio="none" */
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
-  /* Hidden until scrolled into view; HighlightReveal adds .dw-lit to sweep it in */
+}
+/* Hidden until scrolled into view — but ONLY once ScrollReveal has confirmed it
+   is alive by putting .dw-js on <html>. Hiding unconditionally means any error
+   that stops that effect from running takes whole sections of the page with it,
+   which is exactly what happened. Content is visible by default; the animation
+   is the enhancement. Same reasoning for .dw-reveal below. */
+.dw-js .dw-highlight-svg {
   clip-path: inset(0 100% 0 0);
 }
 .dw-highlight-svg.dw-lit {
@@ -239,17 +282,17 @@
 }
 
 /* Slide-in on scroll — ScrollReveal adds .dw-lit when the element enters view */
-.dw-reveal {
+.dw-js .dw-reveal {
   opacity: 0;
   transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
-.dw-reveal-left { transform: translateX(-48px); }
-.dw-reveal-right { transform: translateX(48px); }
-.dw-reveal.dw-lit { opacity: 1; transform: none; }
+.dw-js .dw-reveal-left { transform: translateX(-48px); }
+.dw-js .dw-reveal-right { transform: translateX(48px); }
+.dw-js .dw-reveal.dw-lit { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .dw-reveal { opacity: 1; transform: none; transition: none; }
+  .dw-js .dw-reveal { opacity: 1; transform: none; transition: none; }
 }
 
 /* Gentle float for overlapping glass chips / cards over a screenshot */
@@ -267,6 +310,69 @@
   100% { transform: scale(1.45); opacity: 0; }
 }
 .dw-ripple { animation: dw-ripple 5s ease-out infinite; }
+
+/* ── Interactive bento on the blue field ──
+   Flip the ink/line tokens once on the section and every component that reads
+   them follows. Cheaper and far less error-prone than restating colours in
+   five component files. */
+.dw-invert {
+  --ink: #ffffff;
+  --ink-muted: rgba(255, 255, 255, 0.72);
+  --ink-dim: rgba(255, 255, 255, 0.52);
+  --line: rgba(255, 255, 255, 0.20);
+  --line-soft: rgba(255, 255, 255, 0.12);
+  --paper: rgba(255, 255, 255, 0.08);
+  /* The light-field semantic colours are far too dark to read on blue. */
+  --success: #5fd3a3;
+  --warning: #fbbf24;
+  --danger: #ff8a94;
+  --brand-accent: #dbe7ff;
+}
+/* …but a simulated storefront is a real, light web page, and so is the agent's
+   chat window. Anything representing product UI restores the light tokens, so
+   its internals keep working unchanged. */
+.dw-uninvert {
+  --ink: #0a1633;
+  --ink-muted: #56637b;
+  --ink-dim: #8b97ab;
+  --line: #e4e8ef;
+  --line-soft: #eff2f6;
+  --paper: #f8fafc;
+  --success: #10805c;
+  --warning: #b45309;
+  --danger: #c0334c;
+  --brand-accent: #2e6bff;
+}
+
+/* Frosted white card for the blue field. Deliberately high opacity: at low
+   alpha the blue bleeds through and every dark label inside loses contrast.
+   Still glass — the blur and the bright rim do the work, not transparency. */
+.dw-glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.80) 100%);
+  -webkit-backdrop-filter: blur(24px) saturate(135%);
+  backdrop-filter: blur(24px) saturate(135%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 24px 56px -22px rgba(8, 26, 74, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Scroll region inside each interactive bento tile — a quiet scrollbar, so a
+   tile that overflows its height cap doesn't grow a chunky OS one. */
+.dw-tile-scroll { scrollbar-width: thin; scrollbar-color: rgba(10, 22, 51, 0.18) transparent; }
+.dw-tile-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+.dw-tile-scroll::-webkit-scrollbar-track { background: transparent; }
+.dw-tile-scroll::-webkit-scrollbar-thumb {
+  background: rgba(10, 22, 51, 0.18);
+  border-radius: 20px;
+}
+.dw-tile-scroll::-webkit-scrollbar-thumb:hover { background: rgba(10, 22, 51, 0.3); }
+
+/* SmartNudge popups entering their storefront stage (interactive/Nudge.tsx) */
+@keyframes dw-nudge-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* Ripple/lift button (Uiverse cssbuttons-io) — the "See a live store" secondary */
 .dw-ripple-btn {
@@ -338,6 +444,13 @@
 .shine-go:nth-child(2) .dw-shine { animation-delay: 0.16s; }
 .shine-go:nth-child(3) .dw-shine { animation-delay: 0.32s; }
 .shine-go:nth-child(4) .dw-shine { animation-delay: 0.48s; }
+/* Idle loop for the hero chips — nothing hovers them (they're aria-hidden and
+   pointer-events-none), so the sweep self-triggers. Held off-screen for the
+   first 70% so it reads as an occasional glint, not a constant wipe. */
+@keyframes dw-chip-shine {
+  0%, 70% { transform: translateX(-140%); }
+  100% { transform: translateX(140%); }
+}
 /* Hover — own keyframe so it always replays, only on the hovered card (declared last to win) */
 .dw-proof-card:hover .dw-shine { animation: dw-shine-hover 0.8s ease; }
 
@@ -369,6 +482,9 @@
   --color-sea-green-light: var(--sea-green-light);
   --color-sea-green-dark: var(--sea-green-dark);
   --font-sans: var(--font-sans);
+  /* Tailwind's font-mono utility → Geist Mono, so the data/label chrome in the
+     interactive tiles stops falling back to the browser's generic monospace. */
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);

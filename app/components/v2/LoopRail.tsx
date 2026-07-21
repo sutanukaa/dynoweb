@@ -1,5 +1,5 @@
-// The loop, as a flow diagram: scattered traffic converges into one rail, hits
-// four checkpoints (SEE → FIND → FIX → PROVE), and resolves at the payoff.
+// The loop, as a flow diagram: one rail running through four checkpoints
+// (SEE → FIND → FIX → PROVE), resolving at the payoff.
 //
 // This is DynoWeb's actual differentiator made visual — dynoweb-offer.md §2.5:
 // competitors stop at SEE or at FIX; nobody closes the loop. The dotted "free"
@@ -11,6 +11,17 @@
 //
 // Node x-positions are derived from the 4-column card grid (12.5 / 37.5 / 62.5 /
 // 87.5%), so cards and checkpoints stay aligned at every width by construction.
+//
+// Scroll-draw: the rail assembles itself as the section enters view — at rest the
+// track is empty, then the first checkpoint pops and the bar wipes L→R from it,
+// each later checkpoint popping as the wipe reaches its x-position. The
+// scroll range is a normal in-view window (no tall sticky container, no 400vh):
+// the section keeps its natural height and nothing scroll-jacks. Progress maps to
+// horizontal fill ONLY — there is no vertical motion anywhere in this animation.
+"use client";
+
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
 
 // All four stages report the SAME real store (The Punarvasu, design.md §2), so the
 // frame is internally consistent. An earlier draft mixed "$3,200/mo" — design.md's
@@ -24,124 +35,170 @@ const STAGES = [
 
 const NODE_X = [12.5, 37.5, 62.5, 87.5];
 
-/* Scattered incoming traffic, converging into the rail. Decorative. */
-function Lanes() {
-  const paths = [
-    "M0 8 C120 8 150 96 260 96",
-    "M0 44 C110 44 150 96 260 96",
-    "M0 96 C120 96 160 96 260 96",
-    "M0 148 C110 148 150 96 260 96",
-    "M0 184 C120 184 150 96 260 96",
-  ];
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 260 192"
-      preserveAspectRatio="none"
-      className="absolute right-full top-1/2 hidden h-[190px] w-[38vw] max-w-[420px] -translate-y-1/2 lg:block"
-      fill="none"
-    >
-      <defs>
-        <linearGradient id="dwLane" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="var(--blue-500)" stopOpacity="0" />
-          <stop offset="55%" stopColor="var(--blue-500)" stopOpacity="0.34" />
-          <stop offset="100%" stopColor="var(--blue-600)" stopOpacity="0.85" />
-        </linearGradient>
-      </defs>
-      {paths.map((d, i) => (
-        <path
-          key={d}
-          d={d}
-          stroke="url(#dwLane)"
-          strokeWidth={i === 2 ? 5 : 3}
-          strokeLinecap="round"
-        />
-      ))}
-    </svg>
-  );
-}
-
 /* Handwritten aside with a curved leader — marginalia, not UI chrome. */
+// leaderAbove puts the curve BEFORE the text. A note that sits below what it
+// annotates needs its leader on top, otherwise the arrow points up at its own
+// text instead of at the thing being annotated.
 function Note({
   children,
   className = "",
   arrow,
+  leaderAbove = false,
+  reveal = 1,
 }: {
   children: React.ReactNode;
   className?: string;
   arrow: "down-right" | "down-left" | "up-right";
+  leaderAbove?: boolean;
+  reveal?: MotionValue<number> | number;
 }) {
   const d = {
     "down-right": "M4 4 C26 10 34 24 40 40",
     "down-left": "M56 4 C34 10 26 24 20 40",
     "up-right": "M4 44 C26 38 34 24 40 8",
   }[arrow];
+  // Barbs are derived from the curve's tangent at its end point, not eyeballed —
+  // the old heads had their vertex past the curve's tip and their legs off-axis,
+  // so each read as a loose "v" floating beside the leader instead of an arrow.
+  // Tip = the curve's own end point; legs = tip - tangent*11 ± normal*5.5.
   const head = {
-    "down-right": "M34 30 L40 42 L28 40",
-    "down-left": "M26 30 L20 42 L32 40",
-    "up-right": "M34 18 L40 6 L29 9",
+    "down-right": "M30.9 31.5 L40 40 L41.3 27.7",
+    "down-left": "M18.7 27.7 L20 40 L29.1 31.5",
+    "up-right": "M41.3 20.3 L40 8 L30.9 16.5",
   }[arrow];
 
+  const text = (
+    <p className="font-caveat text-[1.05rem] leading-[1.15] text-[var(--ink-muted)]">{children}</p>
+  );
+  const leader = (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 60 48"
+      className="h-9 w-14 text-[var(--navy-300)]"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d={d} />
+      <path d={head} />
+    </svg>
+  );
+
   return (
-    <div className={`pointer-events-none absolute hidden lg:block ${className}`}>
-      <p className="font-caveat text-[1.05rem] leading-[1.15] text-[var(--ink-muted)]">{children}</p>
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 60 48"
-        className="h-9 w-14 text-[var(--navy-300)]"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d={d} />
-        <path d={head} />
-      </svg>
-    </div>
+    <motion.div
+      style={{ opacity: reveal }}
+      className={`pointer-events-none absolute hidden lg:block ${className}`}
+    >
+      {leaderAbove ? leader : text}
+      {leaderAbove ? text : leader}
+    </motion.div>
   );
 }
 
 export default function LoopRail() {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+
+  // Ordinary in-view window — the section is measured where it already sits, so
+  // its height is unchanged and the page scrolls at its normal rate.
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    // Start must be BELOW the fold at page load. The section's top already sits
+    // ~85% down the viewport under the hero, so a "start 95%" start line was
+    // already crossed before any scrolling — the first two checkpoints were
+    // rendered on arrival. 70% means progress is a hard 0 until you scroll.
+    // The end stays high so the sequence finishes with the section still centred.
+    offset: ["start 70%", "end 65%"],
+  });
+
+  // Where the fill ARRIVES at each checkpoint. The bar advances to a stop, holds
+  // while that node pops and its card lands, then moves on — a linear 0→87.5%
+  // sweep meant the bar was always somewhere between stops, and was already well
+  // past the first one by the time the section was comfortably in view.
+  const ARRIVE = [0.14, 0.36, 0.58, 0.8];
+
+  // Animate WIDTH, not scaleX. scaleX on a rounded-full bar squashes the border
+  // radius along with the box, flattening the leading cap into a blunt oval.
+  // The rail STARTS at the first node (12.5%) and ends at the last (87.5%), so
+  // the fill is 75% of the track wide when complete and there is no stub hanging
+  // off the left edge before the journey begins.
+  const railFill = useTransform(
+    scrollYProgress,
+    [ARRIVE[0], 0.26, ARRIVE[1], 0.48, ARRIVE[2], 0.7, ARRIVE[3]],
+    ["0%", "0%", "25%", "25%", "50%", "50%", "75%"],
+  );
+
+  // One entry per checkpoint, keyed to the moment the fill reaches it. NODE_X is
+  // a module constant, so this map calls the same hooks in the same order on
+  // every render.
+  const steps = NODE_X.map((_x, i) => {
+    const at = ARRIVE[i];
+    /* eslint-disable react-hooks/rules-of-hooks */
+    const pop = useTransform(scrollYProgress, [at - 0.05, at], [0, 1]);
+    const card = useTransform(scrollYProgress, [at, at + 0.06], [0, 1]);
+    const cardScale = useTransform(card, [0, 1], [0.965, 1]);
+    /* eslint-enable react-hooks/rules-of-hooks */
+    return { pop, card, cardScale };
+  });
+
   return (
-    <div className="relative mx-auto w-full max-w-[1080px] px-[clamp(1.25rem,5vw,3rem)] pb-8 pt-24">
+    <div
+      ref={ref}
+      className="relative mx-auto w-full max-w-[1080px] px-[clamp(1.25rem,5vw,3rem)] pb-8 pt-24"
+    >
       {/* ── Rail ── */}
       <div className="relative">
-        <Lanes />
+        {/* The bar itself. The coloured fill is its own layer so scaleX wipes it
+            without squashing the chevrons and nodes, which are siblings. */}
+        <div className="relative h-[7px] w-full rounded-full">
+          {/* Spans node 1 → node 4; both ends sit under a checkpoint, so both are
+              capped. Nothing renders before the first node pops. */}
+          <motion.div
+            aria-hidden="true"
+            className="absolute inset-y-0 left-[12.5%] rounded-full bg-[var(--blue-600)] shadow-[0_0_24px_-4px_rgba(30,85,224,0.55)]"
+            style={{ width: reduced ? "75%" : railFill }}
+          />
 
-        {/* The bar itself */}
-        <div className="relative h-[7px] w-full rounded-full bg-[var(--blue-600)] shadow-[0_0_24px_-4px_rgba(30,85,224,0.55)]">
-          {/* direction chevrons between checkpoints */}
-          {[25, 50, 75].map((x) => (
-            <svg
+          {/* direction chevrons, midway between consecutive checkpoints. Each
+              fades in with the node it points toward so it never sits on bare track. */}
+          {[25, 50, 75].map((x, i) => (
+            <motion.svg
               key={x}
               aria-hidden="true"
               viewBox="0 0 12 12"
               className="absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 text-white/85"
-              style={{ left: `${x}%` }}
+              style={{ left: `${x}%`, opacity: reduced ? 1 : steps[i + 1].pop }}
               fill="none"
               stroke="currentColor"
               strokeWidth="2.4"
               strokeLinecap="round"
             >
               <path d="M4 2.5 L8 6 L4 9.5" />
-            </svg>
+            </motion.svg>
           ))}
 
-          {/* checkpoint nodes */}
+          {/* checkpoint nodes. The -translate-x/y pair is what centres them on the
+              bar, so the pop rides on `scale` alone — animating translate here
+              would drag them off the rail. */}
           {NODE_X.map((x, i) => (
-            <span
+            <motion.span
               key={x}
               aria-hidden="true"
               className="absolute top-1/2 flex h-[26px] w-[26px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[3px] border-[var(--blue-600)] bg-white shadow-[0_0_0_4px_rgba(30,85,224,0.14)]"
-              style={{ left: `${x}%` }}
+              style={{
+                left: `${x}%`,
+                scale: reduced ? 1 : steps[i].pop,
+                opacity: reduced ? 1 : steps[i].pop,
+              }}
             >
               <span
                 className={`h-[9px] w-[9px] rounded-full ${
                   i === 3 ? "bg-[var(--blue-600)]" : "bg-[var(--blue-500)]"
                 }`}
               />
-            </span>
+            </motion.span>
           ))}
         </div>
 
@@ -156,15 +213,36 @@ export default function LoopRail() {
         />
 
         {/* handwritten asides */}
-        <Note arrow="down-right" className="left-[6%] -top-[86px] w-[130px]">
+        {/* Marginalia. Anchored with `right-` on the right-hand note rather than
+            `left-[92%]` — a left-anchored 130px box at 92% overflowed the container
+            and crowded the viewport edge on wide screens. */}
+        {/* Each note fades in with the checkpoint it annotates, so none of them sit
+            on screen ahead of the stop they point at. */}
+        <Note
+          arrow="down-right"
+          reveal={reduced ? 1 : steps[0].card}
+          className="left-[6%] -top-[86px] w-[130px]"
+        >
           we watch
           <br />
           every session
         </Note>
-        <Note arrow="up-right" className="left-[58%] top-[150px] w-[135px]">
+        {/* Sits under the FIX card (card row bottoms out ~200px below the rail), so
+            the leader goes above the text and points back up at the card. The "free"
+            bracket below was moved from mt-5 to mt-20 to clear the 55px this needs. */}
+        <Note
+          arrow="up-right"
+          leaderAbove
+          reveal={reduced ? 1 : steps[2].card}
+          className="left-[57%] top-[212px] w-[135px]"
+        >
           you approve first
         </Note>
-        <Note arrow="down-left" className="left-[92%] -top-[92px] w-[130px] text-right">
+        <Note
+          arrow="down-left"
+          reveal={reduced ? 1 : steps[3].card}
+          className="right-0 -top-[92px] w-[130px] text-right"
+        >
           real dollars,
           <br />
           net of refunds
@@ -173,10 +251,14 @@ export default function LoopRail() {
 
       {/* ── Stage cards ── */}
       <div className="mt-9 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
-        {STAGES.map((s) => (
-          <div
+        {STAGES.map((s, i) => (
+          <motion.div
             key={s.key}
-            className="rounded-[var(--r-lg)] border border-[var(--line)] bg-white/85 px-4 py-5 text-center shadow-[var(--shadow-sm)] backdrop-blur-sm"
+            className="dw-glass-frost rounded-[var(--r-lg)] px-4 py-5 text-center"
+            style={{
+              opacity: reduced ? 1 : steps[i].card,
+              scale: reduced ? 1 : steps[i].cardScale,
+            }}
           >
             <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[var(--ink-muted)]">
               {s.key}
@@ -185,11 +267,18 @@ export default function LoopRail() {
               {s.value}
             </p>
             <p className="mt-1.5 text-[12px] leading-snug text-[var(--ink-muted)]">{s.caption}</p>
-          </div>
+          </motion.div>
         ))}
 
-        {/* PROVE — the payoff. Lifted, blue-bordered, glowing: the eye lands here last. */}
-        <div className="relative rounded-[var(--r-lg)] border border-[var(--blue-600)] bg-white px-4 py-5 text-center shadow-[0_18px_44px_-16px_rgba(30,85,224,0.55)] sm:-translate-y-3">
+        {/* PROVE — the payoff. Lifted, blue-bordered, glowing: the eye lands here last.
+            The -translate-y-3 lift is a class, so `scale` here can't fight it. */}
+        <motion.div
+          className="dw-glass-frost dw-glass-frost--accent relative rounded-[var(--r-lg)] px-4 py-5 text-center sm:-translate-y-3"
+          style={{
+            opacity: reduced ? 1 : steps[3].card,
+            scale: reduced ? 1 : steps[3].cardScale,
+          }}
+        >
           <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[var(--blue-600)]">
             Prove
           </p>
@@ -199,22 +288,41 @@ export default function LoopRail() {
           <p className="mt-1.5 text-[12px] leading-snug text-[var(--ink-muted)]">
             in sales brought back
           </p>
-        </div>
+        </motion.div>
       </div>
 
-      {/* ── Pricing bracket: everything up to the payoff is free ── */}
-      <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
+      {/* ── Pricing bracket: everything up to the payoff is free ──
+           Both halves are the SAME bracket shape, differing only in colour. The
+           right half used to be bare centred text with no rule and no end ticks,
+           so it read as a stray caption rather than the counterpart to "free".
+           items-end + tall end ticks make each bracket open upward, gripping the
+           card row it spans instead of floating as a detached rule. */}
+      <motion.div
+        style={{ opacity: reduced ? 1 : steps[3].card }}
+        className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5"
+      >
         <div className="col-span-2 sm:col-span-3">
-          <div className="flex items-center gap-3">
-            <span className="h-2 w-px bg-[var(--line)]" />
-            <span className="h-px flex-1 border-t border-dashed border-[var(--line)]" />
-            <span className="text-[12px] font-medium text-[var(--ink-muted)]">free</span>
-            <span className="h-px flex-1 border-t border-dashed border-[var(--line)]" />
-            <span className="h-2 w-px bg-[var(--line)]" />
+          <div className="flex items-end gap-3">
+            <span className="h-4 w-px bg-[var(--line)]" />
+            <span className="-mb-px h-px flex-1 border-t border-dashed border-[var(--line)]" />
+            <span className="pb-1 text-[12px] font-medium text-[var(--ink-muted)]">free</span>
+            <span className="-mb-px h-px flex-1 border-t border-dashed border-[var(--line)]" />
+            <span className="h-4 w-px bg-[var(--line)]" />
           </div>
         </div>
-        <p className="text-center text-[12px] font-medium text-[var(--ink)]">you only pay here</p>
-      </div>
+
+        {/* Blue, and heavier — this is the only place money changes hands, and it
+            picks up the PROVE card's accent directly above it. */}
+        <div className="flex items-end gap-2">
+          <span className="h-4 w-px bg-[var(--blue-600)]/40" />
+          <span className="-mb-px h-px flex-1 border-t border-dashed border-[var(--blue-600)]/40" />
+          <span className="whitespace-nowrap pb-1 text-[12px] font-semibold text-[var(--blue-600)]">
+            you only pay here
+          </span>
+          <span className="-mb-px h-px flex-1 border-t border-dashed border-[var(--blue-600)]/40" />
+          <span className="h-4 w-px bg-[var(--blue-600)]/40" />
+        </div>
+      </motion.div>
 
       <p className="sr-only">
         DynoWeb closes a four-stage loop on a real store: it sees 52,370 rage clicks, finds 44

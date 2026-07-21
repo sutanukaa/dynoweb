@@ -1,4 +1,5 @@
 import { ArrowRight, Check, Eye, Rocket, TrendingUp } from "lucide-react";
+import Bracket from "./Bracket";
 
 import HighlightMarker from "./HighlightMarker";
 import InstallFreeButton from "./InstallFreeButton";
@@ -11,12 +12,38 @@ import SpinBorder from "./SpinBorder";
 const APP_URL = "https://apps.shopify.com/dynoweb";
 
 const TIERS = [
-  { name: "Free", price: "$0", period: "", line: "See your leak, watch real shoppers", icon: Eye, cta: "See plan" },
-  { name: "Growth", price: "$14", period: "/mo", line: "Keep your fixes live & recovering", icon: TrendingUp, cta: "Start recovering", featured: true },
-  { name: "Pro", price: "$29", period: "/mo", line: "More traffic, more fixes", icon: Rocket, cta: "See plan" },
+  {
+    name: "Free",
+    price: "$0",
+    period: "",
+    line: "See your leak, watch real shoppers",
+    icon: Eye,
+    cta: "See plan",
+  },
+  {
+    name: "Growth",
+    price: "$14",
+    period: "/mo",
+    line: "Keep your fixes live & recovering",
+    icon: TrendingUp,
+    cta: "Start recovering",
+    featured: true,
+  },
+  {
+    name: "Pro",
+    price: "$29",
+    period: "/mo",
+    line: "More traffic, more fixes",
+    icon: Rocket,
+    cta: "See plan",
+  },
 ];
 
-const MICRO = ["No credit card", "You approve every change", "No surprise charges, ever"];
+const MICRO = [
+  "No credit card",
+  "You approve every change",
+  "No surprise charges, ever",
+];
 
 export default function Close() {
   return (
@@ -31,12 +58,10 @@ export default function Close() {
       >
         <div className="mx-auto max-w-[1040px] px-[clamp(1.25rem,5vw,4rem)] py-24">
           <div className="text-center">
-            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--ink-muted)]">
-              Pricing
-            </p>
+            <Bracket>Pricing</Bracket>
             <h2 className="font-display mx-auto mt-5 max-w-[24ch] text-[clamp(1.75rem,2.8vw,2.4rem)] font-semibold leading-[1.12] tracking-[-0.025em] text-[var(--ink)]">
-              Recover $1k&ndash;$4k/month, and $14&ndash;$29 is the best return you&rsquo;ll make all
-              year.
+              Recover $1k&ndash;$4k/month, and $14&ndash;$29 is the best return
+              you&rsquo;ll make all year.
             </h2>
           </div>
 
@@ -63,7 +88,10 @@ export default function Close() {
                 >
                   {/* Aurora glow behind the featured glass */}
                   {t.featured && (
-                    <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0"
+                    >
                       <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-[#7c88ee] opacity-40 blur-[60px]" />
                       <div className="absolute -bottom-14 -left-8 h-48 w-48 rounded-full bg-[#4657d6] opacity-45 blur-[60px]" />
                     </div>
@@ -73,7 +101,9 @@ export default function Close() {
                     <div className="flex items-center justify-between">
                       <span
                         className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl ${
-                          t.featured ? "bg-white/15 text-white" : "bg-[var(--blue-100)] text-[var(--blue-600)]"
+                          t.featured
+                            ? "bg-white/15 text-white"
+                            : "bg-[var(--blue-100)] text-[var(--blue-600)]"
                         }`}
                       >
                         <Icon className="h-5 w-5" strokeWidth={2.2} />
@@ -96,7 +126,9 @@ export default function Close() {
                       {t.period && (
                         <span
                           className={`text-sm font-medium ${
-                            t.featured ? "text-white/70" : "text-[var(--ink-muted)]"
+                            t.featured
+                              ? "text-white/70"
+                              : "text-[var(--ink-muted)]"
                           }`}
                         >
                           {t.period}
@@ -121,7 +153,8 @@ export default function Close() {
 
                     {t.featured && (
                       <span className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white">
-                        <TrendingUp className="h-3.5 w-3.5" strokeWidth={2.5} /> &asymp;50&ndash;150&times; return
+                        <TrendingUp className="h-3.5 w-3.5" strokeWidth={2.5} />{" "}
+                        &asymp;50&ndash;150&times; return
                       </span>
                     )}
 
@@ -141,9 +174,14 @@ export default function Close() {
 
           {/* Soft callout — done-for-you (validate the motion before promoting louder) */}
           <p className="mx-auto mt-12 max-w-[52ch] text-center text-[var(--ink-muted)]">
-            <strong className="font-semibold text-[var(--ink)]">Want us to just handle it?</strong>{" "}
+            <strong className="font-semibold text-[var(--ink)]">
+              Want us to just handle it?
+            </strong>{" "}
             Done-for-you &mdash; we find, fix, and watch the numbers.{" "}
-            <a href="/contact-us" className="font-semibold text-[var(--blue-600)] hover:underline">
+            <a
+              href="/contact-us"
+              className="font-semibold text-[var(--blue-600)] hover:underline"
+            >
               Talk to us.
             </a>
           </p>
@@ -153,10 +191,19 @@ export default function Close() {
       {/* 11 · Final CTA */}
       <section className="font-inter relative w-full overflow-hidden bg-white">
         {/* Ambient interest — soft aurora glows behind the closer */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+        >
           <div className="absolute left-1/2 top-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#dbe6ff] opacity-60 blur-[110px]" />
-          <div className="absolute -left-12 top-8 h-64 w-64 rounded-full bg-[#c7d6ff] opacity-45 blur-[80px]" style={{ animation: "dw-float 9s ease-in-out infinite" }} />
-          <div className="absolute -right-12 bottom-4 h-64 w-64 rounded-full bg-[#d9c9ff] opacity-35 blur-[80px]" style={{ animation: "dw-float 11s ease-in-out infinite reverse" }} />
+          <div
+            className="absolute -left-12 top-8 h-64 w-64 rounded-full bg-[#c7d6ff] opacity-45 blur-[80px]"
+            style={{ animation: "dw-float 9s ease-in-out infinite" }}
+          />
+          <div
+            className="absolute -right-12 bottom-4 h-64 w-64 rounded-full bg-[#d9c9ff] opacity-35 blur-[80px]"
+            style={{ animation: "dw-float 11s ease-in-out infinite reverse" }}
+          />
         </div>
 
         <div className="relative z-10 mx-auto max-w-[820px] px-[clamp(1.25rem,5vw,4rem)] py-28 text-center">
@@ -173,8 +220,8 @@ export default function Close() {
             <HighlightMarker>why.</HighlightMarker>
           </h2>
           <p className="mx-auto mt-6 max-w-[48ch] text-lg leading-relaxed text-[var(--ink-muted)]">
-            See why shoppers are leaving &mdash; in dollars &mdash; free. Fix it. Watch the sales
-            come back. Pay only when they do.
+            See why shoppers are leaving &mdash; in dollars &mdash; free. Fix
+            it. Watch the sales come back. Pay only when they do.
           </p>
           <div className="mt-10 flex justify-center">
             <SpinBorder radius="md">

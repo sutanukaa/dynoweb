@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import Bracket from "./Bracket";
 
 import HighlightMarker from "./HighlightMarker";
 
@@ -28,18 +29,21 @@ export default function Trust() {
       <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-12 px-[clamp(1.25rem,5vw,4rem)] py-24 md:grid-cols-2 md:gap-16">
         {/* 8 · Honest billing */}
         <div className="dw-reveal dw-reveal-left">
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--ink-muted)]">
-            Honest billing
-          </p>
+          <Bracket>Honest billing</Bracket>
           <h2 className="font-display mt-5 text-[clamp(1.75rem,2.6vw,2.25rem)] font-semibold leading-[1.12] tracking-[-0.025em] text-[var(--ink)]">
             No surprise charges. <HighlightMarker>Ever.</HighlightMarker>
           </h2>
           <ul className="mt-8 space-y-4">
             {BILLING.map(([lead, rest]) => (
               <li key={lead} className="flex items-start gap-3">
-                <Check className="mt-1 h-5 w-5 shrink-0 text-[#10805c]" strokeWidth={2.5} />
+                <Check
+                  className="mt-1 h-5 w-5 shrink-0 text-[#10805c]"
+                  strokeWidth={2.5}
+                />
                 <p className="text-[var(--ink-muted)]">
-                  <strong className="font-semibold text-[var(--ink)]">{lead}</strong>
+                  <strong className="font-semibold text-[var(--ink)]">
+                    {lead}
+                  </strong>
                   {rest ? ` — ${rest}` : ""}
                 </p>
               </li>
@@ -56,15 +60,16 @@ export default function Trust() {
           }}
         >
           {/* Soft aurora glow for the frosted look */}
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+          >
             <div className="absolute -right-10 -top-10 h-56 w-56 rounded-full bg-[#7c88ee] opacity-40 blur-[70px]" />
             <div className="absolute -bottom-12 -left-8 h-56 w-56 rounded-full bg-[#4657d6] opacity-40 blur-[70px]" />
           </div>
 
           <div className="relative">
-            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white/70">
-              You literally cannot get burned
-            </p>
+            <Bracket tone="light">You literally cannot get burned</Bracket>
             <ol className="mt-8 space-y-5">
               {STEPS.map(([lead, rest], i) => (
                 <li key={lead} className="flex items-start gap-4">

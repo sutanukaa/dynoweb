@@ -1,10 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Geist, Bricolage_Grotesque, Caveat } from "next/font/google";
+import { Inter, Geist, Geist_Mono, Bricolage_Grotesque, Caveat } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import OaiqPageView from "./components/OaiqPageView";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
+// Numeric/label chrome across the interactive tiles — data readouts, PECTI chips,
+// trigger labels. Pairs with Geist; Tailwind's font-mono resolves to it via globals.css.
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", weight: ["400", "500"] });
 
 const inter = Inter({
   variable: "--font-inter",
@@ -125,7 +129,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${bricolage.variable} ${caveat.variable} antialiased font-inter`}
+        className={`${inter.variable} ${bricolage.variable} ${caveat.variable} ${geistMono.variable} antialiased font-inter`}
         suppressHydrationWarning
       >
         <OaiqPageView />
