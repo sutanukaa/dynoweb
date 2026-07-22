@@ -3,15 +3,22 @@ import { useState, type CSSProperties } from "react";
 
 // Custom-plan slider — fixed stops only
 const CUSTOM_STOPS = [
+  { sessions: 50_000,    price: 49  },
+  { sessions: 75_000,    price: 64  },
   { sessions: 100_000,   price: 79  },
   { sessions: 250_000,   price: 139 },
   { sessions: 500_000,   price: 239 },
   { sessions: 1_000_000, price: 439 },
 ];
-const DEFAULT_STOP_INDEX = 0; // 100K sessions (entry)
+const DEFAULT_STOP_INDEX = 0; // 50K sessions (entry)
 
 function formatSessions(sessions: number): string {
   return sessions.toLocaleString("en-US");
+}
+
+// Compact tick labels, one per stop — kept in sync with CUSTOM_STOPS.
+function tickLabel(sessions: number): string {
+  return sessions >= 1_000_000 ? "1M" : `${sessions / 1_000}K`;
 }
 
 type Plan = {
@@ -36,11 +43,11 @@ const plans: Plan[] = [
     period: "/ mo",
     features: [
       "Up to 1,500 sessions / month",
-      "Click + scroll heatmaps",
-      "30-day replay retention",
-      "AI assistant access (500 actions / day)",
-      "2 SmartNudges",
-      "1 CRO Report / mo (summary only)",
+      "Find out what's losing you sales — full report, monthly",
+      "See where people click, and where they stop scrolling",
+      "Watch real visits back, 30 days of history",
+      "Run 2 fixes live on your store",
+      "Ask questions about your store, 500 a day",
     ],
     notIncluded: [
       "Nudge A/B testing",
@@ -55,10 +62,10 @@ const plans: Plan[] = [
     featuresHeader: "All features in Free Plan and:",
     features: [
       "Up to 7,500 sessions / month",
-      "Click + scroll heatmaps",
-      "90-day replay retention",
-      "5 SmartNudges (+ A/B testing)",
-      "4 CRO Reports / mo (full)",
+      "A fresh report every week, not every month",
+      "See where people click, and where they stop scrolling",
+      "Watch real visits back, 90 days of history",
+      "Run 5 fixes at once, and test them head to head",
       "Email support",
     ],
     notIncluded: [
@@ -75,11 +82,11 @@ const plans: Plan[] = [
     featuresHeader: "All features in Growth Plan and:",
     features: [
       "Up to 35,000 sessions / month",
-      "Rage-click heatmaps",
-      "180-day replay retention",
-      "15 SmartNudges",
-      "AI assistant access (1,500 actions / day)",
-      "16 CRO Reports / mo",
+      "Re-run the report the moment you change something",
+      "Spot rage-clicks — where shoppers get stuck and give up",
+      "Watch real visits back, 180 days of history",
+      "Run 15 fixes at once, and test them head to head",
+      "Ask questions about your store, 1,500 a day",
       "Priority email support",
     ],
     notIncluded: [
@@ -91,19 +98,19 @@ const plans: Plan[] = [
   },
   {
     name: "Custom",
-    price: "$79",
+    price: "$49",
     period: "/ mo",
-    priceSubtitle: "Up to 100,000 sessions",
+    priceSubtitle: "Up to 50,000 sessions",
     trial: "7-day free trial",
     custom: true,
     features: [
-      "Sessions sized to your traffic (slider)",
-      "All heatmap modes + event-type filter",
-      "365-day replay retention",
-      "Unlimited SmartNudges",
-      "$40 AI Agent credit included",
-      "AI assistant access (5,000 actions / day)",
-      "Unlimited CRO Reports",
+      "Sessions sized to your traffic (50,000 – 1M)",
+      "Re-run the report the moment you change something",
+      "Every heatmap view, filtered any way you need",
+      "Watch real visits back, a full year of history",
+      "Run as many fixes as you like",
+      "$40 of AI Agent usage included",
+      "Dedicated Slack channel",
     ],
     cta: { label: "Start 7-day free trial", href: "/contact-us" },
   },
@@ -708,8 +715,9 @@ export default function PricingSection() {
                       aria-valuetext={`${formatSessions(sessions)} sessions, $${customPrice} per month`}
                     />
                     <div className="custom-slider-labels">
-                      <span>100K</span>
-                      <span>1M</span>
+                      {CUSTOM_STOPS.map((s) => (
+                        <span key={s.sessions}>{tickLabel(s.sessions)}</span>
+                      ))}
                     </div>
                     <p className="custom-callout">
                       $40 AI Agent credit bundled · all features included
